@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using System.Collections;
+using UltimateErasme.ClassesDInternet.Particles;
 
 namespace UltimateErasme.GameObjects
 {
@@ -26,6 +27,7 @@ namespace UltimateErasme.GameObjects
 
         Texture2D erasmeNormal, erasmeMonte, erasmeDescend;
         Texture2D[] erasmeAttaque;
+        Texture2D[] explosionMoche;
         Texture2D graisse;
         
         int hauteurDuSol;
@@ -39,26 +41,49 @@ namespace UltimateErasme.GameObjects
         BuloState buloState;
         float buloPorteeMax;
 
+        ParticleSystem explosion;
+        ParticleSystem smoke;
+        double explosionManager_OldGameTimeMilliseconds;
+        Vector2 explosionMochePosition;
+        
+
+
         GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
 #if !XBOX
         KeyboardState previousKeyboardState = Keyboard.GetState();
 #endif
 
 
-        public Erasme(ContentManager content, Rectangle viewportRect)
+        public Erasme(UltimateErasme game, Rectangle viewportRect)
         {
             this.viewportRect = viewportRect;
             viewportRectPlus = new Rectangle(viewportRect.X, viewportRect.Y, viewportRect.Width + 100, viewportRect.Height + 100);
-            this.content = content;
+            this.content = game.Content;
+
+            // create the particle systems and add them to the components list.
+            // we should never see more than one explosion at once
+            explosion = new ExplosionParticleSystem(game, 1, @"Sprites\ParticleSystem\explosion");
+            explosion.Initialize();
+            game.Components.Add(explosion);
+
+            // but the smoke from the explosion lingers a while.
+            smoke = new ExplosionSmokeParticleSystem(game, 2, @"Sprites\ParticleSystem\smoke");
+            smoke.Initialize();
+            game.Components.Add(smoke);
 
             erasmeNormal = content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme");
             erasmeMonte = content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme_blup");
             erasmeDescend = content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme_no_blup");
             graisse = content.Load<Texture2D>(@"Sprites\Graisse\graisse"); 
             erasmeAttaque = new Texture2D[8];
+            explosionMoche = new Texture2D[6];
             for (int i = 0; i < 8; i++)
             {
                 erasmeAttaque[i] = content.Load<Texture2D>(@"Sprites\Characters\Erasme\attaque\erasmeattaque" + (i+1));
+            }
+            for (int i = 0; i < 6; i++)
+            {
+                explosionMoche[i] = content.Load<Texture2D>(@"Sprites\Explosion\explosion" + (i + 1));
             }
 
             erasme = new GameObject(erasmeNormal);
@@ -72,6 +97,7 @@ namespace UltimateErasme.GameObjects
             buloState = BuloState.pasSorti;
         }
 
+        //gére les boutons
         public void Update(GameTime gameTime)
         {
             GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
@@ -130,7 +156,14 @@ namespace UltimateErasme.GameObjects
                     buloPorteeMax = erasme.Position.X + 400;
                 }
             }
-
+            else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+            {
+                if (gamePadState.Buttons.B == ButtonState.Pressed &&
+                    previousGamePadState.Buttons.B == ButtonState.Released)
+                {
+                    
+                }
+            }
             previousGamePadState = gamePadState;
 #if !XBOX
             KeyboardState keyboardState = Keyboard.GetState();
@@ -191,6 +224,14 @@ namespace UltimateErasme.GameObjects
                     buloPorteeMax = erasme.Position.X + 400;
                 }
             }
+            else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+            {
+                if (keyboardState.IsKeyDown(Keys.Z) &&
+                previousKeyboardState.IsKeyUp(Keys.Z))
+                {
+                    
+                }
+            }
 
             previousKeyboardState = keyboardState;
 #endif
@@ -199,26 +240,35 @@ namespace UltimateErasme.GameObjects
             AttackManager(gameTime);
             GraisseManager();
             BuloManager();
+            explosionManager();
         }
 
+        private void explosionManager()
+        {
+            smoke.AddParticles(bulo.Position);
+            explosion.AddParticles(bulo.Position);
+            bulo.Alive = false;
+            buloState = BuloState.pasSorti;
+        }
+
+        //gére le bulo
         private void BuloManager()
         {
             if (buloState != BuloState.pasSorti)
             {
                 if (buloState == BuloState.sorti)
                 {
-                    if (erasme.Sprite == erasmeNormal)
-                    {
-                        //+ new Vector2(100, 35))
-                        bulo.Position = erasme.Position + (new Vector2(100, 35));
-                    }
-                    else if (erasme.Sprite == erasmeMonte)
+                    if (erasme.Sprite == erasmeMonte)
                     {
                         bulo.Position = erasme.Position + new Vector2(30, 100);
                     }
                     else if (erasme.Sprite == erasmeDescend)
                     {
                         bulo.Position = erasme.Position + new Vector2(20, -50);
+                    }
+                    else
+                    {
+                        bulo.Position = erasme.Position + (new Vector2(100, 35));
                     }
                     bulo.Rotation = erasme.Rotation;
                 }
@@ -261,8 +311,7 @@ namespace UltimateErasme.GameObjects
             }
         }
 
-
-
+        //gére les attaques
         private void AttackManager(GameTime gameTime)
         {
             if (attackState != AttackState.pasAttaque)
@@ -380,7 +429,6 @@ namespace UltimateErasme.GameObjects
             }
 
         }
-
 
         private void GraisseManager()
         {

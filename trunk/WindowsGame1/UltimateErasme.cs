@@ -11,6 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using UltimateErasme.GameObjects;
+using UltimateErasme.ClassesDInternet.Particles;
 
 
 namespace UltimateErasme
@@ -21,10 +22,11 @@ namespace UltimateErasme
     public class UltimateErasme : Microsoft.Xna.Framework.Game
     {
         GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public SpriteBatch spriteBatch { get; set; }
         Rectangle viewportRect;
         GameObject background;
         Erasme erasme;
+
 
         public UltimateErasme()
         {
@@ -55,7 +57,7 @@ namespace UltimateErasme
             spriteBatch = new SpriteBatch(GraphicsDevice);
             viewportRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             background = new GameObject(Content.Load<Texture2D>(@"Sprites\Backgrounds\decor"));
-            erasme = new Erasme(Content, viewportRect);
+            erasme = new Erasme(this, viewportRect);
             
         }
 
