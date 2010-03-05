@@ -161,7 +161,7 @@ namespace UltimateErasme.GameObjects
                 if (gamePadState.Buttons.B == ButtonState.Pressed &&
                     previousGamePadState.Buttons.B == ButtonState.Released)
                 {
-                    
+                    explosionManager();
                 }
             }
             previousGamePadState = gamePadState;
@@ -229,7 +229,7 @@ namespace UltimateErasme.GameObjects
                 if (keyboardState.IsKeyDown(Keys.Z) &&
                 previousKeyboardState.IsKeyUp(Keys.Z))
                 {
-                    
+                    explosionManager();
                 }
             }
 
@@ -240,7 +240,7 @@ namespace UltimateErasme.GameObjects
             AttackManager(gameTime);
             GraisseManager();
             BuloManager();
-            explosionManager();
+            
         }
 
         private void explosionManager()
