@@ -1,3 +1,2 @@
 C:\Users\kalamar\Documents\Visual Studio 2008\Projects\WindowsGame1\WindowsGame1\Content\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\Content\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\lejeuderasme\WindowsGame1\Content\obj\x86\Debug\ResolveAssemblyReference.cache
