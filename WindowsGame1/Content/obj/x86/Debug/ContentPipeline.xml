@@ -7,7 +7,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor.xnb</Output>
       <Time>2010-03-04T22:47:12.3674348+01:00</Time>
     </Item>
     <Item>
@@ -16,7 +16,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor2.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor2.xnb</Output>
       <Time>2010-03-04T22:47:12.4074371+01:00</Time>
     </Item>
     <Item>
@@ -25,7 +25,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor3.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor3.xnb</Output>
       <Time>2010-03-04T22:47:12.4104373+01:00</Time>
     </Item>
     <Item>
@@ -34,7 +34,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor4.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor4.xnb</Output>
       <Time>2010-03-04T22:47:12.4134374+01:00</Time>
     </Item>
     <Item>
@@ -43,7 +43,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor5.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor5.xnb</Output>
       <Time>2010-03-04T22:47:12.4154376+01:00</Time>
     </Item>
     <Item>
@@ -55,7 +55,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme.xnb</Output>
       <Time>2010-03-04T23:00:34.7203268+01:00</Time>
     </Item>
     <Item>
@@ -67,7 +67,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_blup.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_blup.xnb</Output>
       <Time>2010-03-04T23:00:34.7213268+01:00</Time>
     </Item>
     <Item>
@@ -79,7 +79,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_no_blup.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_no_blup.xnb</Output>
       <Time>2010-03-04T23:00:34.7223269+01:00</Time>
     </Item>
     <Item>
@@ -91,7 +91,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque1.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque1.xnb</Output>
       <Time>2010-03-05T00:34:16.1028515+01:00</Time>
     </Item>
     <Item>
@@ -103,7 +103,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque2.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque2.xnb</Output>
       <Time>2010-03-05T00:34:16.1038515+01:00</Time>
     </Item>
     <Item>
@@ -115,7 +115,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque3.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque3.xnb</Output>
       <Time>2010-03-05T00:34:16.1048516+01:00</Time>
     </Item>
     <Item>
@@ -127,7 +127,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque4.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque4.xnb</Output>
       <Time>2010-03-05T00:34:16.1058516+01:00</Time>
     </Item>
     <Item>
@@ -139,7 +139,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque5.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque5.xnb</Output>
       <Time>2010-03-05T00:34:16.1068517+01:00</Time>
     </Item>
     <Item>
@@ -151,7 +151,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque6.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque6.xnb</Output>
       <Time>2010-03-05T00:34:16.1068517+01:00</Time>
     </Item>
     <Item>
@@ -163,7 +163,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque7.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque7.xnb</Output>
       <Time>2010-03-05T00:34:16.1078518+01:00</Time>
     </Item>
     <Item>
@@ -175,7 +175,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque8.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque8.xnb</Output>
       <Time>2010-03-05T00:34:16.1088518+01:00</Time>
     </Item>
     <Item>
@@ -187,7 +187,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Graisse\graisse.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Graisse\graisse.xnb</Output>
       <Time>2010-03-05T01:20:58.7351529+01:00</Time>
     </Item>
     <Item>
@@ -196,7 +196,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Bulo\bulo.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Bulo\bulo.xnb</Output>
       <Time>2010-03-05T14:22:03.7213538+01:00</Time>
     </Item>
     <Item>
@@ -205,7 +205,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\ParticleSystem\explosion.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\ParticleSystem\explosion.xnb</Output>
       <Time>2010-03-05T16:13:39.4239631+01:00</Time>
     </Item>
     <Item>
@@ -214,7 +214,7 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\ParticleSystem\smoke.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\ParticleSystem\smoke.xnb</Output>
       <Time>2010-03-05T16:13:39.4239631+01:00</Time>
     </Item>
     <Item>
@@ -226,7 +226,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion1.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion1.xnb</Output>
       <Time>2010-03-05T18:57:21.8434104+01:00</Time>
     </Item>
     <Item>
@@ -238,7 +238,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion2.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion2.xnb</Output>
       <Time>2010-03-05T18:57:21.8444105+01:00</Time>
     </Item>
     <Item>
@@ -250,7 +250,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion3.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion3.xnb</Output>
       <Time>2010-03-05T18:57:21.8454105+01:00</Time>
     </Item>
     <Item>
@@ -262,7 +262,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion4.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion4.xnb</Output>
       <Time>2010-03-05T18:57:21.8454105+01:00</Time>
     </Item>
     <Item>
@@ -274,7 +274,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion5.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion5.xnb</Output>
       <Time>2010-03-05T18:57:21.8464106+01:00</Time>
     </Item>
     <Item>
@@ -286,7 +286,7 @@
         <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
       </Parameters>
       <Options>None</Options>
-      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion6.xnb</Output>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\Sprites\Explosion\explosion6.xnb</Output>
       <Time>2010-03-05T18:57:21.8474106+01:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
@@ -294,10 +294,10 @@
       <TargetPlatform>Windows</TargetPlatform>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDEramseSVN\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
