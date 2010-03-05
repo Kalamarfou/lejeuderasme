@@ -1,0 +1,45 @@
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor2.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor3.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor4.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor5.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_blup.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_no_blup.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque1.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque2.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque3.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque4.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque5.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque6.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque7.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque8.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Graisse\graisse.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Bulo\bulo.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor2.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor3.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor4.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor5.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_blup.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_no_blup.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque1.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque2.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque3.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque4.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque5.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque6.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque7.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque8.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Graisse\graisse.bmp
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Le Jeu D'Erasme.exe.manifest
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Le Jeu D'Erasme.application
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Le Jeu D'Erasme.exe
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Le Jeu D'Erasme.pdb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\obj\x86\Debug\Le Jeu D'Erasme.exe.manifest
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\obj\x86\Debug\Le Jeu D'Erasme.application
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\obj\x86\Debug\Le Jeu D'Erasme.exe
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\obj\x86\Debug\Le Jeu D'Erasme.pdb

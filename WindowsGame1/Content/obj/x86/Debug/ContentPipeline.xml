@@ -1,0 +1,243 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Sprites\Backgrounds\decor.bmp</Source>
+      <Name>Sprites\Backgrounds\decor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor.xnb</Output>
+      <Time>2010-03-04T22:47:12.3674348+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\decor2.bmp</Source>
+      <Name>Sprites\Backgrounds\decor2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor2.xnb</Output>
+      <Time>2010-03-04T22:47:12.4074371+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\decor3.bmp</Source>
+      <Name>Sprites\Backgrounds\decor3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor3.xnb</Output>
+      <Time>2010-03-04T22:47:12.4104373+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\decor4.bmp</Source>
+      <Name>Sprites\Backgrounds\decor4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor4.xnb</Output>
+      <Time>2010-03-04T22:47:12.4134374+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Backgrounds\decor5.bmp</Source>
+      <Name>Sprites\Backgrounds\decor5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Backgrounds\decor5.xnb</Output>
+      <Time>2010-03-04T22:47:12.4154376+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\erasme.bmp</Source>
+      <Name>Sprites\Characters\Erasme\erasme</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme.xnb</Output>
+      <Time>2010-03-04T23:00:34.7203268+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\erasme_blup.bmp</Source>
+      <Name>Sprites\Characters\Erasme\erasme_blup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_blup.xnb</Output>
+      <Time>2010-03-04T23:00:34.7213268+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\erasme_no_blup.bmp</Source>
+      <Name>Sprites\Characters\Erasme\erasme_no_blup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\erasme_no_blup.xnb</Output>
+      <Time>2010-03-04T23:00:34.7223269+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque1.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque1.xnb</Output>
+      <Time>2010-03-05T00:34:16.1028515+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque2.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque2.xnb</Output>
+      <Time>2010-03-05T00:34:16.1038515+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque3.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque3.xnb</Output>
+      <Time>2010-03-05T00:34:16.1048516+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque4.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque4.xnb</Output>
+      <Time>2010-03-05T00:34:16.1058516+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque5.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque5.xnb</Output>
+      <Time>2010-03-05T00:34:16.1068517+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque6.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque6.xnb</Output>
+      <Time>2010-03-05T00:34:16.1068517+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque7.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque7.xnb</Output>
+      <Time>2010-03-05T00:34:16.1078518+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Characters\Erasme\attaque\erasmeattaque8.bmp</Source>
+      <Name>Sprites\Characters\Erasme\attaque\erasmeattaque8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Characters\Erasme\attaque\erasmeattaque8.xnb</Output>
+      <Time>2010-03-05T00:34:16.1088518+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Graisse\graisse.bmp</Source>
+      <Name>Sprites\Graisse\graisse</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Parameters>
+        <Data Key="ColorKeyColor">0, 0, 255, 255</Data>
+      </Parameters>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Graisse\graisse.xnb</Output>
+      <Time>2010-03-05T01:20:58.7351529+01:00</Time>
+    </Item>
+    <Item>
+      <Source>Sprites\Bulo\bulo.bmp</Source>
+      <Name>Sprites\Bulo\bulo</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\Sprites\Bulo\bulo.xnb</Output>
+      <Time>2010-03-05T14:22:03.7213538+01:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\LeJeuDerasme\WindowsGame1\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2009-05-28T01:16:14+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2009-05-28T01:16:06+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2009-05-28T01:16:16+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2009-05-28T01:16:26+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2009-05-28T01:16:12+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.1\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2009-05-28T01:16:06+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.1.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2010-03-04T14:36:27.0292118+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
