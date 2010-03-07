@@ -226,8 +226,146 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sprites\Characters\Voltaire\voltaire.bmp">
+      <Name>voltaire</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\voltaire_blup.bmp">
+      <Name>voltaire_blup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\voltaire_no_blup.bmp">
+      <Name>voltaire_no_blup</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Characters\Voltaire\attaque\attaquevoltaire1.bmp">
+      <Name>attaquevoltaire1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\attaque\attaquevoltaire2.bmp">
+      <Name>attaquevoltaire2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\attaque\attaquevoltaire3.bmp">
+      <Name>attaquevoltaire3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\attaque\attaquevoltaire4.bmp">
+      <Name>attaquevoltaire4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\attaque\attaquevoltaire5.bmp">
+      <Name>attaquevoltaire5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Characters\Voltaire\attaque\attaquevoltaire6.bmp">
+      <Name>attaquevoltaire6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Sprites\Transformation\transformation1.bmp">
+      <Name>transformation1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation10.bmp">
+      <Name>transformation10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation2.bmp">
+      <Name>transformation2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation3.bmp">
+      <Name>transformation3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation4.bmp">
+      <Name>transformation4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation5.bmp">
+      <Name>transformation5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation6.bmp">
+      <Name>transformation6</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation7.bmp">
+      <Name>transformation7</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation8.bmp">
+      <Name>transformation8</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Sprites\Transformation\transformation9.bmp">
+      <Name>transformation9</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <ProcessorParameters_ColorKeyColor>0, 0, 255, 255</ProcessorParameters_ColorKeyColor>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Sprites\Characters\Mechant\" />
-    <Folder Include="Sprites\Characters\Voltaire\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

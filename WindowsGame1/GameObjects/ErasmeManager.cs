@@ -27,11 +27,13 @@ namespace UltimateErasme.GameObjects
 
 
         public Texture2D erasmeNormal;
+        public Texture2D voltaireNormal;
 
         public SoundManager soundManager;
         public BuloManager buloManager;
         public JumpManager jumpManager;
         public AttackManager attackManager;
+        public TransformationManager transformationManager;
 
         GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
 #if !XBOX
@@ -46,12 +48,14 @@ namespace UltimateErasme.GameObjects
             this.game = game;
 
             erasmeNormal = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme");
+            voltaireNormal = game.Content.Load<Texture2D>(@"Sprites\Characters\Voltaire\voltaire");
             erasme = new GameObject(erasmeNormal);
 
             soundManager = new SoundManager();
             buloManager = new BuloManager(game, this);
             jumpManager = new JumpManager(game, this);
             attackManager = new AttackManager(game, this);
+            transformationManager = new TransformationManager(game, this);
 
         }
 
@@ -79,7 +83,8 @@ namespace UltimateErasme.GameObjects
 
             jumpManager.Update(gameTime);
             attackManager.Update(gameTime);
-            buloManager.Update(gameTime); ;
+            buloManager.Update(gameTime);
+            transformationManager.Update(gameTime);
             
         }
 

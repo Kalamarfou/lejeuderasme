@@ -59,6 +59,7 @@ namespace UltimateErasme.GameObjects
                 boule.Position = erasmeManager.erasme.Position + new Vector2(30, 30);
                 boule.Rotation = erasmeManager.erasme.Rotation;
                 boulesDeGraisse.Add(boule);
+                erasmeManager.soundManager.AttaqueErasme();
             }
             else
             {
@@ -72,6 +73,7 @@ namespace UltimateErasme.GameObjects
                     boule.Position = erasmeManager.erasme.Position + new Vector2(30, 30);
                     boulesDeGraisse.Add(boule);
                 }
+                erasmeManager.soundManager.AttaqueErasme360();
             }
         }
 
