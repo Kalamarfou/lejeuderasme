@@ -219,6 +219,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Sound\jeuDErasme.xap">
+      <Name>jeuDErasme</Name>
+      <Importer>XactImporter</Importer>
+      <Processor>XactProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Sprites\Characters\Mechant\" />
     <Folder Include="Sprites\Characters\Voltaire\" />
   </ItemGroup>
