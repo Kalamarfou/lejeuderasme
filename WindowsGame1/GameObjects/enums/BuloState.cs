@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UltimateErasme.GameObjects
 {
-    enum BuloState
+    public enum BuloState
     {
         pasSorti,
         sorti,

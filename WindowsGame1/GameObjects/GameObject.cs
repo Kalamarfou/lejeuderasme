@@ -13,7 +13,7 @@ using Microsoft.Xna.Framework.Storage;
 
 namespace UltimateErasme.GameObjects
 {
-    class GameObject
+    public class GameObject
     {
         public Texture2D Sprite { get; set; }
         public Vector2 Position { get; set; }

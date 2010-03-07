@@ -1,6 +1,6 @@
 ﻿namespace UltimateErasme.GameObjects
 {
-    enum JumpState
+    public enum JumpState
     {
         auSol,
         decollage,
