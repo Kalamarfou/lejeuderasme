@@ -48,9 +48,7 @@ namespace UltimateErasme.GameObjects
                previousGamePadState.Buttons.X == ButtonState.Released &&
                attackState == AttackState.pasAttaque)
             {
-                attackState = AttackState.etape1;
-                erasmeManager.erasme.Sprite = erasmeAttaque[0];
-                attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.Milliseconds;
+                Attaquer(gameTime);
             }
             previousGamePadState = gamePadState;
 #if !XBOX
@@ -59,15 +57,20 @@ namespace UltimateErasme.GameObjects
                 previousKeyboardState.IsKeyUp(Keys.A) && 
                 attackState == AttackState.pasAttaque)
             {
-                attackState = AttackState.etape1;
-                erasmeManager.erasme.Sprite = erasmeAttaque[0];
-                attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.Milliseconds;
+                Attaquer(gameTime);
             }
             previousKeyboardState = keyboardState;
 #endif
 
             AttackManagerAnimation(gameTime);
             graisseManager.Update(gameTime);
+        }
+
+        private void Attaquer(GameTime gameTime)
+        {
+            attackState = AttackState.etape1;
+            erasmeManager.erasme.Sprite = erasmeAttaque[0];
+            attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.Milliseconds;
         }
 
         //gére les attaques

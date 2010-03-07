@@ -38,25 +38,14 @@ namespace UltimateErasme.GameObjects
             if (gamePadState.Buttons.RightShoulder == ButtonState.Pressed &&
                 previousGamePadState.Buttons.RightShoulder == ButtonState.Released)
             {
-                if (buloState == BuloState.pasSorti)
-                {
-                    buloState = BuloState.sorti;
-                    bulo.Alive = true;
-                }
-                else if (buloState == BuloState.sorti)
-                {
-                    buloState = BuloState.pasSorti;
-                    bulo.Alive = false;
-                    buloPorteeMax = 0;
-                }
+                RentrerSortirBulo();
             }
             if (buloState == BuloState.sorti)
             {
                 if (gamePadState.Buttons.B == ButtonState.Pressed &&
                     previousGamePadState.Buttons.B == ButtonState.Released)
                 {
-                    buloState = BuloState.debutLance;
-                    buloPorteeMax = erasmeManager.erasme.Position.X + 400;
+                    LancerBulorang();
                 }
             }
             else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
@@ -74,25 +63,14 @@ namespace UltimateErasme.GameObjects
             if (keyboardState.IsKeyDown(Keys.B) &&
                previousKeyboardState.IsKeyUp(Keys.B))
             {
-                if (buloState == BuloState.pasSorti)
-                {
-                    buloState = BuloState.sorti;
-                    bulo.Alive = true;
-                }
-                else if (buloState == BuloState.sorti)
-                {
-                    buloState = BuloState.pasSorti;
-                    bulo.Alive = false;
-                    buloPorteeMax = 0;
-                }
+                RentrerSortirBulo();
             }
             if (buloState == BuloState.sorti)
             {
                 if (keyboardState.IsKeyDown(Keys.Z) &&
                 previousKeyboardState.IsKeyUp(Keys.Z))
                 {
-                    buloState = BuloState.debutLance;
-                    buloPorteeMax = erasmeManager.erasme.Position.X + 400;
+                    LancerBulorang();
                 }
             }
             else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
@@ -107,6 +85,29 @@ namespace UltimateErasme.GameObjects
 #endif
 
             BuloUpdate();
+        }
+
+        private void LancerBulorang()
+        {
+            buloState = BuloState.debutLance;
+            buloPorteeMax = erasmeManager.erasme.Position.X + 400;
+            erasmeManager.soundManager.Plop();
+        }
+
+        private void RentrerSortirBulo()
+        {
+            if (buloState == BuloState.pasSorti)
+            {
+                buloState = BuloState.sorti;
+                erasmeManager.soundManager.BuloBulo();
+                bulo.Alive = true;
+            }
+            else if (buloState == BuloState.sorti)
+            {
+                buloState = BuloState.pasSorti;
+                bulo.Alive = false;
+                buloPorteeMax = 0;
+            }
         }
 
         private void explosion()

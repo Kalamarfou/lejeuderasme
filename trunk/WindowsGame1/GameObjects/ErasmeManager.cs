@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using System.Collections;
 using UltimateErasme.ClassesDInternet.Particles;
+using UltimateErasme.Sound;
 
 namespace UltimateErasme.GameObjects
 {
@@ -27,7 +28,7 @@ namespace UltimateErasme.GameObjects
 
         public Texture2D erasmeNormal;
 
-
+        public SoundManager soundManager;
         public BuloManager buloManager;
         public JumpManager jumpManager;
         public AttackManager attackManager;
@@ -47,6 +48,7 @@ namespace UltimateErasme.GameObjects
             erasmeNormal = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme");
             erasme = new GameObject(erasmeNormal);
 
+            soundManager = new SoundManager();
             buloManager = new BuloManager(game, this);
             jumpManager = new JumpManager(game, this);
             attackManager = new AttackManager(game, this);

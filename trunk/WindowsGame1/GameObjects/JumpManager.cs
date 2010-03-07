@@ -42,19 +42,14 @@ namespace UltimateErasme.GameObjects
                 previousGamePadState.Buttons.A == ButtonState.Released &&
                 jumpState == JumpState.auSol)
             {
-                jumpState = JumpState.decollage;
-                erasmeManager.erasme.Sprite = erasmeMonte;
+                Sauter();
             }
 
             else if (gamePadState.Buttons.A == ButtonState.Pressed &&
                 previousGamePadState.Buttons.A == ButtonState.Released
                 && jumpState == JumpState.arriveEnHaut)
             {
-                jumpState = JumpState.doubleDecollage;
-                if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
-                {
-                    erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
-                }
+                DoubleSauter();
             }
             previousGamePadState = gamePadState;
 
@@ -64,23 +59,37 @@ namespace UltimateErasme.GameObjects
                 previousKeyboardState.IsKeyUp(Keys.Space) &&
                 jumpState == JumpState.auSol)
             {
-                jumpState = JumpState.decollage;
-                if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
-                {
-                    erasmeManager.erasme.Sprite = erasmeMonte;
-                }
+                Sauter();
             }
             else if (keyboardState.IsKeyDown(Keys.Space) &&
                 previousKeyboardState.IsKeyUp(Keys.Space) && 
                 jumpState == JumpState.arriveEnHaut)
             {
-                jumpState = JumpState.doubleDecollage;
-                erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+                DoubleSauter();
             }
             previousKeyboardState = keyboardState;
 #endif
 
             JumpUpdate();
+        }
+
+        private void DoubleSauter()
+        {
+            jumpState = JumpState.doubleDecollage;
+            if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
+            {
+                erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+            }
+        }
+
+        private void Sauter()
+        {
+            jumpState = JumpState.decollage;
+            if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
+            {
+                erasmeManager.erasme.Sprite = erasmeMonte;
+            }
+            erasmeManager.soundManager.Saut();
         }
 
         public void JumpUpdate()
