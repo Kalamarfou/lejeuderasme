@@ -225,8 +225,8 @@ Wave Bank
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = <none>;
-    Bank Last Revised Low = 2294882173;
-    Bank Last Revised High = 30064180;
+    Bank Last Revised Low = 216391653;
+    Bank Last Revised High = 30064181;
 
     Wave
     {
@@ -392,9 +392,9 @@ Wave Bank
     Wave
     {
         Name = splurtch;
-        File = ..\..\..\..\..\..\splurtch.wav;
-        Build Settings Last Modified Low = 620509681;
-        Build Settings Last Modified High = 30064178;
+        File = sons\splurtch.wav;
+        Build Settings Last Modified Low = 170539030;
+        Build Settings Last Modified High = 30064181;
 
         Cache
         {
@@ -415,9 +415,9 @@ Wave Bank
     Wave
     {
         Name = splurtch360;
-        File = ..\..\..\..\..\..\splurtch360.wav;
-        Build Settings Last Modified Low = 2280571355;
-        Build Settings Last Modified High = 30064180;
+        File = sons\splurtch360.wav;
+        Build Settings Last Modified Low = 216391653;
+        Build Settings Last Modified High = 30064181;
 
         Cache
         {
@@ -443,6 +443,10 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
+    Bank Last Modified Low = 2368686395;
+    Bank Last Modified High = 30064180;
+    Header Last Modified High = 0;
+    Header Last Modified Low = 0;
 
     Sound
     {
