@@ -22,6 +22,7 @@ namespace UltimateErasme.GameObjects
         public Vector2 Velocity { get; set; }
         public bool Alive { get; set; }
         public float Scale { get; set; }
+        public object Tag { get; set; }
 
         public GameObject(Texture2D loadedTexture)
         {

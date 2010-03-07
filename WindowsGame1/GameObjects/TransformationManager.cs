@@ -95,7 +95,7 @@ namespace UltimateErasme.GameObjects
         {
             if (erasmeForme == ErasmeForme.transformationVersErasmeEnCours)
             {
-                if (gameTime.TotalGameTime.TotalMilliseconds - transformationManager_OldGameTimeMilliseconds > 100)
+                if (gameTime.TotalGameTime.TotalMilliseconds - transformationManager_OldGameTimeMilliseconds > 50)
                 {
                     if (erasmeManager.erasme.Sprite == erasmeTransformation[0])
                     {
@@ -113,7 +113,7 @@ namespace UltimateErasme.GameObjects
             }
             else if (erasmeForme == ErasmeForme.transformationVersVoltaireEnCours)
             {
-                if (gameTime.TotalGameTime.TotalMilliseconds - transformationManager_OldGameTimeMilliseconds > 100)
+                if (gameTime.TotalGameTime.TotalMilliseconds - transformationManager_OldGameTimeMilliseconds > 50)
                 {
                     int poney = erasmeTransformation.Count<Texture2D>()-1;
                     if (erasmeManager.erasme.Sprite == erasmeTransformation[erasmeTransformation.Count<Texture2D>()-1])
