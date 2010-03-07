@@ -5,7 +5,7 @@ using System.Text;
 
 namespace UltimateErasme.GameObjects
 {
-    enum AttackState
+    public enum AttackState
     {
         pasAttaque,
         etape1,

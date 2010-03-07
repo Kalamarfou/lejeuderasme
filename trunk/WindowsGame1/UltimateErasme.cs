@@ -21,11 +21,11 @@ namespace UltimateErasme
     /// </summary>
     public class UltimateErasme : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch { get; set; }
-        Rectangle viewportRect;
-        GameObject background;
-        Erasme erasme;
+        public Rectangle viewportRect;
+        public GameObject background;
+        public ErasmeManager erasmeManager;
 
 
         public UltimateErasme()
@@ -57,7 +57,7 @@ namespace UltimateErasme
             spriteBatch = new SpriteBatch(GraphicsDevice);
             viewportRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
             background = new GameObject(Content.Load<Texture2D>(@"Sprites\Backgrounds\decor"));
-            erasme = new Erasme(this, viewportRect);
+            erasmeManager = new ErasmeManager(this, viewportRect);
             
         }
 
@@ -81,7 +81,7 @@ namespace UltimateErasme
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
             // TODO: Add your update logic here
-            erasme.Update(gameTime);
+            erasmeManager.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -94,7 +94,7 @@ namespace UltimateErasme
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
-            erasme.Draw(gameTime, spriteBatch);
+            erasmeManager.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             // TODO: Add your drawing code here
 
