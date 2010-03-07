@@ -18,7 +18,7 @@
     <ManifestCertificateThumbprint>6B2A91931717EBAFF8E17A3A491E2BCEE48E5917</ManifestCertificateThumbprint>
     <ManifestKeyFile>UltimateErasme_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <PublishUrl>C:\Users\kalamar\Desktop\Erasme\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
