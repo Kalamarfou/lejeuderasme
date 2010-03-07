@@ -6,14 +6,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
 using Microsoft.Xna.Framework.Input;
+using UltimateErasme.GameObjects.enums;
 
 namespace UltimateErasme.GameObjects
 {
     public class AttackManager
     {
         public ErasmeManager erasmeManager;
-
         public Texture2D[] erasmeAttaque;
+        public Texture2D[] voltaireAttaque;
         public AttackState attackState;
         public double attackManager_OldGameTimeMilliseconds;
 
@@ -35,6 +36,11 @@ namespace UltimateErasme.GameObjects
             for (int i = 0; i < 8; i++)
             {
                 erasmeAttaque[i] = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\attaque\erasmeattaque" + (i + 1));
+            }
+            voltaireAttaque = new Texture2D[6];
+            for (int i = 0; i < 6; i++)
+            {
+                voltaireAttaque[i] = game.Content.Load<Texture2D>(@"Sprites\Characters\Voltaire\attaque\attaquevoltaire" + (i + 1));
             }
             attackState = AttackState.pasAttaque;
         }
@@ -69,8 +75,16 @@ namespace UltimateErasme.GameObjects
         private void Attaquer(GameTime gameTime)
         {
             attackState = AttackState.etape1;
-            erasmeManager.erasme.Sprite = erasmeAttaque[0];
-            attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.Milliseconds;
+            if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+            {
+                erasmeManager.erasme.Sprite = erasmeAttaque[0];
+            }
+            else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
+            {
+                erasmeManager.erasme.Sprite = voltaireAttaque[0];
+                erasmeManager.soundManager.AttaqueVoltaire();
+            }
+            attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
         }
 
         //gére les attaques
@@ -81,19 +95,35 @@ namespace UltimateErasme.GameObjects
                 if (gameTime.TotalGameTime.TotalMilliseconds - attackManager_OldGameTimeMilliseconds > 100)
                 {
                     attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
-                    if (attackState == AttackState.etape8)
+                    if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
                     {
-                        erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
-                        attackState = AttackState.pasAttaque;
+                        if (attackState == AttackState.etape8)
+                        {
+                            erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+                            attackState = AttackState.pasAttaque;
+                        }
+                        else
+                        {
+                            erasmeManager.erasme.Sprite = erasmeAttaque[(int)attackState];
+                            attackState++;
+                        }
+                        if (attackState == AttackState.etape4)
+                        {
+                            graisseManager.TirerBouleDeGraisse();
+                        }
                     }
-                    else
+                    if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
                     {
-                        erasmeManager.erasme.Sprite = erasmeAttaque[(int)attackState];
-                        attackState++;
-                    }
-                    if (attackState == AttackState.etape4)
-                    {
-                        graisseManager.TirerBouleDeGraisse();
+                        if (attackState == AttackState.etape6)
+                        {
+                            erasmeManager.erasme.Sprite = erasmeManager.voltaireNormal;
+                            attackState = AttackState.pasAttaque;
+                        }
+                        else
+                        {
+                            erasmeManager.erasme.Sprite = voltaireAttaque[(int)attackState];
+                            attackState++;
+                        }
                     }
                 }
             }

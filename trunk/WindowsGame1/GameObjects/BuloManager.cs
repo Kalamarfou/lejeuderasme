@@ -127,11 +127,13 @@ namespace UltimateErasme.GameObjects
             {
                 if (buloState == BuloState.sorti)
                 {
-                    if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeMonte)
+                    if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeMonte ||
+                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireMonte)
                     {
                         bulo.Position = erasmeManager.erasme.Position + new Vector2(30, 100);
                     }
-                    else if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeDescend)
+                    else if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeDescend ||
+                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireDescend)
                     {
                         bulo.Position = erasmeManager.erasme.Position + new Vector2(20, -50);
                     }

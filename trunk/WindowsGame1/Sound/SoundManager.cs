@@ -59,5 +59,17 @@ namespace UltimateErasme.Sound
             Cue cue = banqueSons.GetCue("thunder");
             cue.Play();
         }
+
+        public void AttaqueErasme()
+        {
+            Cue cue = banqueSons.GetCue("splurtch");
+            cue.Play();
+        }
+
+        public void AttaqueErasme360()
+        {
+            Cue cue = banqueSons.GetCue("splurtch360");
+            cue.Play();
+        }
     }
 }

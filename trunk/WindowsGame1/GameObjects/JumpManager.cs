@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
+using UltimateErasme.GameObjects.enums;
 
 namespace UltimateErasme.GameObjects
 {
@@ -18,6 +19,7 @@ namespace UltimateErasme.GameObjects
         public Vector2 jumpVelocity;
 
         public Texture2D erasmeMonte, erasmeDescend;
+        public Texture2D voltaireMonte, voltaireDescend;
 
         GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
 #if !XBOX
@@ -29,6 +31,8 @@ namespace UltimateErasme.GameObjects
             this.erasmeManager = erasmeManager;
             erasmeMonte = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme_blup");
             erasmeDescend = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme_no_blup");
+            voltaireMonte = game.Content.Load<Texture2D>(@"Sprites\Characters\Voltaire\voltaire_blup");
+            voltaireDescend = game.Content.Load<Texture2D>(@"Sprites\Characters\Voltaire\voltaire_no_blup");
             hauteurDuSol = erasmeManager.viewportRect.Bottom - erasmeManager.erasme.Sprite.Height / 2 - 100;
             erasmeManager.erasme.Position = new Vector2(erasmeManager.erasme.Sprite.Width / 2, hauteurDuSol);
             jumpVelocity = new Vector2(0, 4);
@@ -78,7 +82,14 @@ namespace UltimateErasme.GameObjects
             jumpState = JumpState.doubleDecollage;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
             {
-                erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+                if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+                {
+                    erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+                }
+                else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
+                {
+                    erasmeManager.erasme.Sprite = erasmeManager.voltaireNormal;
+                }
             }
         }
 
@@ -87,7 +98,14 @@ namespace UltimateErasme.GameObjects
             jumpState = JumpState.decollage;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
             {
-                erasmeManager.erasme.Sprite = erasmeMonte;
+                if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
+                {
+                    erasmeManager.erasme.Sprite = voltaireMonte ;
+                }
+                else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+                {
+                    erasmeManager.erasme.Sprite = erasmeMonte;
+                }
             }
             erasmeManager.soundManager.Saut();
         }
@@ -157,7 +175,14 @@ namespace UltimateErasme.GameObjects
                 jumpState = JumpState.repartEnBas;
                 if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
                 {
-                    erasmeManager.erasme.Sprite = erasmeDescend;
+                    if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
+                    {
+                        erasmeManager.erasme.Sprite = voltaireDescend;
+                    }
+                    else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+                    {
+                        erasmeManager.erasme.Sprite = erasmeDescend;
+                    }
                 }
 
             }
@@ -177,7 +202,14 @@ namespace UltimateErasme.GameObjects
                     jumpState = JumpState.auSol;
                     if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
                     {
-                        erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+                        if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
+                        {
+                            erasmeManager.erasme.Sprite = erasmeManager.voltaireNormal;
+                        }
+                        else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+                        {
+                            erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
+                        }
                     }
                 }
             }

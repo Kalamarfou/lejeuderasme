@@ -16,8 +16,8 @@ Global Settings
     Header File = jeuDErasme.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
-    Last Modified Low = 2246617014;
-    Last Modified High = 30064151;
+    Last Modified Low = 764967943;
+    Last Modified High = 30064178;
 
     Category
     {
@@ -225,12 +225,8 @@ Wave Bank
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = <none>;
-    Xbox Bank Last Modified Low = 0;
-    Xbox Bank Last Modified High = 0;
-    PC Bank Last Modified Low = 2246617014;
-    PC Bank Last Modified High = 30064151;
-    Bank Last Revised Low = 2140692828;
-    Bank Last Revised High = 30064151;
+    Bank Last Revised Low = 2294882173;
+    Bank Last Revised High = 30064180;
 
     Wave
     {
@@ -392,6 +388,52 @@ Wave Bank
             Last Modified High = 29876080;
         }
     }
+
+    Wave
+    {
+        Name = splurtch;
+        File = ..\..\..\..\..\..\splurtch.wav;
+        Build Settings Last Modified Low = 620509681;
+        Build Settings Last Modified High = 30064178;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 16000;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 8298;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 50467076;
+            Last Modified High = 30064178;
+        }
+    }
+
+    Wave
+    {
+        Name = splurtch360;
+        File = ..\..\..\..\..\..\splurtch360.wav;
+        Build Settings Last Modified Low = 2280571355;
+        Build Settings Last Modified High = 30064180;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 16000;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 13640;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 2133482942;
+            Last Modified High = 30064180;
+        }
+    }
 }
 
 Sound Bank
@@ -401,10 +443,6 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
-    Bank Last Modified Low = 2246617014;
-    Bank Last Modified High = 30064151;
-    Header Last Modified High = 0;
-    Header Last Modified Low = 0;
 
     Sound
     {
@@ -456,7 +494,7 @@ Sound Bank
     Sound
     {
         Name = bulo_sound;
-        Volume = -1200;
+        Volume = -220;
         Pitch = 0;
         Priority = 0;
 
@@ -550,7 +588,7 @@ Sound Bank
     Sound
     {
         Name = plop_;
-        Volume = -1200;
+        Volume = -480;
         Pitch = 0;
         Priority = 0;
 
@@ -691,7 +729,7 @@ Sound Bank
     Sound
     {
         Name = blup;
-        Volume = -1200;
+        Volume = 170;
         Pitch = 0;
         Priority = 0;
 
@@ -728,6 +766,100 @@ Sound Bank
                     Bank Index = 0;
                     Entry Name = blup;
                     Entry Index = 0;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = splurtch;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = splurtch;
+                    Entry Index = 7;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = splurtch360;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaer Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = splurtch360;
+                    Entry Index = 8;
                     Weight = 255;
                     Weight Min = 0;
                 }
@@ -870,6 +1002,46 @@ Sound Bank
         {
             Name = blup;
             Index = 6;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = splurtch;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = splurtch;
+            Index = 7;
+            Weight Min = 0;
+            Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = splurtch360;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = splurtch360;
+            Index = 8;
             Weight Min = 0;
             Weight Max = 255;
         }
