@@ -34,6 +34,7 @@ namespace UltimateErasme.GameObjects
         public JumpManager jumpManager;
         public AttackManager attackManager;
         public TransformationManager transformationManager;
+        public ExplosionManager explosionManager;
 
         GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
 #if !XBOX
@@ -56,6 +57,7 @@ namespace UltimateErasme.GameObjects
             jumpManager = new JumpManager(game, this);
             attackManager = new AttackManager(game, this);
             transformationManager = new TransformationManager(game, this);
+            explosionManager = new ExplosionManager(game, this);
 
         }
 
@@ -85,6 +87,7 @@ namespace UltimateErasme.GameObjects
             attackManager.Update(gameTime);
             buloManager.Update(gameTime);
             transformationManager.Update(gameTime);
+            explosionManager.Update(gameTime);
             
         }
 
@@ -94,6 +97,7 @@ namespace UltimateErasme.GameObjects
             attackManager.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
             buloManager.Draw(gameTime, spriteBatch);
+            explosionManager.Draw(gameTime, spriteBatch);
             
         }
 

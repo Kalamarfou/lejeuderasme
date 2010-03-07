@@ -16,7 +16,7 @@ namespace UltimateErasme.GameObjects
 
         public ErasmeManager erasmeManager;
 
-        public ExplosionManager explosionManager;
+        
 
         GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
 #if !XBOX
@@ -29,7 +29,7 @@ namespace UltimateErasme.GameObjects
             this.erasmeManager = erasmeManager;
             buloState = BuloState.pasSorti;
 
-            explosionManager = new ExplosionManager(game, erasmeManager);
+           
         }
 
         public void Update(GameTime gameTime)
@@ -53,7 +53,7 @@ namespace UltimateErasme.GameObjects
                 if (gamePadState.Buttons.B == ButtonState.Pressed &&
                     previousGamePadState.Buttons.B == ButtonState.Released)
                 {
-                    explosion();
+                    explosion(gameTime);
                 }
             }
             previousGamePadState = gamePadState;
@@ -78,7 +78,7 @@ namespace UltimateErasme.GameObjects
                 if (keyboardState.IsKeyDown(Keys.Z) &&
                 previousKeyboardState.IsKeyUp(Keys.Z))
                 {
-                    explosion();
+                    explosion(gameTime);
                 }
             }
             previousKeyboardState = keyboardState;
@@ -110,9 +110,9 @@ namespace UltimateErasme.GameObjects
             }
         }
 
-        private void explosion()
+        private void explosion(GameTime gameTime)
         {
-            explosionManager.NouvelleExplosion(bulo.Position);
+            erasmeManager.explosionManager.NouvelleExplosion(bulo.Position, gameTime);
             bulo.Alive = false;
             buloState = BuloState.pasSorti;
         }

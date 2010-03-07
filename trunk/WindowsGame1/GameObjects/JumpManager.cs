@@ -17,6 +17,7 @@ namespace UltimateErasme.GameObjects
         public JumpState jumpState;
         public int hauteurDuSol;
         public Vector2 jumpVelocity;
+        string sensDuDoubleSaut = "";
 
         public Texture2D erasmeMonte, erasmeDescend;
         public Texture2D voltaireMonte, voltaireDescend;
@@ -53,7 +54,14 @@ namespace UltimateErasme.GameObjects
                 previousGamePadState.Buttons.A == ButtonState.Released
                 && jumpState == JumpState.arriveEnHaut)
             {
-                DoubleSauter();
+                if (gamePadState.ThumbSticks.Left.X < 0)
+                {
+                    DoubleSauter("Left");
+                }
+                else
+                {
+                    DoubleSauter("Right");
+                }
             }
             previousGamePadState = gamePadState;
 
@@ -69,7 +77,15 @@ namespace UltimateErasme.GameObjects
                 previousKeyboardState.IsKeyUp(Keys.Space) && 
                 jumpState == JumpState.arriveEnHaut)
             {
-                DoubleSauter();
+                if (keyboardState.IsKeyDown(Keys.Left))
+                {
+                    DoubleSauter("Left");
+                }
+                else
+                {
+                    DoubleSauter("Right");
+                }
+                
             }
             previousKeyboardState = keyboardState;
 #endif
@@ -77,9 +93,10 @@ namespace UltimateErasme.GameObjects
             JumpUpdate();
         }
 
-        private void DoubleSauter()
+        private void DoubleSauter(string sens)
         {
             jumpState = JumpState.doubleDecollage;
+            sensDuDoubleSaut = sens;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
             {
                 if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
@@ -130,7 +147,7 @@ namespace UltimateErasme.GameObjects
             }
             if (jumpState == JumpState.doubleDecollage)
             {
-                erasmeManager.erasme.Rotation += 0.2f;
+                RotationDoubleSautManager(sensDuDoubleSaut);
                 erasmeManager.erasme.Position -= jumpVelocity;
                 if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 180)
                 {
@@ -139,7 +156,7 @@ namespace UltimateErasme.GameObjects
             }
             if (jumpState == JumpState.doubleArriveEnHaut)
             {
-                erasmeManager.erasme.Rotation += 0.2f;
+                RotationDoubleSautManager(sensDuDoubleSaut);
                 erasmeManager.erasme.Position -= jumpVelocity / 2;
                 if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 200)
                 {
@@ -148,12 +165,12 @@ namespace UltimateErasme.GameObjects
             }
             if (jumpState == JumpState.doubleToutEnHaut)
             {
-                erasmeManager.erasme.Rotation += 0.2f;
+                RotationDoubleSautManager(sensDuDoubleSaut);
                 jumpState = JumpState.doubleRepartEnBas;
             }
             if (jumpState == JumpState.doubleRepartEnBas)
             {
-                erasmeManager.erasme.Rotation += 0.2f;
+                RotationDoubleSautManager(sensDuDoubleSaut);
                 erasmeManager.erasme.Position += jumpVelocity / 2;
                 if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 180)
                 {
@@ -162,7 +179,7 @@ namespace UltimateErasme.GameObjects
             }
             if (jumpState == JumpState.doubleAtterissage)
             {
-                erasmeManager.erasme.Rotation += 0.2f;
+                RotationDoubleSautManager(sensDuDoubleSaut);
                 erasmeManager.erasme.Position += jumpVelocity;
                 if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 80)
                 {
@@ -212,6 +229,18 @@ namespace UltimateErasme.GameObjects
                         }
                     }
                 }
+            }
+        }
+
+        private void RotationDoubleSautManager(string sensDuDoubleSaut)
+        {
+            if (sensDuDoubleSaut == "Left")
+            {
+                erasmeManager.erasme.Rotation -= 0.2f;
+            }
+            else
+            {
+                erasmeManager.erasme.Rotation += 0.2f;
             }
         }
 
