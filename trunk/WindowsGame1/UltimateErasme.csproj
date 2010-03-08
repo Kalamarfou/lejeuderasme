@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>12</ApplicationRevision>
+    <ApplicationRevision>13</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -94,6 +94,7 @@
     <Compile Include="ClassesInternet\Particle.cs" />
     <Compile Include="ClassesInternet\ParticleSystem.cs" />
     <Compile Include="GameObjects\AttackManager.cs" />
+    <Compile Include="GameObjects\Classes\BelleExplosionCollision.cs" />
     <Compile Include="GameObjects\enums\AttackState.cs" />
     <Compile Include="GameObjects\BuloManager.cs" />
     <Compile Include="GameObjects\enums\BuloState.cs" />

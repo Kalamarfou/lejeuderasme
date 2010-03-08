@@ -6,6 +6,7 @@ using UltimateErasme.ClassesDInternet.Particles;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
+using UltimateErasme.GameObjects.Classes;
 
 namespace UltimateErasme.GameObjects
 {
@@ -66,22 +67,24 @@ namespace UltimateErasme.GameObjects
             {
                 MoyenBelleExplosionManager(gameTime);
                 MocheExplosionManager(gameTime);
+                BelleExplosionManager(gameTime);
                 explosionManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
             }
         }
 
         public void NouvelleExplosion(Vector2 position, GameTime gameTime)
         {
-            //MoyenBelleExplosion(position, gameTime);
-            MocheExplosion(position, gameTime);
+            MoyenBelleExplosion(position, gameTime);
+            //MocheExplosion(position, gameTime);
+            //BelleExplosion(position);
         }
 
-        private void BelleExplosion(Vector2 position)
+        private void BelleExplosion(Vector2 position, GameTime gameTime)
         {
             smoke.AddParticles(position);
             explosion.AddParticles(position);
             //TODO
-            BelleExplosionCollisionCollection.Add(new Rectangle((int)position.X,(int)position.Y,200,200));
+            BelleExplosionCollisionCollection.Add(new BelleExplosionCollision((int)position.X + 100, (int)position.Y + 100, 300, 300, gameTime));
         }
 
         private void MoyenBelleExplosion(Vector2 position, GameTime gameTime)
@@ -139,6 +142,17 @@ namespace UltimateErasme.GameObjects
             }
             explosionManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
         
+        }
+
+        private void BelleExplosionManager(GameTime gameTime)
+        {
+            for (int i = BelleExplosionCollisionCollection.Count ; i > 0 ; i--)
+			{
+                if (gameTime.TotalGameTime.TotalMilliseconds - ((BelleExplosionCollision)BelleExplosionCollisionCollection[i]).HeureDeCreation > 50 * 15)
+                {
+                    BelleExplosionCollisionCollection.Remove(BelleExplosionCollisionCollection[i]);
+                }
+			}     
         }
 
 
