@@ -38,7 +38,7 @@ namespace UltimateErasme.GameObjects
         public void AjouterMechant()
         {
             Mechant m = new Mechant(game, viewportRect,
-                new Vector2(viewportRect.Right, game.erasmeManager.jumpManager.hauteurDuSol),
+                new Vector2(viewportRect.Right, game.playerManager.premierJoueur.jumpManager.hauteurDuSol),
                 new Vector2(4, 0), 0, 1, Color.White);
             mechantsCollection.Add(m);
         }

@@ -24,7 +24,7 @@ namespace UltimateErasme
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch { get; set; }
         public Rectangle viewportRect;
-        public ErasmeManager erasmeManager;
+        public PlayersManager playerManager;
         public MechantManager mechantManager;
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
@@ -57,8 +57,8 @@ namespace UltimateErasme
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             viewportRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            
-            erasmeManager = new ErasmeManager(this, viewportRect);
+
+            playerManager = new PlayersManager(this, viewportRect);
             mechantManager = new MechantManager(this, viewportRect);
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
@@ -85,7 +85,7 @@ namespace UltimateErasme
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
             decorsManager.Update(gameTime);
-            erasmeManager.Update(gameTime);
+            playerManager.Update(gameTime);
             mechantManager.Update(gameTime);
             explosionManager.Update(gameTime);
             base.Update(gameTime);
@@ -100,7 +100,7 @@ namespace UltimateErasme
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
             decorsManager.Draw(gameTime, spriteBatch);
-            erasmeManager.Draw(gameTime, spriteBatch);
+            playerManager.Draw(gameTime, spriteBatch);
             mechantManager.Draw(gameTime, spriteBatch);
             explosionManager.Draw(gameTime, spriteBatch);
             spriteBatch.End();

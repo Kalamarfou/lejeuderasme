@@ -16,6 +16,7 @@ namespace UltimateErasme.GameObjects
         public GameObject bulo;
 
         UltimateErasme game;
+        ErasmeManager erasmeManager;
 
         
 
@@ -24,10 +25,11 @@ namespace UltimateErasme.GameObjects
         KeyboardState previousKeyboardState = Keyboard.GetState();
 #endif
 
-        public BuloManager(UltimateErasme game)
+        public BuloManager(UltimateErasme game, ErasmeManager erasmeManager)
         {
             bulo = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Bulo\bulo"));
             this.game = game;
+            this.erasmeManager = erasmeManager;
             buloState = BuloState.pasSorti;
 
            
@@ -103,8 +105,8 @@ namespace UltimateErasme.GameObjects
         private void LancerBulorang()
         {
             buloState = BuloState.debutLance;
-            buloPorteeMax = game.erasmeManager.erasme.Position.X + 400;
-            game.erasmeManager.soundManager.Plop();
+            buloPorteeMax = erasmeManager.erasme.Position.X + 400;
+            erasmeManager.soundManager.Plop();
         }
 
         private void RentrerSortirBulo()
@@ -112,7 +114,7 @@ namespace UltimateErasme.GameObjects
             if (buloState == BuloState.pasSorti)
             {
                 buloState = BuloState.sorti;
-                game.erasmeManager.soundManager.BuloBulo();
+                erasmeManager.soundManager.BuloBulo();
                 bulo.Alive = true;
             }
             else if (buloState == BuloState.sorti)
@@ -140,21 +142,21 @@ namespace UltimateErasme.GameObjects
             {
                 if (buloState == BuloState.sorti)
                 {
-                    if (game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.erasmeMonte ||
-                        game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.voltaireMonte)
+                    if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeMonte ||
+                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireMonte)
                     {
-                        bulo.Position = game.erasmeManager.erasme.Position + new Vector2(30, 100);
+                        bulo.Position = erasmeManager.erasme.Position + new Vector2(30, 100);
                     }
-                    else if (game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.erasmeDescend ||
-                        game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.voltaireDescend)
+                    else if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeDescend ||
+                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireDescend)
                     {
-                        bulo.Position = game.erasmeManager.erasme.Position + new Vector2(20, -50);
+                        bulo.Position = erasmeManager.erasme.Position + new Vector2(20, -50);
                     }
                     else
                     {
-                        bulo.Position = game.erasmeManager.erasme.Position + (new Vector2(100, 35));
+                        bulo.Position = erasmeManager.erasme.Position + (new Vector2(100, 35));
                     }
-                    bulo.Rotation = game.erasmeManager.erasme.Rotation;
+                    bulo.Rotation = erasmeManager.erasme.Rotation;
                 }
 
                 else if (buloState == BuloState.debutLance)
@@ -172,17 +174,17 @@ namespace UltimateErasme.GameObjects
                 else if (buloState == BuloState.retourLance)
                 {
 
-                    if (bulo.Position.Y > game.erasmeManager.erasme.Position.Y)
+                    if (bulo.Position.Y > erasmeManager.erasme.Position.Y)
                     {
                         bulo.Position -= new Vector2(0, 1);
                         bulo.Rotation += 0.5f;
                     }
-                    else if (bulo.Position.Y < game.erasmeManager.erasme.Position.Y)
+                    else if (bulo.Position.Y < erasmeManager.erasme.Position.Y)
                     {
                         bulo.Position += new Vector2(0, 1);
                         bulo.Rotation += 0.5f;
                     }
-                    if (bulo.Position.X > game.erasmeManager.erasme.Position.X)
+                    if (bulo.Position.X > erasmeManager.erasme.Position.X)
                     {
                         bulo.Position -= new Vector2(5, 0);
                         bulo.Rotation += 0.5f;

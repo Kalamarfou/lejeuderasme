@@ -28,8 +28,7 @@ namespace UltimateErasme.GameObjects
 
         public ControllerType controllerType = ControllerType.keyboardPlusXBoxControler1;
         public NombreDeJoueurs nombreDeJoueurs = NombreDeJoueurs.solo;
-
-        public ErasmeManager DeuxiemeJoueur = null;
+        public NumeroDuJoueur numeroDuJoueur = NumeroDuJoueur.un;
 
         public Texture2D erasmeNormal;
         public Texture2D voltaireNormal;
@@ -57,7 +56,7 @@ namespace UltimateErasme.GameObjects
             erasme = new GameObject(erasmeNormal);
 
             soundManager = new SoundManager();
-            buloManager = new BuloManager(game);
+            buloManager = new BuloManager(game, this);
             jumpManager = new JumpManager(game, this);
             attackManager = new AttackManager(game, this);
             transformationManager = new TransformationManager(game, this);
@@ -102,15 +101,7 @@ namespace UltimateErasme.GameObjects
             buloManager.Update(gameTime, controllerType);
             transformationManager.Update(gameTime, controllerType);
 
-            ManageMultiPlayerUpdate(gameTime);
             
-        }
-
-        private void ManageMultiPlayerUpdate(GameTime gameTime)
-        {
-
-#if !XBOX
-#endif
         }
 
         //dessine erasme
@@ -118,14 +109,9 @@ namespace UltimateErasme.GameObjects
         {
             attackManager.Draw(gameTime, spriteBatch);
             spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
-            ManageMultiPlayerDraw(gameTime, spriteBatch);
             buloManager.Draw(gameTime, spriteBatch);            
         }
 
-        private void ManageMultiPlayerDraw(GameTime gameTime, SpriteBatch spriteBatch)
-        {
-            throw new NotImplementedException();
-        }
 
     }
 }
