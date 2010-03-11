@@ -49,7 +49,11 @@ namespace UltimateErasme.GameObjects
                 }
                 else if (nombreDeJoueurs == NombreDeJoueurs.solo)
                 {
-                    ManagePressStart(gameTime);
+                    if (premierJoueur.transformationManager.erasmeForme == ErasmeForme.erasme ||
+                        premierJoueur.transformationManager.erasmeForme == ErasmeForme.voltaire)
+                    {
+                        ManagePressStart(gameTime);
+                    }
                 }
             }
         }
@@ -113,8 +117,16 @@ namespace UltimateErasme.GameObjects
             deuxiemeJoueur.jumpManager.jumpState = premierJoueur.jumpManager.jumpState;
             deuxiemeJoueur.nombreDeJoueurs = NombreDeJoueurs.deuxJoueurs;
             deuxiemeJoueur.numeroDuJoueur = NumeroDuJoueur.deux;
-            deuxiemeJoueur.erasme.Sprite = deuxiemeJoueur.voltaireNormal;
-            deuxiemeJoueur.transformationManager.erasmeForme = ErasmeForme.voltaire;
+            if (premierJoueur.transformationManager.erasmeForme == ErasmeForme.voltaire)
+            {
+                deuxiemeJoueur.erasme.Sprite = deuxiemeJoueur.erasmeNormal;
+                deuxiemeJoueur.transformationManager.erasmeForme = ErasmeForme.erasme;
+            }
+            else if (premierJoueur.transformationManager.erasmeForme == ErasmeForme.erasme)
+            {
+                deuxiemeJoueur.erasme.Sprite = deuxiemeJoueur.voltaireNormal;
+                deuxiemeJoueur.transformationManager.erasmeForme = ErasmeForme.voltaire;
+            }
 
             this.nombreDeJoueurs = NombreDeJoueurs.deuxJoueurs;
         }
