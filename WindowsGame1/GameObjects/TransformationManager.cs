@@ -38,50 +38,53 @@ namespace UltimateErasme.GameObjects
 
         public void Update(GameTime gameTime, ControllerType controllerType)
         {
-            if (!(controllerType == ControllerType.keyboard))
+            if (erasmeManager.nombreDeJoueurs == NombreDeJoueurs.solo)
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+                if (!(controllerType == ControllerType.keyboard))
+                {
+                    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-                if (controllerType == ControllerType.xBoxControler2)
-                {
-                    gamePadState = GamePad.GetState(PlayerIndex.Two);
+                    if (controllerType == ControllerType.xBoxControler2)
+                    {
+                        gamePadState = GamePad.GetState(PlayerIndex.Two);
+                    }
+                    if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
+                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
+                       erasmeForme == ErasmeForme.erasme)
+                    {
+                        SeTransformerEnVoltaire(gameTime);
+                    }
+                    else if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
+                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
+                       erasmeForme == ErasmeForme.voltaire)
+                    {
+                        SeTransformerEnErasme(gameTime);
+                    }
+                    previousGamePadState = gamePadState;
                 }
-                if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
-                   previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
-                   erasmeForme == ErasmeForme.erasme)
+    #if !XBOX
+                if (controllerType == ControllerType.keyboard ||
+                   controllerType == ControllerType.keyboardPlusXBoxControler1)
                 {
-                    SeTransformerEnVoltaire(gameTime);
+                    KeyboardState keyboardState = Keyboard.GetState();
+                    if (keyboardState.IsKeyDown(Keys.V) &&
+                        previousKeyboardState.IsKeyUp(Keys.V) &&
+                        erasmeForme == ErasmeForme.erasme)
+                    {
+                        SeTransformerEnVoltaire(gameTime);
+                    }
+                    else if (keyboardState.IsKeyDown(Keys.V) &&
+                        previousKeyboardState.IsKeyUp(Keys.V) &&
+                        erasmeForme == ErasmeForme.voltaire)
+                    {
+                        SeTransformerEnErasme(gameTime);
+                    }
+                    previousKeyboardState = keyboardState;
                 }
-                else if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
-                   previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
-                   erasmeForme == ErasmeForme.voltaire)
-                {
-                    SeTransformerEnErasme(gameTime);
-                }
-                previousGamePadState = gamePadState;
-            }
-#if !XBOX
-            if (controllerType == ControllerType.keyboard ||
-               controllerType == ControllerType.keyboardPlusXBoxControler1)
-            {
-                KeyboardState keyboardState = Keyboard.GetState();
-                if (keyboardState.IsKeyDown(Keys.V) &&
-                    previousKeyboardState.IsKeyUp(Keys.V) &&
-                    erasmeForme == ErasmeForme.erasme)
-                {
-                    SeTransformerEnVoltaire(gameTime);
-                }
-                else if (keyboardState.IsKeyDown(Keys.V) &&
-                    previousKeyboardState.IsKeyUp(Keys.V) &&
-                    erasmeForme == ErasmeForme.voltaire)
-                {
-                    SeTransformerEnErasme(gameTime);
-                }
-                previousKeyboardState = keyboardState;
-            }
-#endif
+    #endif
 
-            TransformationManagerAnimation(gameTime);
+                TransformationManagerAnimation(gameTime);
+            }
         }
 
         private void SeTransformerEnErasme(GameTime gameTime)
