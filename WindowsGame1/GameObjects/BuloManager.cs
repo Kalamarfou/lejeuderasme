@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using UltimateErasme.GameObjects.enums;
 
 namespace UltimateErasme.GameObjects
 {
@@ -14,7 +15,7 @@ namespace UltimateErasme.GameObjects
         public float buloPorteeMax;
         public GameObject bulo;
 
-        public ErasmeManager erasmeManager;
+        UltimateErasme game;
 
         
 
@@ -23,65 +24,77 @@ namespace UltimateErasme.GameObjects
         KeyboardState previousKeyboardState = Keyboard.GetState();
 #endif
 
-        public BuloManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public BuloManager(UltimateErasme game)
         {
             bulo = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Bulo\bulo"));
-            this.erasmeManager = erasmeManager;
+            this.game = game;
             buloState = BuloState.pasSorti;
 
            
         }
-
-        public void Update(GameTime gameTime)
+        //TODO
+        public void Update(GameTime gameTime, ControllerType controllerType)
         {
-            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-            if (gamePadState.Buttons.RightShoulder == ButtonState.Pressed &&
-                previousGamePadState.Buttons.RightShoulder == ButtonState.Released)
+            if (!(controllerType == ControllerType.keyboard))
             {
-                RentrerSortirBulo();
-            }
-            if (buloState == BuloState.sorti)
-            {
-                if (gamePadState.Buttons.B == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.B == ButtonState.Released)
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+                if (controllerType == ControllerType.xBoxControler2)
                 {
-                    LancerBulorang();
+                    gamePadState = GamePad.GetState(PlayerIndex.Two);
                 }
-            }
-            else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
-            {
-                if (gamePadState.Buttons.B == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.B == ButtonState.Released)
+                if (gamePadState.Buttons.RightShoulder == ButtonState.Pressed &&
+                    previousGamePadState.Buttons.RightShoulder == ButtonState.Released)
                 {
-                    explosion(gameTime);
+                    RentrerSortirBulo();
                 }
+                if (buloState == BuloState.sorti)
+                {
+                    if (gamePadState.Buttons.B == ButtonState.Pressed &&
+                        previousGamePadState.Buttons.B == ButtonState.Released)
+                    {
+                        LancerBulorang();
+                    }
+                }
+                else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+                {
+                    if (gamePadState.Buttons.B == ButtonState.Pressed &&
+                        previousGamePadState.Buttons.B == ButtonState.Released)
+                    {
+                        explosion(gameTime);
+                    }
+                }
+                previousGamePadState = gamePadState;
             }
-            previousGamePadState = gamePadState;
 
 #if !XBOX
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.B) &&
-               previousKeyboardState.IsKeyUp(Keys.B))
+            if (controllerType == ControllerType.keyboard ||
+               controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                RentrerSortirBulo();
-            }
-            if (buloState == BuloState.sorti)
-            {
-                if (keyboardState.IsKeyDown(Keys.Z) &&
-                previousKeyboardState.IsKeyUp(Keys.Z))
+                KeyboardState keyboardState = Keyboard.GetState();
+                if (keyboardState.IsKeyDown(Keys.B) &&
+                   previousKeyboardState.IsKeyUp(Keys.B))
                 {
-                    LancerBulorang();
+                    RentrerSortirBulo();
                 }
-            }
-            else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
-            {
-                if (keyboardState.IsKeyDown(Keys.Z) &&
-                previousKeyboardState.IsKeyUp(Keys.Z))
+                if (buloState == BuloState.sorti)
                 {
-                    explosion(gameTime);
+                    if (keyboardState.IsKeyDown(Keys.Z) &&
+                    previousKeyboardState.IsKeyUp(Keys.Z))
+                    {
+                        LancerBulorang();
+                    }
                 }
+                else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+                {
+                    if (keyboardState.IsKeyDown(Keys.Z) &&
+                    previousKeyboardState.IsKeyUp(Keys.Z))
+                    {
+                        explosion(gameTime);
+                    }
+                }
+                previousKeyboardState = keyboardState;
             }
-            previousKeyboardState = keyboardState;
 #endif
 
             BuloUpdate();
@@ -90,8 +103,8 @@ namespace UltimateErasme.GameObjects
         private void LancerBulorang()
         {
             buloState = BuloState.debutLance;
-            buloPorteeMax = erasmeManager.erasme.Position.X + 400;
-            erasmeManager.soundManager.Plop();
+            buloPorteeMax = game.erasmeManager.erasme.Position.X + 400;
+            game.erasmeManager.soundManager.Plop();
         }
 
         private void RentrerSortirBulo()
@@ -99,7 +112,7 @@ namespace UltimateErasme.GameObjects
             if (buloState == BuloState.pasSorti)
             {
                 buloState = BuloState.sorti;
-                erasmeManager.soundManager.BuloBulo();
+                game.erasmeManager.soundManager.BuloBulo();
                 bulo.Alive = true;
             }
             else if (buloState == BuloState.sorti)
@@ -112,7 +125,7 @@ namespace UltimateErasme.GameObjects
 
         private void explosion(GameTime gameTime)
         {
-            erasmeManager.explosionManager.NouvelleExplosion(bulo.Position, gameTime);
+            game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.moyenBelle);
             bulo.Alive = false;
             buloState = BuloState.pasSorti;
         }
@@ -127,21 +140,21 @@ namespace UltimateErasme.GameObjects
             {
                 if (buloState == BuloState.sorti)
                 {
-                    if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeMonte ||
-                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireMonte)
+                    if (game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.erasmeMonte ||
+                        game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.voltaireMonte)
                     {
-                        bulo.Position = erasmeManager.erasme.Position + new Vector2(30, 100);
+                        bulo.Position = game.erasmeManager.erasme.Position + new Vector2(30, 100);
                     }
-                    else if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeDescend ||
-                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireDescend)
+                    else if (game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.erasmeDescend ||
+                        game.erasmeManager.erasme.Sprite == game.erasmeManager.jumpManager.voltaireDescend)
                     {
-                        bulo.Position = erasmeManager.erasme.Position + new Vector2(20, -50);
+                        bulo.Position = game.erasmeManager.erasme.Position + new Vector2(20, -50);
                     }
                     else
                     {
-                        bulo.Position = erasmeManager.erasme.Position + (new Vector2(100, 35));
+                        bulo.Position = game.erasmeManager.erasme.Position + (new Vector2(100, 35));
                     }
-                    bulo.Rotation = erasmeManager.erasme.Rotation;
+                    bulo.Rotation = game.erasmeManager.erasme.Rotation;
                 }
 
                 else if (buloState == BuloState.debutLance)
@@ -159,17 +172,17 @@ namespace UltimateErasme.GameObjects
                 else if (buloState == BuloState.retourLance)
                 {
 
-                    if (bulo.Position.Y > erasmeManager.erasme.Position.Y)
+                    if (bulo.Position.Y > game.erasmeManager.erasme.Position.Y)
                     {
                         bulo.Position -= new Vector2(0, 1);
                         bulo.Rotation += 0.5f;
                     }
-                    else if (bulo.Position.Y < erasmeManager.erasme.Position.Y)
+                    else if (bulo.Position.Y < game.erasmeManager.erasme.Position.Y)
                     {
                         bulo.Position += new Vector2(0, 1);
                         bulo.Rotation += 0.5f;
                     }
-                    if (bulo.Position.X > erasmeManager.erasme.Position.X)
+                    if (bulo.Position.X > game.erasmeManager.erasme.Position.X)
                     {
                         bulo.Position -= new Vector2(5, 0);
                         bulo.Rotation += 0.5f;

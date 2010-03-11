@@ -7,12 +7,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
 using UltimateErasme.GameObjects.Classes;
+using UltimateErasme.GameObjects.enums;
 
 namespace UltimateErasme.GameObjects
 {
     public class ExplosionManager
     {
-        public ErasmeManager erasmeManager;
+        public UltimateErasme game;
 
         public ParticleSystem explosion;
         public ParticleSystem smoke;
@@ -25,9 +26,9 @@ namespace UltimateErasme.GameObjects
         public ArrayList mocheExplosionCollection;
         public ArrayList BelleExplosionCollisionCollection;
 
-        public ExplosionManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public ExplosionManager(UltimateErasme game)
         {
-            this.erasmeManager = erasmeManager;
+            this.game = game;
 
             // create the particle systems and add them to the components list.
             // we should never see more than one explosion at once
@@ -72,11 +73,23 @@ namespace UltimateErasme.GameObjects
             }
         }
 
-        public void NouvelleExplosion(Vector2 position, GameTime gameTime)
+        public void NouvelleExplosion(Vector2 position, GameTime gameTime, ExplosionType explosionType)
         {
-            MoyenBelleExplosion(position, gameTime);
-            //MocheExplosion(position, gameTime);
-            //BelleExplosion(position);
+            switch (explosionType)
+            {
+                case ExplosionType.moche:
+                    MocheExplosion(position, gameTime);
+                    break;
+                case ExplosionType.moyenBelle:
+                    MoyenBelleExplosion(position, gameTime);
+                    break;
+                case ExplosionType.belle:
+                    BelleExplosion(position, gameTime);
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         private void BelleExplosion(Vector2 position, GameTime gameTime)
