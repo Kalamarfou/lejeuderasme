@@ -24,9 +24,10 @@ namespace UltimateErasme
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch { get; set; }
         public Rectangle viewportRect;
-        public GameObject background;
         public ErasmeManager erasmeManager;
-
+        public MechantManager mechantManager;
+        public DecorsManager decorsManager;
+        public ExplosionManager explosionManager;
 
         public UltimateErasme()
         {
@@ -56,8 +57,11 @@ namespace UltimateErasme
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             viewportRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-            background = new GameObject(Content.Load<Texture2D>(@"Sprites\Backgrounds\decor"));
+            
             erasmeManager = new ErasmeManager(this, viewportRect);
+            mechantManager = new MechantManager(this, viewportRect);
+            decorsManager = new DecorsManager(this, viewportRect);
+            explosionManager = new ExplosionManager(this);
             
         }
 
@@ -80,8 +84,10 @@ namespace UltimateErasme
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
-            // TODO: Add your update logic here
+            decorsManager.Update(gameTime);
             erasmeManager.Update(gameTime);
+            mechantManager.Update(gameTime);
+            explosionManager.Update(gameTime);
             base.Update(gameTime);
         }
 
@@ -93,11 +99,11 @@ namespace UltimateErasme
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
-            spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
+            decorsManager.Draw(gameTime, spriteBatch);
             erasmeManager.Draw(gameTime, spriteBatch);
+            mechantManager.Draw(gameTime, spriteBatch);
+            explosionManager.Draw(gameTime, spriteBatch);
             spriteBatch.End();
-            // TODO: Add your drawing code here
-
             base.Draw(gameTime);
         }
     }

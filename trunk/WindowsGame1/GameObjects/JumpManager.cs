@@ -40,54 +40,68 @@ namespace UltimateErasme.GameObjects
             jumpState = JumpState.auSol;
         }
 
-        public void Update(GameTime gametime)
+        //TODO
+        public void Update(GameTime gametime, ControllerType controllerType)
         {
-            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-            if (gamePadState.Buttons.A == ButtonState.Pressed &&
-                previousGamePadState.Buttons.A == ButtonState.Released &&
-                jumpState == JumpState.auSol)
+            if (!(controllerType == ControllerType.keyboard))
             {
-                Sauter();
-            }
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
 
-            else if (gamePadState.Buttons.A == ButtonState.Pressed &&
-                previousGamePadState.Buttons.A == ButtonState.Released
-                && jumpState == JumpState.arriveEnHaut)
-            {
-                if (gamePadState.ThumbSticks.Left.X < 0)
+                if (controllerType == ControllerType.xBoxControler2)
                 {
-                    DoubleSauter("Left");
+                    gamePadState = GamePad.GetState(PlayerIndex.Two);
                 }
-                else
+
+                if (gamePadState.Buttons.A == ButtonState.Pressed &&
+                    previousGamePadState.Buttons.A == ButtonState.Released &&
+                    jumpState == JumpState.auSol)
                 {
-                    DoubleSauter("Right");
+                    Sauter();
                 }
+
+                else if (gamePadState.Buttons.A == ButtonState.Pressed &&
+                    previousGamePadState.Buttons.A == ButtonState.Released
+                    && jumpState == JumpState.arriveEnHaut)
+                {
+                    if (gamePadState.ThumbSticks.Left.X < 0)
+                    {
+                        DoubleSauter("Left");
+                    }
+                    else
+                    {
+                        DoubleSauter("Right");
+                    }
+                }
+                previousGamePadState = gamePadState;
             }
-            previousGamePadState = gamePadState;
 
 #if !XBOX
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.Space) &&
-                previousKeyboardState.IsKeyUp(Keys.Space) &&
-                jumpState == JumpState.auSol)
+            if (controllerType == ControllerType.keyboard ||
+               controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                Sauter();
-            }
-            else if (keyboardState.IsKeyDown(Keys.Space) &&
-                previousKeyboardState.IsKeyUp(Keys.Space) && 
-                jumpState == JumpState.arriveEnHaut)
-            {
-                if (keyboardState.IsKeyDown(Keys.Left))
+                KeyboardState keyboardState = Keyboard.GetState();
+                if (keyboardState.IsKeyDown(Keys.Space) &&
+                    previousKeyboardState.IsKeyUp(Keys.Space) &&
+                    jumpState == JumpState.auSol)
                 {
-                    DoubleSauter("Left");
+                    Sauter();
                 }
-                else
+                else if (keyboardState.IsKeyDown(Keys.Space) &&
+                    previousKeyboardState.IsKeyUp(Keys.Space) &&
+                    jumpState == JumpState.arriveEnHaut)
                 {
-                    DoubleSauter("Right");
+                    if (keyboardState.IsKeyDown(Keys.Left))
+                    {
+                        DoubleSauter("Left");
+                    }
+                    else
+                    {
+                        DoubleSauter("Right");
+                    }
+
                 }
-                
+                previousKeyboardState = keyboardState;
             }
-            previousKeyboardState = keyboardState;
 #endif
 
             JumpUpdate();

@@ -46,26 +46,38 @@ namespace UltimateErasme.GameObjects
         }
 
 
-
-        public void Update(GameTime gameTime)
+        //TODO
+        public void Update(GameTime gameTime, ControllerType controllerType)
         {
-            GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-            if (gamePadState.Buttons.X == ButtonState.Pressed &&
-               previousGamePadState.Buttons.X == ButtonState.Released &&
-               attackState == AttackState.pasAttaque)
+            if (!(controllerType == ControllerType.keyboard))
             {
-                Attaquer(gameTime);
+                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
+
+                if (controllerType == ControllerType.xBoxControler2)
+                {
+                    gamePadState = GamePad.GetState(PlayerIndex.Two);
+                }
+                if (gamePadState.Buttons.X == ButtonState.Pressed &&
+                   previousGamePadState.Buttons.X == ButtonState.Released &&
+                   attackState == AttackState.pasAttaque)
+                {
+                    Attaquer(gameTime);
+                }
+                previousGamePadState = gamePadState;
             }
-            previousGamePadState = gamePadState;
 #if !XBOX
-            KeyboardState keyboardState = Keyboard.GetState();
-            if (keyboardState.IsKeyDown(Keys.A) &&
-                previousKeyboardState.IsKeyUp(Keys.A) && 
-                attackState == AttackState.pasAttaque)
+            if (controllerType == ControllerType.keyboard ||
+                controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                Attaquer(gameTime);
+                KeyboardState keyboardState = Keyboard.GetState();
+                if (keyboardState.IsKeyDown(Keys.A) &&
+                    previousKeyboardState.IsKeyUp(Keys.A) &&
+                    attackState == AttackState.pasAttaque)
+                {
+                    Attaquer(gameTime);
+                }
+                previousKeyboardState = keyboardState;
             }
-            previousKeyboardState = keyboardState;
 #endif
 
             AttackManagerAnimation(gameTime);
