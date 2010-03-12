@@ -5,6 +5,7 @@ using System.Text;
 using System.Collections;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using UltimateErasme.Collisions;
 
 namespace UltimateErasme.GameObjects
 {
@@ -40,6 +41,13 @@ namespace UltimateErasme.GameObjects
                         (int)((GameObject)boulesDeGraisse[i]).Position.X,
                         (int)((GameObject)boulesDeGraisse[i]).Position.Y)))
                     {
+                        ((GameObject)boulesDeGraisse[i]).Alive = false;
+                    }
+                }
+                for (int i = boulesDeGraisse.Count - 1; i >= 0; i--)
+                {
+                    if (!((GameObject)boulesDeGraisse[i]).Alive)
+                    {
                         boulesDeGraisse.RemoveAt(i);
                     }
                 }
@@ -58,6 +66,7 @@ namespace UltimateErasme.GameObjects
 
                 boule.Position = erasmeManager.erasme.Position + new Vector2(30, 30);
                 boule.Rotation = erasmeManager.erasme.Rotation;
+                boule.Alive = true;
                 boulesDeGraisse.Add(boule);
                 erasmeManager.soundManager.AttaqueErasme();
             }
@@ -71,6 +80,7 @@ namespace UltimateErasme.GameObjects
                                 (float)Math.Sin(boule.Rotation) * 5f);
 
                     boule.Position = erasmeManager.erasme.Position + new Vector2(30, 30);
+                    boule.Alive = true;
                     boulesDeGraisse.Add(boule);
                 }
                 erasmeManager.soundManager.AttaqueErasme360();
@@ -91,7 +101,7 @@ namespace UltimateErasme.GameObjects
             foreach (GameObject boule in boulesDeGraisse)
             {
                 Rectangle rect = new Rectangle((int)boule.Position.X, (int)boule.Position.Y, boule.Sprite.Width, boule.Sprite.Height);
-                personnagesAttaquesBox.Add(rect);
+                personnagesAttaquesBox.Add(new GraisseAttaqueBox(rect,boule));
             }
         }
     }
