@@ -93,6 +93,9 @@
     <Compile Include="ClassesInternet\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="ClassesInternet\Particle.cs" />
     <Compile Include="ClassesInternet\ParticleSystem.cs" />
+    <Compile Include="Collisions\CollisionsManager.cs" />
+    <Compile Include="Collisions\MechantAttaqueBox.cs" />
+    <Compile Include="Collisions\PersonnageVulnerableBox.cs" />
     <Compile Include="GameObjects\AttackManager.cs" />
     <Compile Include="GameObjects\Classes\BelleExplosionCollision.cs" />
     <Compile Include="GameObjects\DecorsManager.cs" />

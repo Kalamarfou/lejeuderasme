@@ -15,6 +15,7 @@ using System.Collections;
 using UltimateErasme.ClassesDInternet.Particles;
 using UltimateErasme.Sound;
 using UltimateErasme.GameObjects.enums;
+using UltimateErasme.Collisions;
 
 namespace UltimateErasme.GameObjects
 {
@@ -68,6 +69,26 @@ namespace UltimateErasme.GameObjects
             foreach (Mechant mechant in mechantsCollection)
             {
                 mechant.Draw(gameTime, spriteBatch);
+            }
+        }
+
+        internal void AjouterMechantVulnerablesBox(ArrayList mechantsVulnerablesBox)
+        {
+            foreach (Mechant mechant in mechantsCollection)
+            {
+                Rectangle rect = new Rectangle((int)mechant.MechantGameObject.Position.X, (int)mechant.MechantGameObject.Position.Y, 
+                    mechant.MechantGameObject.Sprite.Width, mechant.MechantGameObject.Sprite.Height);
+                mechantsVulnerablesBox.Add(rect);
+            }
+        }
+
+        internal void AjouterMechantAttaquesBox(ArrayList mechantsAttaquesBox)
+        {
+            foreach (Mechant mechant in mechantsCollection)
+            {
+                Rectangle rect = new Rectangle((int)mechant.MechantGameObject.Position.X, (int)mechant.MechantGameObject.Position.Y,
+                    mechant.MechantGameObject.Sprite.Width, mechant.MechantGameObject.Sprite.Height);
+                mechantsAttaquesBox.Add(new MechantAttaqueBox(rect, mechant));
             }
         }
     }

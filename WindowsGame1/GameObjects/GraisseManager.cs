@@ -85,5 +85,14 @@ namespace UltimateErasme.GameObjects
 
             }
         }
+
+        internal void AjouterPersonnagesAttaquesBox(ArrayList personnagesAttaquesBox)
+        {
+            foreach (GameObject boule in boulesDeGraisse)
+            {
+                Rectangle rect = new Rectangle((int)boule.Position.X, (int)boule.Position.Y, boule.Sprite.Width, boule.Sprite.Height);
+                personnagesAttaquesBox.Add(rect);
+            }
+        }
     }
 }

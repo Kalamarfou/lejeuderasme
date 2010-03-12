@@ -71,5 +71,11 @@ namespace UltimateErasme.Sound
             Cue cue = banqueSons.GetCue("splurtch360");
             cue.Play();
         }
+
+        public void Outch()
+        {
+            Cue cue = banqueSons.GetCue("outch");
+            cue.Play();
+        }
     }
 }

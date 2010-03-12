@@ -12,6 +12,7 @@ using Microsoft.Xna.Framework.Net;
 using Microsoft.Xna.Framework.Storage;
 using UltimateErasme.GameObjects;
 using UltimateErasme.ClassesDInternet.Particles;
+using UltimateErasme.Collisions;
 
 
 namespace UltimateErasme
@@ -28,6 +29,7 @@ namespace UltimateErasme
         public MechantManager mechantManager;
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
+        public CollisionsManager collisionsManager;
 
         public UltimateErasme()
         {
@@ -62,6 +64,7 @@ namespace UltimateErasme
             mechantManager = new MechantManager(this, viewportRect);
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
+            collisionsManager = new CollisionsManager(this, viewportRect);
             
         }
 
@@ -84,6 +87,7 @@ namespace UltimateErasme
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
+            collisionsManager.Update(gameTime);
             decorsManager.Update(gameTime);
             playerManager.Update(gameTime);
             mechantManager.Update(gameTime);

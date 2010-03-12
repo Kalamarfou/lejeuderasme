@@ -113,5 +113,22 @@ namespace UltimateErasme.GameObjects
         }
 
 
+
+        public Rectangle getVulnerableBox()
+        {
+            if (attackManager.attackState != AttackState.pasAttaque && transformationManager.erasmeForme == ErasmeForme.voltaire)
+            {
+                return new Rectangle((int)erasme.Position.X, (int)erasme.Position.Y, erasme.Sprite.Width - 60, erasme.Sprite.Height);
+            }
+            else if (transformationManager.erasmeForme == ErasmeForme.erasme)
+            {
+                return new Rectangle((int)erasme.Position.X, (int)erasme.Position.Y, erasme.Sprite.Width, erasme.Sprite.Height);
+            }
+            else
+            {
+                return new Rectangle(0,0,0,0);
+            }
+            
+        }
     }
 }
