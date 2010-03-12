@@ -78,7 +78,7 @@ namespace UltimateErasme.GameObjects
             {
                 Rectangle rect = new Rectangle((int)mechant.MechantGameObject.Position.X, (int)mechant.MechantGameObject.Position.Y, 
                     mechant.MechantGameObject.Sprite.Width, mechant.MechantGameObject.Sprite.Height);
-                mechantsVulnerablesBox.Add(rect);
+                mechantsVulnerablesBox.Add(new MechantVulnerableBox(rect, mechant));
             }
         }
 

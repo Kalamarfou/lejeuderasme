@@ -30,6 +30,10 @@ namespace UltimateErasme.GameObjects
         public NombreDeJoueurs nombreDeJoueurs = NombreDeJoueurs.solo;
         public NumeroDuJoueur numeroDuJoueur = NumeroDuJoueur.un;
 
+        public bool clignote = false;
+        public ClignoteState clignoteState = ClignoteState.visible;
+        public double HeureDebutClignotage;
+
         public Texture2D erasmeNormal;
         public Texture2D voltaireNormal;
 
@@ -100,15 +104,38 @@ namespace UltimateErasme.GameObjects
             attackManager.Update(gameTime, controllerType);
             buloManager.Update(gameTime, controllerType);
             transformationManager.Update(gameTime, controllerType);
-
+            clignotageManager(gameTime);
             
+        }
+
+        private void clignotageManager(GameTime gameTime)
+        {
+            if (clignote)
+            {
+                if (gameTime.TotalGameTime.TotalMilliseconds - HeureDebutClignotage > 1000)
+                {
+                    clignote = false;
+                    clignoteState = ClignoteState.visible;
+                }
+                else if (clignoteState == ClignoteState.visible)
+                {
+                    clignoteState = ClignoteState.invisible;
+                }
+                else if (clignoteState == ClignoteState.invisible)
+                {
+                    clignoteState = ClignoteState.visible;
+                }
+            }
         }
 
         //dessine erasme
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             attackManager.Draw(gameTime, spriteBatch);
-            spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
+            if (clignoteState  == ClignoteState.visible)
+            {
+                spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
+            }
             buloManager.Draw(gameTime, spriteBatch);            
         }
 
@@ -119,6 +146,10 @@ namespace UltimateErasme.GameObjects
             if (attackManager.attackState != AttackState.pasAttaque && transformationManager.erasmeForme == ErasmeForme.voltaire)
             {
                 return new Rectangle((int)erasme.Position.X, (int)erasme.Position.Y, erasme.Sprite.Width - 60, erasme.Sprite.Height);
+            }
+            else if (transformationManager.erasmeForme == ErasmeForme.voltaire)
+            {
+                return new Rectangle((int)erasme.Position.X, (int)erasme.Position.Y, erasme.Sprite.Width, erasme.Sprite.Height);
             }
             else if (transformationManager.erasmeForme == ErasmeForme.erasme)
             {
