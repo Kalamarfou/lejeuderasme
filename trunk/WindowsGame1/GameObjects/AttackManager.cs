@@ -46,7 +46,6 @@ namespace UltimateErasme.GameObjects
         }
 
 
-        //TODO
         public void Update(GameTime gameTime, ControllerType controllerType)
         {
             if (!(controllerType == ControllerType.keyboard))
@@ -147,6 +146,25 @@ namespace UltimateErasme.GameObjects
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             graisseManager.Draw(gameTime,spriteBatch);
+        }
+
+        internal void AjouterPersonnagesAttaquesBox(ArrayList graisseAttaquesBox, ArrayList voltaireAttaquesBox, ArrayList transformationAttaquesBox)
+        {
+            graisseManager.AjouterPersonnagesAttaquesBox(graisseAttaquesBox);
+            if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
+            {
+                if (attackState == AttackState.etape4 || attackState == AttackState.etape5 || attackState == AttackState.etape6)
+                {
+                    Rectangle rect = new Rectangle((int)erasmeManager.erasme.Position.X + 175, (int)erasmeManager.erasme.Position.Y, 60, erasmeManager.erasme.Sprite.Height);
+                    voltaireAttaquesBox.Add(rect);
+                }
+            }
+            if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.transformationVersErasmeEnCours ||
+                erasmeManager.transformationManager.erasmeForme == ErasmeForme.transformationVersVoltaireEnCours)
+            {
+                Rectangle rect = new Rectangle((int)erasmeManager.erasme.Position.X, (int)erasmeManager.erasme.Position.Y, erasmeManager.erasme.Sprite.Width, erasmeManager.erasme.Sprite.Height);
+                transformationAttaquesBox.Add(rect);
+            }
         }
     }
 }

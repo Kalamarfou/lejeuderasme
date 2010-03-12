@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.GameObjects.enums;
+using System.Collections;
 
 namespace UltimateErasme.GameObjects
 {
@@ -202,6 +203,15 @@ namespace UltimateErasme.GameObjects
             if (bulo.Alive)
             {
                 spriteBatch.Draw(bulo.Sprite, bulo.Position, null, Color.White, bulo.Rotation, bulo.Center, bulo.Scale, SpriteEffects.None, 0);
+            }
+        }
+
+        internal void AjouterBuloAttaquesBox(ArrayList buloAttaquesBox)
+        {
+            if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+            {
+                Rectangle rect = new Rectangle((int)bulo.Position.X, (int)bulo.Position.Y, bulo.Sprite.Width, bulo.Sprite.Height);
+                buloAttaquesBox.Add(rect);
             }
         }
     }

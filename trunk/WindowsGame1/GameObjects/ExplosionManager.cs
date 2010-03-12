@@ -180,5 +180,23 @@ namespace UltimateErasme.GameObjects
                 spriteBatch.Draw(explosion.Sprite, explosion.Position, null, Color.White, explosion.Rotation, explosion.Center, explosion.Scale, SpriteEffects.None, 0);
             }
         }
+
+        internal void AjouterExplosionsAttaquesBox(ArrayList explosionsAttaquesBox)
+        {
+            foreach (GameObject explosion in mocheExplosionCollection)
+            {
+                Rectangle rect = new Rectangle((int)explosion.Position.X, (int)explosion.Position.Y, explosion.Sprite.Width, explosion.Sprite.Height);
+                explosionsAttaquesBox.Add(rect);
+            }
+            foreach (GameObject explosion in moyenBelleExplosionCollection)
+            {
+                Rectangle rect = new Rectangle((int)explosion.Position.X, (int)explosion.Position.Y, explosion.Sprite.Width, explosion.Sprite.Height);
+                explosionsAttaquesBox.Add(rect);
+            }
+            foreach (BelleExplosionCollision explosion in BelleExplosionCollisionCollection)
+            {
+                explosionsAttaquesBox.Add(explosion.Rectangle);
+            }
+        }
     }
 }

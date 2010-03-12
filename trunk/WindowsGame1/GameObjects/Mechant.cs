@@ -18,7 +18,7 @@ using UltimateErasme.GameObjects.enums;
 
 namespace UltimateErasme.GameObjects
 {
-    class Mechant
+    public class Mechant
     {
         public UltimateErasme game;
         public Rectangle viewportRect;

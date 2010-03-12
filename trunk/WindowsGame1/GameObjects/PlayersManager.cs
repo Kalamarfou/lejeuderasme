@@ -15,6 +15,7 @@ using System.Collections;
 using UltimateErasme.ClassesDInternet.Particles;
 using UltimateErasme.Sound;
 using UltimateErasme.GameObjects.enums;
+using UltimateErasme.Collisions;
 
 namespace UltimateErasme.GameObjects
 {
@@ -149,6 +150,34 @@ namespace UltimateErasme.GameObjects
                 {
                     deuxiemeJoueur.Draw(gameTime, spriteBatch);
                 }
+            }
+        }
+
+        public void AjouterPersonnagesVulnerablesBox(ArrayList personnagesVulnerablesBox)
+        {
+            Rectangle rect = premierJoueur.getVulnerableBox();
+            if (rect.Y != 0)
+            {
+                personnagesVulnerablesBox.Add(new PersonnageVulnerableBox(rect, premierJoueur));
+            }
+            if (nombreDeJoueurs == NombreDeJoueurs.deuxJoueurs)
+            {
+                Rectangle rect2 = deuxiemeJoueur.getVulnerableBox();
+                if (rect2.Y != 0)
+                {
+                    personnagesVulnerablesBox.Add(new PersonnageVulnerableBox(rect2, deuxiemeJoueur));
+                }
+            }
+        }
+
+        internal void AjouterPersonnagesAttaquesBox(ArrayList graisseAttaquesBox, ArrayList voltaireAttaquesBox, ArrayList transformationAttaquesBox, ArrayList buloAttaquesBox)
+        {
+            premierJoueur.attackManager.AjouterPersonnagesAttaquesBox(graisseAttaquesBox, voltaireAttaquesBox, transformationAttaquesBox);
+            premierJoueur.buloManager.AjouterBuloAttaquesBox(buloAttaquesBox);
+            if (nombreDeJoueurs == NombreDeJoueurs.deuxJoueurs)
+            {
+                deuxiemeJoueur.attackManager.AjouterPersonnagesAttaquesBox(graisseAttaquesBox, voltaireAttaquesBox, transformationAttaquesBox);
+                deuxiemeJoueur.buloManager.AjouterBuloAttaquesBox(buloAttaquesBox);
             }
         }
     }
