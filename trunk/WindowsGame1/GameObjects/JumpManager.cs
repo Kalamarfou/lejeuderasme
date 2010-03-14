@@ -122,6 +122,7 @@ namespace UltimateErasme.GameObjects
                     erasmeManager.erasme.Sprite = erasmeManager.voltaireNormal;
                 }
             }
+            erasmeManager.soundManager.DoubleSaut();
         }
 
         private void Sauter()
