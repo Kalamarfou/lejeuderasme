@@ -64,6 +64,8 @@ namespace UltimateErasme.Collisions
                     {
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         graisse.Boule.Alive = false;
+
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtGraisse();
                     }
                 }
             }
@@ -76,6 +78,7 @@ namespace UltimateErasme.Collisions
                     if (bulo.Intersects(mechantVulnerableBox.Box))
                     {
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtBulo();
                     }
                 }
             }
@@ -88,6 +91,7 @@ namespace UltimateErasme.Collisions
                     if (voltaire.Intersects(mechantVulnerableBox.Box))
                     {
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtVoltaire();
                     }
                 }
             }
@@ -100,6 +104,7 @@ namespace UltimateErasme.Collisions
                     if (explosion.Intersects(mechantVulnerableBox.Box))
                     {
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtExplosion();
                     }
                 }
             }

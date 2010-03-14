@@ -22,9 +22,16 @@ namespace UltimateErasme.Sound
 
         public void Saut()
         {
-            Cue cue = banqueSons.GetCue("blup");
+            Cue cue = banqueSons.GetCue("Saut");
             cue.Play();
         }
+
+        public void DoubleSaut()
+        {
+            Cue cue = banqueSons.GetCue("DoubleSaut");
+            cue.Play();
+        }
+
         public void BuloBulo()
         {
             Cue cue = banqueSons.GetCue("bulo_sound");
@@ -62,20 +69,47 @@ namespace UltimateErasme.Sound
 
         public void AttaqueErasme()
         {
-            Cue cue = banqueSons.GetCue("splurtch");
+            Cue cue = banqueSons.GetCue("AttaqueGraisse");
             cue.Play();
         }
 
         public void AttaqueErasme360()
         {
-            Cue cue = banqueSons.GetCue("splurtch360");
+            Cue cue = banqueSons.GetCue("AttaqueGraisse360");
             cue.Play();
         }
 
         public void Outch()
         {
-            Cue cue = banqueSons.GetCue("outch");
+            Cue cue = banqueSons.GetCue("ErasmeTouche");
             cue.Play();
         }
+
+        public void MechantMeurtGraisse()
+        {
+            Cue cue = banqueSons.GetCue("MechantMeurtGraisse");
+            cue.Play();
+        }
+
+        public void MechantMeurtBulo()
+        {
+            Cue cue = banqueSons.GetCue("MechantMeurtBulo");
+            cue.Play();
+        }
+
+        public void MechantMeurtExplosion()
+        {
+            Cue cue = banqueSons.GetCue("MechantMeurtExplosion");
+            cue.Play();
+        }
+
+        public void MechantMeurtVoltaire()
+        {
+            Cue cue = banqueSons.GetCue("MechantMeurtVoltaire");
+            cue.Play();
+        }
+
+
+        
     }
 }
