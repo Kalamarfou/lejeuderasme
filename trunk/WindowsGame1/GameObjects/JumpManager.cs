@@ -51,27 +51,8 @@ namespace UltimateErasme.GameObjects
                 {
                     gamePadState = GamePad.GetState(PlayerIndex.Two);
                 }
-
-                if (gamePadState.Buttons.A == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.A == ButtonState.Released &&
-                    jumpState == JumpState.auSol)
-                {
-                    Sauter();
-                }
-
-                else if (gamePadState.Buttons.A == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.A == ButtonState.Released
-                    && jumpState == JumpState.arriveEnHaut)
-                {
-                    if (gamePadState.ThumbSticks.Left.X < 0)
-                    {
-                        DoubleSauter("Left");
-                    }
-                    else
-                    {
-                        DoubleSauter("Right");
-                    }
-                }
+                //vrai update des boutons
+                UpdateXboxControler(gametime, gamePadState);
                 previousGamePadState = gamePadState;
             }
 
@@ -80,31 +61,61 @@ namespace UltimateErasme.GameObjects
                controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
                 KeyboardState keyboardState = Keyboard.GetState();
-                if (keyboardState.IsKeyDown(Keys.Space) &&
-                    previousKeyboardState.IsKeyUp(Keys.Space) &&
-                    jumpState == JumpState.auSol)
-                {
-                    Sauter();
-                }
-                else if (keyboardState.IsKeyDown(Keys.Space) &&
-                    previousKeyboardState.IsKeyUp(Keys.Space) &&
-                    jumpState == JumpState.arriveEnHaut)
-                {
-                    if (keyboardState.IsKeyDown(Keys.Left))
-                    {
-                        DoubleSauter("Left");
-                    }
-                    else
-                    {
-                        DoubleSauter("Right");
-                    }
-
-                }
+                //vrai update des boutons
+                UpdateKeyBoard(gametime, keyboardState);
                 previousKeyboardState = keyboardState;
             }
 #endif
 
             JumpUpdate();
+        }
+
+        private void UpdateKeyBoard(GameTime gametime, KeyboardState keyboardState)
+        {
+            if (keyboardState.IsKeyDown(Keys.Space) &&
+                    previousKeyboardState.IsKeyUp(Keys.Space) &&
+                    jumpState == JumpState.auSol)
+            {
+                Sauter();
+            }
+            else if (keyboardState.IsKeyDown(Keys.Space) &&
+                    previousKeyboardState.IsKeyUp(Keys.Space) &&
+                    jumpState == JumpState.arriveEnHaut)
+            {
+                if (keyboardState.IsKeyDown(Keys.Left))
+                {
+                    DoubleSauter("Left");
+                }
+                else
+                {
+                    DoubleSauter("Right");
+                }
+
+            }
+        }
+
+        private void UpdateXboxControler(GameTime gametime, GamePadState gamePadState)
+        {
+            if (gamePadState.Buttons.A == ButtonState.Pressed &&
+                    previousGamePadState.Buttons.A == ButtonState.Released &&
+                    jumpState == JumpState.auSol)
+            {
+                Sauter();
+            }
+
+            else if (gamePadState.Buttons.A == ButtonState.Pressed &&
+                    previousGamePadState.Buttons.A == ButtonState.Released
+                    && jumpState == JumpState.arriveEnHaut)
+            {
+                if (gamePadState.ThumbSticks.Left.X < 0)
+                {
+                    DoubleSauter("Left");
+                }
+                else
+                {
+                    DoubleSauter("Right");
+                }
+            }
         }
 
         private void DoubleSauter(string sens)
@@ -144,106 +155,157 @@ namespace UltimateErasme.GameObjects
 
         public void JumpUpdate()
         {
-            if (jumpState == JumpState.decollage)
+            switch (jumpState)
             {
-                erasmeManager.erasme.Position -= jumpVelocity;
-                if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 80)
-                {
-                    jumpState = JumpState.arriveEnHaut;
-                }
+                case JumpState.auSol:
+                    break;
+                case JumpState.decollage:
+                    JumpDecollage();
+                    break;
+                case JumpState.arriveEnHaut:
+                    JumpArriveEnHaut();
+                    break;
+                case JumpState.toutEnHaut:
+                    JumpToutEnHaut();
+                    break;
+                case JumpState.repartEnBas:
+                    JumpRepartEnBas();
+                    break;
+                case JumpState.atterissage:
+                    JumpAtterissage();
+                    break;
+                case JumpState.doubleDecollage:
+                    JumpDoubleDecollage();
+                    break;
+                case JumpState.doubleArriveEnHaut:
+                    JumpDoubleArriveEnHaut();
+                    break;
+                case JumpState.doubleToutEnHaut:
+                    JumpDoubleToutEnHaut();
+                    break;
+                case JumpState.doubleRepartEnBas:
+                    JumpDoubleRepartEnBas();
+                    break;
+                case JumpState.doubleAtterissage:
+                    JumpDoubleAtterissage();
+                    break;
+                default:
+                    break;
             }
-            if (jumpState == JumpState.arriveEnHaut)
-            {
-                erasmeManager.erasme.Position -= jumpVelocity / 2;
-                if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 100)
-                {
-                    jumpState = JumpState.toutEnHaut;
-                }
-            }
-            if (jumpState == JumpState.doubleDecollage)
-            {
-                RotationDoubleSautManager(sensDuDoubleSaut);
-                erasmeManager.erasme.Position -= jumpVelocity;
-                if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 180)
-                {
-                    jumpState = JumpState.doubleArriveEnHaut;
-                }
-            }
-            if (jumpState == JumpState.doubleArriveEnHaut)
-            {
-                RotationDoubleSautManager(sensDuDoubleSaut);
-                erasmeManager.erasme.Position -= jumpVelocity / 2;
-                if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 200)
-                {
-                    jumpState = JumpState.doubleToutEnHaut;
-                }
-            }
-            if (jumpState == JumpState.doubleToutEnHaut)
-            {
-                RotationDoubleSautManager(sensDuDoubleSaut);
-                jumpState = JumpState.doubleRepartEnBas;
-            }
-            if (jumpState == JumpState.doubleRepartEnBas)
-            {
-                RotationDoubleSautManager(sensDuDoubleSaut);
-                erasmeManager.erasme.Position += jumpVelocity / 2;
-                if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 180)
-                {
-                    jumpState = JumpState.doubleAtterissage;
-                }
-            }
-            if (jumpState == JumpState.doubleAtterissage)
-            {
-                RotationDoubleSautManager(sensDuDoubleSaut);
-                erasmeManager.erasme.Position += jumpVelocity;
-                if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 80)
-                {
-                    jumpState = JumpState.atterissage;
-                    erasmeManager.erasme.Rotation = 0;
-                }
-            }
-            if (jumpState == JumpState.toutEnHaut)
-            {
-                jumpState = JumpState.repartEnBas;
-                if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
-                {
-                    if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
-                    {
-                        erasmeManager.erasme.Sprite = voltaireDescend;
-                    }
-                    else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
-                    {
-                        erasmeManager.erasme.Sprite = erasmeDescend;
-                    }
-                }
+        }
 
-            }
-            if (jumpState == JumpState.repartEnBas)
+        private void JumpAtterissage()
+        {
+            erasmeManager.erasme.Position += jumpVelocity;
+            if (erasmeManager.erasme.Position.Y >= hauteurDuSol)
             {
-                erasmeManager.erasme.Position += jumpVelocity / 2;
-                if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 80)
+                JumpTerminerSaut();
+            }
+        }
+
+        private void JumpTerminerSaut()
+        {
+            jumpState = JumpState.auSol;
+            if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
+            {
+                if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
                 {
-                    jumpState = JumpState.atterissage;
+                    erasmeManager.erasme.Sprite = erasmeManager.voltaireNormal;
+                }
+                else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+                {
+                    erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
                 }
             }
-            if (jumpState == JumpState.atterissage)
+        }
+
+        private void JumpRepartEnBas()
+        {
+            erasmeManager.erasme.Position += jumpVelocity / 2;
+            if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 80)
             {
-                erasmeManager.erasme.Position += jumpVelocity;
-                if (erasmeManager.erasme.Position.Y >= hauteurDuSol)
+                jumpState = JumpState.atterissage;
+            }
+        }
+
+        private void JumpToutEnHaut()
+        {
+            jumpState = JumpState.repartEnBas;
+            if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
+            {
+                if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
                 {
-                    jumpState = JumpState.auSol;
-                    if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
-                    {
-                        if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.voltaire)
-                        {
-                            erasmeManager.erasme.Sprite = erasmeManager.voltaireNormal;
-                        }
-                        else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
-                        {
-                            erasmeManager.erasme.Sprite = erasmeManager.erasmeNormal;
-                        }
-                    }
+                    erasmeManager.erasme.Sprite = voltaireDescend;
                 }
+                else if (erasmeManager.transformationManager.erasmeForme == ErasmeForme.erasme)
+                {
+                    erasmeManager.erasme.Sprite = erasmeDescend;
+                }
+            }
+        }
+
+        private void JumpDoubleAtterissage()
+        {
+            RotationDoubleSautManager(sensDuDoubleSaut);
+            erasmeManager.erasme.Position += jumpVelocity;
+            if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 80)
+            {
+                jumpState = JumpState.atterissage;
+                erasmeManager.erasme.Rotation = 0;
+            }
+        }
+
+        private void JumpDoubleRepartEnBas()
+        {
+            RotationDoubleSautManager(sensDuDoubleSaut);
+            erasmeManager.erasme.Position += jumpVelocity / 2;
+            if (erasmeManager.erasme.Position.Y >= hauteurDuSol - 180)
+            {
+                jumpState = JumpState.doubleAtterissage;
+            }
+        }
+
+        private void JumpDoubleToutEnHaut()
+        {
+            RotationDoubleSautManager(sensDuDoubleSaut);
+            jumpState = JumpState.doubleRepartEnBas;
+        }
+
+        private void JumpDoubleArriveEnHaut()
+        {
+            RotationDoubleSautManager(sensDuDoubleSaut);
+            erasmeManager.erasme.Position -= jumpVelocity / 2;
+            if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 200)
+            {
+                jumpState = JumpState.doubleToutEnHaut;
+            }
+        }
+
+        private void JumpDoubleDecollage()
+        {
+            RotationDoubleSautManager(sensDuDoubleSaut);
+            erasmeManager.erasme.Position -= jumpVelocity;
+            if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 180)
+            {
+                jumpState = JumpState.doubleArriveEnHaut;
+            }
+        }
+
+        private void JumpArriveEnHaut()
+        {
+            erasmeManager.erasme.Position -= jumpVelocity / 2;
+            if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 100)
+            {
+                jumpState = JumpState.toutEnHaut;
+            }
+        }
+
+        private void JumpDecollage()
+        {
+            erasmeManager.erasme.Position -= jumpVelocity;
+            if (erasmeManager.erasme.Position.Y <= hauteurDuSol - 80)
+            {
+                jumpState = JumpState.arriveEnHaut;
             }
         }
 

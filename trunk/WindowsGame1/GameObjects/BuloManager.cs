@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.GameObjects.enums;
 using System.Collections;
+using UltimateErasme.InputTesters;
 
 namespace UltimateErasme.GameObjects
 {
@@ -19,11 +20,9 @@ namespace UltimateErasme.GameObjects
         UltimateErasme game;
         ErasmeManager erasmeManager;
 
-        
-
-        GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
+        GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
-        KeyboardState previousKeyboardState = Keyboard.GetState();
+        KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
         public BuloManager(UltimateErasme game, ErasmeManager erasmeManager)
@@ -40,67 +39,68 @@ namespace UltimateErasme.GameObjects
         {
             if (!(controllerType == ControllerType.keyboard))
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
-                if (controllerType == ControllerType.xBoxControler2)
-                {
-                    gamePadState = GamePad.GetState(PlayerIndex.Two);
-                }
-                if (gamePadState.Buttons.RightShoulder == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.RightShoulder == ButtonState.Released)
-                {
-                    RentrerSortirBulo();
-                }
-                if (buloState == BuloState.sorti)
-                {
-                    if (gamePadState.Buttons.B == ButtonState.Pressed &&
-                        previousGamePadState.Buttons.B == ButtonState.Released)
-                    {
-                        LancerBulorang();
-                    }
-                }
-                else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
-                {
-                    if (gamePadState.Buttons.B == ButtonState.Pressed &&
-                        previousGamePadState.Buttons.B == ButtonState.Released)
-                    {
-                        explosion(gameTime);
-                    }
-                }
-                previousGamePadState = gamePadState;
+                gamePadTester.ChooseGamePad(controllerType);
+                //vrai update des boutons
+                UpdateXboxController(gameTime);
+                gamePadTester.UpdatePreviousGamePadState();
             }
 
 #if !XBOX
             if (controllerType == ControllerType.keyboard ||
                controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
-                if (keyboardState.IsKeyDown(Keys.B) &&
-                   previousKeyboardState.IsKeyUp(Keys.B))
-                {
-                    RentrerSortirBulo();
-                }
-                if (buloState == BuloState.sorti)
-                {
-                    if (keyboardState.IsKeyDown(Keys.Z) &&
-                    previousKeyboardState.IsKeyUp(Keys.Z))
-                    {
-                        LancerBulorang();
-                    }
-                }
-                else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
-                {
-                    if (keyboardState.IsKeyDown(Keys.Z) &&
-                    previousKeyboardState.IsKeyUp(Keys.Z))
-                    {
-                        explosion(gameTime);
-                    }
-                }
-                previousKeyboardState = keyboardState;
+                keyboardTester.GetKeyboard();
+                //vrai update des boutons
+                UpdateKeyboard(gameTime);
+                keyboardTester.UpdatePreviousKeyboardState();
             }
 #endif
 
             BuloUpdate();
+        }
+
+        private void UpdateKeyboard(GameTime gameTime)
+        {
+            if (keyboardTester.test(Keys.B))
+            {
+                RentrerSortirBulo();
+            }
+            if (buloState == BuloState.sorti)
+            {
+                if (keyboardTester.test(Keys.Z))
+                {
+                    LancerBulorang();
+                }
+            }
+            else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+            {
+                if (keyboardTester.test(Keys.Z))
+                {
+                    explosion(gameTime);
+                }
+            }
+        }
+
+        private void UpdateXboxController(GameTime gameTime)
+        {
+            if ( gamePadTester.test(Buttons.RightShoulder))
+            {
+                RentrerSortirBulo();
+            }
+            if (buloState == BuloState.sorti)
+            {
+                if (gamePadTester.test(Buttons.B))
+                {
+                    LancerBulorang();
+                }
+            }
+            else if (buloState == BuloState.debutLance || buloState == BuloState.retourLance)
+            {
+                if (gamePadTester.test(Buttons.B))
+                {
+                    explosion(gameTime);
+                }
+            }
         }
 
         private void LancerBulorang()
@@ -143,59 +143,74 @@ namespace UltimateErasme.GameObjects
             {
                 if (buloState == BuloState.sorti)
                 {
-                    if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeMonte ||
-                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireMonte)
-                    {
-                        bulo.Position = erasmeManager.erasme.Position + new Vector2(30, 100);
-                    }
-                    else if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeDescend ||
-                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireDescend)
-                    {
-                        bulo.Position = erasmeManager.erasme.Position + new Vector2(20, -50);
-                    }
-                    else
-                    {
-                        bulo.Position = erasmeManager.erasme.Position + (new Vector2(100, 35));
-                    }
-                    bulo.Rotation = erasmeManager.erasme.Rotation;
+                    BuloSortiUpdate();
                 }
 
                 else if (buloState == BuloState.debutLance)
                 {
-                    if (bulo.Position.X < buloPorteeMax)
-                    {
-                        bulo.Position += new Vector2(5, 0);
-                        bulo.Rotation += 0.5f;
-                    }
-                    else
-                    {
-                        buloState = BuloState.retourLance;
-                    }
+                    BuloLanceUpdate();
                 }
                 else if (buloState == BuloState.retourLance)
                 {
 
-                    if (bulo.Position.Y > erasmeManager.erasme.Position.Y)
-                    {
-                        bulo.Position -= new Vector2(0, 1);
-                        bulo.Rotation += 0.5f;
-                    }
-                    else if (bulo.Position.Y < erasmeManager.erasme.Position.Y)
-                    {
-                        bulo.Position += new Vector2(0, 1);
-                        bulo.Rotation += 0.5f;
-                    }
-                    if (bulo.Position.X > erasmeManager.erasme.Position.X)
-                    {
-                        bulo.Position -= new Vector2(5, 0);
-                        bulo.Rotation += 0.5f;
-                    }
-                    else
-                    {
-                        buloState = BuloState.sorti;
-                    }
+                    BuloRetourLanceUpdate();
                 }
             }
+        }
+
+        private void BuloRetourLanceUpdate()
+        {
+            if (bulo.Position.Y > erasmeManager.erasme.Position.Y)
+            {
+                bulo.Position -= new Vector2(0, 1);
+                bulo.Rotation += 0.5f;
+            }
+            else if (bulo.Position.Y < erasmeManager.erasme.Position.Y)
+            {
+                bulo.Position += new Vector2(0, 1);
+                bulo.Rotation += 0.5f;
+            }
+            if (bulo.Position.X > erasmeManager.erasme.Position.X)
+            {
+                bulo.Position -= new Vector2(5, 0);
+                bulo.Rotation += 0.5f;
+            }
+            else
+            {
+                buloState = BuloState.sorti;
+            }
+        }
+
+        private void BuloLanceUpdate()
+        {
+            if (bulo.Position.X < buloPorteeMax)
+            {
+                bulo.Position += new Vector2(5, 0);
+                bulo.Rotation += 0.5f;
+            }
+            else
+            {
+                buloState = BuloState.retourLance;
+            }
+        }
+
+        private void BuloSortiUpdate()
+        {
+            if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeMonte ||
+                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireMonte)
+            {
+                bulo.Position = erasmeManager.erasme.Position + new Vector2(30, 100);
+            }
+            else if (erasmeManager.erasme.Sprite == erasmeManager.jumpManager.erasmeDescend ||
+                        erasmeManager.erasme.Sprite == erasmeManager.jumpManager.voltaireDescend)
+            {
+                bulo.Position = erasmeManager.erasme.Position + new Vector2(20, -50);
+            }
+            else
+            {
+                bulo.Position = erasmeManager.erasme.Position + (new Vector2(100, 35));
+            }
+            bulo.Rotation = erasmeManager.erasme.Rotation;
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch) 

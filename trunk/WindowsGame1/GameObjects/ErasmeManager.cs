@@ -15,6 +15,7 @@ using System.Collections;
 using UltimateErasme.ClassesDInternet.Particles;
 using UltimateErasme.Sound;
 using UltimateErasme.GameObjects.enums;
+using UltimateErasme.InputTesters;
 
 namespace UltimateErasme.GameObjects
 {
@@ -43,9 +44,9 @@ namespace UltimateErasme.GameObjects
         public AttackManager attackManager;
         public TransformationManager transformationManager;
 
-        GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
+        GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
-        KeyboardState previousKeyboardState = Keyboard.GetState();
+        KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
 
@@ -72,31 +73,19 @@ namespace UltimateErasme.GameObjects
         {
             if (!(controllerType == ControllerType.keyboard))
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One); 
-               
-                if (controllerType == ControllerType.xBoxControler2)
-                {
-                    gamePadState = GamePad.GetState(PlayerIndex.Two);
-                }
-
-                erasme.Position += new Vector2(gamePadState.ThumbSticks.Left.X * 2, 0) ;
-
-                previousGamePadState = gamePadState;
+                gamePadTester.ChooseGamePad(controllerType);
+                //vrai update des boutons
+                UpdateXboxControler(gameTime);
+                gamePadTester.UpdatePreviousGamePadState();
             }
 #if !XBOX
             if (controllerType == ControllerType.keyboard ||
                 controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
-                if (keyboardState.IsKeyDown(Keys.Left))
-                {
-                    erasme.Position -= new Vector2(2, 0);
-                }
-                if (keyboardState.IsKeyDown(Keys.Right))
-                {
-                    erasme.Position += new Vector2(2, 0);
-                }
-                previousKeyboardState = keyboardState;
+                keyboardTester.GetKeyboard();
+                //vrai update des boutons
+                UpdateKeyboard(gameTime);
+                keyboardTester.UpdatePreviousKeyboardState();
             }
 #endif
 
@@ -106,6 +95,23 @@ namespace UltimateErasme.GameObjects
             transformationManager.Update(gameTime, controllerType);
             clignotageManager(gameTime);
             
+        }
+
+        private void UpdateKeyboard(GameTime gameTime)
+        {
+            if (keyboardTester.testEnfonceInfini(Keys.Left))
+            {
+                erasme.Position -= new Vector2(2, 0);
+            }
+            if (keyboardTester.testEnfonceInfini(Keys.Right))
+            {
+                erasme.Position += new Vector2(2, 0);
+            }
+        }
+
+        private void UpdateXboxControler(GameTime gameTime)
+        {
+            erasme.Position += new Vector2(gamePadTester.GetStickX() * 2, 0);
         }
 
         private void clignotageManager(GameTime gameTime)

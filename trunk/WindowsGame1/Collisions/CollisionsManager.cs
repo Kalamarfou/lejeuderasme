@@ -36,79 +36,30 @@ namespace UltimateErasme.Collisions
         //TODO
         public void Update(GameTime gameTime)
         {
+            //on remplit les boxes avec de nouvelles valeurs
             GetBoxes();
+
             //le mechant touche erasme
-            foreach (PersonnageVulnerableBox personnageVulnerableBox in personnagesVulnerablesBoxes)
-            {
-                if (personnageVulnerableBox.ErasmeManager.clignote == false)
-                {
-                    foreach (MechantAttaqueBox mechantAttaqueBox in mechantsAttaquesBoxes)
-                    {
-                        if (personnageVulnerableBox.Box.Intersects(mechantAttaqueBox.Box))
-                        {
-                            personnageVulnerableBox.ErasmeManager.soundManager.Outch();
-                            mechantAttaqueBox.Mechant.mechantState = MechantState.mort;
-                            personnageVulnerableBox.ErasmeManager.clignote = true;
-                            personnageVulnerableBox.ErasmeManager.HeureDebutClignotage = gameTime.TotalGameTime.TotalMilliseconds;
-                        }
-                    }
-                }
-            }
+            LeMechantToucheErasme(gameTime);
 
             //la graisse sur le mechant
-            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
-            {
-                foreach (GraisseAttaqueBox graisse in graisseAttaquesBoxes)
-                {
-                    if (graisse.Box.Intersects(mechantVulnerableBox.Box))
-                    {
-                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
-                        graisse.Boule.Alive = false;
-
-                        game.playerManager.premierJoueur.soundManager.MechantMeurtGraisse();
-                    }
-                }
-            }
+            LaGraisseToucheLeMechant(gameTime);
 
             //le bulo sur le mechant
-            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
-            {
-                foreach (Rectangle bulo in buloAttaquesBoxes)
-                {
-                    if (bulo.Intersects(mechantVulnerableBox.Box))
-                    {
-                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
-                        game.playerManager.premierJoueur.soundManager.MechantMeurtBulo();
-                    }
-                }
-            }
+            LeBuloToucheLeMechant(gameTime);
 
             //voltaire sur le mechant
-            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
-            {
-                foreach (Rectangle voltaire in voltaireAttaquesBoxes)
-                {
-                    if (voltaire.Intersects(mechantVulnerableBox.Box))
-                    {
-                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
-                        game.playerManager.premierJoueur.soundManager.MechantMeurtVoltaire();
-                    }
-                }
-            }
+            VoltaireToucheLeMechant(gameTime);
 
             //les explosions sur le mechant
-            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
-            {
-                foreach (Rectangle explosion in explosionsAttaquesBoxes)
-                {
-                    if (explosion.Intersects(mechantVulnerableBox.Box))
-                    {
-                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
-                        game.playerManager.premierJoueur.soundManager.MechantMeurtExplosion();
-                    }
-                }
-            }
+            LesExplosionsSurLeMechant(gameTime);
 
+            //les explosions sur erasme
+            LesExplosionsSurEramse(gameTime);
+        }
+
+        private void LesExplosionsSurEramse(GameTime gameTime)
+        {
             //les explosions sur erasme
             foreach (PersonnageVulnerableBox personnageVulnerableBox in personnagesVulnerablesBoxes)
             {
@@ -127,7 +78,105 @@ namespace UltimateErasme.Collisions
             }
         }
 
+        private void LesExplosionsSurLeMechant(GameTime gameTime)
+        {
+            //les explosions sur le mechant
+            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
+            {
+                foreach (Rectangle explosion in explosionsAttaquesBoxes)
+                {
+                    if (explosion.Intersects(mechantVulnerableBox.Box))
+                    {
+                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtExplosion();
+                    }
+                }
+            }
+        }
+
+        private void VoltaireToucheLeMechant(GameTime gameTime)
+        {
+            //voltaire sur le mechant
+            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
+            {
+                foreach (Rectangle voltaire in voltaireAttaquesBoxes)
+                {
+                    if (voltaire.Intersects(mechantVulnerableBox.Box))
+                    {
+                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtVoltaire();
+                    }
+                }
+            }
+        }
+
+        private void LeBuloToucheLeMechant(GameTime gameTime)
+        {
+            //le bulo sur le mechant
+            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
+            {
+                foreach (Rectangle bulo in buloAttaquesBoxes)
+                {
+                    if (bulo.Intersects(mechantVulnerableBox.Box))
+                    {
+                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtBulo();
+                    }
+                }
+            }
+        }
+
+        private void LaGraisseToucheLeMechant(GameTime gameTime)
+        {
+            //la graisse sur le mechant
+            foreach (MechantVulnerableBox mechantVulnerableBox in mechantsVulnerablesBoxes)
+            {
+                foreach (GraisseAttaqueBox graisse in graisseAttaquesBoxes)
+                {
+                    if (graisse.Box.Intersects(mechantVulnerableBox.Box))
+                    {
+                        mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
+                        graisse.Boule.Alive = false;
+
+                        game.playerManager.premierJoueur.soundManager.MechantMeurtGraisse();
+                    }
+                }
+            }
+        }
+
+        private void LeMechantToucheErasme(GameTime gameTime)
+        {
+            //le mechant touche erasme
+            foreach (PersonnageVulnerableBox personnageVulnerableBox in personnagesVulnerablesBoxes)
+            {
+                if (personnageVulnerableBox.ErasmeManager.clignote == false)
+                {
+                    foreach (MechantAttaqueBox mechantAttaqueBox in mechantsAttaquesBoxes)
+                    {
+                        if (personnageVulnerableBox.Box.Intersects(mechantAttaqueBox.Box))
+                        {
+                            personnageVulnerableBox.ErasmeManager.soundManager.Outch();
+                            mechantAttaqueBox.Mechant.mechantState = MechantState.mort;
+                            personnageVulnerableBox.ErasmeManager.clignote = true;
+                            personnageVulnerableBox.ErasmeManager.HeureDebutClignotage = gameTime.TotalGameTime.TotalMilliseconds;
+                        }
+                    }
+                }
+            }
+        }
+
         private void GetBoxes()
+        {
+            ClearBoxes();
+
+            game.playerManager.AjouterPersonnagesVulnerablesBox(personnagesVulnerablesBoxes);
+            game.playerManager.AjouterPersonnagesAttaquesBox(graisseAttaquesBoxes, voltaireAttaquesBoxes, transformationAttaquesBoxes, buloAttaquesBoxes);
+            game.mechantManager.AjouterMechantVulnerablesBox(mechantsVulnerablesBoxes);
+            game.mechantManager.AjouterMechantAttaquesBox(mechantsAttaquesBoxes);
+            game.explosionManager.AjouterExplosionsAttaquesBox(explosionsAttaquesBoxes);
+        }
+
+        private void ClearBoxes()
         {
             graisseAttaquesBoxes.Clear();
             buloAttaquesBoxes.Clear();
@@ -137,12 +186,6 @@ namespace UltimateErasme.Collisions
             mechantsAttaquesBoxes.Clear();
             mechantsVulnerablesBoxes.Clear();
             explosionsAttaquesBoxes.Clear();
-
-            game.playerManager.AjouterPersonnagesVulnerablesBox(personnagesVulnerablesBoxes);
-            game.playerManager.AjouterPersonnagesAttaquesBox(graisseAttaquesBoxes, voltaireAttaquesBoxes, transformationAttaquesBoxes, buloAttaquesBoxes);
-            game.mechantManager.AjouterMechantVulnerablesBox(mechantsVulnerablesBoxes);
-            game.mechantManager.AjouterMechantAttaquesBox(mechantsAttaquesBoxes);
-            game.explosionManager.AjouterExplosionsAttaquesBox(explosionsAttaquesBoxes);
         }
 
     }

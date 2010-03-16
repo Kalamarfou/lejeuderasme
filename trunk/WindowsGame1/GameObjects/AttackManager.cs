@@ -56,12 +56,8 @@ namespace UltimateErasme.GameObjects
                 {
                     gamePadState = GamePad.GetState(PlayerIndex.Two);
                 }
-                if (gamePadState.Buttons.X == ButtonState.Pressed &&
-                   previousGamePadState.Buttons.X == ButtonState.Released &&
-                   attackState == AttackState.pasAttaque)
-                {
-                    Attaquer(gameTime);
-                }
+                //vrai update des boutons
+                UpdateXboxControler(gameTime, gamePadState);
                 previousGamePadState = gamePadState;
             }
 #if !XBOX
@@ -69,18 +65,34 @@ namespace UltimateErasme.GameObjects
                 controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
                 KeyboardState keyboardState = Keyboard.GetState();
-                if (keyboardState.IsKeyDown(Keys.A) &&
-                    previousKeyboardState.IsKeyUp(Keys.A) &&
-                    attackState == AttackState.pasAttaque)
-                {
-                    Attaquer(gameTime);
-                }
+                //vrai update des boutons
+                UpdateKeyboard(gameTime, keyboardState);
                 previousKeyboardState = keyboardState;
             }
 #endif
 
             AttackManagerAnimation(gameTime);
             graisseManager.Update(gameTime);
+        }
+
+        private void UpdateKeyboard(GameTime gameTime, KeyboardState keyboardState)
+        {
+            if (keyboardState.IsKeyDown(Keys.A) &&
+                    previousKeyboardState.IsKeyUp(Keys.A) &&
+                    attackState == AttackState.pasAttaque)
+            {
+                Attaquer(gameTime);
+            }
+        }
+
+        private void UpdateXboxControler(GameTime gameTime, GamePadState gamePadState)
+        {
+            if (gamePadState.Buttons.X == ButtonState.Pressed &&
+                   previousGamePadState.Buttons.X == ButtonState.Released &&
+                   attackState == AttackState.pasAttaque)
+            {
+                Attaquer(gameTime);
+            }
         }
 
         private void Attaquer(GameTime gameTime)
