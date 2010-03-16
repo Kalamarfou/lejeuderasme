@@ -48,18 +48,8 @@ namespace UltimateErasme.GameObjects
                     {
                         gamePadState = GamePad.GetState(PlayerIndex.Two);
                     }
-                    if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
-                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
-                       erasmeForme == ErasmeForme.erasme)
-                    {
-                        SeTransformerEnVoltaire(gameTime);
-                    }
-                    else if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
-                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
-                       erasmeForme == ErasmeForme.voltaire)
-                    {
-                        SeTransformerEnErasme(gameTime);
-                    }
+                    //vrai update des boutons
+                    UpdateXboxControler(gameTime, gamePadState);
                     previousGamePadState = gamePadState;
                 }
     #if !XBOX
@@ -67,23 +57,45 @@ namespace UltimateErasme.GameObjects
                    controllerType == ControllerType.keyboardPlusXBoxControler1)
                 {
                     KeyboardState keyboardState = Keyboard.GetState();
-                    if (keyboardState.IsKeyDown(Keys.V) &&
-                        previousKeyboardState.IsKeyUp(Keys.V) &&
-                        erasmeForme == ErasmeForme.erasme)
-                    {
-                        SeTransformerEnVoltaire(gameTime);
-                    }
-                    else if (keyboardState.IsKeyDown(Keys.V) &&
-                        previousKeyboardState.IsKeyUp(Keys.V) &&
-                        erasmeForme == ErasmeForme.voltaire)
-                    {
-                        SeTransformerEnErasme(gameTime);
-                    }
+                    //vrai update des boutons
+                    UpdateKeyboard(gameTime, keyboardState);
                     previousKeyboardState = keyboardState;
                 }
     #endif
 
                 TransformationManagerAnimation(gameTime);
+            }
+        }
+
+        private void UpdateKeyboard(GameTime gameTime, KeyboardState keyboardState)
+        {
+            if (keyboardState.IsKeyDown(Keys.V) &&
+                        previousKeyboardState.IsKeyUp(Keys.V) &&
+                        erasmeForme == ErasmeForme.erasme)
+            {
+                SeTransformerEnVoltaire(gameTime);
+            }
+            else if (keyboardState.IsKeyDown(Keys.V) &&
+                        previousKeyboardState.IsKeyUp(Keys.V) &&
+                        erasmeForme == ErasmeForme.voltaire)
+            {
+                SeTransformerEnErasme(gameTime);
+            }
+        }
+
+        private void UpdateXboxControler(GameTime gameTime, GamePadState gamePadState)
+        {
+            if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
+                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
+                       erasmeForme == ErasmeForme.erasme)
+            {
+                SeTransformerEnVoltaire(gameTime);
+            }
+            else if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
+                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
+                       erasmeForme == ErasmeForme.voltaire)
+            {
+                SeTransformerEnErasme(gameTime);
             }
         }
 

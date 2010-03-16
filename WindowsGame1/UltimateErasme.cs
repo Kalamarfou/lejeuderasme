@@ -87,11 +87,13 @@ namespace UltimateErasme
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
+
             collisionsManager.Update(gameTime);
             decorsManager.Update(gameTime);
             playerManager.Update(gameTime);
             mechantManager.Update(gameTime);
             explosionManager.Update(gameTime);
+
             base.Update(gameTime);
         }
 
