@@ -6,6 +6,7 @@ using UltimateErasme.GameObjects.enums;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using UltimateErasme.InputTesters;
 
 namespace UltimateErasme.GameObjects
 {
@@ -19,9 +20,9 @@ namespace UltimateErasme.GameObjects
         int transformationIndex = 0;
 
 
-        GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
+        GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
-        KeyboardState previousKeyboardState = Keyboard.GetState();
+        KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
         public TransformationManager(UltimateErasme game, ErasmeManager erasmeManager)
@@ -42,24 +43,19 @@ namespace UltimateErasme.GameObjects
             {
                 if (!(controllerType == ControllerType.keyboard))
                 {
-                    GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
-                    if (controllerType == ControllerType.xBoxControler2)
-                    {
-                        gamePadState = GamePad.GetState(PlayerIndex.Two);
-                    }
+                    gamePadTester.ChooseGamePad(controllerType);
                     //vrai update des boutons
-                    UpdateXboxControler(gameTime, gamePadState);
-                    previousGamePadState = gamePadState;
+                    UpdateXboxControler(gameTime);
+                    gamePadTester.UpdatePreviousGamePadState();
                 }
     #if !XBOX
                 if (controllerType == ControllerType.keyboard ||
                    controllerType == ControllerType.keyboardPlusXBoxControler1)
                 {
-                    KeyboardState keyboardState = Keyboard.GetState();
+                    keyboardTester.GetKeyboard();
                     //vrai update des boutons
-                    UpdateKeyboard(gameTime, keyboardState);
-                    previousKeyboardState = keyboardState;
+                    UpdateKeyboard(gameTime);
+                    keyboardTester.UpdatePreviousKeyboardState();
                 }
     #endif
 
@@ -67,32 +63,28 @@ namespace UltimateErasme.GameObjects
             }
         }
 
-        private void UpdateKeyboard(GameTime gameTime, KeyboardState keyboardState)
+        private void UpdateKeyboard(GameTime gameTime)
         {
-            if (keyboardState.IsKeyDown(Keys.V) &&
-                        previousKeyboardState.IsKeyUp(Keys.V) &&
-                        erasmeForme == ErasmeForme.erasme)
+            if (keyboardTester.test(Keys.V) &&
+                erasmeForme == ErasmeForme.erasme)
             {
                 SeTransformerEnVoltaire(gameTime);
             }
-            else if (keyboardState.IsKeyDown(Keys.V) &&
-                        previousKeyboardState.IsKeyUp(Keys.V) &&
+            else if (keyboardTester.test(Keys.V) &&
                         erasmeForme == ErasmeForme.voltaire)
             {
                 SeTransformerEnErasme(gameTime);
             }
         }
 
-        private void UpdateXboxControler(GameTime gameTime, GamePadState gamePadState)
+        private void UpdateXboxControler(GameTime gameTime)
         {
-            if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
-                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
+            if (gamePadTester.test(Buttons.LeftShoulder) &&
                        erasmeForme == ErasmeForme.erasme)
             {
                 SeTransformerEnVoltaire(gameTime);
             }
-            else if (gamePadState.Buttons.LeftShoulder == ButtonState.Pressed &&
-                       previousGamePadState.Buttons.LeftShoulder == ButtonState.Released &&
+            else if (gamePadTester.test(Buttons.LeftShoulder) &&
                        erasmeForme == ErasmeForme.voltaire)
             {
                 SeTransformerEnErasme(gameTime);

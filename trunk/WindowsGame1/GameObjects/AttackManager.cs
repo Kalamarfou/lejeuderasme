@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.GameObjects.enums;
+using UltimateErasme.InputTesters;
 
 namespace UltimateErasme.GameObjects
 {
@@ -21,9 +22,9 @@ namespace UltimateErasme.GameObjects
         public GraisseManager graisseManager;
 
 
-        GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
+        GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
-        KeyboardState previousKeyboardState = Keyboard.GetState();
+        KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
 
@@ -50,24 +51,19 @@ namespace UltimateErasme.GameObjects
         {
             if (!(controllerType == ControllerType.keyboard))
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
-                if (controllerType == ControllerType.xBoxControler2)
-                {
-                    gamePadState = GamePad.GetState(PlayerIndex.Two);
-                }
+                gamePadTester.ChooseGamePad(controllerType);
                 //vrai update des boutons
-                UpdateXboxControler(gameTime, gamePadState);
-                previousGamePadState = gamePadState;
+                UpdateXboxControler(gameTime);
+                gamePadTester.UpdatePreviousGamePadState();
             }
 #if !XBOX
             if (controllerType == ControllerType.keyboard ||
                 controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
+                keyboardTester.GetKeyboard();
                 //vrai update des boutons
-                UpdateKeyboard(gameTime, keyboardState);
-                previousKeyboardState = keyboardState;
+                UpdateKeyboard(gameTime);
+                keyboardTester.UpdatePreviousKeyboardState();
             }
 #endif
 
@@ -75,21 +71,19 @@ namespace UltimateErasme.GameObjects
             graisseManager.Update(gameTime);
         }
 
-        private void UpdateKeyboard(GameTime gameTime, KeyboardState keyboardState)
+        private void UpdateKeyboard(GameTime gameTime)
         {
-            if (keyboardState.IsKeyDown(Keys.A) &&
-                    previousKeyboardState.IsKeyUp(Keys.A) &&
+            if (keyboardTester.test(Keys.A) &&
                     attackState == AttackState.pasAttaque)
             {
                 Attaquer(gameTime);
             }
         }
 
-        private void UpdateXboxControler(GameTime gameTime, GamePadState gamePadState)
+        private void UpdateXboxControler(GameTime gameTime)
         {
-            if (gamePadState.Buttons.X == ButtonState.Pressed &&
-                   previousGamePadState.Buttons.X == ButtonState.Released &&
-                   attackState == AttackState.pasAttaque)
+            if (gamePadTester.test(Buttons.X) &&
+                attackState == AttackState.pasAttaque)
             {
                 Attaquer(gameTime);
             }

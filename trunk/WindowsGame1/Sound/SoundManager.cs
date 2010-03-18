@@ -12,6 +12,7 @@ namespace UltimateErasme.Sound
         WaveBank banqueWaves;
         SoundBank banqueSons;
 
+
         public SoundManager()
         {
             moteurSonore = new AudioEngine(@"Content\Sound\jeuDErasme.xgs");
@@ -21,6 +22,7 @@ namespace UltimateErasme.Sound
         }
 
         public void Saut()
+
         {
             Cue cue = banqueSons.GetCue("Saut");
             cue.Play();

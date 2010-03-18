@@ -37,6 +37,7 @@ namespace UltimateErasme.GameObjects
 
         public void Update(GameTime gameTime)
         {
+            //TODO
         }
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
