@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using UltimateErasme.GameObjects.enums;
+using UltimateErasme.InputTesters;
 
 namespace UltimateErasme.GameObjects
 {
@@ -22,11 +23,11 @@ namespace UltimateErasme.GameObjects
         public Texture2D erasmeMonte, erasmeDescend;
         public Texture2D voltaireMonte, voltaireDescend;
 
-        GamePadState previousGamePadState = GamePad.GetState(PlayerIndex.One);
+        GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
-        KeyboardState previousKeyboardState = Keyboard.GetState();
+        KeyboardTester keyboardTester = new KeyboardTester();
 #endif
-
+        
         public JumpManager( UltimateErasme game, ErasmeManager erasmeManager)
         {
             this.erasmeManager = erasmeManager;
@@ -45,44 +46,36 @@ namespace UltimateErasme.GameObjects
         {
             if (!(controllerType == ControllerType.keyboard))
             {
-                GamePadState gamePadState = GamePad.GetState(PlayerIndex.One);
-
-                if (controllerType == ControllerType.xBoxControler2)
-                {
-                    gamePadState = GamePad.GetState(PlayerIndex.Two);
-                }
+                gamePadTester.ChooseGamePad(controllerType);
                 //vrai update des boutons
-                UpdateXboxControler(gametime, gamePadState);
-                previousGamePadState = gamePadState;
+                UpdateXboxControler(gametime);
+                gamePadTester.UpdatePreviousGamePadState();
             }
 
 #if !XBOX
             if (controllerType == ControllerType.keyboard ||
                controllerType == ControllerType.keyboardPlusXBoxControler1)
             {
-                KeyboardState keyboardState = Keyboard.GetState();
-                //vrai update des boutons
-                UpdateKeyBoard(gametime, keyboardState);
-                previousKeyboardState = keyboardState;
+                keyboardTester.GetKeyboard();
+                UpdateKeyBoard(gametime);
+                keyboardTester.UpdatePreviousKeyboardState();
             }
 #endif
 
             JumpUpdate();
         }
 
-        private void UpdateKeyBoard(GameTime gametime, KeyboardState keyboardState)
+        private void UpdateKeyBoard(GameTime gametime)
         {
-            if (keyboardState.IsKeyDown(Keys.Space) &&
-                    previousKeyboardState.IsKeyUp(Keys.Space) &&
+            if (keyboardTester.test(Keys.Space) &&
                     jumpState == JumpState.auSol)
             {
                 Sauter();
             }
-            else if (keyboardState.IsKeyDown(Keys.Space) &&
-                    previousKeyboardState.IsKeyUp(Keys.Space) &&
+            else if (keyboardTester.test(Keys.Space) &&
                     jumpState == JumpState.arriveEnHaut)
             {
-                if (keyboardState.IsKeyDown(Keys.Left))
+                if (keyboardTester.testEnfonceInfini(Keys.Left))
                 {
                     DoubleSauter("Left");
                 }
@@ -94,20 +87,18 @@ namespace UltimateErasme.GameObjects
             }
         }
 
-        private void UpdateXboxControler(GameTime gametime, GamePadState gamePadState)
+        private void UpdateXboxControler(GameTime gametime)
         {
-            if (gamePadState.Buttons.A == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.A == ButtonState.Released &&
+            if (gamePadTester.test(Buttons.A) &&
                     jumpState == JumpState.auSol)
             {
                 Sauter();
             }
 
-            else if (gamePadState.Buttons.A == ButtonState.Pressed &&
-                    previousGamePadState.Buttons.A == ButtonState.Released
-                    && jumpState == JumpState.arriveEnHaut)
+            else if (gamePadTester.test(Buttons.A) &&
+                jumpState == JumpState.arriveEnHaut)
             {
-                if (gamePadState.ThumbSticks.Left.X < 0)
+                if (gamePadTester.GetStickX() < 0)
                 {
                     DoubleSauter("Left");
                 }

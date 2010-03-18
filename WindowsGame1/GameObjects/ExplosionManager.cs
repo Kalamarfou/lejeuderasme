@@ -97,7 +97,7 @@ namespace UltimateErasme.GameObjects
             smoke.AddParticles(position);
             explosion.AddParticles(position);
             //TODO
-            BelleExplosionCollisionCollection.Add(new BelleExplosionCollision((int)position.X + 100, (int)position.Y + 100, 300, 300, gameTime));
+            BelleExplosionCollisionCollection.Add(new BelleExplosionCollision((int)position.X + 50, (int)position.Y + 50, 200, 200, gameTime));
         }
 
         private void MoyenBelleExplosion(Vector2 position, GameTime gameTime)
@@ -159,11 +159,11 @@ namespace UltimateErasme.GameObjects
 
         private void BelleExplosionManager(GameTime gameTime)
         {
-            for (int i = BelleExplosionCollisionCollection.Count ; i > 0 ; i--)
+            for (int i = BelleExplosionCollisionCollection.Count; i > 0 ; i--)
 			{
-                if (gameTime.TotalGameTime.TotalMilliseconds - ((BelleExplosionCollision)BelleExplosionCollisionCollection[i]).HeureDeCreation > 50 * 15)
+                if (gameTime.TotalGameTime.TotalMilliseconds - ((BelleExplosionCollision)BelleExplosionCollisionCollection[i-1]).HeureDeCreation > 50 * 12)
                 {
-                    BelleExplosionCollisionCollection.Remove(BelleExplosionCollisionCollection[i]);
+                    BelleExplosionCollisionCollection.Remove(BelleExplosionCollisionCollection[i-1]);
                 }
 			}     
         }

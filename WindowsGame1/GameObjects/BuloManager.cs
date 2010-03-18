@@ -128,7 +128,7 @@ namespace UltimateErasme.GameObjects
 
         private void explosion(GameTime gameTime)
         {
-            game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.moyenBelle);
+            game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.belle);
             bulo.Alive = false;
             buloState = BuloState.pasSorti;
         }
