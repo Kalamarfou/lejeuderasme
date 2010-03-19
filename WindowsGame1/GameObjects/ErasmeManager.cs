@@ -40,7 +40,7 @@ namespace UltimateErasme.GameObjects
 
         public SoundManager soundManager;
         public BuloManager buloManager;
-        public JumpManager jumpManager;
+        public ErasmeJumpManager jumpManager;
         public AttackManager attackManager;
         public TransformationManager transformationManager;
 
@@ -62,7 +62,7 @@ namespace UltimateErasme.GameObjects
 
             soundManager = new SoundManager();
             buloManager = new BuloManager(game, this);
-            jumpManager = new JumpManager(game, this);
+            jumpManager = new ErasmeJumpManager(game, this);
             attackManager = new AttackManager(game, this);
             transformationManager = new TransformationManager(game, this);
 
@@ -166,6 +166,16 @@ namespace UltimateErasme.GameObjects
                 return new Rectangle(0,0,0,0);
             }
             
+        }
+
+        internal void RemettreErasmeAuDebut()
+        {
+            erasme.Position = new Vector2(0,jumpManager.hauteurDuSol);
+        }
+
+        internal void RemettreErasmeALaFin()
+        {
+            erasme.Position = new Vector2(600, jumpManager.hauteurDuSol);
         }
     }
 }

@@ -25,6 +25,8 @@ namespace UltimateErasme.GameObjects
         public Rectangle viewportRect;
         public Rectangle viewportRectPlus;
 
+        Random random = new Random();
+
         public ArrayList mechantsCollection { get; set; }
 
         public MechantManager(UltimateErasme game, Rectangle viewportRect)
@@ -38,29 +40,93 @@ namespace UltimateErasme.GameObjects
         //TODO
         public void AjouterMechant()
         {
+            Vector2 positionDepartMechant;
+            Vector2 vitesseMechant;
+            float scaleMechant;
+            SpriteEffects sensDuMechant;
+
+            float temp = random.Next(1, 6);
+            temp = temp / 6;
+            scaleMechant = 0.5f + temp;
+
+            if (random.Next(1,10) == 1)
+            {
+                vitesseMechant = new Vector2(-random.Next(1, 4), 0);
+                //le Y est calculé dans le constructeur de Mechant
+                positionDepartMechant = new Vector2(viewportRect.Left, 0);
+                sensDuMechant = SpriteEffects.FlipHorizontally;
+            }
+            else
+	        {
+                vitesseMechant = new Vector2(random.Next(1, 4), 0);
+                //le Y est calculé dans le constructeur de Mechant
+                positionDepartMechant = new Vector2(viewportRect.Right, 0);
+                sensDuMechant = SpriteEffects.None;
+            }
+            
             Mechant m = new Mechant(game, viewportRect,
-                new Vector2(viewportRect.Right, game.playerManager.premierJoueur.jumpManager.hauteurDuSol),
-                new Vector2(4, 0), 0, 1, Color.White);
+                positionDepartMechant, vitesseMechant, 0, scaleMechant, sensDuMechant, Color.White);
             mechantsCollection.Add(m);
         }
 
         public void Update(GameTime gameTime)
         {
-            for (int i = mechantsCollection.Count; i > 0; i--)
-            {
-                if (((Mechant)mechantsCollection[i - 1]).mechantState == MechantState.mort)
-	            {
-                    mechantsCollection.RemoveAt(i - 1);
-	            }
-            }
+            SupprimerMechantsMorts();
             foreach (Mechant mechant in mechantsCollection)
             {
                 mechant.Update(gameTime);
             }
-            if (mechantsCollection.Count == 0)
+            MechantsIA(gameTime);
+        }
+
+        private void MechantsIA(GameTime gameTime)
+        {
+            //TODO
+            if (game.decorsManager.level == 1 ||
+                game.decorsManager.level == 3 ||
+                game.decorsManager.level == 5
+                )
             {
-                //TODO
-                AjouterMechant();
+                if (mechantsCollection.Count == 0)
+                {
+                    if (random.Next(1, 120) == 12)
+                    {
+                        AjouterMechant();
+                    }
+                }
+                if (random.Next(1, 200) == 12)
+                {
+                    AjouterMechant();
+                }
+
+                foreach (Mechant mechant in mechantsCollection)
+                {
+                    if (((Mechant)mechantsCollection[0]).jumpManager.jumpState == JumpState.auSol)
+                    {
+                        if (random.Next(1, 120) == 12)
+                        {
+                            ((Mechant)mechantsCollection[0]).jumpManager.Sauter();
+                        }
+                    }
+                    else if (((Mechant)mechantsCollection[0]).jumpManager.jumpState == JumpState.arriveEnHaut)
+                    {
+                        if (random.Next(1, 60) == 12)
+                        {
+                            ((Mechant)mechantsCollection[0]).jumpManager.DoubleSauter(mechant.sensDuMechant);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SupprimerMechantsMorts()
+        {
+            for (int i = mechantsCollection.Count; i > 0; i--)
+            {
+                if (((Mechant)mechantsCollection[i - 1]).mechantState == MechantState.mort)
+                {
+                    mechantsCollection.RemoveAt(i - 1);
+                }
             }
         }
 
@@ -90,6 +156,11 @@ namespace UltimateErasme.GameObjects
                     mechant.MechantGameObject.Sprite.Width, mechant.MechantGameObject.Sprite.Height);
                 mechantsAttaquesBox.Add(new MechantAttaqueBox(rect, mechant));
             }
+        }
+
+        internal void SupprimerTousLesMechants()
+        {
+            mechantsCollection.Clear();
         }
     }
 }
