@@ -30,11 +30,14 @@ namespace UltimateErasme.GameObjects
         public MechantState mechantState { get; set; }
         public MechantExplosionState mechantExplosionState { get; set; }
         public Vector2 mechantSpeed { get; set; }
+        public SpriteEffects sensDuMechant { get; set; }
 
         Color mechantColor = new Color();
 
+        public MechantJumpManager jumpManager;
 
-        public Mechant(UltimateErasme game, Rectangle viewportRect, Vector2 position, Vector2 speed, float rotation, float scale, Color color)
+
+        public Mechant(UltimateErasme game, Rectangle viewportRect, Vector2 position, Vector2 speed, float rotation, float scale, SpriteEffects sensDuMechant, Color color)
         {
             this.viewportRect = viewportRect;
             viewportRectPlus = new Rectangle(viewportRect.X, viewportRect.Y, viewportRect.Width + 200, viewportRect.Height + 200);
@@ -42,13 +45,17 @@ namespace UltimateErasme.GameObjects
 
             MechantTexture = game.Content.Load<Texture2D>(@"Sprites\Characters\Mechant\mechant");
             MechantGameObject = new GameObject(MechantTexture);
-            MechantGameObject.Position = position;
+            int hauteurDuSol = viewportRect.Bottom - (int)(MechantTexture.Height * scale) / 2 - 100;
+            MechantGameObject.Position = new Vector2(position.X, hauteurDuSol);
             MechantGameObject.Rotation = rotation;
             MechantGameObject.Scale = scale;
             mechantColor = color;
             mechantSpeed = speed;
             mechantState = MechantState.normal;
             mechantExplosionState = MechantExplosionState.non;
+            this.sensDuMechant = sensDuMechant;
+            jumpManager = new MechantJumpManager(game, this);
+            jumpManager.hauteurDuSol = hauteurDuSol;
         }
 
         public void Update(GameTime gameTime)
@@ -71,6 +78,7 @@ namespace UltimateErasme.GameObjects
             {
                 AttaqueAnimationManager(gameTime);
             }
+            jumpManager.Update(gameTime);
         }
 
         private void MourrageAninationManager(GameTime gameTime)
@@ -85,8 +93,8 @@ namespace UltimateErasme.GameObjects
 
         public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(MechantGameObject.Sprite, MechantGameObject.Position, null, Color.White, 
-                MechantGameObject.Rotation, MechantGameObject.Center, MechantGameObject.Scale, SpriteEffects.None, 0);
+            spriteBatch.Draw(MechantGameObject.Sprite, MechantGameObject.Position, null, Color.White,
+                MechantGameObject.Rotation, MechantGameObject.Center, MechantGameObject.Scale, sensDuMechant, 0);
         }
     }
 }
