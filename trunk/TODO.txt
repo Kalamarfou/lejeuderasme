@@ -10,9 +10,18 @@
 
 - A la fin boss : Il a volé la graisse de voltaire et erasme et l'a caché dans un chateau fort. 
 => Combat pour la graisse.
-Thomas More : Médailon (Peut le lancer comme le bulo)
+Thomas More : Médailon (Peut le lancer comme le bulo) Il peut aussi le faire tourner autour de son coup. S'il ouvre le médaillon : Thomas More change de couleur.
+Thomas More le méchant invoque une armée de petites boules de graisses modifiées chimiquement (par bulo) (même couleur que Thomas More) qui cassent les oreilles. "Bulo" "bulo" "bulo"
 	"Je suis le maitre de la graisse"
 	"La graisse, c'est moi"
 	"Vulgaires mangeurs d'endive !"
 	"Pensez que ce sont les endives qui vous donneront autant de graisse que moi ?"
 				
+- barre de vie !!
+
+- A la fin, Thomas More peut rejoindre l'équipe.
+
+-> Sauvegarde et chargement 
+
+-> Deuxieme quête : Aller détruire le laboratoire de bulo, la chimiste folle.
+Attaque : bec bunsen et fiole chimique.
