@@ -15,7 +15,7 @@ Thomas More le méchant invoque une armée de petites boules de graisses modifiées
 	"Je suis le maitre de la graisse"
 	"La graisse, c'est moi"
 	"Vulgaires mangeurs d'endive !"
-	"Pensez que ce sont les endives qui vous donneront autant de graisse que moi ?"
+	"Pensez vous que ce sont les endives qui vous donneront autant de graisse que moi ?"
 				
 - barre de vie !!
 
@@ -25,3 +25,5 @@ Thomas More le méchant invoque une armée de petites boules de graisses modifiées
 
 -> Deuxieme quête : Aller détruire le laboratoire de bulo, la chimiste folle.
 Attaque : bec bunsen et fiole chimique.
+
+-> Cinématiques !!!!
