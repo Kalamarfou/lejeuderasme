@@ -6,6 +6,7 @@ using System.Collections;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using UltimateErasme.Collisions;
+using UltimateErasme.XP;
 
 namespace UltimateErasme.GameObjects
 {
@@ -72,6 +73,8 @@ namespace UltimateErasme.GameObjects
             }
             else
             {
+                UltimateErasme.xpManager.AddXp(XpEvents.AttaqueTournoyante);
+
                 for (int i = 0; i < 8; i++)
                 {
                     GameObject boule = new GameObject(graisse);

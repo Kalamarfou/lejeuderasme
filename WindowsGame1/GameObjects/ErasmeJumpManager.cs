@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Graphics;
 using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
+using UltimateErasme.XP;
 
 namespace UltimateErasme.GameObjects
 {
@@ -106,6 +107,8 @@ namespace UltimateErasme.GameObjects
 
         private void DoubleSauter(string sens)
         {
+            UltimateErasme.xpManager.AddXp(XpEvents.DoubleSaut);
+
             jumpState = JumpState.doubleDecollage;
             sensDuDoubleSaut = sens;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
@@ -124,6 +127,8 @@ namespace UltimateErasme.GameObjects
 
         private void Sauter()
         {
+            UltimateErasme.xpManager.AddXp(XpEvents.Saut);
+
             jumpState = JumpState.decollage;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
             {

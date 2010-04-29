@@ -104,7 +104,10 @@ namespace UltimateErasme.GameObjects
             attackManager_OldGameTimeMilliseconds = gameTime.TotalGameTime.TotalMilliseconds;
         }
 
-        //gére les attaques
+        /// <summary>
+        /// Gére les attaques
+        /// </summary>
+        /// <param name="gameTime">Movais</param>
         private void AttackManagerAnimation(GameTime gameTime)
         {
             if (attackState != AttackState.pasAttaque)
