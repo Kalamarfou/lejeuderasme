@@ -28,6 +28,8 @@ namespace UltimateErasme.XP
         Vector2 xpLevelPosition;
         Vector2 xpRemainingToNextLevelPosition;
 
+        SuccesManager succesManager;
+
         public XpManager(UltimateErasme game)
         {
             xpFont = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
@@ -37,6 +39,8 @@ namespace UltimateErasme.XP
             xpRemainingToNextLevelPosition = new Vector2(10, 30);
             xpLevelPosition = new Vector2(10, 50);
 
+            succesManager = new SuccesManager(game);
+
             timerXp = new Timer();
             timerCombo = new Timer();
         }
@@ -45,6 +49,7 @@ namespace UltimateErasme.XP
 
         public void Update(GameTime gameTime)
         {
+            succesManager.Update(gameTime);
         }
 
         public void AddXp(XpEvents xpEvent)
@@ -53,9 +58,11 @@ namespace UltimateErasme.XP
             {
                 case XpEvents.Saut:
                     AddXp(1, "Saut");
+                    succesManager.SuccesSaut.NombreDeFoisReussi++;
                     break;
                 case XpEvents.DoubleSaut:
                     AddXp(2, "Double saut");
+                    succesManager.SuccesDoubleSaut.NombreDeFoisReussi++;
                     break;
                 case XpEvents.KillALaGraisse:
                     AddXp(3, "Kill a la graisse");
@@ -100,6 +107,11 @@ namespace UltimateErasme.XP
             }
         }
 
+        internal void AddXpSucces(int XpRecu)
+        {
+            AddXp(XpRecu, "Succes reussi");
+        }
+
         private void AddXp(int xpGagne, string raison)
         {
             totalXP += xpGagne;
@@ -136,9 +148,11 @@ namespace UltimateErasme.XP
         {
             if (xpRemainingToNextLevel <= 0)
             {
-                //TODO
+                int tempXp = -xpRemainingToNextLevel;
                 level++;
                 xpRemainingToNextLevel = 10 * (int)Math.Pow(level, 2);
+                xpRemainingToNextLevel -= tempXp;
+                LevelUpManager();
             }
         }
 
@@ -180,6 +194,11 @@ namespace UltimateErasme.XP
             // Level
             tempString = "Level actuel: " + level.ToString();
             spriteBatch.DrawString(xpFont, tempString, xpLevelPosition, Color.OrangeRed, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+
+            //Succes manager
+            succesManager.Draw(gameTime, spriteBatch);
         }
+
+
     }
 }
