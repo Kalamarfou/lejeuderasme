@@ -15,17 +15,19 @@ namespace UltimateErasme.XP
         public Timer TimerSucces { get; private set; }
         public string Titre { get; private set; }
         public int XpRecu { get; private set; }
+        public SuccesEvents SuccesEvent { get; private set; }
 
         int nombreDeFoisAFarmer;
         
 
         bool estValide = true;
 
-        public Succes(Texture2D loadedTexture, int nombreDeFoisAFarmer, string titre, int xpRecu) : base(loadedTexture)
+        public Succes(Texture2D loadedTexture, SuccesEvents succesEvent, int nombreDeFoisAFarmer, string titre, int xpRecu) : base(loadedTexture)
         {
             this.nombreDeFoisAFarmer = nombreDeFoisAFarmer;
             this.Titre = titre;
             this.XpRecu = xpRecu;
+            this.SuccesEvent = succesEvent;
             NombreDeFoisReussi = 0;
 
             TimerSucces = new Timer();
