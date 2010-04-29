@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.InputTesters;
+using UltimateErasme.XP;
 
 namespace UltimateErasme.GameObjects
 {
@@ -93,6 +94,8 @@ namespace UltimateErasme.GameObjects
 
         private void SeTransformerEnErasme(GameTime gameTime)
         {
+            UltimateErasme.xpManager.AddXp(XpEvents.Transformation);
+
             erasmeForme = ErasmeForme.transformationVersErasmeEnCours;
             erasmeManager.attackManager.attackState = AttackState.pasAttaque;
             erasmeManager.erasme.Sprite = erasmeTransformation[erasmeTransformation.Count<Texture2D>()-1];
@@ -103,6 +106,8 @@ namespace UltimateErasme.GameObjects
 
         private void SeTransformerEnVoltaire(GameTime gameTime)
         {
+            UltimateErasme.xpManager.AddXp(XpEvents.Transformation);
+
             erasmeForme = ErasmeForme.transformationVersVoltaireEnCours;
             erasmeManager.attackManager.attackState = AttackState.pasAttaque;
             erasmeManager.erasme.Sprite = erasmeTransformation[0];

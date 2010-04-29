@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework.Storage;
 using UltimateErasme.GameObjects;
 using UltimateErasme.ClassesDInternet.Particles;
 using UltimateErasme.Collisions;
+using UltimateErasme.XP;
 
 
 namespace UltimateErasme
@@ -30,6 +31,7 @@ namespace UltimateErasme
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
+        static public XpManager xpManager;
 
         public UltimateErasme()
         {
@@ -65,6 +67,7 @@ namespace UltimateErasme
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
+            xpManager = new XpManager(this);
             
         }
 
@@ -93,6 +96,7 @@ namespace UltimateErasme
             playerManager.Update(gameTime);
             mechantManager.Update(gameTime);
             explosionManager.Update(gameTime);
+            xpManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -109,6 +113,7 @@ namespace UltimateErasme
             playerManager.Draw(gameTime, spriteBatch);
             mechantManager.Draw(gameTime, spriteBatch);
             explosionManager.Draw(gameTime, spriteBatch);
+            xpManager.Draw(gameTime, spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

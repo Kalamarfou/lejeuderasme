@@ -8,6 +8,7 @@ using Microsoft.Xna.Framework.Input;
 using UltimateErasme.GameObjects.enums;
 using System.Collections;
 using UltimateErasme.InputTesters;
+using UltimateErasme.XP;
 
 namespace UltimateErasme.GameObjects
 {
@@ -31,9 +32,8 @@ namespace UltimateErasme.GameObjects
             this.game = game;
             this.erasmeManager = erasmeManager;
             buloState = BuloState.pasSorti;
-
-           
         }
+
         //TODO
         public void Update(GameTime gameTime, ControllerType controllerType)
         {
@@ -114,12 +114,16 @@ namespace UltimateErasme.GameObjects
         {
             if (buloState == BuloState.pasSorti)
             {
+                UltimateErasme.xpManager.AddXp(XpEvents.SortageDeBulo);
+
                 buloState = BuloState.sorti;
                 erasmeManager.soundManager.BuloBulo();
                 bulo.Alive = true;
             }
             else if (buloState == BuloState.sorti)
             {
+                UltimateErasme.xpManager.AddXp(XpEvents.RentrageDeBulo);
+
                 buloState = BuloState.pasSorti;
                 bulo.Alive = false;
                 buloPorteeMax = 0;
@@ -128,9 +132,28 @@ namespace UltimateErasme.GameObjects
 
         private void explosion(GameTime gameTime)
         {
-            game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.belle);
-            bulo.Alive = false;
-            buloState = BuloState.pasSorti;
+            if (UltimateErasme.xpManager.GetCurrentLevel() > 1)
+            {
+                ExplosionEnFonctionDuLevel(gameTime);
+                bulo.Alive = false;
+                buloState = BuloState.pasSorti;
+            }
+        }
+
+        private void ExplosionEnFonctionDuLevel(GameTime gameTime)
+        {
+            if (UltimateErasme.xpManager.GetCurrentLevel() > 5)
+            {
+                game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.belle);
+            }
+            else if (UltimateErasme.xpManager.GetCurrentLevel() > 3)
+            {
+                game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.moyenBelle);
+            }
+            else
+            {
+                game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.moche);
+            }
         }
 
 

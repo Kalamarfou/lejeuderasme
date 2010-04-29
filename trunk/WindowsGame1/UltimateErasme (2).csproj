@@ -130,8 +130,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Sound\SoundManager.cs" />
     <Compile Include="UltimateErasme.cs" />
-    <Compile Include="XP\XpEvents.cs" />
-    <Compile Include="XP\XpManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="GameThumbnail.png" />
