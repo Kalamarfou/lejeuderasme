@@ -76,8 +76,13 @@ Content\Sprites\Characters\Mechant\animation\mechant_meurt_7.xnb
 Content\Sprites\Characters\Mechant\animation\mechant_meurt_8.xnb
 Content\Sprites\Characters\Mechant\animation\mechant_meurt_9.xnb
 Content\Fonts\XpFont.xnb
-Content\Sprites\Succes\Tigrou.xnb
+Content\Sprites\Succes\Base.xnb
+Content\Sprites\Succes\Graisse.xnb
 Content\Sprites\Succes\SautHauteur.xnb
+Content\Sprites\Succes\Tigrou.xnb
+Content\Sprites\Succes\Bulo.xnb
+Content\Sprites\Succes\Eclair.xnb
+Content\Sprites\Succes\Transformation.xnb
 Content\Sound\jeuDErasme.xgs
 Content\Sound\Wave Bank.xwb
 Content\Sound\Sound Bank.xsb
