@@ -1,0 +1,17 @@
+Le jeu passera surement bientot en réseau.
+Le reseau fonctionne avec game for windows live.
+Mais il faut un abonnement magique pour utiliser le live.
+Donc il faut créer un profil local.
+Pour cela:
+
+-debrancher votre cable reseau.
+-lancez le jeu
+-il va se loguer auto sur votre profil habituel
+-ouvrez le paneau live (celui du haut, la, avec la touche debut)
+-allez dans les parametres et decochez le login auto.
+-logout de ce compte 
+-il est possible de creer un compte, cliquez dessus.
+-cherchez le petit lien caché dans le bloc de texte qui permet de faire un profil local
+-creez les profil local puis quitez le jeu.
+
+-relancez le jeu, il propose choisir le profil, choisissez le local.
