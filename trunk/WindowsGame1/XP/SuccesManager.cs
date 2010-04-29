@@ -46,55 +46,55 @@ namespace UltimateErasme.XP
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Graisse"),
                     SuccesEvents.KillALaGraisse, 15, "Graisse Mortelle", 200)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Bulo"),
                     SuccesEvents.KillAuBulo, 10, "Maitre de Bulorang 3eme Dan", 200)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Eclair"),
                     SuccesEvents.KillALEclair, 10, "Maitre du chapeau pointu", 250)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Transformation"),
                     SuccesEvents.Transformation, 10, "Transformeur fou", 100)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                     SuccesEvents.KillALExplosion, 10, "Exploseur fou", 250)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                     SuccesEvents.SuicideALExplosion, 10, "Maitre suicideur", 100)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                     SuccesEvents.SortageDeBulo, 10, "Fan du Bulo", 100)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                     SuccesEvents.RentrageDeBulo, 10, "Rentreur de Bulo professionel", 100)
                 );
 
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                     SuccesEvents.AttaqueTournoyante, 20, "Tournoyeur fou", 350)
                 );
             #endregion
@@ -103,31 +103,31 @@ namespace UltimateErasme.XP
             #region combo
             SuccesCollection.Add
                 (
-                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+                new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                     SuccesEvents.Combo50Points, 1, "Comboteur", 20)
                 );
 
             SuccesCollection.Add
             (
-            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                 SuccesEvents.Combo100Points, 1, "Comboteur 2", 30)
             );
 
             SuccesCollection.Add
             (
-            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                 SuccesEvents.Combo200Points, 1, "Comboteur fou", 50)
             );
 
             SuccesCollection.Add
             (
-            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                 SuccesEvents.Combo500Points, 1, "Comboteur fou 2", 150)
             );
 
             SuccesCollection.Add
             (
-            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                 SuccesEvents.Combo1000Points, 1, "Comboteur Ultime", 300)
             );
             #endregion
@@ -136,7 +136,7 @@ namespace UltimateErasme.XP
             #region special
             SuccesCollection.Add
             (
-            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
+            new Succes(game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
                 SuccesEvents.FarmeurDeBulo, 100, "Farmeur d'XP", 400)
             );
             #endregion
