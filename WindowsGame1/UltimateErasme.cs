@@ -14,6 +14,7 @@ using UltimateErasme.GameObjects;
 using UltimateErasme.ClassesDInternet.Particles;
 using UltimateErasme.Collisions;
 using UltimateErasme.XP;
+using System.Threading;
 
 
 namespace UltimateErasme
@@ -32,6 +33,10 @@ namespace UltimateErasme
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
         static public XpManager xpManager;
+
+        bool isPaused = false;
+        GameObject pauseImage;
+        KeyboardState previousKeyboardState = Keyboard.GetState();
 
         public UltimateErasme()
         {
@@ -68,6 +73,9 @@ namespace UltimateErasme
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
             xpManager = new XpManager(this);
+
+            pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
+            pauseImage.Position = new Vector2(0, 80);
             
         }
 
@@ -91,14 +99,33 @@ namespace UltimateErasme
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
                 this.Exit();
 
-            collisionsManager.Update(gameTime);
-            decorsManager.Update(gameTime);
-            playerManager.Update(gameTime);
-            mechantManager.Update(gameTime);
-            explosionManager.Update(gameTime);
-            xpManager.Update(gameTime);
+            PauseManager(gameTime);
+            
+
+            if (!isPaused)
+            {
+                collisionsManager.Update(gameTime);
+                decorsManager.Update(gameTime);
+                playerManager.Update(gameTime);
+                mechantManager.Update(gameTime);
+                explosionManager.Update(gameTime);
+                xpManager.Update(gameTime);
+            }
 
             base.Update(gameTime);
+        }
+
+        private void PauseManager(GameTime gameTime)
+        {
+            if ((Keyboard.GetState().IsKeyDown(Keys.Pause) &&
+                previousKeyboardState.IsKeyUp(Keys.Pause)) ||
+                (Keyboard.GetState().IsKeyDown(Keys.P) &&
+                previousKeyboardState.IsKeyUp(Keys.P)))
+            {
+                isPaused = !isPaused;
+            }
+
+            previousKeyboardState = Keyboard.GetState();
         }
 
         /// <summary>
@@ -114,6 +141,10 @@ namespace UltimateErasme
             mechantManager.Draw(gameTime, spriteBatch);
             explosionManager.Draw(gameTime, spriteBatch);
             xpManager.Draw(gameTime, spriteBatch);
+            if (isPaused)
+            {
+                spriteBatch.Draw(pauseImage.Sprite, pauseImage.Position, null, Color.White, pauseImage.Rotation, Vector2.Zero, pauseImage.Scale, SpriteEffects.None, 0);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
