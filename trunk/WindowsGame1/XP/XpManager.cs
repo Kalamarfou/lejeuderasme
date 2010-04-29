@@ -58,38 +58,49 @@ namespace UltimateErasme.XP
             {
                 case XpEvents.Saut:
                     AddXp(1, "Saut");
-                    succesManager.SuccesSaut.NombreDeFoisReussi++;
+                    succesManager.SuccesCollection[SuccesEvents.Saut].NombreDeFoisReussi++;
                     break;
                 case XpEvents.DoubleSaut:
                     AddXp(2, "Double saut");
-                    succesManager.SuccesDoubleSaut.NombreDeFoisReussi++;
+                    succesManager.SuccesCollection[SuccesEvents.DoubleSaut].NombreDeFoisReussi++;
                     break;
                 case XpEvents.KillALaGraisse:
                     AddXp(3, "Kill a la graisse");
+                    succesManager.SuccesCollection[SuccesEvents.KillALaGraisse].NombreDeFoisReussi++;
                     break;
                 case XpEvents.KillAuBulo:
                     AddXp(3, "Kill a coup de Bulo");
+                    succesManager.SuccesCollection[SuccesEvents.KillAuBulo].NombreDeFoisReussi++;
                     break;
                 case XpEvents.KillALEclair:
                     AddXp(5, "Kill a coup d'eclair de Voltaire");
+                    succesManager.SuccesCollection[SuccesEvents.KillALEclair].NombreDeFoisReussi++;
                     break;
                 case XpEvents.Transformation:
                     AddXp(1, "Transformation reussie");
+                    succesManager.SuccesCollection[SuccesEvents.Transformation].NombreDeFoisReussi++;
                     break;
                 case XpEvents.KillALExplosion:
                     AddXp(4, "Kill a l'explosion");
+                    succesManager.SuccesCollection[SuccesEvents.KillALExplosion].NombreDeFoisReussi++;
                     break;
                 case XpEvents.SuicideALExplosion:
                     AddXp(-4, "Suicide a l'explosion");
+                    succesManager.SuccesCollection[SuccesEvents.SuicideALExplosion].NombreDeFoisReussi++;
                     break;
                 case XpEvents.SortageDeBulo:
                     AddXp(1, "Sortage de Bulo");
+                    succesManager.SuccesCollection[SuccesEvents.SortageDeBulo].NombreDeFoisReussi++;
+                    succesManager.SuccesCollection[SuccesEvents.FarmeurDeBulo].NombreDeFoisReussi++;
                     break;
                 case XpEvents.RentrageDeBulo:
                     AddXp(1, "Rentrage de Bulo");
+                    succesManager.SuccesCollection[SuccesEvents.RentrageDeBulo].NombreDeFoisReussi++;
+                    succesManager.SuccesCollection[SuccesEvents.FarmeurDeBulo].NombreDeFoisReussi++;
                     break;
                 case XpEvents.AttaqueTournoyante:
                     AddXp(1, "Attaque Tournoyante");
+                    succesManager.SuccesCollection[SuccesEvents.AttaqueTournoyante].NombreDeFoisReussi++;
                     break;
                 default:
                     return;
@@ -133,6 +144,31 @@ namespace UltimateErasme.XP
             timerCombo.Dispose();
             timerCombo = new Timer(2000) { Enabled = true };
             timerCombo.Elapsed += new ElapsedEventHandler(timerCombo_Elapsed);
+            ComboSuccesManager();
+        }
+
+        private void ComboSuccesManager()
+        {
+            if (XpCombo > 999)
+            {
+                succesManager.SuccesCollection[SuccesEvents.Combo1000Points].NombreDeFoisReussi++;
+            }
+            else if (XpCombo > 499)
+            {
+                succesManager.SuccesCollection[SuccesEvents.Combo500Points].NombreDeFoisReussi++;
+            }
+            else if (XpCombo > 199)
+            {
+                succesManager.SuccesCollection[SuccesEvents.Combo200Points].NombreDeFoisReussi++;
+            }
+            else if (XpCombo > 99 )
+            {
+                succesManager.SuccesCollection[SuccesEvents.Combo100Points].NombreDeFoisReussi++;
+            }
+            else if (XpCombo > 49)
+            {
+                succesManager.SuccesCollection[SuccesEvents.Combo50Points].NombreDeFoisReussi++;
+            }
         }
 
         void timerCombo_Elapsed(object sender, ElapsedEventArgs e)
