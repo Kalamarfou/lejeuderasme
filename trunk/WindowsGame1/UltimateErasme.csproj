@@ -130,6 +130,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Sound\SoundManager.cs" />
     <Compile Include="UltimateErasme.cs" />
+    <Compile Include="XP\Succes.cs" />
+    <Compile Include="XP\SuccesManager.cs" />
     <Compile Include="XP\XpEvents.cs" />
     <Compile Include="XP\XpManager.cs" />
   </ItemGroup>
