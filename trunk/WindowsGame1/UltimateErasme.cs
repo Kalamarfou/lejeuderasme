@@ -374,6 +374,14 @@ namespace UltimateErasme
                 gamer.SendData(packetWriter,
                                SendDataOptions.InOrder, networkSession.Host);
             }
+            foreach (NetworkGamer nGamer in networkSession.AllGamers)
+            {
+                // Look up what erasme is associated with this player.
+                NetworkedErasme erasme = gamer.Tag as NetworkedErasme;
+
+                // Update the erasme.
+                erasme.Update();
+            }
         }
 
         private void PauseManager(GameTime gameTime)
@@ -456,7 +464,7 @@ namespace UltimateErasme
             {
                 string gamerTag = "";
                 Color gamerTagColor = Color.Black;
-                Vector2 gamerTagPosition = new Vector2(700, 600);
+                Vector2 gamerTagPosition = new Vector2(600, 580);
 
                 // For each person in the session...
                 foreach (NetworkGamer gamer in networkSession.AllGamers)
@@ -467,7 +475,10 @@ namespace UltimateErasme
 
                     // Draw the tank.
                     if (!gamer.IsLocal)
+                    {
+                        remoteErasme.Update();
                         remoteErasme.Draw(spriteBatch);
+                    }
 
                     // Draw a gamertag label.
                     gamerTag = gamer.Gamertag;
