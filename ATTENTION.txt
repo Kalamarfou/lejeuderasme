@@ -1,3 +1,11 @@
+TROP BIEN: Le reseau marche.
+F1 pour devenir serveur
+F2 pour se connecter au premier serveur trouvé
+F3 pour clean les messages d'erreur
+
+Le code est sale faudra le netoyer
+
+
 Le jeu passera surement bientot en réseau.
 Le reseau fonctionne avec game for windows live.
 Mais il faut un abonnement magique pour utiliser le live.
