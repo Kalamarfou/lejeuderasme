@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>Font.spritefont</Source>
+      <Name>Font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Font.xnb</Output>
+      <Time>2010-04-15T15:51:22.4945684+02:00</Time>
+    </Item>
+    <Item>
+      <Source>A.png</Source>
+      <Name>A</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\A.xnb</Output>
+      <Time>2010-04-15T15:51:22.3365593+02:00</Time>
+    </Item>
+    <Item>
+      <Source>B.png</Source>
+      <Name>B</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\B.xnb</Output>
+      <Time>2010-04-15T15:51:22.3615608+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Down.png</Source>
+      <Name>Down</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Down.xnb</Output>
+      <Time>2010-04-15T15:51:22.4115636+02:00</Time>
+    </Item>
+    <Item>
+      <Source>DownLeft.png</Source>
+      <Name>DownLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\DownLeft.xnb</Output>
+      <Time>2010-04-15T15:51:22.435565+02:00</Time>
+    </Item>
+    <Item>
+      <Source>DownRight.png</Source>
+      <Name>DownRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\DownRight.xnb</Output>
+      <Time>2010-04-15T15:51:22.4605664+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Left.png</Source>
+      <Name>Left</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Left.xnb</Output>
+      <Time>2010-04-15T15:51:22.52357+02:00</Time>
+    </Item>
+    <Item>
+      <Source>PadFace.png</Source>
+      <Name>PadFace</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\PadFace.xnb</Output>
+      <Time>2010-04-15T15:51:22.5545718+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Plus.png</Source>
+      <Name>Plus</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Plus.xnb</Output>
+      <Time>2010-04-15T15:51:22.5825734+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Right.png</Source>
+      <Name>Right</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Right.xnb</Output>
+      <Time>2010-04-15T15:51:22.6065748+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Up.png</Source>
+      <Name>Up</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Up.xnb</Output>
+      <Time>2010-04-15T15:51:22.6315762+02:00</Time>
+    </Item>
+    <Item>
+      <Source>UpLeft.png</Source>
+      <Name>UpLeft</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\UpLeft.xnb</Output>
+      <Time>2010-04-15T15:51:22.6555776+02:00</Time>
+    </Item>
+    <Item>
+      <Source>UpRight.png</Source>
+      <Name>UpRight</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\UpRight.xnb</Output>
+      <Time>2010-04-15T15:51:22.6795789+02:00</Time>
+    </Item>
+    <Item>
+      <Source>X.png</Source>
+      <Name>X</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\X.xnb</Output>
+      <Time>2010-04-15T15:51:22.7035803+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Y.png</Source>
+      <Name>Y</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\Y.xnb</Output>
+      <Time>2010-04-15T15:51:22.7275817+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\kalamar\Documents\Visual Studio 2008\Projects\InputSequenceSample\InputSequenceSample\InputSequenceSample\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.XImporter.dll</Key>
+        <Value>2009-05-14T12:13:52+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2009-05-14T12:13:52+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2009-05-14T12:13:52+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2009-05-14T12:13:52+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files\Microsoft XNA\XNA Game Studio\v3.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2009-05-14T12:13:52+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Windows\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\3.0.0.0__6d5c3888ef60e27d\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2010-03-07T12:28:50.8221183+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>
