@@ -326,6 +326,14 @@ namespace UltimateErasme
                     // Read the latest inputs controlling this tank.
                     remoteErasme.Position = packetReader.ReadVector2();
                 }
+                else
+                {
+                    // Look up the tank associated with whoever sent this packet.
+                    NetworkedErasme remoteErasme = sender.Tag as NetworkedErasme;
+
+                    // Read the latest inputs controlling this tank.
+                    remoteErasme.Position = playerManager.premierJoueur.erasme.Position;
+                }
             }
         }
 
@@ -453,11 +461,13 @@ namespace UltimateErasme
                 // For each person in the session...
                 foreach (NetworkGamer gamer in networkSession.AllGamers)
                 {
+                    
                     // Look up the tank object belonging to this network gamer.
                     NetworkedErasme remoteErasme = gamer.Tag as NetworkedErasme;
 
                     // Draw the tank.
-                    remoteErasme.Draw(spriteBatch);
+                    if (!gamer.IsLocal)
+                        remoteErasme.Draw(spriteBatch);
 
                     // Draw a gamertag label.
                     gamerTag = gamer.Gamertag;
@@ -473,6 +483,7 @@ namespace UltimateErasme
 
                     spriteBatch.DrawString(networkFont, gamerTag, gamerTagPosition, gamerTagColor, 0,
                                            Vector2.Zero, 1, SpriteEffects.None, 0);
+                
                 }
             }
             
