@@ -1,0 +1,9 @@
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\bin\x86\Debug\Content\Font.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\bin\x86\Debug\Content\Tank.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\bin\x86\Debug\Content\Turret.xnb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\bin\x86\Debug\ClientServer.exe
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\bin\x86\Debug\ClientServer.pdb
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\obj\x86\Debug\ClientServer.exe
+C:\Users\kalamar\Documents\Visual Studio 2008\Projects\ClientServerSample\ClientServer\obj\x86\Debug\ClientServer.pdb
