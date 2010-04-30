@@ -28,6 +28,7 @@ namespace UltimateErasme
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch { get; set; }
         public Rectangle viewportRect;
+
         public PlayersManager playerManager;
         public MechantManager mechantManager;
         public DecorsManager decorsManager;
