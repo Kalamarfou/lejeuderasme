@@ -68,8 +68,13 @@ namespace UltimateErasme.GameObjects
 
         }
 
+        public ErasmeManager()
+        {
+
+        }
+
         //gére les boutons
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime)
         {
             if (!(controllerType == ControllerType.keyboard))
             {
@@ -135,7 +140,7 @@ namespace UltimateErasme.GameObjects
         }
 
         //dessine erasme
-        public void Draw(GameTime gameTime, SpriteBatch spriteBatch)
+        public virtual void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             attackManager.Draw(gameTime, spriteBatch);
             if (clignoteState  == ClignoteState.visible)

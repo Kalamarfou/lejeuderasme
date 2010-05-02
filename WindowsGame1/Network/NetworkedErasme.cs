@@ -8,25 +8,25 @@ using UltimateErasme.GameObjects;
 
 namespace UltimateErasme.Network
 {
-    class NetworkedErasme
+    class NetworkedErasme : ErasmeManager
     {
 
         public Vector2 Position { get; set; }
+        public float Rotation { get; set; }
 
-        public GameObject erasme;
-
-        public NetworkedErasme(UltimateErasme game)
+        public NetworkedErasme(UltimateErasme game, Rectangle viewPortRect) : 
+            base(game,viewPortRect)
         {
-            erasme = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme"));
         }
 
 
-        internal void Update()
+        public override void Update(GameTime gameTime)
         {
             erasme.Position = Position;
+            erasme.Rotation = Rotation;
         }
 
-        internal void Draw(SpriteBatch spriteBatch)
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
         }

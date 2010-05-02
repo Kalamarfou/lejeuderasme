@@ -145,7 +145,7 @@ namespace UltimateErasme
             else
             {
                 // If we are in a network session, update it.
-                UpdateNetworkSession();
+                UpdateNetworkSession(gameTime);
             }
         }
 
@@ -235,22 +235,22 @@ namespace UltimateErasme
         void networkSession_GamerJoined(object sender, GamerJoinedEventArgs e)
         {
             //TODO
-            e.Gamer.Tag = new NetworkedErasme(this);
+            e.Gamer.Tag = new NetworkedErasme(this, viewportRect);
         }
 
-        private void UpdateNetworkSession()
+        private void UpdateNetworkSession(GameTime gameTime)
         {
             // Read inputs for locally controlled tanks, and send them to the server.
             foreach (LocalNetworkGamer gamer in networkSession.LocalGamers)
             {
-                UpdateLocalGamer(gamer);
+                UpdateLocalGamer(gamer, gameTime);
             }
 
             // If we are the server, update all the tanks and transmit
             // their latest positions back out over the network.
             if (networkSession.IsHost)
             {
-                UpdateServer();
+                UpdateServer(gameTime);
             }
 
             // Pump the underlying session object.
@@ -291,7 +291,7 @@ namespace UltimateErasme
                     // Read the state of one tank from the network packet.
                     byte gamerId = packetReader.ReadByte();
                     Vector2 position = packetReader.ReadVector2();
-                    
+                    float rotation = (float)packetReader.ReadDouble();
                     // Look up which gamer this state refers to.
                     NetworkGamer remoteGamer = networkSession.FindGamerById(gamerId);
 
@@ -304,6 +304,7 @@ namespace UltimateErasme
                         NetworkedErasme remoteErasme = remoteGamer.Tag as NetworkedErasme;
 
                         remoteErasme.Position = position;
+                        remoteErasme.Rotation = rotation;
                     }
                 }
             }
@@ -326,6 +327,7 @@ namespace UltimateErasme
 
                     // Read the latest inputs controlling this tank.
                     remoteErasme.Position = packetReader.ReadVector2();
+                    remoteErasme.Rotation = (float)packetReader.ReadDouble();
                 }
                 else
                 {
@@ -334,11 +336,12 @@ namespace UltimateErasme
 
                     // Read the latest inputs controlling this tank.
                     remoteErasme.Position = playerManager.premierJoueur.erasme.Position;
+                    remoteErasme.Rotation = playerManager.premierJoueur.erasme.Rotation;
                 }
             }
         }
 
-        private void UpdateServer()
+        private void UpdateServer(GameTime gameTime)
         {
             // Loop over all the players in the session, not just the local ones!
             foreach (NetworkGamer gamer in networkSession.AllGamers)
@@ -347,11 +350,12 @@ namespace UltimateErasme
                 NetworkedErasme erasme = gamer.Tag as NetworkedErasme;
 
                 // Update the erasme.
-                erasme.Update();
+                erasme.Update(gameTime);
 
                 // Write the erasme state into the output network packet.
                 packetWriter.Write(gamer.Id);
                 packetWriter.Write(erasme.Position);
+                packetWriter.Write(erasme.Rotation);
             }
 
             // Send the combined data for all tanks to everyone in the session.
@@ -360,7 +364,7 @@ namespace UltimateErasme
             server.SendData(packetWriter, SendDataOptions.InOrder);
         }
 
-        private void UpdateLocalGamer(LocalNetworkGamer gamer)
+        private void UpdateLocalGamer(LocalNetworkGamer gamer, GameTime gameTime)
         {
             //TODO
 
@@ -381,7 +385,7 @@ namespace UltimateErasme
                 NetworkedErasme erasme = gamer.Tag as NetworkedErasme;
 
                 // Update the erasme.
-                erasme.Update();
+                erasme.Update(gameTime);
             }
         }
 
@@ -477,8 +481,8 @@ namespace UltimateErasme
                     // Draw the tank.
                     if (!gamer.IsLocal)
                     {
-                        remoteErasme.Update();
-                        remoteErasme.Draw(spriteBatch);
+                        remoteErasme.Update(gameTime);
+                        remoteErasme.Draw(gameTime, spriteBatch);
                     }
 
                     // Draw a gamertag label.
