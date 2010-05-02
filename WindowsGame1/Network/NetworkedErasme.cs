@@ -13,10 +13,14 @@ namespace UltimateErasme.Network
 
         public Vector2 Position { get; set; }
         public float Rotation { get; set; }
+        SpriteFont networkFont;
+        string gamerTag;
 
-        public NetworkedErasme(UltimateErasme game, Rectangle viewPortRect) : 
+        public NetworkedErasme(UltimateErasme game, Rectangle viewPortRect, string gamerTag) : 
             base(game,viewPortRect)
         {
+            networkFont = game.Content.Load<SpriteFont>("Fonts/NetworkFont");
+            this.gamerTag = gamerTag;
         }
 
 
@@ -28,7 +32,10 @@ namespace UltimateErasme.Network
 
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
+            base.Draw(gameTime, spriteBatch);
+            Vector2 temp = new Vector2(erasme.Position.X - 60,erasme.Position.Y - 160);
+            spriteBatch.DrawString(networkFont, this.gamerTag, temp ,Color.Red);
+            //spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.Blue, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
         }
     }
 }

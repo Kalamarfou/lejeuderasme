@@ -235,7 +235,7 @@ namespace UltimateErasme
         void networkSession_GamerJoined(object sender, GamerJoinedEventArgs e)
         {
             //TODO
-            e.Gamer.Tag = new NetworkedErasme(this, viewportRect);
+            e.Gamer.Tag = new NetworkedErasme(this, viewportRect, e.Gamer.Gamertag);
         }
 
         private void UpdateNetworkSession(GameTime gameTime)
@@ -355,7 +355,7 @@ namespace UltimateErasme
                 // Write the erasme state into the output network packet.
                 packetWriter.Write(gamer.Id);
                 packetWriter.Write(erasme.Position);
-                packetWriter.Write(erasme.Rotation);
+                packetWriter.Write((double)erasme.Rotation);
             }
 
             // Send the combined data for all tanks to everyone in the session.
@@ -374,6 +374,7 @@ namespace UltimateErasme
             {
                 // Write our latest input state into a network packet.
                 packetWriter.Write(playerManager.premierJoueur.erasme.Position);
+                packetWriter.Write((double)playerManager.premierJoueur.erasme.Rotation);
 
                 // Send our input data to the server.
                 gamer.SendData(packetWriter,
