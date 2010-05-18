@@ -16,6 +16,7 @@ using UltimateErasme.Collisions;
 using UltimateErasme.XP;
 using System.Threading;
 using UltimateErasme.Network;
+using UltimateErasme.Life;
 
 
 namespace UltimateErasme
@@ -35,6 +36,7 @@ namespace UltimateErasme
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
         static public XpManager xpManager;
+        static public LifeManager lifeManager;
 
         bool isPaused = false;
         bool isPausedByGuide = false;
@@ -86,6 +88,7 @@ namespace UltimateErasme
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
             xpManager = new XpManager(this);
+            lifeManager = new LifeManager(this);
 
             pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
             pauseImage.Position = new Vector2(0, 80);
@@ -128,6 +131,7 @@ namespace UltimateErasme
                 mechantManager.Update(gameTime);
                 explosionManager.Update(gameTime);
                 xpManager.Update(gameTime);
+                //lifeManager.Update(gameTime);
             }
 
             base.Update(gameTime);
@@ -434,6 +438,7 @@ namespace UltimateErasme
             mechantManager.Draw(gameTime, spriteBatch);
             explosionManager.Draw(gameTime, spriteBatch);
             xpManager.Draw(gameTime, spriteBatch);
+            lifeManager.Draw(spriteBatch);
 
             //gestion de la pause
             if (isPaused)
