@@ -126,16 +126,20 @@
     <Compile Include="GameObjects\TransformationManager.cs" />
     <Compile Include="InputTesters\GamePadTester.cs" />
     <Compile Include="InputTesters\KeyboardTester.cs" />
+    <Compile Include="Life\LifeEvents.cs" />
     <Compile Include="Network\NetworkedErasme.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Sound\SoundManager.cs" />
     <Compile Include="UltimateErasme.cs" />
+    <Compile Include="Life\LifeManager.cs" />
     <Compile Include="XP\Succes.cs" />
     <Compile Include="XP\SuccesCollection.cs" />
     <Compile Include="XP\SuccesEvents.cs" />
     <Compile Include="XP\SuccesManager.cs" />
-    <Compile Include="XP\XpEvents.cs" />
+    <Compile Include="XP\XpEvents.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="XP\XpManager.cs" />
   </ItemGroup>
   <ItemGroup>
