@@ -3,7 +3,7 @@ F1 pour devenir serveur
 F2 pour se connecter au premier serveur trouvé
 F3 pour clean les messages d'erreur
 
-Le code est sale faudra le netoyer
+Le code est sale faudra le nettoyer
 
 
 Le jeu passera surement bientot en réseau.

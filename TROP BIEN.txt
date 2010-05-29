@@ -1,9 +1,8 @@
 Systeme d'XP ajouté
 AU lvl 2 on debloque l'explosion du bulorang (explosion moche)
-on a l'explosion moyen belle au lvl 4, et l'explosion belle au lvl 6 (il faut beaucoup farmer)
+on a l'explosion moyen belle au lvl 4, et l'explosion belle au lvl 6 (il  faut beaucoup farmer)
 
-Ajouter un systeme de succes. Pas fini. on peut pour l'instant farmer 10 saut et farmer 10 doubles sauts. peu etre encore buggué
-
+Ajouter un systeme de succes. Pas fini. On peut farmer plei n de trucs, il faut pouvoir en farmer encore pleeeeeeeeeein d'autres
 
 
 
