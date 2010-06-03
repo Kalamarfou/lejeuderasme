@@ -91,3 +91,6 @@ donc erasme est le jinchuruki de fanny.
 
 Fanny a dix queus de cheval. Attention dix queues !!! Et ça prends tout l'écran.
 Un niveau du gachage avec une mitrailleuse lourde qui bloque jusqu'à ce qu'on soit niveau 10.
+
+
+Erasme, quand il recule, dois faire bip bip bip comme un camion qui recule.
