@@ -89,6 +89,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cinematiques\CinematiquesManager.cs" />
     <Compile Include="ClassesInternet\ExplosionParticleSystem.cs" />
     <Compile Include="ClassesInternet\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="ClassesInternet\Particle.cs" />

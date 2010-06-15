@@ -17,6 +17,8 @@ using UltimateErasme.XP;
 using System.Threading;
 using UltimateErasme.Network;
 using UltimateErasme.Life;
+using UltimateErasme.Cinematiques;
+using System.Xml.Linq;
 
 
 namespace UltimateErasme
@@ -89,12 +91,13 @@ namespace UltimateErasme
             collisionsManager = new CollisionsManager(this, viewportRect);
             xpManager = new XpManager(this);
             lifeManager = new LifeManager(this);
+            CinematiquesManager.init(Content, spriteBatch);
 
             pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
             pauseImage.Position = new Vector2(0, 80);
 
             networkFont = Content.Load<SpriteFont>("Fonts/NetworkFont");
-            
+
         }
 
         /// <summary>
@@ -118,6 +121,10 @@ namespace UltimateErasme
                 this.Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
+
+            //TODO
+            if (Keyboard.GetState().IsKeyDown(Keys.C))
+                CinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
 
             PauseManager(gameTime);
 
