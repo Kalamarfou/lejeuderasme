@@ -49,6 +49,7 @@ namespace UltimateErasme.Cinematiques
             contentManager = game.Content;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             setPause = new SetPause(game.SetPause);
+            this.Initialize();
         }
 
         /// <summary>
@@ -112,7 +113,7 @@ namespace UltimateErasme.Cinematiques
                 color = Color.Black;
             }
 
-            currentCinematic.Add(new DialogueElement(personnage, text, color));
+            currentCinematic.Add(new DialogueElement(personnage, text, color, dialogueFont));
 
         }
 
