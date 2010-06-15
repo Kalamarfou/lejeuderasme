@@ -37,10 +37,11 @@ namespace UltimateErasme
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
+        public CinematiquesManager cinematiquesManager;
         static public XpManager xpManager;
         static public LifeManager lifeManager;
 
-        bool isPaused = false;
+        public bool isPaused = false;
         bool isPausedByGuide = false;
         GameObject pauseImage;
         KeyboardState previousKeyboardState = Keyboard.GetState();
@@ -89,9 +90,11 @@ namespace UltimateErasme
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
+            cinematiquesManager = new CinematiquesManager(this);
+            this.Components.Add(cinematiquesManager);
             xpManager = new XpManager(this);
             lifeManager = new LifeManager(this);
-            CinematiquesManager.init(Content, spriteBatch);
+            
 
             pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
             pauseImage.Position = new Vector2(0, 80);
@@ -124,7 +127,7 @@ namespace UltimateErasme
 
             //TODO
             if (Keyboard.GetState().IsKeyDown(Keys.C))
-                CinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
+                cinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
 
             PauseManager(gameTime);
 
@@ -142,6 +145,11 @@ namespace UltimateErasme
             }
 
             base.Update(gameTime);
+        }
+
+        public void SetPause(bool value)
+        {
+            isPaused = value;
         }
 
         private void NetworkSessionManager(GameTime gameTime)
