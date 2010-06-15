@@ -9,6 +9,7 @@ using UltimateErasme.GameObjects.enums;
 using System.Collections;
 using UltimateErasme.InputTesters;
 using UltimateErasme.XP;
+using System.Threading;
 
 namespace UltimateErasme.GameObjects
 {
