@@ -90,6 +90,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cinematiques\CinematiquesManager.cs" />
+    <Compile Include="Cinematiques\CinematiquesManager_old.cs" />
+    <Compile Include="Cinematiques\DialogueElement.cs" />
     <Compile Include="ClassesInternet\ExplosionParticleSystem.cs" />
     <Compile Include="ClassesInternet\ExplosionSmokeParticleSystem.cs" />
     <Compile Include="ClassesInternet\Particle.cs" />
