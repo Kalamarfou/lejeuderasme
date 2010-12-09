@@ -64,7 +64,7 @@ namespace UltimateErasme.ClassesDInternet
                 minRotationSpeed = -MathHelper.PiOver4;
                 maxRotationSpeed = MathHelper.PiOver4;
 
-                spriteBlendMode = SpriteBlendMode.AlphaBlend;
+                blendState = BlendState.AlphaBlend;
 
                 DrawOrder = AlphaBlendDrawOrder;
             }

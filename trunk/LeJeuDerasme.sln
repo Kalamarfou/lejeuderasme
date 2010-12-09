@@ -1,7 +1,9 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual C# Express 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UltimateErasme", "WindowsGame1\UltimateErasme.csproj", "{5E045DAA-0040-4C48-8274-5384ECE19CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsGame1Content", "WindowsGame1\Content\WindowsGame1Content.contentproj", "{D34E009B-3152-40B2-A910-AE8E3B17523C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

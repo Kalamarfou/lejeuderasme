@@ -78,7 +78,7 @@ namespace UltimateErasme.ClassesDInternet
             /// different effects can use different blend modes. fire and explosions work
             /// well with additive blending, for example.
             /// </summary>
-            protected SpriteBlendMode spriteBlendMode;
+            protected BlendState blendState;
 
             // This region of values control the "look" of the particle system, and should 
             // be set by deriving particle systems in the InitializeConstants method. The
@@ -338,7 +338,7 @@ namespace UltimateErasme.ClassesDInternet
             {
                 // tell sprite batch to begin, using the spriteBlendMode specified in
                 // initializeConstants
-                game.spriteBatch.Begin(spriteBlendMode);
+                game.spriteBatch.Begin(SpriteSortMode.Immediate, blendState);
                 
 
                 foreach (Particle p in particles)
