@@ -78,10 +78,10 @@ namespace UltimateErasme.GameObjects
             switch (explosionType)
             {
                 case ExplosionType.moche:
-                    BelleExplosion(position, gameTime);
+                    MocheExplosion(position, gameTime);
                     break;
                 case ExplosionType.moyenBelle:
-                    BelleExplosion(position, gameTime);
+                    MoyenBelleExplosion(position, gameTime);
                     break;
                 case ExplosionType.belle:
                     BelleExplosion(position, gameTime);
