@@ -62,7 +62,7 @@ namespace UltimateErasme.ClassesDInternet
                 maxRotationSpeed = MathHelper.PiOver4;
 
                 // additive blending is very good at creating fiery effects.
-                spriteBlendMode = SpriteBlendMode.Additive;
+                blendState = BlendState.Additive;
 
                 DrawOrder = AdditiveDrawOrder;
             }

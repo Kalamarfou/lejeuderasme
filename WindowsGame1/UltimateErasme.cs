@@ -58,6 +58,8 @@ namespace UltimateErasme
         public UltimateErasme()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferHeight = 600;
+            graphics.PreferredBackBufferWidth = 800;
             Content.RootDirectory = "Content";
             Components.Add(new GamerServicesComponent(this));
         }
@@ -443,7 +445,7 @@ namespace UltimateErasme
         {
             //init
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteBlendMode.AlphaBlend);
+            spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.AlphaBlend);
 
             //dessin des  objets du jeu
             decorsManager.Draw(gameTime, spriteBatch);
