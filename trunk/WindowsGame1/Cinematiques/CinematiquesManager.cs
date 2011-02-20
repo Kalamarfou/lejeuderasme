@@ -15,6 +15,7 @@ using UltimateErasme.GameObjects;
 using System.Collections;
 using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
+using UltimateErasme.Sound;
 
 
 namespace UltimateErasme.Cinematiques
@@ -33,6 +34,8 @@ namespace UltimateErasme.Cinematiques
         private List<DialogueElement> currentCinematic = new List<DialogueElement>();
         private DialogueElement currentElement;
 
+		private SoundManager soundManager;
+		
         public delegate void SetPause(bool value);
 
         public SetPause setPause;
@@ -49,6 +52,7 @@ namespace UltimateErasme.Cinematiques
             contentManager = game.Content;
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             setPause = new SetPause(game.SetPause);
+            soundManager = game.playerManager.premierJoueur.soundManager;
             this.Initialize();
         }
 
@@ -66,29 +70,39 @@ namespace UltimateErasme.Cinematiques
 
         public void playCinematic(string chemin)
         {
-            currentCinematic.Clear();
-            XElement rootElement = XDocument.Load(chemin).Root;
-            foreach (XElement element in rootElement.Elements())
+            if (!cinematiquePlaying)
             {
-                if (element.Name == "DialogueElement")
+                currentCinematic.Clear();
+                XElement rootElement = XDocument.Load(chemin).Root;
+                foreach (XElement element in rootElement.Elements())
                 {
-                    ManageDialogueElement(element);
+                    if (element.Name == "DialogueElement")
+                    {
+                        ManageDialogueElement(element);
+                    }
                 }
+                currentElement = currentCinematic[0];
+                setPause(true);
+                cinematiquePlaying = true;
+
             }
-            currentElement = currentCinematic[0];
-            setPause(true);
-            cinematiquePlaying = true;
         }
 
         private void ManageDialogueElement(XElement element)
         {
             GameObject personnage;
             string text;
+			string sound;
             Color color;
 
             if (element.Attribute("personnage") != null)
             {
-                personnage = new GameObject(contentManager.Load<Texture2D>(element.Attribute("personnage").Value));
+				try{
+						personnage = new GameObject(contentManager.Load<Texture2D>(element.Attribute("personnage").Value));
+					}
+				catch (Exception e) {
+                    personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                }
             }
             else
             {
@@ -112,8 +126,17 @@ namespace UltimateErasme.Cinematiques
             {
                 color = Color.Black;
             }
+			
+			if (element.Attribute("son") != null)
+            {
+                sound = element.Attribute("son").Value;
+            }
+            else
+            {
+                sound =  "";
+            }
 
-            currentCinematic.Add(new DialogueElement(personnage, text, color, dialogueFont));
+            currentCinematic.Add(new DialogueElement(personnage, text, sound, color, dialogueFont));
 
         }
 
@@ -183,6 +206,11 @@ namespace UltimateErasme.Cinematiques
             if (cinematiquePlaying)
             {
                 currentElement.Draw(spriteBatch, gameTime);
+                if (!currentElement.SoundPlayed)
+                {
+				    soundManager.Play(currentElement.Sound);
+                    currentElement.SoundPlayed = true;
+                }
             }
             base.Draw(gameTime);
         }

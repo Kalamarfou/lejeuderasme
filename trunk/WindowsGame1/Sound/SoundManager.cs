@@ -110,6 +110,15 @@ namespace UltimateErasme.Sound
             Cue cue = banqueSons.GetCue("MechantMeurtVoltaire");
             cue.Play();
         }
+		
+		public void Play(String CueName)
+        {
+			try{
+				Cue cue = banqueSons.GetCue(CueName);
+				cue.Play();
+			}
+			catch (Exception e) {}
+		}
 
 
         

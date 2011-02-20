@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Root>
-  <DialogueElement texte="Je suis erasme, je suis trop graisseux" personnage="Sprites\Dialogues\erasmeNormal" son="tropGraisseux" color="red"/>
-  <DialogueElement texte="Je suis voltaire, je lance des eclairs" personnage="Sprites\Dialogues\voltaireNormal" son="lanceEclairs" color="green"/>
-  <DialogueElement texte="Aime tu lancer des eclairs?" personnage="Sprites\Dialogues\voltaireNormal" son="AimeTu" color="green">
+  <DialogueElement texte="Bonjour, je suis fanny" personnage="Sprites\Dialogues\fanny" son="fanny1" color="red"/>
+  <DialogueElement texte="Je vais bruler toute ta graisse !" personnage="Sprites\Dialogues\bassoul" son="bassoulBruler" color="green"/>
+  <DialogueElement texte="Je suis fanny. Aimes tu les poneys ?" personnage="Sprites\Dialogues\fanny" son="fanny2" color="green">
     <Reponse text="oui, j'adore">
       <DialogueElement texte="trop bien" personnage="Sprites\Dialogues\voltaireNormal" son="TropBien" color="green"/>
     </Reponse>
