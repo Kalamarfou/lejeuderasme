@@ -18,6 +18,7 @@ namespace UltimateErasme.Cinematiques
         public bool Played { get; set; }
         public bool SoundPlayed { get; set; }
         public SpriteFont Font { get; private set; }
+        public List<Reponse> reponses { get; set; }
 
         public DialogueElement(GameObject personnage, string text, string sound, Color color, SpriteFont font)
         {
@@ -27,6 +28,7 @@ namespace UltimateErasme.Cinematiques
             this.Font = font;
 			this.Sound = sound;
             this.SoundPlayed = false;
+            reponses = new List<Reponse>();
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -38,6 +40,17 @@ namespace UltimateErasme.Cinematiques
 			}
 			catch (Exception e) {}
             spriteBatch.DrawString(Font, Text, new Vector2(170, 500), Color.Black);
+            if (reponses.Count > 0)
+            {
+                int i = 30;
+                foreach (Reponse rep in reponses)
+                {
+                    rep.Font = Font;
+                    rep.reponsePosition = new Vector2(190, 500 + i);
+                    i = i + 30;
+                    rep.Draw(spriteBatch, gameTime);
+                }
+            }
             spriteBatch.End();
         }
 		
