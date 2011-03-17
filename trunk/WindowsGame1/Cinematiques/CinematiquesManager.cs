@@ -78,7 +78,7 @@ namespace UltimateErasme.Cinematiques
                 {
                     if (element.Name == "DialogueElement")
                     {
-                        ManageDialogueElement(element);
+                        ManageDialogueElement(currentCinematic, element);
                     }
                 }
                 currentElement = currentCinematic[0];
@@ -88,12 +88,13 @@ namespace UltimateErasme.Cinematiques
             }
         }
 
-        private void ManageDialogueElement(XElement element)
+        private void ManageDialogueElement(List<DialogueElement> brancheDialogue,XElement element)
         {
             GameObject personnage;
             string text;
 			string sound;
             Color color;
+            DialogueElement dialogueElement;
 
             if (element.Attribute("personnage") != null)
             {
@@ -136,7 +137,36 @@ namespace UltimateErasme.Cinematiques
                 sound =  "";
             }
 
-            currentCinematic.Add(new DialogueElement(personnage, text, sound, color, dialogueFont));
+            // on crée l'élément
+            dialogueElement = new DialogueElement(personnage, text, sound, color, dialogueFont);
+
+            //a debordeliser
+            if (element.HasElements)
+            {
+                foreach (XElement reponse in element.Elements())
+                {
+                    if (reponse.Name == "Reponse")
+                    {
+                        Reponse rep = new Reponse(reponse.Attribute("texte").Value);
+                        
+                        if (reponse.HasElements)
+                        {
+                            foreach (var item in reponse.Elements())
+                            {
+                                ManageDialogueElement(rep.includedElements, item);
+                            }
+                        }
+
+                        dialogueElement.reponses.Add(rep);
+                    }
+                }
+            }
+
+            if (dialogueElement.reponses.Count > 0)
+            {
+                dialogueElement.reponses.First<Reponse>().Selected = true;
+            }
+            brancheDialogue.Add(dialogueElement);
 
         }
 
@@ -183,13 +213,71 @@ namespace UltimateErasme.Cinematiques
             {
                 NextElement();
             }
+            else if (keyboardTester.test(Keys.Up))
+            {
+                UpdateSelectedResponse(Keys.Up);
+            }
+            else if (keyboardTester.test(Keys.Down))
+            {
+                UpdateSelectedResponse(Keys.Down);
+            }
+        }
+
+        private void UpdateSelectedResponse(Keys keys)
+        {
+            int i = GetResponseToSelect(keys);
+            if (i >= 0 && i < currentElement.reponses.Count)
+            {
+                foreach (Reponse rep in currentElement.reponses)
+                {
+                    if (rep.Selected)
+                    {
+                        rep.Selected = false;
+                    }
+                }
+                currentElement.reponses[i].Selected = true;
+            }
+        }
+
+        private int GetResponseToSelect(Keys keys)
+        {
+            int i = 0;
+            foreach (Reponse rep in currentElement.reponses)
+            {
+                if (rep.Selected)
+                {
+                    if (keys == Keys.Down)
+                    {
+                        i++;
+                    }
+                    if (keys == Keys.Up)
+                    {
+                        i--;
+                    }
+                    return i;
+                }
+                i++;
+            }
+            return -1;
         }
 
         private void NextElement()
         {
+            //aaaaah, ça deviens incomprehensible 
             currentElement.Played = true;
             foreach (DialogueElement element in currentCinematic)
             {
+                if (currentElement.reponses.Count > 0)
+                {
+                    foreach (Reponse rep in currentElement.reponses)
+                    {
+                        if (rep.Selected)
+                        {
+                            currentElement = rep.includedElements.First();
+                            return;
+                        }
+                    }
+                }
                 if (!element.Played)
                 {
                     currentElement = element;
