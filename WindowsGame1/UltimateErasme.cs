@@ -19,6 +19,7 @@ using UltimateErasme.Network;
 using UltimateErasme.Life;
 using UltimateErasme.Cinematiques;
 using System.Xml.Linq;
+using UltimateErasme.InputTesters;
 
 
 namespace UltimateErasme
@@ -54,6 +55,11 @@ namespace UltimateErasme
         PacketReader packetReader = new PacketReader();
         SpriteFont networkFont;
         string errorMessage = "";
+
+#if !XBOX
+        KeyboardTester keyboardTester = new KeyboardTester();
+#endif
+
 
         public UltimateErasme()
         {
@@ -127,9 +133,17 @@ namespace UltimateErasme
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
 
+            keyboardTester.GetKeyboard();
+
             //TODO
-            if (Keyboard.GetState().IsKeyDown(Keys.C))
+            if (keyboardTester.test(Keys.C))
                 cinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
+
+            //YEAH, Appuie sur F pour passer en plein ecran
+            if (keyboardTester.test(Keys.F))
+                graphics.ToggleFullScreen();
+
+            keyboardTester.UpdatePreviousKeyboardState();
 
             PauseManager(gameTime);
 

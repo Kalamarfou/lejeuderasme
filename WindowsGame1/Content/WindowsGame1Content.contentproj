@@ -689,6 +689,7 @@
       <Name>DialogueDebut</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
     </Content>
     <Compile Include="Sprites\Dialogues\Empty.bmp">
       <Name>Empty</Name>
@@ -703,6 +704,16 @@
     </Compile>
     <Compile Include="Sprites\Dialogues\bassoul.jpg">
       <Name>bassoul</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Dialogues\Background.png">
+      <Name>Background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="Sprites\Dialogues\fanny_rolet.jpg">
+      <Name>fanny_rolet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
