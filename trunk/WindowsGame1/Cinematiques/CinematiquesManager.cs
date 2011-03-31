@@ -16,6 +16,7 @@ using System.Collections;
 using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
 using UltimateErasme.Sound;
+using Microsoft.Xna.Framework.Design;
 
 
 namespace UltimateErasme.Cinematiques
@@ -39,6 +40,9 @@ namespace UltimateErasme.Cinematiques
         public delegate void SetPause(bool value);
 
         public SetPause setPause;
+        
+        public Texture2D dialogueBackground;
+
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
@@ -53,6 +57,7 @@ namespace UltimateErasme.Cinematiques
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             setPause = new SetPause(game.SetPause);
             soundManager = game.playerManager.premierJoueur.soundManager;
+            dialogueBackground = game.Content.Load<Texture2D>(@"Sprites\Dialogues\Background");
             this.Initialize();
         }
 
@@ -121,7 +126,16 @@ namespace UltimateErasme.Cinematiques
 
             if (element.Attribute("color") != null)
             {
-                color = Color.Black;
+                try
+                {
+                    System.Drawing.Color c = System.Drawing.Color.FromName(element.Attribute("color").Value);
+                    color = new Color(c.R, c.G, c.B, c.A);
+                }
+                catch (Exception)
+                {
+                    color = Color.Black;
+                }
+                
             }
             else
             {
@@ -147,7 +161,7 @@ namespace UltimateErasme.Cinematiques
                 {
                     if (reponse.Name == "Reponse")
                     {
-                        Reponse rep = new Reponse(reponse.Attribute("texte").Value);
+                        Reponse rep = new Reponse(reponse.Attribute("texte").Value, contentManager);
                         
                         if (reponse.HasElements)
                         {
@@ -293,12 +307,15 @@ namespace UltimateErasme.Cinematiques
         {
             if (cinematiquePlaying)
             {
+                spriteBatch.Begin();
+                spriteBatch.Draw(dialogueBackground, new Vector2(160, 600 - dialogueBackground.Height), Color.White);
                 currentElement.Draw(spriteBatch, gameTime);
                 if (!currentElement.SoundPlayed)
                 {
 				    soundManager.Play(currentElement.Sound);
                     currentElement.SoundPlayed = true;
                 }
+                spriteBatch.End();
             }
             base.Draw(gameTime);
         }

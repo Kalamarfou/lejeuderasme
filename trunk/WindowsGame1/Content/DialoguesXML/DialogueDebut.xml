@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Root>
-  <DialogueElement texte="Bonjour, je suis fanny" personnage="Sprites\Dialogues\fanny" son="fanny1" color="red"/>
+  <DialogueElement texte="Bonjour, je suis fanny, et je dis une phrase qui depasse de l'écran tellement elle est longue. J'éspére qu'un jour elle depassera plus!!! (Trop bien, elle dépasse plus!!)" personnage="Sprites\Dialogues\fanny_rolet" son="fanny1" color="red"/>
   <DialogueElement texte="Je vais bruler toute ta graisse !" personnage="Sprites\Dialogues\bassoul" son="bassoulBruler" color="green"/>
-  <DialogueElement texte="Je suis fanny. Aimes tu les poneys ?" personnage="Sprites\Dialogues\fanny" son="fanny2" color="green">
+  <DialogueElement texte="Je suis fanny. Aimes tu les poneys ?" personnage="Sprites\Dialogues\fanny_rolet" son="fanny2" color="green">
     <Reponse texte="oui, j'adore">
       <DialogueElement texte="trop bien" personnage="Sprites\Dialogues\voltaireNormal" son="TropBien" color="green"/>
       <DialogueElement texte="Moi aussi j'adore" personnage="Sprites\Dialogues\voltaireNormal" son="TropBien" color="green"/>
@@ -12,5 +12,5 @@
       <DialogueElement texte="Moi j'aime" personnage="Sprites\Dialogues\voltairePasContent" son="TropPasCool" color="red"/>
     </Reponse>
   </DialogueElement>
-  <DialogueElement texte="Merci d'avoir répondu a ma question sur les poneys" personnage="Sprites\Dialogues\bassoul" son="bassoulBruler" color="green"/>
+  <DialogueElement texte="Merci d'avoir répondu a ma question sur les poneys" personnage="Sprites\Dialogues\bassoul" son="repondrePoneys" color="green"/>
 </Root>

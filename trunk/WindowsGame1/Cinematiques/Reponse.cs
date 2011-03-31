@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 
 namespace UltimateErasme.Cinematiques
 {
@@ -18,11 +19,16 @@ namespace UltimateErasme.Cinematiques
         public Vector2 reponsePosition { get; set; }
         public bool Selected { get; set; }
 
-        public Reponse(String texte)
+        public Texture2D graisse;
+
+
+
+        public Reponse(String texte, ContentManager contentManager )
         {
             Texte = texte;
             includedElements = new List<DialogueElement>();
             Selected = false;
+            graisse = contentManager.Load<Texture2D>(@"Sprites\Graisse\graisse");
         }
 
         public void Draw(SpriteBatch spriteBatch, GameTime gameTime)
@@ -32,8 +38,10 @@ namespace UltimateErasme.Cinematiques
 
             if (Selected)
             {
-                textToDraw = "O  " + Texte;
+                textToDraw = Texte;
                 color = Color.Red;
+                Vector2 graissePosition = new Vector2(reponsePosition.X - 80, reponsePosition.Y - 10);
+                spriteBatch.Draw(graisse, graissePosition, null, Color.White);
             }
             else
 	        {
