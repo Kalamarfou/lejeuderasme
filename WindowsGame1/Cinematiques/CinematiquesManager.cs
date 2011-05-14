@@ -95,25 +95,53 @@ namespace UltimateErasme.Cinematiques
 
         private void ManageDialogueElement(List<DialogueElement> brancheDialogue,XElement element)
         {
-            GameObject personnage;
+            ArrayList personnages = new ArrayList();
             string text;
 			string sound;
             Color color;
             DialogueElement dialogueElement;
+            int timingPersonnage;
+            int timingDefilement;
 
             if (element.Attribute("personnage") != null)
             {
+                
 				try{
-						personnage = new GameObject(contentManager.Load<Texture2D>(element.Attribute("personnage").Value));
-					}
+                    string[] temp = element.Attribute("personnage").Value.Split(';');
+                    foreach (string item in temp)
+                    {   
+                        GameObject personnage = new GameObject(contentManager.Load<Texture2D>(item));
+                        personnages.Add(personnage);
+                    }
+				}
 				catch (Exception e) {
-                    personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                    GameObject personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                    personnages.Add(personnage);
                 }
             }
             else
             {
-                personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                GameObject personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                personnages.Add(personnage);
             }
+
+            if (element.Attribute("timingImages") != null)
+            {
+                try
+                {
+                    timingPersonnage = int.Parse(element.Attribute("timingImages").Value);
+                }
+                catch (Exception e)
+                {
+                    timingPersonnage = 1000;
+                }
+                
+            }
+            else
+            {
+                timingPersonnage = 1000;
+            }
+
 
             if (element.Attribute("texte") != null)
             {
@@ -123,6 +151,24 @@ namespace UltimateErasme.Cinematiques
             {
                 text = "";
             }
+
+            if (element.Attribute("timingDefilement") != null)
+            {
+                try
+                {
+                    timingDefilement = int.Parse(element.Attribute("timingDefilement").Value);
+                }
+                catch (Exception e)
+                {
+                    timingDefilement = 70;
+                }
+
+            }
+            else
+            {
+                timingDefilement = 70;
+            }
+
 
             if (element.Attribute("color") != null)
             {
@@ -152,7 +198,7 @@ namespace UltimateErasme.Cinematiques
             }
 
             // on crée l'élément
-            dialogueElement = new DialogueElement(personnage, text, sound, color, dialogueFont);
+            dialogueElement = new DialogueElement(personnages, timingPersonnage, text, timingDefilement, sound, color, dialogueFont,soundManager );
 
             //a debordeliser
             if (element.HasElements)
@@ -207,6 +253,7 @@ namespace UltimateErasme.Cinematiques
                 keyboardTester.UpdatePreviousKeyboardState();
 
 #endif
+                currentElement.Update(gameTime);
             }
 
             base.Update(gameTime);
