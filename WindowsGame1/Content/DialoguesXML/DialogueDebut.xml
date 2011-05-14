@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Root>
   <DialogueElement texte="Bonjour, je suis fanny, et je dis une phrase qui depasse de l'écran tellement elle est longue. J'éspére qu'un jour elle depassera plus!!! (Trop bien, elle dépasse plus!!)" personnage="Sprites\Dialogues\fanny_rolet" son="fanny1" color="red"/>
+  <DialogueElement texte="Bonjour, je suis erasme, et je parle en etant animé. (Trop bien!!)" personnage="Sprites\Dialogues\portrait_erasme;Sprites\Dialogues\portrait_erasme_p" son="eramse1" color="brown"/>
   <DialogueElement texte="Je vais bruler toute ta graisse !" timingDefilement="100" personnage="Sprites\Dialogues\bassoul" son="bassoulBruler" color="green"/>
   <DialogueElement texte="Je suis fanny animée. Regarde comme je bouge :D" personnage="Sprites\Dialogues\fanny_etape1;Sprites\Dialogues\fanny_etape2" timingImages="500" son="fanny2" color="purple" />
   <DialogueElement texte="Je suis fanny. Aimes tu les poneys ?" personnage="Sprites\Dialogues\fanny_rolet" son="fanny2" color="green">
