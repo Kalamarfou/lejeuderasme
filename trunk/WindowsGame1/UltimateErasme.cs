@@ -20,6 +20,7 @@ using UltimateErasme.Life;
 using UltimateErasme.Cinematiques;
 using System.Xml.Linq;
 using UltimateErasme.InputTesters;
+using System.Collections;
 
 
 namespace UltimateErasme
@@ -56,6 +57,14 @@ namespace UltimateErasme
         SpriteFont networkFont;
         string errorMessage = "";
 
+        //Gestion des logos
+        int logoSequencePosition = 0;
+        bool logoSequenceFinished = false;
+        DateTime logoSequenceTime = DateTime.Now;
+        ArrayList logoSequenceSprites = new ArrayList();
+
+        Thread LoadManagersThread;
+
 #if !XBOX
         KeyboardTester keyboardTester = new KeyboardTester();
 #endif
@@ -68,6 +77,7 @@ namespace UltimateErasme
             graphics.PreferredBackBufferHeight = 600;
             Content.RootDirectory = "Content";
             Components.Add(new GamerServicesComponent(this));
+            TimeSpan diffResult = DateTime.Now.Subtract(logoSequenceTime);
         }
 
         /// <summary>
@@ -93,6 +103,22 @@ namespace UltimateErasme
             spriteBatch = new SpriteBatch(GraphicsDevice);
             viewportRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 
+            //mettre tt ça dans un thread
+            LoadManagersThread = new Thread(new ThreadStart(this.InitManagers));
+            LoadManagersThread.Start();
+            
+
+            pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
+            pauseImage.Position = new Vector2(0, 80);
+
+            logoSequenceSprites.Add(new GameObject(this.Content.Load<Texture2D>(@"Sprites\Logos\runs_great_on_corei7extreme")));
+
+            networkFont = Content.Load<SpriteFont>("Fonts/NetworkFont");
+            logoSequenceTime = DateTime.Now;
+        }
+
+        private void InitManagers()
+        {
             playerManager = new PlayersManager(this, viewportRect);
             mechantManager = new MechantManager(this, viewportRect);
             decorsManager = new DecorsManager(this, viewportRect);
@@ -102,13 +128,6 @@ namespace UltimateErasme
             this.Components.Add(cinematiquesManager);
             xpManager = new XpManager(this);
             lifeManager = new LifeManager(this);
-            
-
-            pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
-            pauseImage.Position = new Vector2(0, 80);
-
-            networkFont = Content.Load<SpriteFont>("Fonts/NetworkFont");
-
         }
 
         /// <summary>
@@ -133,6 +152,43 @@ namespace UltimateErasme
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
 
+            if (logoSequenceFinished)
+            {
+                UpdateNormal(gameTime);
+            }
+            else
+            {
+                UpdateLogo(gameTime);
+            }
+
+            base.Update(gameTime);
+        }
+
+        private void UpdateLogo(GameTime gameTime)
+        {
+
+            TimeSpan diffResult = DateTime.Now.Subtract(logoSequenceTime);
+            if (diffResult.TotalSeconds > 4)
+            {
+                if (logoSequencePosition < logoSequenceSprites.Count - 1)
+                {
+                    logoSequencePosition++;
+                }
+                else if(!LoadManagersThread.IsAlive)
+                {
+                    logoSequenceFinished = true;
+                }
+            }
+
+            keyboardTester.GetKeyboard();
+
+            //zappage
+            if (keyboardTester.test(Keys.Tab))
+                logoSequenceFinished = true;
+        }
+
+        private void UpdateNormal(GameTime gameTime)
+        {
             keyboardTester.GetKeyboard();
 
             //TODO
@@ -159,8 +215,6 @@ namespace UltimateErasme
                 xpManager.Update(gameTime);
                 //lifeManager.Update(gameTime);
             }
-
-            base.Update(gameTime);
         }
 
         public void SetPause(bool value)
@@ -457,10 +511,36 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
+            
+
+            if (logoSequenceFinished)
+            {
+                DrawNormal(gameTime);
+            }
+            else
+            {
+                DrawLogo(gameTime);
+            }
+
+            base.Draw(gameTime);
+        }
+
+        private void DrawLogo(GameTime gameTime)
+        {
+            //init
+            GraphicsDevice.Clear(Color.Black);
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+            int x = (800 - ((GameObject)logoSequenceSprites[logoSequencePosition]).Sprite.Width) / 2;
+            int y = (600 - ((GameObject)logoSequenceSprites[logoSequencePosition]).Sprite.Height) / 2;
+            spriteBatch.Draw(((GameObject)logoSequenceSprites[logoSequencePosition]).Sprite, new Vector2(x, y), Color.White);
+            spriteBatch.End();
+        }
+
+        private void DrawNormal(GameTime gameTime)
+        {
             //init
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Immediate,BlendState.AlphaBlend);
-
+            spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             //dessin des  objets du jeu
             decorsManager.Draw(gameTime, spriteBatch);
             //networked players 
@@ -475,7 +555,7 @@ namespace UltimateErasme
             if (isPaused)
             {
                 spriteBatch.Draw(pauseImage.Sprite, pauseImage.Position, null, Color.White, pauseImage.Rotation, Vector2.Zero, pauseImage.Scale, SpriteEffects.None, 0);
-            } 
+            }
 
             //affichage des erreurs reseau
             spriteBatch.DrawString(networkFont, errorMessage, new Vector2(20, 200), Color.Red);
@@ -495,9 +575,7 @@ namespace UltimateErasme
                 spriteBatch.DrawString(networkFont, temp, new Vector2(20, 550), Color.Violet);
             }
 
-
             spriteBatch.End();
-            base.Draw(gameTime);
         }
 
         private void DrawNetworkedPlayers(GameTime gameTime)

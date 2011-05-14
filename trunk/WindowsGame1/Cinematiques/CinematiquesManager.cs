@@ -133,13 +133,13 @@ namespace UltimateErasme.Cinematiques
                 }
                 catch (Exception e)
                 {
-                    timingPersonnage = 1000;
+                    timingPersonnage = 600;
                 }
                 
             }
             else
             {
-                timingPersonnage = 1000;
+                timingPersonnage = 600;
             }
 
 
