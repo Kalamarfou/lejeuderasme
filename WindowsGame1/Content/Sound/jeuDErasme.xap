@@ -1431,7 +1431,7 @@ Wave Bank
     Wave
     {
         Name = tut1;
-        File = ..\..\..\..\..\..\..\Desktop\tut\tut1.wav;
+        File = sons\tut1.wav;
         Build Settings Last Modified Low = 1059412457;
         Build Settings Last Modified High = 30151249;
 
@@ -1454,7 +1454,7 @@ Wave Bank
     Wave
     {
         Name = tut2;
-        File = ..\..\..\..\..\..\..\Desktop\tut\tut2.wav;
+        File = sons\tut2.wav;
         Build Settings Last Modified Low = 1059412457;
         Build Settings Last Modified High = 30151249;
 
@@ -1477,7 +1477,7 @@ Wave Bank
     Wave
     {
         Name = tut3;
-        File = ..\..\..\..\..\..\..\Desktop\tut\tut3.wav;
+        File = sons\tut3.wav;
         Build Settings Last Modified Low = 1059412457;
         Build Settings Last Modified High = 30151249;
 
