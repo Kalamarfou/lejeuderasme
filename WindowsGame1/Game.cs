@@ -41,7 +41,7 @@ namespace UltimateErasme
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
-        public void Initialize()
+        protected override void Initialize()
         {
             _currentState.Initialize();
             base.Initialize();
@@ -51,7 +51,7 @@ namespace UltimateErasme
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        public void LoadContent()
+        protected override void LoadContent()
         {
             _currentState.LoadContent();
             base.LoadContent();
@@ -61,7 +61,7 @@ namespace UltimateErasme
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
         /// </summary>
-        public void UnloadContent()
+        protected override void UnloadContent()
         {
             _currentState.UnloadContent();
             base.UnloadContent();
@@ -72,7 +72,7 @@ namespace UltimateErasme
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Update(GameTime gameTime)
+        protected override void Update(GameTime gameTime)
         {
             _currentState.Update(gameTime);
             base.Update(gameTime);
@@ -82,7 +82,7 @@ namespace UltimateErasme
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        public void Draw(GameTime gameTime)
+        protected override void Draw(GameTime gameTime)
         {
             _currentState.Draw(gameTime);
             base.Draw(gameTime);
