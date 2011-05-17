@@ -164,7 +164,7 @@ namespace UltimateErasme.ClassesDInternet
             /// it has a large impact on the amount of memory required, and slows down the
             /// Update and Draw functions.</remarks>
             protected ParticleSystem(UltimateErasme game, int howManyEffects, string textureFileName)
-                : base(game)
+                : base(game.game)
             {
                 this.game = game;
                 this.howManyEffects = howManyEffects;

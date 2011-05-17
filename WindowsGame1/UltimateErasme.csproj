@@ -134,6 +134,7 @@
     <Compile Include="Collisions\MechantAttaqueBox.cs" />
     <Compile Include="Collisions\MechantVulnerableBox.cs" />
     <Compile Include="Collisions\PersonnageVulnerableBox.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="GameObjects\AttackManager.cs" />
     <Compile Include="GameObjects\Classes\BelleExplosionCollision.cs" />
     <Compile Include="GameObjects\DecorsManager.cs" />
@@ -160,6 +161,7 @@
     <Compile Include="GameObjects\MechantManager.cs" />
     <Compile Include="GameObjects\PlayersManager.cs" />
     <Compile Include="GameObjects\TransformationManager.cs" />
+    <Compile Include="GameState.cs" />
     <Compile Include="InputTesters\GamePadTester.cs" />
     <Compile Include="InputTesters\KeyboardTester.cs" />
     <Compile Include="Life\LifeEvents.cs" />

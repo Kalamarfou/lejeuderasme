@@ -9,7 +9,7 @@ namespace UltimateErasme
         /// </summary>
         static void Main(string[] args)
         {
-            using (UltimateErasme game = new UltimateErasme())
+            using (Game game = new Game())
             {
                 game.Run();
             }
