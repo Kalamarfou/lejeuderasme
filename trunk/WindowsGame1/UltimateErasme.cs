@@ -123,7 +123,6 @@ namespace UltimateErasme
             {
                 Console.WriteLine("Graphic card Name: {0}", graphicCard.GetPropertyValue("Name"));
                 TestDetectionMatos += graphicCard.GetPropertyValue("Name").ToString();
-                Object test = graphicCard.Properties;
                 //TestDetectionMatos += graphicCard.GetPropertyValue("AdapterRAM").ToString();
                 //TestDetectionMatos += graphicCard.GetPropertyValue("Caption").ToString();
                 //TestDetectionMatos += graphicCard.GetPropertyValue("VideoProcessor").ToString();
@@ -523,8 +522,9 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-            
 
+            //init
+            game.GraphicsDevice.Clear(Color.Red);
             if (logoSequenceFinished)
             {
                 DrawNormal(gameTime);
