@@ -28,7 +28,7 @@ namespace UltimateErasme
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class UltimateErasme : Microsoft.Xna.Framework.Game
+    public class UltimateErasme : GameState
     {
         public GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch { get; set; }
@@ -42,7 +42,10 @@ namespace UltimateErasme
         public CinematiquesManager cinematiquesManager;
         static public XpManager xpManager;
         static public LifeManager lifeManager;
-
+        public Game game;
+        public ContentManager Content {get; set;}
+        public GameComponentCollection Components { get; set; }
+ 
         public bool isPaused = false;
         bool isPausedByGuide = false;
         GameObject pauseImage;
@@ -70,50 +73,48 @@ namespace UltimateErasme
 #endif
 
 
-        public UltimateErasme()
+        public UltimateErasme(Game game, GraphicsDeviceManager graphics)
         {
-            graphics = new GraphicsDeviceManager(this);
-            graphics.PreferredBackBufferWidth = 800;
-            graphics.PreferredBackBufferHeight = 600;
-            Content.RootDirectory = "Content";
-            Components.Add(new GamerServicesComponent(this));
+            this.game = game;
+            Content = game.Content;
+            Components =  game.Components;
+            this.graphics = graphics;
+            game.Content.RootDirectory = "Content";
+            game.Components.Add(new GamerServicesComponent(game));
             TimeSpan diffResult = DateTime.Now.Subtract(logoSequenceTime);
         }
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
         /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
+        /// related content.
         /// </summary>
-        protected override void Initialize()
+        public override void Initialize()
         {
             // TODO: Add your initialization logic here
-
-            base.Initialize();
         }
 
         /// <summary>
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected override void LoadContent()
+        public override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-            viewportRect = new Rectangle(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
+            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
 
             //mettre tt ça dans un thread
             LoadManagersThread = new Thread(new ThreadStart(this.InitManagers));
             LoadManagersThread.Start();
             
 
-            pauseImage = new GameObject(this.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
+            pauseImage = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
             pauseImage.Position = new Vector2(0, 80);
 
-            logoSequenceSprites.Add(new GameObject(this.Content.Load<Texture2D>(@"Sprites\Logos\runs_great_on_corei7extreme")));
+            logoSequenceSprites.Add(new GameObject(game.Content.Load<Texture2D>(@"Sprites\Logos\runs_great_on_corei7extreme")));
 
-            networkFont = Content.Load<SpriteFont>("Fonts/NetworkFont");
+            networkFont = game.Content.Load<SpriteFont>("Fonts/NetworkFont");
             logoSequenceTime = DateTime.Now;
         }
 
@@ -125,7 +126,7 @@ namespace UltimateErasme
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
             cinematiquesManager = new CinematiquesManager(this);
-            this.Components.Add(cinematiquesManager);
+            game.Components.Add(cinematiquesManager);
             xpManager = new XpManager(this);
             lifeManager = new LifeManager(this);
         }
@@ -134,7 +135,7 @@ namespace UltimateErasme
         /// UnloadContent will be called once per game and is the place to unload
         /// all content.
         /// </summary>
-        protected override void UnloadContent()
+        public override void UnloadContent()
         {
             // TODO: Unload any non ContentManager content here
         }
@@ -144,11 +145,11 @@ namespace UltimateErasme
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                this.Exit();
+                game.Exit();
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
 
@@ -161,7 +162,6 @@ namespace UltimateErasme
                 UpdateLogo(gameTime);
             }
 
-            base.Update(gameTime);
         }
 
         private void UpdateLogo(GameTime gameTime)
@@ -509,7 +509,7 @@ namespace UltimateErasme
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+        public override void Draw(GameTime gameTime)
         {
             
 
@@ -522,13 +522,12 @@ namespace UltimateErasme
                 DrawLogo(gameTime);
             }
 
-            base.Draw(gameTime);
         }
 
         private void DrawLogo(GameTime gameTime)
         {
             //init
-            GraphicsDevice.Clear(Color.Black);
+            game.GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             int x = (800 - ((GameObject)logoSequenceSprites[logoSequencePosition]).Sprite.Width) / 2;
             int y = (600 - ((GameObject)logoSequenceSprites[logoSequencePosition]).Sprite.Height) / 2;
@@ -539,7 +538,7 @@ namespace UltimateErasme
         private void DrawNormal(GameTime gameTime)
         {
             //init
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            game.GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             //dessin des  objets du jeu
             decorsManager.Draw(gameTime, spriteBatch);

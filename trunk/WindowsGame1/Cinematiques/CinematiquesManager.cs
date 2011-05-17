@@ -51,10 +51,10 @@ namespace UltimateErasme.Cinematiques
 
 
         public CinematiquesManager(UltimateErasme game)
-            : base(game)
+            : base(game.game)
         {
             contentManager = game.Content;
-            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            spriteBatch = new SpriteBatch(game.game.GraphicsDevice);
             setPause = new SetPause(game.SetPause);
             soundManager = game.playerManager.premierJoueur.soundManager;
             dialogueBackground = game.Content.Load<Texture2D>(@"Sprites\Dialogues\Background");

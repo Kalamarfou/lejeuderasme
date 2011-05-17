@@ -32,7 +32,7 @@ namespace UltimateErasme.GameObjects
             erasmeTransformation = new Texture2D[10];
             for (int i = 0; i < 10; i++)
             {
-                erasmeTransformation[i] = game.Content.Load<Texture2D>(@"Sprites\Transformation\transformation" + (i + 1));
+                erasmeTransformation[i] = game.game.Content.Load<Texture2D>(@"Sprites\Transformation\transformation" + (i + 1));
             }
             this.erasmeManager = erasmeManager;
         }
