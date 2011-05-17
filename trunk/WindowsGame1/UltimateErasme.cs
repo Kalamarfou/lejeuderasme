@@ -21,7 +21,8 @@ using UltimateErasme.Cinematiques;
 using System.Xml.Linq;
 using UltimateErasme.InputTesters;
 using System.Collections;
-
+using System.Management;
+using System.Management.Instrumentation;
 
 namespace UltimateErasme
 {
@@ -72,6 +73,7 @@ namespace UltimateErasme
         KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
+        String TestDetectionMatos = "";
 
         public UltimateErasme(Game game, GraphicsDeviceManager graphics)
         {
@@ -81,7 +83,6 @@ namespace UltimateErasme
             this.graphics = graphics;
             game.Content.RootDirectory = "Content";
             game.Components.Add(new GamerServicesComponent(game));
-            TimeSpan diffResult = DateTime.Now.Subtract(logoSequenceTime);
         }
 
         /// <summary>
@@ -116,6 +117,17 @@ namespace UltimateErasme
 
             networkFont = game.Content.Load<SpriteFont>("Fonts/NetworkFont");
             logoSequenceTime = DateTime.Now;
+
+            ManagementObjectSearcher searcher = new ManagementObjectSearcher("Select Name from Win32_VideoController");
+            foreach (ManagementObject graphicCard in searcher.Get())
+            {
+                Console.WriteLine("Graphic card Name: {0}", graphicCard.GetPropertyValue("Name"));
+                TestDetectionMatos += graphicCard.GetPropertyValue("Name").ToString();
+                Object test = graphicCard.Properties;
+                //TestDetectionMatos += graphicCard.GetPropertyValue("AdapterRAM").ToString();
+                //TestDetectionMatos += graphicCard.GetPropertyValue("Caption").ToString();
+                //TestDetectionMatos += graphicCard.GetPropertyValue("VideoProcessor").ToString();
+            }
         }
 
         private void InitManagers()
