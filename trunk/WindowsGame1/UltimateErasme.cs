@@ -50,7 +50,7 @@ namespace UltimateErasme
         public bool isPaused = false;
         bool isPausedByGuide = false;
         GameObject pauseImage;
-        KeyboardState previousKeyboardState = Keyboard.GetState();
+        
 
         const int maxGamers = 16;
         const int maxLocalGamers = 1;
@@ -71,6 +71,7 @@ namespace UltimateErasme
 
 #if !XBOX
         KeyboardTester keyboardTester = new KeyboardTester();
+        KeyboardState previousKeyboardState = Keyboard.GetState();
 #endif
 
         String TestDetectionMatos = "";
@@ -81,6 +82,8 @@ namespace UltimateErasme
             Content = game.Content;
             Components =  game.Components;
             this.graphics = graphics;
+            //appel explicite a LoadContent ... Pourquoi il est pas apellé auto? je sait pas...
+            this.LoadContent();
         }
 
         /// <summary>
