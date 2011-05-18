@@ -46,7 +46,8 @@ namespace UltimateErasme
         public Game game;
         public ContentManager Content {get; set;}
         public GameComponentCollection Components { get; set; }
- 
+        private static UltimateErasme instanceUE;
+
         public bool isPaused = false;
         bool isPausedByGuide = false;
         GameObject pauseImage;
@@ -76,14 +77,21 @@ namespace UltimateErasme
 
         String TestDetectionMatos = "";
 
-        public UltimateErasme(Game game, GraphicsDeviceManager graphics)
+        private UltimateErasme(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             Content = game.Content;
             Components =  game.Components;
             this.graphics = graphics;
-            //appel explicite a LoadContent ... Pourquoi il est pas apellé auto? je sait pas...
-            this.LoadContent();
+        }
+
+        public static GameState getInstance(Game game, GraphicsDeviceManager graphics)
+        {
+            if (instanceUE == null)
+            {
+                return new UltimateErasme(game, graphics);
+            }
+            return instanceUE;
         }
 
         /// <summary>
@@ -161,7 +169,9 @@ namespace UltimateErasme
         {
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
-                game.Exit();
+            {
+                MustChangeState(MainMenuState.getInstance(game, graphics));
+            }
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
 
@@ -642,6 +652,7 @@ namespace UltimateErasme
         public override void MustChangeState(GameState futureState)
         {
             game.currentState = futureState;
+            game.currentState.LoadContent();
         }
     }
 }

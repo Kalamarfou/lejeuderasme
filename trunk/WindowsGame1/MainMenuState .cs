@@ -15,15 +15,24 @@ namespace UltimateErasme
         public Game game;
         SpriteBatch spriteBatch;
         SpriteFont font;
-        List<String> text;
+        List<String> text = new List<String>() { "Jouer", "Créer son Personnage", "Options", "Quitter" };
         Vector2 position;
         GameObject background;
         GameObject MousePointer;
+        private static MainMenuState instanceMMS;
 
-        public MainMenuState(Game game, GraphicsDeviceManager graphics)
+        private MainMenuState(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             this.graphics = graphics;
+        }
+
+        public static GameState getInstance(Game game, GraphicsDeviceManager graphics) {
+            if (instanceMMS == null)
+            {
+                return new MainMenuState(game, graphics);
+            }
+            return instanceMMS;
         }
          /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -33,7 +42,6 @@ namespace UltimateErasme
         public override void Initialize()
         {
             // TODO: Add your initialization logic here
-            text = new List<String>() {"Jouer", "Créer son Personnage", "Options", "Quitter" };
         }
 
         /// <summary>
@@ -72,10 +80,17 @@ namespace UltimateErasme
             foreach (String textMenu in text)
             {
                 if ((Mouse.GetState().LeftButton == ButtonState.Pressed)
-                    && (Math.Abs(Mouse.GetState().X - x) < 40)
-                    && (Math.Abs(Mouse.GetState().Y - y) < 80))
+                    && (Math.Abs(Mouse.GetState().X - x) < 80)
+                    && (Math.Abs(Mouse.GetState().Y - y) < 25))
                 {
-                    MustChangeState(new UltimateErasme(game, graphics));
+                    if (textMenu.Equals("Quitter"))
+                    {
+                        game.Exit();
+                    }
+                    else
+                    {
+                        MustChangeState(UltimateErasme.getInstance(game, graphics));
+                    }
                 }
                 y += 50;
             }
@@ -100,7 +115,7 @@ namespace UltimateErasme
             //beurk, c'est moche (et ça marche moyen ..), il faudrait trouver un autre moyen (moi je créerais une classe MenuItem, et chaque item vivrait sa vie)
             foreach (String textMenu in text)
             {
-                if ((Math.Abs(Mouse.GetState().X - x) < 40) && (Math.Abs(Mouse.GetState().Y - y) < 80))
+                if ((Math.Abs(Mouse.GetState().X - x) < 80) && (Math.Abs(Mouse.GetState().Y - y) < 25))
                 {
                     spriteBatch.DrawString(font, textMenu, new Vector2(x, y), Color.DarkGreen);
                 }
@@ -117,6 +132,7 @@ namespace UltimateErasme
         public override void MustChangeState(GameState futureState)
         {
             game.currentState = futureState;
+            game.currentState.LoadContent();
         }
     }
 }
