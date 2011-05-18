@@ -25,14 +25,14 @@ namespace UltimateErasme
 {
     public class Game : Microsoft.Xna.Framework.Game
     {
-        GameState _currentState;
+        public GameState currentState {get; set;}
         public GraphicsDeviceManager graphics;
 
         public Game() {
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
-            _currentState = new UltimateErasme(this, graphics);
+            currentState = new MainMenuState(this, graphics);
         }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace UltimateErasme
         /// </summary>
         protected override void Initialize()
         {
-            _currentState.Initialize();
+            currentState.Initialize();
             base.Initialize();
         }
 
@@ -53,7 +53,7 @@ namespace UltimateErasme
         /// </summary>
         protected override void LoadContent()
         {
-            _currentState.LoadContent();
+            currentState.LoadContent();
             base.LoadContent();
         }
 
@@ -63,7 +63,7 @@ namespace UltimateErasme
         /// </summary>
         protected override void UnloadContent()
         {
-            _currentState.UnloadContent();
+            currentState.UnloadContent();
             base.UnloadContent();
         }
 
@@ -74,7 +74,7 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            _currentState.Update(gameTime);
+            currentState.Update(gameTime);
             base.Update(gameTime);
         }
         
@@ -84,7 +84,7 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            _currentState.Draw(gameTime);
+            currentState.Draw(gameTime);
             base.Draw(gameTime);
         }
     }

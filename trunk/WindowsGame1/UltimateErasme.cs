@@ -637,5 +637,10 @@ namespace UltimateErasme
             spriteBatch.DrawString(networkFont, message, new Vector2(20, 170), Color.Black);
             spriteBatch.End();
         }
+
+        public override void MustChangeState(GameState futureState)
+        {
+            game.currentState = futureState;
+        }
     }
 }
