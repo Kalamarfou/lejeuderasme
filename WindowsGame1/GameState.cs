@@ -14,5 +14,6 @@ namespace UltimateErasme
         public abstract void UnloadContent();
         public abstract void Update(GameTime gameTime);
         public abstract void Draw(GameTime gameTime);
+        public abstract void MustChangeState(GameState futuretate);
     }
 }
