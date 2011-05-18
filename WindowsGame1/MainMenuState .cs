@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UltimateErasme.GameObjects;
+using Microsoft.Xna.Framework.Input;
 
 namespace UltimateErasme
 {
@@ -22,7 +23,6 @@ namespace UltimateErasme
         {
             this.game = game;
             this.graphics = graphics;
-            text = new List<String>() {"Jouer", "Créer son Personnage", "Options", "Quitter" };
         }
          /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -32,6 +32,7 @@ namespace UltimateErasme
         public override void Initialize()
         {
             // TODO: Add your initialization logic here
+            text = new List<String>() {"Jouer", "Créer son Personnage", "Options", "Quitter" };
         }
 
         /// <summary>
@@ -42,8 +43,8 @@ namespace UltimateErasme
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
-            font = game.Content.Load<SpriteFont>(@"Content\Fonts\XpFont");
-            background = new GameObject(game.Content.Load<Texture2D>(@"Content\Sprites\Backgrounds\decor2"));
+            font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
+            background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
             position = new Vector2(100, 100);
         }
 
@@ -63,6 +64,18 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            int x = 300;
+            int y = 150;
+            foreach (String textMenu in text)
+            {
+                if ((Mouse.GetState().LeftButton == ButtonState.Pressed)
+                    && (Math.Abs(Mouse.GetState().X - x) < 40)
+                    && (Math.Abs(Mouse.GetState().Y - y) < 80))
+                {
+                    MustChangeState(new UltimateErasme(game, graphics));
+                }
+                y += 50;
+            }
 
         }
         
@@ -82,7 +95,14 @@ namespace UltimateErasme
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             foreach (String textMenu in text)
             {
-                spriteBatch.DrawString(font, textMenu, new Vector2(x, y), Color.Black);
+                if ((Math.Abs(Mouse.GetState().X - x) < 40) && (Math.Abs(Mouse.GetState().Y - y) < 80))
+                {
+                    spriteBatch.DrawString(font, textMenu, new Vector2(x, y), Color.White);
+                }
+                else
+                {
+                    spriteBatch.DrawString(font, textMenu, new Vector2(x, y), Color.Black);
+                }
                 y += 50;
             }
             spriteBatch.End();
