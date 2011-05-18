@@ -29,6 +29,10 @@ namespace UltimateErasme
         public GraphicsDeviceManager graphics;
 
         public Game() {
+
+            Content.RootDirectory = "Content";
+            Components.Add(new GamerServicesComponent(this));
+
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;

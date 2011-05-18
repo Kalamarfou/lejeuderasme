@@ -81,8 +81,6 @@ namespace UltimateErasme
             Content = game.Content;
             Components =  game.Components;
             this.graphics = graphics;
-            game.Content.RootDirectory = "Content";
-            game.Components.Add(new GamerServicesComponent(game));
         }
 
         /// <summary>
