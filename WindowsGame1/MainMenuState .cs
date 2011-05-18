@@ -18,6 +18,7 @@ namespace UltimateErasme
         List<String> text;
         Vector2 position;
         GameObject background;
+        GameObject MousePointer;
 
         public MainMenuState(Game game, GraphicsDeviceManager graphics)
         {
@@ -45,6 +46,7 @@ namespace UltimateErasme
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
+            MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
             position = new Vector2(100, 100);
         }
 
@@ -64,6 +66,7 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
+            // Bouh, pas beau, buggué
             int x = 300;
             int y = 150;
             foreach (String textMenu in text)
@@ -77,6 +80,7 @@ namespace UltimateErasme
                 y += 50;
             }
 
+            MousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
         }
         
         /// <summary>
@@ -93,11 +97,12 @@ namespace UltimateErasme
             int y = 150;
             Rectangle viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
+            //beurk, c'est moche (et ça marche moyen ..), il faudrait trouver un autre moyen (moi je créerais une classe MenuItem, et chaque item vivrait sa vie)
             foreach (String textMenu in text)
             {
                 if ((Math.Abs(Mouse.GetState().X - x) < 40) && (Math.Abs(Mouse.GetState().Y - y) < 80))
                 {
-                    spriteBatch.DrawString(font, textMenu, new Vector2(x, y), Color.White);
+                    spriteBatch.DrawString(font, textMenu, new Vector2(x, y), Color.DarkGreen);
                 }
                 else
                 {
@@ -105,6 +110,7 @@ namespace UltimateErasme
                 }
                 y += 50;
             }
+            spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
             spriteBatch.End();
         }
 
