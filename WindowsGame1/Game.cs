@@ -26,6 +26,7 @@ namespace UltimateErasme
     public class Game : Microsoft.Xna.Framework.Game
     {
         public GameState currentState {get; set;}
+        private List<GameState> states; 
         public GraphicsDeviceManager graphics;
 
         public Game() {
@@ -36,7 +37,10 @@ namespace UltimateErasme
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
-            currentState = new MainMenuState(this, graphics);
+            currentState = MainMenuState.getInstance(this, graphics);
+            states = new List<GameState>();
+            states.Add(currentState);
+            states.Add(UltimateErasme.getInstance(this, graphics));
         }
 
         /// <summary>
@@ -47,7 +51,10 @@ namespace UltimateErasme
         /// </summary>
         protected override void Initialize()
         {
-            currentState.Initialize();
+            foreach (GameState state in states)
+            {
+                state.Initialize();
+            }
             base.Initialize();
         }
 
@@ -67,7 +74,10 @@ namespace UltimateErasme
         /// </summary>
         protected override void UnloadContent()
         {
-            currentState.UnloadContent();
+            foreach (GameState state in states)
+            {
+                state.UnloadContent();
+            }
             base.UnloadContent();
         }
 
