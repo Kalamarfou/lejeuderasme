@@ -597,14 +597,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Sprites\Pause\Pause.png">
-      <Name>Pause</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <ProcessorParameters_ColorKeyColor>255, 255, 255, 255</ProcessorParameters_ColorKeyColor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Fonts\NetworkFont.spritefont">
       <Name>NetworkFont</Name>
       <Importer>FontDescriptionImporter</Importer>

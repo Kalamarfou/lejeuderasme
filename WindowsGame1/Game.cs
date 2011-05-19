@@ -27,7 +27,8 @@ namespace UltimateErasme
     {
         public GameState currentState {get; set;}
         private List<GameState> states; 
-        public GraphicsDeviceManager graphics;
+        private GraphicsDeviceManager graphics;
+
 
         public Game() {
 
@@ -37,10 +38,12 @@ namespace UltimateErasme
             graphics = new GraphicsDeviceManager(this);
             graphics.PreferredBackBufferWidth = 800;
             graphics.PreferredBackBufferHeight = 600;
+
             currentState = MainMenuState.getInstance(this, graphics);
             states = new List<GameState>();
             states.Add(currentState);
             states.Add(UltimateErasme.getInstance(this, graphics));
+            states.Add(PauseMenuState.getInstance(this, graphics));
         }
 
         /// <summary>

@@ -169,6 +169,7 @@
     <Compile Include="InputTesters\KeyboardTester.cs" />
     <Compile Include="Life\LifeEvents.cs" />
     <Compile Include="Network\NetworkedErasme.cs" />
+    <Compile Include="PauseMenuState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Sound\SoundManager.cs" />
