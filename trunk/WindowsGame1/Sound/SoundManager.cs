@@ -117,7 +117,9 @@ namespace UltimateErasme.Sound
 				Cue cue = banqueSons.GetCue(CueName);
 				cue.Play();
 			}
-			catch (Exception e) {}
+			catch (Exception e) {
+                Console.WriteLine(e);
+            }
 		}
 
 

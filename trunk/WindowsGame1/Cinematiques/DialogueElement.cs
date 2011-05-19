@@ -88,7 +88,9 @@ namespace UltimateErasme.Cinematiques
                 int h = ((GameObject)Personnages[currentPersonnage]).Sprite.Height;
                 spriteBatch.Draw(((GameObject)Personnages[currentPersonnage]).Sprite, new Vector2(0, 600 - h), Color.White);
 			}
-			catch (Exception e) {}
+			catch (Exception e) {
+                Console.WriteLine(e);
+            }
 
             int sautDeLigne = 0;
             foreach (String item in TextParts)
@@ -181,7 +183,9 @@ namespace UltimateErasme.Cinematiques
                 soundManager.Play("Tut");
                 }
                 catch (Exception e)
-                {}
+                {
+                    Console.WriteLine(e);
+                }
             }
 
             timeOfLastTextChange = DateTime.Now;

@@ -2,37 +2,37 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 using UltimateErasme.GameObjects;
 using Microsoft.Xna.Framework.Input;
 
 namespace UltimateErasme
 {
-    class MainMenuState : GameState
+    class PauseMenuState : GameState
     {
-        public GraphicsDeviceManager graphics;
-        public Game game;
+        GraphicsDeviceManager graphics;
+        Game game;
         SpriteBatch spriteBatch;
         SpriteFont font;
-        List<String> text = new List<String>() { "Jouer", "Créer son Personnage", "Options", "Quitter" };
+        List<String> text = new List<String>() { "Continuer", "Quitter" };
         Vector2 position;
-        GameObject background;
+        //GameObject background;
         GameObject MousePointer;
-        private static MainMenuState instanceMMS;
+        private static PauseMenuState instancePMS;
 
-        private MainMenuState(Game game, GraphicsDeviceManager graphics)
+        private PauseMenuState(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             this.graphics = graphics;
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics) {
-            if (instanceMMS == null)
+            if (instancePMS == null)
             {
-                instanceMMS = new MainMenuState(game, graphics);
+                instancePMS = new PauseMenuState(game, graphics);
             }
-            return instanceMMS;
+            return instancePMS;
         }
          /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -53,7 +53,7 @@ namespace UltimateErasme
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
-            background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
+            //background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
             MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
             position = new Vector2(100, 100);
         }
@@ -111,7 +111,7 @@ namespace UltimateErasme
             int x = 300;
             int y = 150;
             Rectangle viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-            spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
+            //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             //beurk, c'est moche (et ça marche moyen ..), il faudrait trouver un autre moyen (moi je créerais une classe MenuItem, et chaque item vivrait sa vie)
             foreach (String textMenu in text)
             {
@@ -132,7 +132,6 @@ namespace UltimateErasme
         public override void MustChangeState(GameState futureState)
         {
             game.currentState = futureState;
-            game.currentState.LoadContent();
         }
     }
 }

@@ -31,9 +31,9 @@ namespace UltimateErasme
     /// </summary>
     public class UltimateErasme : GameState
     {
-        public GraphicsDeviceManager graphics;
+        GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch { get; set; }
-        public Rectangle viewportRect;
+        Rectangle viewportRect;
 
         public PlayersManager playerManager;
         public MechantManager mechantManager;
@@ -47,12 +47,7 @@ namespace UltimateErasme
         public ContentManager Content {get; set;}
         public GameComponentCollection Components { get; set; }
         private static UltimateErasme instanceUE;
-
-        public bool isPaused = false;
-        bool isPausedByGuide = false;
-        GameObject pauseImage;
-        
-
+              
         const int maxGamers = 16;
         const int maxLocalGamers = 1;
 
@@ -89,7 +84,7 @@ namespace UltimateErasme
         {
             if (instanceUE == null)
             {
-                return new UltimateErasme(game, graphics);
+                instanceUE = new UltimateErasme(game, graphics);
             }
             return instanceUE;
         }
@@ -118,10 +113,6 @@ namespace UltimateErasme
             LoadManagersThread = new Thread(new ThreadStart(this.InitManagers));
             LoadManagersThread.Start();
             
-
-            pauseImage = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Pause\Pause"));
-            pauseImage.Position = new Vector2(0, 80);
-
             logoSequenceSprites.Add(new GameObject(game.Content.Load<Texture2D>(@"Sprites\Logos\runs_great_on_corei7extreme")));
 
             networkFont = game.Content.Load<SpriteFont>("Fonts/NetworkFont");
@@ -170,7 +161,7 @@ namespace UltimateErasme
             // Allows the game to exit
             if (Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
-                MustChangeState(MainMenuState.getInstance(game, graphics));
+                MustChangeState(PauseMenuState.getInstance(game, graphics));
             }
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
@@ -223,25 +214,15 @@ namespace UltimateErasme
 
             keyboardTester.UpdatePreviousKeyboardState();
 
-            PauseManager(gameTime);
-
             NetworkSessionManager(gameTime);
 
-            if (!isPaused)
-            {
-                collisionsManager.Update(gameTime);
-                decorsManager.Update(gameTime);
-                playerManager.Update(gameTime);
-                mechantManager.Update(gameTime);
-                explosionManager.Update(gameTime);
-                xpManager.Update(gameTime);
-                //lifeManager.Update(gameTime);
-            }
-        }
-
-        public void SetPause(bool value)
-        {
-            isPaused = value;
+            collisionsManager.Update(gameTime);
+            decorsManager.Update(gameTime);
+            playerManager.Update(gameTime);
+            mechantManager.Update(gameTime);
+            explosionManager.Update(gameTime);
+            xpManager.Update(gameTime);
+            //lifeManager.Update(gameTime);
         }
 
         private void NetworkSessionManager(GameTime gameTime)
@@ -501,32 +482,6 @@ namespace UltimateErasme
             }
         }
 
-        private void PauseManager(GameTime gameTime)
-        {
-            if ((Keyboard.GetState().IsKeyDown(Keys.Pause) &&
-                previousKeyboardState.IsKeyUp(Keys.Pause)) ||
-                (Keyboard.GetState().IsKeyDown(Keys.P) &&
-                previousKeyboardState.IsKeyUp(Keys.P)))
-            {
-                isPaused = !isPaused;
-            }
-            else if (Guide.IsVisible)
-            {
-                isPaused = true;
-                isPausedByGuide = true;
-            }
-            else if (!Guide.IsVisible)
-            {
-                if (isPausedByGuide)
-                {
-                    isPausedByGuide = false;
-                    isPaused = false;
-                }
-            }
-
-            previousKeyboardState = Keyboard.GetState();
-        }
-
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
@@ -572,13 +527,7 @@ namespace UltimateErasme
             explosionManager.Draw(gameTime, spriteBatch);
             xpManager.Draw(gameTime, spriteBatch);
             lifeManager.Draw(spriteBatch);
-
-            //gestion de la pause
-            if (isPaused)
-            {
-                spriteBatch.Draw(pauseImage.Sprite, pauseImage.Position, null, Color.White, pauseImage.Rotation, Vector2.Zero, pauseImage.Scale, SpriteEffects.None, 0);
-            }
-
+            
             //affichage des erreurs reseau
             spriteBatch.DrawString(networkFont, errorMessage, new Vector2(20, 200), Color.Red);
 

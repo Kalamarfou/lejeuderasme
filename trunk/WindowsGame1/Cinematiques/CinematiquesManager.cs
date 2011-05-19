@@ -55,7 +55,6 @@ namespace UltimateErasme.Cinematiques
         {
             contentManager = game.Content;
             spriteBatch = new SpriteBatch(game.game.GraphicsDevice);
-            setPause = new SetPause(game.SetPause);
             soundManager = game.playerManager.premierJoueur.soundManager;
             dialogueBackground = game.Content.Load<Texture2D>(@"Sprites\Dialogues\Background");
             this.Initialize();
@@ -117,6 +116,7 @@ namespace UltimateErasme.Cinematiques
 				catch (Exception e) {
                     GameObject personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
                     personnages.Add(personnage);
+                    Console.WriteLine(e);
                 }
             }
             else
@@ -134,6 +134,7 @@ namespace UltimateErasme.Cinematiques
                 catch (Exception e)
                 {
                     timingPersonnage = 600;
+                    Console.WriteLine(e);
                 }
                 
             }
@@ -161,6 +162,7 @@ namespace UltimateErasme.Cinematiques
                 catch (Exception e)
                 {
                     timingDefilement = 70;
+                    Console.WriteLine(e);
                 }
 
             }
