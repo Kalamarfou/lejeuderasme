@@ -17,7 +17,7 @@ namespace UltimateErasme
         SpriteFont font;
         List<String> text = new List<String>() { "Continuer", "Quitter" };
         Vector2 position;
-        //GameObject background;
+        GameObject background;
         GameObject MousePointer;
         private static PauseMenuState instancePMS;
 
@@ -53,7 +53,7 @@ namespace UltimateErasme
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
-            //background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
+            background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
             MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
             position = new Vector2(100, 100);
         }
@@ -111,7 +111,7 @@ namespace UltimateErasme
             int x = 300;
             int y = 150;
             Rectangle viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-            //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
+            spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             //beurk, c'est moche (et ça marche moyen ..), il faudrait trouver un autre moyen (moi je créerais une classe MenuItem, et chaque item vivrait sa vie)
             foreach (String textMenu in text)
             {
