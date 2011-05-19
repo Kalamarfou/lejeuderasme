@@ -159,7 +159,7 @@ namespace UltimateErasme
         public override void Update(GameTime gameTime)
         {
             // Allows the game to exit
-            if (Keyboard.GetState().IsKeyDown(Keys.Escape))
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
             {
                 MustChangeState(PauseMenuState.getInstance(game, graphics));
             }
