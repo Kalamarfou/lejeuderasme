@@ -20,6 +20,7 @@ using UltimateErasme.Life;
 using UltimateErasme.Cinematiques;
 using System.Xml.Linq;
 using UltimateErasme.InputTesters;
+using UltimateErasme.MenuState;
 
 namespace UltimateErasme
 {

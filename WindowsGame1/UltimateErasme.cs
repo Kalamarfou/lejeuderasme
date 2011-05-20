@@ -23,6 +23,7 @@ using UltimateErasme.InputTesters;
 using System.Collections;
 using System.Management;
 using System.Management.Instrumentation;
+using UltimateErasme.MenuState;
 
 namespace UltimateErasme
 {
