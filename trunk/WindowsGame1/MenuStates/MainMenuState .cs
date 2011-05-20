@@ -2,41 +2,48 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using UltimateErasme.GameObjects;
 using Microsoft.Xna.Framework.Input;
 
-namespace UltimateErasme
+namespace UltimateErasme.MenuState
 {
-    class PauseMenuState : GameState
+    class MainMenuState : GameState
     {
-        GraphicsDeviceManager graphics;
-        Game game;
+        public GraphicsDeviceManager graphics;
+        public Game game;
         SpriteBatch spriteBatch;
         SpriteFont font;
+
         List<ButtonMenu> buttonMenu;
+        Vector2 position;
         GameObject background;
         GameObject MousePointer;
-        private static PauseMenuState instancePMS;
+        private static MainMenuState instanceMMS;
 
-        private PauseMenuState(Game game, GraphicsDeviceManager graphics)
+        private MainMenuState(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             this.graphics = graphics;
+            
             buttonMenu = new List<ButtonMenu>();
-            ButtonMenu bouton = new ButtonMenu("Continuer", Color.Black, Color.DarkGreen, new Vector2(300, 150));
+            ButtonMenu bouton = new ButtonMenu("Jouer", Color.Red, Color.DarkGreen, new Vector2(300, 350));
             buttonMenu.Add(bouton);
-            bouton = new ButtonMenu("Quitter", Color.Black, Color.DarkGreen, new Vector2(300, 200));
+            bouton = new ButtonMenu("Créer son Personnage", Color.Red, Color.DarkGreen, new Vector2(300, 400));
+            buttonMenu.Add(bouton);
+            bouton = new ButtonMenu("Options", Color.Red, Color.DarkGreen, new Vector2(300, 450));
+            buttonMenu.Add(bouton);
+            bouton = new ButtonMenu("Quitter", Color.Red, Color.DarkGreen, new Vector2(300, 500));
             buttonMenu.Add(bouton);
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics) {
-            if (instancePMS == null)
+            if (instanceMMS == null)
             {
-                instancePMS = new PauseMenuState(game, graphics);
+                instanceMMS = new MainMenuState(game, graphics);
             }
-            return instancePMS;
+            return instanceMMS;
         }
          /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -57,8 +64,9 @@ namespace UltimateErasme
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
-            background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
+            background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Menu\titre"));
             MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
+            position = new Vector2(100, 100);
         }
 
         /// <summary>
@@ -107,7 +115,6 @@ namespace UltimateErasme
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
             Rectangle viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
-
             foreach (ButtonMenu button in buttonMenu)
             {
                 if (button.isNear())
@@ -126,6 +133,7 @@ namespace UltimateErasme
         public override void MustChangeState(GameState futureState)
         {
             game.currentState = futureState;
+            game.currentState.LoadContent();
         }
     }
 }
