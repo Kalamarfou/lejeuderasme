@@ -39,6 +39,7 @@ namespace UltimateErasme.MenuStates
         GameObject personnage;
         String choixSelect;
         DescriptionTypes descriptionTypes;
+        List<DescriptionTypes> previousTypes;
 
 
         private CreatePersoMenuState(Game game, GraphicsDeviceManager graphics)
@@ -48,6 +49,8 @@ namespace UltimateErasme.MenuStates
 
             descriptionTypes = new TypeRace(game);
             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+
+            previousTypes = new List<DescriptionTypes>();
             
         }
 
@@ -88,6 +91,7 @@ namespace UltimateErasme.MenuStates
                 {
                     if (button.getText().Equals("Annuler"))
                     {
+                        Thread.Sleep(300);
                         MustChangeState(MainMenuState.getInstance(game, graphics));
                     }
                     else if (button.getText().Equals("Recommandé"))
@@ -96,14 +100,20 @@ namespace UltimateErasme.MenuStates
                     }
                     else if (button.getText().Equals("Retour"))
                     {
-                        //TODO : Gerer le retour pour de vrai...
-                        descriptionTypes = new TypeRace(game);
-                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+                        Thread.Sleep(300);
+                        if (previousTypes.Count > 0)
+                        {
+                            descriptionTypes = previousTypes.Last();
+                            previousTypes.Remove(descriptionTypes);
+                            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+                        }
                     }
-                    else 
+                    else //Suivant
                     {
+                        Thread.Sleep(300);
+                        previousTypes.Add(descriptionTypes);
                         descriptionTypes = new TypeClasse(game);
-                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);                        
                     }
                 }
             }
