@@ -93,6 +93,10 @@ namespace UltimateErasme.MenuState
                     {
                         game.Exit();
                     }
+                    else if (button.getText().Equals("Créer son Personnage"))
+                    {
+                        MustChangeState(CreatePersoMenuState.getInstance(game, graphics));
+                    }
                     else if (button.getText().Equals("Options")){
                         MustChangeState(OptionsMenuState.getInstance(game, graphics));
                     }
