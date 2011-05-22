@@ -38,39 +38,17 @@ namespace UltimateErasme.MenuStates
         Dictionary<String, List<Descriptions>> descriptions;
         GameObject personnage;
         String choixSelect;
+        DescriptionTypes descriptionTypes;
+
 
         private CreatePersoMenuState(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             this.graphics = graphics;
 
-            listeButtons = new List<ButtonMenu>();
-            ButtonMenu button = new ButtonMenu("Annuler", Color.DarkBlue, Color.DarkGreen, new Vector2(10, (game.GraphicsDevice.Viewport.Height) - 40));
-            listeButtons.Add(button);
-            button = new ButtonMenu("Recommandé", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 350, (game.GraphicsDevice.Viewport.Height) - 40));
-            listeButtons.Add(button);
-            button = new ButtonMenu("Suivant", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 150, (game.GraphicsDevice.Viewport.Height) - 40));
-            listeButtons.Add(button);
-
-            listeChoix = new List<ButtonMenu>();
-            descriptions = new Dictionary<string, List<Descriptions>>();
-            List<Descriptions> ListeDescriptions = new List<Descriptions>();
-
-            ButtonMenu choix = new ButtonMenu("Licorne", Color.DarkBlue, Color.DarkGreen, new Vector2(400, 100));
-            listeChoix.Add(choix);
-
-            Descriptions description = new Descriptions("Apparence", "Une corne magique");
-            ListeDescriptions.Add(description);
-            descriptions.Add(choix.getText(), ListeDescriptions);
-
-            choix = new ButtonMenu("Vertuchoux", Color.DarkBlue, Color.DarkGreen, new Vector2(400, 200));
-            listeChoix.Add(choix);
-            description = new Descriptions("Apparence", "Un choux gigantesque");
-            ListeDescriptions = new List<Descriptions>();
-            ListeDescriptions.Add(description);
-            descriptions.Add(choix.getText(), ListeDescriptions);
-
-            choixSelect = "Licorne";
+            descriptionTypes = new TypeRace(game);
+            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+            
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics)
@@ -116,9 +94,16 @@ namespace UltimateErasme.MenuStates
                     {
                         //TODO
                     }
-                    else
+                    else if (button.getText().Equals("Retour"))
                     {
-                        //TODO
+                        //TODO : Gerer le retour pour de vrai...
+                        descriptionTypes = new TypeRace(game);
+                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+                    }
+                    else 
+                    {
+                        descriptionTypes = new TypeClasse(game);
+                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
                     }
                 }
             }
@@ -142,15 +127,15 @@ namespace UltimateErasme.MenuStates
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             
             //Affichage de la partie gauche : Personnage
-            viewportRect = new Rectangle(45, 150, (game.GraphicsDevice.Viewport.Width)/3, (game.GraphicsDevice.Viewport.Height)/3);
+            viewportRect = new Rectangle(0, 0, 3 * game.GraphicsDevice.Viewport.Width/8, 9 * game.GraphicsDevice.Viewport.Height/10);
             DrawPersonnage(viewportRect, spriteBatch);
             
             //Afficher la partie du milieu : Liste des choix
-            viewportRect = new Rectangle((game.GraphicsDevice.Viewport.Width) / 3, 0, (game.GraphicsDevice.Viewport.Width) / 3, (game.GraphicsDevice.Viewport.Height) / 3);
+            viewportRect = new Rectangle(3 * game.GraphicsDevice.Viewport.Width / 8, 0, 2 * game.GraphicsDevice.Viewport.Width / 8, 9 * game.GraphicsDevice.Viewport.Height / 10);
             DrawChoix(spriteBatch);
             
             //Afficher la partie de droite : Description
-            viewportRect = new Rectangle(2 * (game.GraphicsDevice.Viewport.Width) / 3, 0, (game.GraphicsDevice.Viewport.Width) / 3, (game.GraphicsDevice.Viewport.Height) / 3);
+            viewportRect = new Rectangle(5 * game.GraphicsDevice.Viewport.Width / 8, 0, 3 * game.GraphicsDevice.Viewport.Width / 8, 9 * game.GraphicsDevice.Viewport.Height / 10);
             DrawDescription(choixSelect, viewportRect, spriteBatch);
 
             //Afficher la partie basse : Boutons
@@ -180,14 +165,13 @@ namespace UltimateErasme.MenuStates
             List<Descriptions> descriptionChoice;
             descriptions.TryGetValue(choix, out descriptionChoice);
 
-            //TODO : Faire des VRAIS TRUCS
             //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
-            float y = 50;
+            float y = 20;
             foreach (Descriptions description in descriptionChoice)
             {
-                spriteBatch.DrawString(font, description.titre, new Vector2(500, y), Color.DarkBlue);
-                spriteBatch.DrawString(font, description.description, new Vector2(500, y + 50), Color.DarkBlue);
-                y += 100;
+                spriteBatch.DrawString(font, description.titre, new Vector2(viewportRect.X, y), Color.DarkBlue);
+                spriteBatch.DrawString(font, description.description, new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
+                y += 20;
             }
         }
 
@@ -195,7 +179,7 @@ namespace UltimateErasme.MenuStates
         {
             foreach (ButtonMenu button in listeChoix)
             {
-                if (button.isNear())
+                if (button.isNear() || button.getText().Equals(choixSelect))
                 {
                     spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
                 }
