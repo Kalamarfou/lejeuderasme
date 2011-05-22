@@ -129,6 +129,7 @@
     <Compile Include="Cinematiques\DialogueElement.cs" />
     <Compile Include="Cinematiques\Reponse.cs" />
     <Compile Include="MenuStates\CreatePersoMenuState.cs" />
+    <Compile Include="MenuStates\DescriptionTypes.cs" />
     <Compile Include="MenuStates\ListeMenu.cs" />
     <Compile Include="MenuStates\MainMenuState .cs" />
     <Compile Include="ClassesInternet\ExplosionParticleSystem.cs" />
