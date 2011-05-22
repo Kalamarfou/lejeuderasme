@@ -124,10 +124,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ButtonMenu.cs" />
+    <Compile Include="MenuStates\ButtonMenu.cs" />
     <Compile Include="Cinematiques\CinematiquesManager.cs" />
     <Compile Include="Cinematiques\DialogueElement.cs" />
     <Compile Include="Cinematiques\Reponse.cs" />
+    <Compile Include="MenuStates\ListeMenu.cs" />
     <Compile Include="MenuStates\MainMenuState .cs" />
     <Compile Include="ClassesInternet\ExplosionParticleSystem.cs" />
     <Compile Include="ClassesInternet\ExplosionSmokeParticleSystem.cs" />
@@ -169,7 +170,7 @@
     <Compile Include="InputTesters\GamePadTester.cs" />
     <Compile Include="InputTesters\KeyboardTester.cs" />
     <Compile Include="Life\LifeEvents.cs" />
-    <Compile Include="MenuStates\OptionsMenuStatecs.cs" />
+    <Compile Include="MenuStates\OptionsMenuState.cs" />
     <Compile Include="Network\NetworkedErasme.cs" />
     <Compile Include="MenuStates\PauseMenuState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UltimateErasme.GameObjects;
 using Microsoft.Xna.Framework.Input;
+using UltimateErasme.MenuStates;
+using System.Threading;
 
 namespace UltimateErasme.MenuState
 {
@@ -17,7 +19,6 @@ namespace UltimateErasme.MenuState
         SpriteFont font;
 
         List<ButtonMenu> buttonMenu;
-        Vector2 position;
         GameObject background;
         GameObject MousePointer;
         private static MainMenuState instanceMMS;
@@ -66,7 +67,6 @@ namespace UltimateErasme.MenuState
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Menu\titre"));
             MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
-            position = new Vector2(100, 100);
         }
 
         /// <summary>
@@ -93,6 +93,9 @@ namespace UltimateErasme.MenuState
                     {
                         game.Exit();
                     }
+                    else if (button.getText().Equals("Options")){
+                        MustChangeState(OptionsMenuState.getInstance(game, graphics));
+                    }
                     else
                     {
                         MustChangeState(UltimateErasme.getInstance(game, graphics));
@@ -109,7 +112,6 @@ namespace UltimateErasme.MenuState
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Draw(GameTime gameTime)
         {
-
             //init
             game.GraphicsDevice.Clear(Color.Red);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
@@ -132,6 +134,7 @@ namespace UltimateErasme.MenuState
 
         public override void MustChangeState(GameState futureState)
         {
+            Thread.Sleep(300);
             game.currentState = futureState;
             game.currentState.LoadContent();
         }
