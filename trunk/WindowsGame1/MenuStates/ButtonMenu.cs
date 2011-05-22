@@ -27,8 +27,8 @@ namespace UltimateErasme
         {
             if (((Mouse.GetState().LeftButton == ButtonState.Pressed)
                 || (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
-                && (Math.Abs(Mouse.GetState().X - position.X) < 80)
-                && (Math.Abs(Mouse.GetState().Y - position.Y) < 25))
+                && (Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 9))
+                && (Math.Abs(Mouse.GetState().Y - position.Y) < 30))
             {
                 return true;
             }
@@ -37,8 +37,8 @@ namespace UltimateErasme
 
         public Boolean isNear()
         {
-            return ((Math.Abs(Mouse.GetState().X - position.X) < 80)
-                && (Math.Abs(Mouse.GetState().Y - position.Y) < 25)) ;
+            return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 9))
+                && (Math.Abs(Mouse.GetState().Y - position.Y) < 30)) ;
         }
 
         public String getText()
