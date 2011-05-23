@@ -8,19 +8,20 @@ namespace UltimateErasme.MenuStates
 {
     abstract class DescriptionTypes
     {
-        public abstract void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect);
+        public abstract void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre);
     }
 
     class TypeRace : DescriptionTypes
     {
         Game game;
+        public String choixFinal {get; set; } //TODO ?
 
         public TypeRace(Game game)
         {
             this.game = game;
         }
 
-        public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect)
+        public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre)
         {
 
             listeButtons = new List<ButtonMenu>();
@@ -36,7 +37,7 @@ namespace UltimateErasme.MenuStates
 
             List<Descriptions> ListeDescriptions = new List<Descriptions>();
 
-            ButtonMenu choix = new ButtonMenu("Licorne", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 50));
+            ButtonMenu choix = new ButtonMenu("Licorne", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width/10));
             listeChoix.Add(choix);
             Descriptions description = new Descriptions("Apparence", "Une corne magique et un texttttttttttttttttttttttttttttteeeeeeeeeeeeeeeeeeeeeeeeee supppppperrrrrrrrrrrrrrrrrrrr lonnnnnnnnnnnnnnnggggggggggggg");
             ListeDescriptions.Add(description);
@@ -44,28 +45,28 @@ namespace UltimateErasme.MenuStates
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Vertuchoux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 100));
+            choix = new ButtonMenu("Vertuchoux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
             listeChoix.Add(choix);
             description = new Descriptions("Apparence", "Un choux gigantesque");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Elfe de la Mocheté", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 150));
+            choix = new ButtonMenu("Elfe de la Mocheté", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
             listeChoix.Add(choix);
             description = new Descriptions("Apparence", "Juste moche.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Poney", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 200));
+            choix = new ButtonMenu("Poney", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
             listeChoix.Add(choix);
             description = new Descriptions("Apparence", "Une jolie crinière");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Erasme pur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 250));
+            choix = new ButtonMenu("Erasme pur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
             listeChoix.Add(choix);
             description = new Descriptions("Phrase préférée", "Blup");
             ListeDescriptions = new List<Descriptions>();
@@ -73,6 +74,7 @@ namespace UltimateErasme.MenuStates
             descriptions.Add(choix.getText(), ListeDescriptions);
 
             choixSelect = "Erasme pur";
+            titre = "CHOIX DE LA RACE";
         }
     }
 
@@ -85,7 +87,7 @@ namespace UltimateErasme.MenuStates
             this.game = game;
         }
 
-        public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect)
+        public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre)
         {
 
             listeButtons = new List<ButtonMenu>();
@@ -103,34 +105,34 @@ namespace UltimateErasme.MenuStates
 
             List<Descriptions> ListeDescriptions = new List<Descriptions>();
 
-            ButtonMenu choix = new ButtonMenu("Le mouleux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 50));
+            ButtonMenu choix = new ButtonMenu("Le mouleux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width /10));
             listeChoix.Add(choix);
             Descriptions description = new Descriptions("Avantage", "Une moule incomparable");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le gacheur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 100));
+            choix = new ButtonMenu("Le gacheur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width/10 + 50));
             listeChoix.Add(choix);
             description = new Descriptions("Avantage", "Aucun");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le jumeau", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 150));
+            choix = new ButtonMenu("Le jumeau", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
             listeChoix.Add(choix);
             description = new Descriptions("Avantage", "N'a pas besoin de manger");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le paumé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 200));
+            choix = new ButtonMenu("Le paumé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
             listeChoix.Add(choix);
             description = new Descriptions("Avantage", "Des évènements inédits vous attendent");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le raleur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, 250));
+            choix = new ButtonMenu("Le raleur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
             listeChoix.Add(choix);
             description = new Descriptions("Avantage", "Aucun");
             ListeDescriptions = new List<Descriptions>();
@@ -138,6 +140,7 @@ namespace UltimateErasme.MenuStates
             descriptions.Add(choix.getText(), ListeDescriptions);
 
             choixSelect = "Le gacheur";
+            titre = "CHOIX DE LA CLASSE";
         }
     }
 }

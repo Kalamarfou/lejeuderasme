@@ -38,6 +38,7 @@ namespace UltimateErasme.MenuStates
         Dictionary<String, List<Descriptions>> descriptions;
         GameObject personnage;
         String choixSelect;
+        String titre;
         DescriptionTypes descriptionTypes;
         List<DescriptionTypes> previousTypes;
 
@@ -48,7 +49,7 @@ namespace UltimateErasme.MenuStates
             this.graphics = graphics;
 
             descriptionTypes = new TypeRace(game);
-            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
 
             previousTypes = new List<DescriptionTypes>();
             
@@ -105,7 +106,7 @@ namespace UltimateErasme.MenuStates
                         {
                             descriptionTypes = previousTypes.Last();
                             previousTypes.Remove(descriptionTypes);
-                            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);
+                            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
                         }
                     }
                     else //Suivant
@@ -113,7 +114,7 @@ namespace UltimateErasme.MenuStates
                         Thread.Sleep(300);
                         previousTypes.Add(descriptionTypes);
                         descriptionTypes = new TypeClasse(game);
-                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect);                        
+                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);                        
                     }
                 }
             }
@@ -137,19 +138,22 @@ namespace UltimateErasme.MenuStates
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             
             //Affichage de la partie gauche : Personnage
-            viewportRect = new Rectangle(0, 0, 3 * game.GraphicsDevice.Viewport.Width/8, 9 * game.GraphicsDevice.Viewport.Height/10);
+            viewportRect = new Rectangle(0, game.GraphicsDevice.Viewport.Height / 10, 3 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
             DrawPersonnage(viewportRect, spriteBatch);
             
             //Afficher la partie du milieu : Liste des choix
-            viewportRect = new Rectangle(3 * game.GraphicsDevice.Viewport.Width / 8, 0, 2 * game.GraphicsDevice.Viewport.Width / 8, 9 * game.GraphicsDevice.Viewport.Height / 10);
+            viewportRect = new Rectangle(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Height / 10, 2 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
             DrawChoix(spriteBatch);
             
             //Afficher la partie de droite : Description
-            viewportRect = new Rectangle(5 * game.GraphicsDevice.Viewport.Width / 8, 0, 3 * game.GraphicsDevice.Viewport.Width / 8, 9 * game.GraphicsDevice.Viewport.Height / 10);
+            viewportRect = new Rectangle(5 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Height / 10, 3 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
             DrawDescription(choixSelect, viewportRect, spriteBatch);
 
             //Afficher la partie basse : Boutons
             DrawButtons(spriteBatch);
+
+            //Afficher la partie haute : Titre
+            DrawTitle(spriteBatch);
 
             spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
             spriteBatch.End();
@@ -170,18 +174,23 @@ namespace UltimateErasme.MenuStates
             }
         }
 
+        private void DrawTitle(SpriteBatch spriteBatch)
+        {
+            spriteBatch.DrawString(font, titre, new Vector2(game.GraphicsDevice.Viewport.Height / 2, game.GraphicsDevice.Viewport.Height / 20), Color.DarkRed);
+        }
+
         private void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch)
         {
             List<Descriptions> descriptionChoice;
             descriptions.TryGetValue(choix, out descriptionChoice);
 
             //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
-            float y = 20;
+            float y = game.GraphicsDevice.Viewport.Height / 10;
             foreach (Descriptions description in descriptionChoice)
             {
                 spriteBatch.DrawString(font, description.titre, new Vector2(viewportRect.X, y), Color.DarkBlue);
                 spriteBatch.DrawString(font, description.description, new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
-                y += 20;
+                y += 40;
             }
         }
 
@@ -200,7 +209,7 @@ namespace UltimateErasme.MenuStates
             }
         }
 
-        public void DrawPersonnage(Rectangle viewportRect, SpriteBatch spriteBatch)
+        private void DrawPersonnage(Rectangle viewportRect, SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(personnage.Sprite, viewportRect, Color.White);
         }
