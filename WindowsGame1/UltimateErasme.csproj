@@ -173,6 +173,7 @@
     <Compile Include="InputTesters\KeyboardTester.cs" />
     <Compile Include="Life\LifeEvents.cs" />
     <Compile Include="MenuStates\OptionsMenuState.cs" />
+    <Compile Include="MenuStates\PersoFinal.cs" />
     <Compile Include="Network\NetworkedErasme.cs" />
     <Compile Include="MenuStates\PauseMenuState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

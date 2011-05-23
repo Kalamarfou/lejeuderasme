@@ -41,17 +41,23 @@ namespace UltimateErasme.MenuStates
         String titre;
         DescriptionTypes descriptionTypes;
         List<DescriptionTypes> previousTypes;
-
-
+        List<DescriptionTypes> followingTypes;
+        PersoFinal persoFinal;
+        
         private CreatePersoMenuState(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             this.graphics = graphics;
 
+            previousTypes = new List<DescriptionTypes>();
+            followingTypes = new List<DescriptionTypes>();
+            descriptionTypes = new TypeClasse(game);
+            followingTypes.Add(descriptionTypes);
+
             descriptionTypes = new TypeRace(game);
             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
 
-            previousTypes = new List<DescriptionTypes>();
+            persoFinal = new PersoFinal();
             
         }
 
@@ -97,24 +103,30 @@ namespace UltimateErasme.MenuStates
                     }
                     else if (button.getText().Equals("Recommandé"))
                     {
-                        //TODO
+                        choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
                     }
                     else if (button.getText().Equals("Retour"))
                     {
                         Thread.Sleep(300);
                         if (previousTypes.Count > 0)
                         {
+                            followingTypes.Add(descriptionTypes);
                             descriptionTypes = previousTypes.Last();
                             previousTypes.Remove(descriptionTypes);
                             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
+                            choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
                         }
                     }
                     else //Suivant
                     {
                         Thread.Sleep(300);
+                        //On met à jour le personnage final
+                        descriptionTypes.setValeurRecommande(persoFinal, choixSelect);
                         previousTypes.Add(descriptionTypes);
-                        descriptionTypes = new TypeClasse(game);
-                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);                        
+                        descriptionTypes = followingTypes.First();
+                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
+                        followingTypes.Remove(descriptionTypes);
+                        
                     }
                 }
             }
@@ -126,6 +138,7 @@ namespace UltimateErasme.MenuStates
                     choixSelect = button.getText();
                 }
             }
+
             MousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
         }
 
@@ -186,10 +199,29 @@ namespace UltimateErasme.MenuStates
 
             //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             float y = game.GraphicsDevice.Viewport.Height / 10;
+            int tailleRestante = 0, i = 0;
             foreach (Descriptions description in descriptionChoice)
             {
+                tailleRestante = description.description.Length;
+                i = 0;
                 spriteBatch.DrawString(font, description.titre, new Vector2(viewportRect.X, y), Color.DarkBlue);
-                spriteBatch.DrawString(font, description.description, new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
+                while (i < description.description.Length)
+                {
+                    int tailleMax = (viewportRect.Width / 10);
+                    if (tailleRestante > tailleMax)
+                    {
+                        spriteBatch.DrawString(font, description.description.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
+                        tailleRestante -= tailleMax;
+                        i += tailleMax;
+                    }
+                    else
+                    {
+                        spriteBatch.DrawString(font, description.description.Substring(i, tailleRestante), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
+                        i += tailleRestante;
+                        tailleRestante = 0;
+                    }
+                        y += 20;
+                }
                 y += 40;
             }
         }

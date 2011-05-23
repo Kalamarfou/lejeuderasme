@@ -9,6 +9,8 @@ namespace UltimateErasme.MenuStates
     abstract class DescriptionTypes
     {
         public abstract void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre);
+        public abstract String getValeurRecommande(PersoFinal persoFinal);
+        public abstract void setValeurRecommande(PersoFinal persoFinal, String value);
     }
 
     class TypeRace : DescriptionTypes
@@ -76,6 +78,15 @@ namespace UltimateErasme.MenuStates
             choixSelect = "Erasme pur";
             titre = "CHOIX DE LA RACE";
         }
+
+        public override String getValeurRecommande(PersoFinal persoFinal) {
+            return persoFinal.race;
+        }
+
+        public override void setValeurRecommande(PersoFinal persoFinal, String value)
+        {
+            persoFinal.race = value;
+        }
     }
 
     class TypeClasse : DescriptionTypes
@@ -141,6 +152,16 @@ namespace UltimateErasme.MenuStates
 
             choixSelect = "Le gacheur";
             titre = "CHOIX DE LA CLASSE";
+        }
+
+        public override String getValeurRecommande(PersoFinal persoFinal)
+        {
+            return persoFinal.classe;
+        }
+
+        public override void setValeurRecommande(PersoFinal persoFinal, String value)
+        {
+            persoFinal.classe = value;
         }
     }
 }
