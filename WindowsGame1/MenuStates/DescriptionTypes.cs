@@ -164,4 +164,80 @@ namespace UltimateErasme.MenuStates
             persoFinal.classe = value;
         }
     }
+
+    class TypeAlignement : DescriptionTypes
+    {
+        Game game;
+
+        public TypeAlignement(Game game)
+        {
+            this.game = game;
+        }
+
+        public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre)
+        {
+
+            listeButtons = new List<ButtonMenu>();
+            listeChoix = new List<ButtonMenu>();
+            descriptions = new Dictionary<string, List<Descriptions>>();
+
+            ButtonMenu button = new ButtonMenu("Annuler", Color.DarkBlue, Color.DarkGreen, new Vector2(10, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+            listeButtons.Add(button);
+            button = new ButtonMenu("Retour", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 550, (game.GraphicsDevice.Viewport.Height) - 40));
+            listeButtons.Add(button);
+            button = new ButtonMenu("Recommandé", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 350, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+            listeButtons.Add(button);
+            button = new ButtonMenu("Suivant", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 150, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+            listeButtons.Add(button);
+
+            List<Descriptions> ListeDescriptions = new List<Descriptions>();
+
+            ButtonMenu choix = new ButtonMenu("Loyal bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
+            listeChoix.Add(choix);
+            Descriptions description = new Descriptions("Avantage", "Une moule incomparable");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Le gacheur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
+            listeChoix.Add(choix);
+            description = new Descriptions("Avantage", "Aucun");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Le jumeau", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
+            listeChoix.Add(choix);
+            description = new Descriptions("Avantage", "N'a pas besoin de manger");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Le paumé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
+            listeChoix.Add(choix);
+            description = new Descriptions("Avantage", "Des évènements inédits vous attendent");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Le raleur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
+            listeChoix.Add(choix);
+            description = new Descriptions("Avantage", "Aucun");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choixSelect = "Le gacheur";
+            titre = "CHOIX DE L'ALIGNEMENT";
+        }
+
+        public override String getValeurRecommande(PersoFinal persoFinal)
+        {
+            return persoFinal.alignement;
+        }
+
+        public override void setValeurRecommande(PersoFinal persoFinal, String value)
+        {
+            persoFinal.alignement = value;
+        }
+    }
 }

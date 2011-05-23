@@ -35,7 +35,10 @@ namespace UltimateErasme.MenuStates
             race = raceRecommande[random.Next(5)];
 
             String[] classeRecommande = new String[] { "Le mouleux", "Le gacheur", "Le jumeau", "Le paumé", "Le raleur" };
-            classe = classeRecommande[random.Next(5)];    
+            classe = classeRecommande[random.Next(5)];
+
+            String[] alignmentRecommande = new String[] { "Le mouleux", "Le gacheur", "Le jumeau", "Le paumé", "Le raleur" };
+            alignement = alignmentRecommande[random.Next(5)];    
         }
 
 
