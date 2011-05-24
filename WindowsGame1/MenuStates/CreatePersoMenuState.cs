@@ -59,11 +59,13 @@ namespace UltimateErasme.MenuStates
             followingTypes.Add(descriptionTypes);
             descriptionTypes = new TypePersonnalise(game);
             followingTypes.Add(descriptionTypes);
+            descriptionTypes = new ResumeCreatePerso(game);
+            followingTypes.Add(descriptionTypes);
 
             descriptionTypes = new TypeRace(game);
             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
 
-            persoFinal = new PersoFinal();
+            persoFinal = PersoFinal.getInstance();
             
         }
 
@@ -123,7 +125,7 @@ namespace UltimateErasme.MenuStates
                             choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
                         }
                     }
-                    else //Suivant
+                    else if (button.getText().Equals("Suivant")) //Suivant
                     {
                         Thread.Sleep(300);
                         //On met à jour le personnage final
@@ -132,16 +134,21 @@ namespace UltimateErasme.MenuStates
                         descriptionTypes = followingTypes.First();
                         descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
                         followingTypes.Remove(descriptionTypes);
-                        
+                    }
+                    else
+                    {
+                        MustChangeState(MainMenuState.getInstance(game, graphics));
                     }
                 }
             }
-
-            foreach (ButtonMenu button in listeChoix)
+            if (listeChoix != null)
             {
-                if (button.isPressed())
+                foreach (ButtonMenu button in listeChoix)
                 {
-                    choixSelect = button.getText();
+                    if (button.isPressed())
+                    {
+                        choixSelect = button.getText();
+                    }
                 }
             }
 
@@ -158,98 +165,24 @@ namespace UltimateErasme.MenuStates
             
             //Affichage de la partie gauche : Personnage
             viewportRect = new Rectangle(0, game.GraphicsDevice.Viewport.Height / 10, 3 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
-            DrawPersonnage(viewportRect, spriteBatch);
+            descriptionTypes.DrawPersonnage(viewportRect, spriteBatch, personnage);
             
             //Afficher la partie du milieu : Liste des choix
             viewportRect = new Rectangle(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Height / 10, 2 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
-            DrawChoix(spriteBatch);
+            descriptionTypes.DrawChoix(spriteBatch, listeChoix, choixSelect, font);
             
             //Afficher la partie de droite : Description
             viewportRect = new Rectangle(5 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Height / 10, 3 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
-            DrawDescription(choixSelect, viewportRect, spriteBatch);
+            descriptionTypes.DrawDescription(choixSelect, viewportRect, spriteBatch, game, descriptions, font);
 
             //Afficher la partie basse : Boutons
-            DrawButtons(spriteBatch);
+            descriptionTypes.DrawButtons(spriteBatch, listeButtons, font);
 
             //Afficher la partie haute : Titre
-            DrawTitle(spriteBatch);
+            descriptionTypes.DrawTitle(spriteBatch, game, titre, font);
 
             spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
             spriteBatch.End();
-        }
-
-        private void DrawButtons(SpriteBatch spriteBatch)
-        {
-            foreach (ButtonMenu button in listeButtons)
-            {
-                if (button.isNear())
-                {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
-                }
-                else
-                {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
-                }
-            }
-        }
-
-        private void DrawTitle(SpriteBatch spriteBatch)
-        {
-            spriteBatch.DrawString(font, titre, new Vector2(game.GraphicsDevice.Viewport.Height / 2, game.GraphicsDevice.Viewport.Height / 20), Color.DarkRed);
-        }
-
-        private void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch)
-        {
-            List<Descriptions> descriptionChoice;
-            descriptions.TryGetValue(choix, out descriptionChoice);
-
-            //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
-            float y = game.GraphicsDevice.Viewport.Height / 10;
-            int tailleRestante = 0, i = 0;
-            foreach (Descriptions description in descriptionChoice)
-            {
-                tailleRestante = description.description.Length;
-                i = 0;
-                spriteBatch.DrawString(font, description.titre, new Vector2(viewportRect.X, y), Color.DarkBlue);
-                while (i < description.description.Length)
-                {
-                    int tailleMax = (viewportRect.Width / 10);
-                    if (tailleRestante > tailleMax)
-                    {
-                        spriteBatch.DrawString(font, description.description.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
-                        tailleRestante -= tailleMax;
-                        i += tailleMax;
-                    }
-                    else
-                    {
-                        spriteBatch.DrawString(font, description.description.Substring(i, tailleRestante), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
-                        i += tailleRestante;
-                        tailleRestante = 0;
-                    }
-                        y += 20;
-                }
-                y += 40;
-            }
-        }
-
-        private void DrawChoix(SpriteBatch spriteBatch)
-        {
-            foreach (ButtonMenu button in listeChoix)
-            {
-                if (button.isNear() || button.getText().Equals(choixSelect))
-                {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
-                }
-                else
-                {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
-                }
-            }
-        }
-
-        private void DrawPersonnage(Rectangle viewportRect, SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(personnage.Sprite, viewportRect, Color.White);
         }
 
         public override void MustChangeState(GameState futureState)
