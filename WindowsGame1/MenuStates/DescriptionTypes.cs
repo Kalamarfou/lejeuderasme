@@ -47,7 +47,7 @@ namespace UltimateErasme.MenuStates
                 spriteBatch.DrawString(font, description.titre, new Vector2(viewportRect.X, y), Color.DarkBlue);
                 while (i < description.description.Length)
                 {
-                    int tailleMax = (viewportRect.Width / 10);
+                    int tailleMax = (viewportRect.Width / 11);
                     if (tailleRestante > tailleMax)
                     {
                         spriteBatch.DrawString(font, description.description.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
@@ -66,20 +66,58 @@ namespace UltimateErasme.MenuStates
             }
         }
 
-        public virtual void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, String choixSelect, SpriteFont font)
+        public virtual void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)
         {
             if (listeChoix != null)
             {
+                float y = 0;
                 foreach (ButtonMenu button in listeChoix)
                 {
+                    String texte = button.getText();
+                    int tailleRestante = texte.Length;
+                    int i = 0;
+
                     if (button.isNear() || button.getText().Equals(choixSelect))
                     {
-                        spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
+                        while (i < texte.Length)
+                        {
+                            int tailleMax = (viewportRect.Width / 11);
+                            if (tailleRestante > tailleMax)
+                            {
+                                spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(button.getX(), y + button.getY()), button.getOnClickColor());
+                                tailleRestante -= tailleMax;
+                                i += tailleMax;
+                            }
+                            else
+                            {
+                                spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(button.getX(), y + button.getY()), button.getOnClickColor());
+                                i += tailleRestante;
+                                tailleRestante = 0;
+                            }
+                            y += 20;
+                        }
                     }
                     else
                     {
-                        spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
+                        while (i < texte.Length)
+                        {
+                            int tailleMax = (viewportRect.Width / 11);
+                            if (tailleRestante > tailleMax)
+                            {
+                                spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(button.getX(), y + button.getY()), button.getColor());
+                                tailleRestante -= tailleMax;
+                                i += tailleMax;
+                            }
+                            else
+                            {
+                                spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(button.getX(), y + button.getY()), button.getColor());
+                                i += tailleRestante;
+                                tailleRestante = 0;
+                            }
+                            y += 20;
+                        }
                     }
+                    y -= 20;
                 }
             }
         }
