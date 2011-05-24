@@ -7,6 +7,8 @@ namespace UltimateErasme.MenuStates
 {
     class PersoFinal
     {
+        private static PersoFinal persoFinal;
+
         public String race { get; set; }
         public String classe { get; set; }
         public String alignement { get; set; }
@@ -27,7 +29,8 @@ namespace UltimateErasme.MenuStates
         Random random = new Random();
         int calculDeMoule = 2;
 
-        public PersoFinal()
+
+        private PersoFinal()
         {
             //Valeur du "recommandé" : aléatoire
             String[] raceRecommande = new String[] { "Licorne", "Vertuchoux", "Elfe de la Mocheté", "Poney", "Erasme pur" };
@@ -54,6 +57,14 @@ namespace UltimateErasme.MenuStates
             age = random.Next(8, 90);
             String[] histoireRecommande = new String[] { "Orphelin, j'ai passé une bonne partie de ma vie en forêt, elevé par des singes. C'est pourquoi je n'aime pas les poneys.", "Mon père était le maire de mon village. J'en ai été bannis à huit ans quand j'ai mis le feu à sa statue. J'ai alors parcouru le monde à dos de poney. J'adore les poneys.", "Mon histoire aurait pu être semblable à celle de tout un chacun, sauf que moi, j'ai su la transcender. Partout on m'idole. Je suis le Bassoul du jeu d'Erasme." };
             histoire = histoireRecommande[random.Next(3)];
+        }
+
+        public static PersoFinal getInstance() {
+            if (persoFinal == null)
+            {
+                persoFinal = new PersoFinal();
+            }
+            return persoFinal;
         }
 
         public void calculerForce()
