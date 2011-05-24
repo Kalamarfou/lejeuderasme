@@ -169,7 +169,7 @@ namespace UltimateErasme.MenuStates
             
             //Afficher la partie du milieu : Liste des choix
             viewportRect = new Rectangle(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Height / 10, 2 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
-            descriptionTypes.DrawChoix(spriteBatch, listeChoix, choixSelect, font);
+            descriptionTypes.DrawChoix(spriteBatch, listeChoix, viewportRect, game, choixSelect, font);
             
             //Afficher la partie de droite : Description
             viewportRect = new Rectangle(5 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Height / 10, 3 * game.GraphicsDevice.Viewport.Width / 8, 8 * game.GraphicsDevice.Viewport.Height / 10);
