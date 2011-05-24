@@ -30,10 +30,7 @@ namespace UltimateErasme.MenuStates
             listeButtons.Add(button);
 
             listeChoix = null;
-            descriptions = new Dictionary<string, List<Descriptions>>();
-            List<Descriptions> listeDescriptions = new List<Descriptions>();
-            Descriptions description = new Descriptions("Prénom", persoFinal.prenom);
-            listeDescriptions.Add(description);
+            descriptions = null;
 
             choixSelect = "résumé";
             titre = "RÉSUMÉ DE VOTRE PERSONNAGE";
@@ -47,11 +44,34 @@ namespace UltimateErasme.MenuStates
 
         public override void setValeurRecommande(PersoFinal persoFinal, String value)
         {
+            
         }
-        
+
 
         public override void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
         {
+            String texte = "Vous êtes donc un " + persoFinal.race + " avec pour classe : " + persoFinal.classe;
+            int tailleRestante = texte.Length;
+            int i = 0;
+            float y = game.GraphicsDevice.Viewport.Height / 10;
+            while (i < texte.Length)
+            {
+                int tailleMax = (viewportRect.Width / 10);
+                if (tailleRestante > tailleMax)
+                {
+                    spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
+                    tailleRestante -= tailleMax;
+                    i += tailleMax;
+                }
+                else
+                {
+                    spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
+                    i += tailleRestante;
+                    tailleRestante = 0;
+                }
+                y += 20;
+            }
+            y += 40;
         }
 
         public override void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, String choixSelect, SpriteFont font)
