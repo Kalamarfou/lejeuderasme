@@ -57,6 +57,8 @@ namespace UltimateErasme.MenuStates
             followingTypes.Add(descriptionTypes);
             descriptionTypes = new TypeDivinite(game);
             followingTypes.Add(descriptionTypes);
+            descriptionTypes = new TypePersonnalise(game);
+            followingTypes.Add(descriptionTypes);
 
             descriptionTypes = new TypeRace(game);
             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
