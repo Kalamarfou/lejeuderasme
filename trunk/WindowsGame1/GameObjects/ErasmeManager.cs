@@ -26,6 +26,8 @@ namespace UltimateErasme.GameObjects
         public Rectangle viewportRectPlus;
 
         public GameObject erasme;
+        //pour mettre les accessoires d'érasme
+        public ErasmeAccessoiresCollection ErasmeAccessoires { get; set; }
 
         public ControllerType controllerType = ControllerType.keyboardPlusXBoxControler1;
         public NombreDeJoueurs nombreDeJoueurs = NombreDeJoueurs.solo;
@@ -65,7 +67,9 @@ namespace UltimateErasme.GameObjects
             jumpManager = new ErasmeJumpManager(game, this);
             attackManager = new AttackManager(game, this);
             transformationManager = new TransformationManager(game, this);
+            ErasmeAccessoires = new ErasmeAccessoiresCollection();
 
+            ErasmeAccessoires.AddDirectFromTexture(game.Content.Load<Texture2D>(@"Sprites\Characters\Accessoires\criniere"));
         }
 
         public ErasmeManager()
@@ -99,6 +103,7 @@ namespace UltimateErasme.GameObjects
             buloManager.Update(gameTime, controllerType);
             transformationManager.Update(gameTime, controllerType);
             clignotageManager(gameTime);
+            ErasmeAccessoires.Update(gameTime, erasme.Position, erasme.Rotation);
             
         }
 
@@ -146,6 +151,10 @@ namespace UltimateErasme.GameObjects
             if (clignoteState  == ClignoteState.visible)
             {
                 spriteBatch.Draw(erasme.Sprite, erasme.Position, null, Color.White, erasme.Rotation, erasme.Center, erasme.Scale, SpriteEffects.None, 0);
+                if (transformationManager.erasmeForme == ErasmeForme.erasme || transformationManager.erasmeForme == ErasmeForme.voltaire )
+                {
+                    ErasmeAccessoires.Draw(gameTime, spriteBatch);
+                }
             }
             buloManager.Draw(gameTime, spriteBatch);            
         }

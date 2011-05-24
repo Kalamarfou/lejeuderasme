@@ -124,6 +124,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameObjects\ErasmeAccessoire.cs" />
+    <Compile Include="GameObjects\ErasmeAccessoiresCollection.cs" />
     <Compile Include="MenuStates\ButtonMenu.cs" />
     <Compile Include="Cinematiques\CinematiquesManager.cs" />
     <Compile Include="Cinematiques\DialogueElement.cs" />
