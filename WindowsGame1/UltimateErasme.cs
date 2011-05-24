@@ -24,6 +24,7 @@ using System.Collections;
 using System.Management;
 using System.Management.Instrumentation;
 using UltimateErasme.MenuState;
+using BloomPostprocess;
 
 namespace UltimateErasme
 {
@@ -73,12 +74,23 @@ namespace UltimateErasme
 
         String TestDetectionMatos = "";
 
+
+        //bloom
+        BloomComponent bloom;
+
+        int bloomSettingsIndex = 0;
+
         private UltimateErasme(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             Content = game.Content;
             Components =  game.Components;
             this.graphics = graphics;
+
+            //bloom
+            bloom = new BloomComponent((Microsoft.Xna.Framework.Game)game);
+
+            //Components.Add(bloom);
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics)

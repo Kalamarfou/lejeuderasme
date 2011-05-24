@@ -27,8 +27,8 @@ namespace UltimateErasme
     public class Game : Microsoft.Xna.Framework.Game
     {
         public GameState currentState {get; set;}
-        private List<GameState> states; 
-        private GraphicsDeviceManager graphics;
+        private List<GameState> states;
+        public static GraphicsDeviceManager graphics { get; set; }
 
 
         public Game() {
@@ -46,6 +46,8 @@ namespace UltimateErasme
             states.Add(UltimateErasme.getInstance(this, graphics));
             states.Add(PauseMenuState.getInstance(this, graphics));
         }
+
+        
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
