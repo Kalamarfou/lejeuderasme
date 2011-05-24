@@ -194,39 +194,67 @@ namespace UltimateErasme.MenuStates
 
             ButtonMenu choix = new ButtonMenu("Loyal bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
             listeChoix.Add(choix);
-            Descriptions description = new Descriptions("Avantage", "Une moule incomparable");
+            Descriptions description = new Descriptions("Caractéristiques", "S'inquiète de savoir si les autres mangent à leur faim et rendra toujours une bonne faveur.");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le gacheur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
+            choix = new ButtonMenu("Neutre bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
             listeChoix.Add(choix);
-            description = new Descriptions("Avantage", "Aucun");
+            description = new Descriptions("Caractéristiques", "S'inquiète de savoir si les autres mangent à leur faim et rendra parfois une bonne faveur.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le jumeau", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
+            choix = new ButtonMenu("Chaotique bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
             listeChoix.Add(choix);
-            description = new Descriptions("Avantage", "N'a pas besoin de manger");
+            description = new Descriptions("Caractéristiques", "S'inquiète de savoir si les autres mangent à leur faim mais ne rendra jamais une bonne faveur.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le paumé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
+            choix = new ButtonMenu("Loyal neutre", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
             listeChoix.Add(choix);
-            description = new Descriptions("Avantage", "Des évènements inédits vous attendent");
+            description = new Descriptions("Caractéristiques", "S'en fout un peu des autres mais rendra toujours une bonne faveur.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Le raleur", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
+            choix = new ButtonMenu("Neutre strict", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
             listeChoix.Add(choix);
-            description = new Descriptions("Avantage", "Aucun");
+            description = new Descriptions("Caractéristiques", "S'en fout un peu des autres et fera en sorte de ne pas avoir de faveur à rendre.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choixSelect = "Le gacheur";
+            choix = new ButtonMenu("Chaotique neutre", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 250));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "S'en fout un peu des autres et ne rendra jamais une bonne faveur.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Loyal mauvais", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 300));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "S'amuse à bruler les gens mais rend toujours les faveurs qu'on lui fait.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Neutre mauvais", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 350));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "S'amuse à bruler les gens mais pourra rendre les faveurs qu'on lui fait.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Chaotique mauvais", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 400));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "S'amuse à bruler les gens et ne rendra jamais une bonne faveur.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choixSelect = "Neutre strict";
             titre = "CHOIX DE L'ALIGNEMENT";
         }
 
@@ -238,6 +266,68 @@ namespace UltimateErasme.MenuStates
         public override void setValeurRecommande(PersoFinal persoFinal, String value)
         {
             persoFinal.alignement = value;
+        }
+    }
+
+    class TypeDivinite : DescriptionTypes
+    {
+        Game game;
+
+        public TypeDivinite(Game game)
+        {
+            this.game = game;
+        }
+
+        public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre)
+        {
+
+            listeButtons = new List<ButtonMenu>();
+            listeChoix = new List<ButtonMenu>();
+            descriptions = new Dictionary<string, List<Descriptions>>();
+
+            ButtonMenu button = new ButtonMenu("Annuler", Color.DarkBlue, Color.DarkGreen, new Vector2(10, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+            listeButtons.Add(button);
+            button = new ButtonMenu("Retour", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 550, (game.GraphicsDevice.Viewport.Height) - 40));
+            listeButtons.Add(button);
+            button = new ButtonMenu("Recommandé", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 350, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+            listeButtons.Add(button);
+            button = new ButtonMenu("Suivant", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 150, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+            listeButtons.Add(button);
+
+            List<Descriptions> ListeDescriptions = new List<Descriptions>();
+
+            ButtonMenu choix = new ButtonMenu("Bulo", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
+            listeChoix.Add(choix);
+            Descriptions description = new Descriptions("Représentation", "Une blouse éponge, un bec bunser dans une main et une éprouvette dans l'autre.");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Rael", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
+            listeChoix.Add(choix);
+            description = new Descriptions("Croyance", "Idéologie basée sur les extraterrestres.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Le dieu de la moule", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
+            listeChoix.Add(choix);
+            description = new Descriptions("Croyance", "Tout est possible, tout est réalisable. C'est le jeu de la vie.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choixSelect = "Bulo";
+            titre = "CHOIX DE VOTRE DIVINITÉ";
+        }
+
+        public override String getValeurRecommande(PersoFinal persoFinal)
+        {
+            return persoFinal.divinite;
+        }
+
+        public override void setValeurRecommande(PersoFinal persoFinal, String value)
+        {
+            persoFinal.divinite = value;
         }
     }
 }
