@@ -143,14 +143,16 @@ namespace UltimateErasme.MenuStates
             if (classe.Equals("Le raleur")) intelligence -= 1;
         }
 
-        public void calculerCaracteristiquesRecommandees()
+        public void calculerCaracteristiquesRecommandees(int resteAPlacer)
         {
-            force += 5;
-            constitution += 5;
-            dexterite += 5;
-            sagesse += 5;
-            charisme += 5;
-            intelligence += 5;
+            int mod = resteAPlacer % 6;
+
+            force += resteAPlacer / 6;
+            constitution += resteAPlacer / 6;
+            dexterite += resteAPlacer / 6;
+            sagesse += resteAPlacer / 6;
+            charisme += resteAPlacer / 6 + mod;
+            intelligence += resteAPlacer / 6;
         }
     }
 }

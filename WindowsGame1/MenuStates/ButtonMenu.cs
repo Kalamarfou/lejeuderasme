@@ -35,6 +35,12 @@ namespace UltimateErasme
             return false;
         }
 
+        public Boolean isNear(int espace)
+        {
+            return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 50))
+                && (Math.Abs(Mouse.GetState().Y - position.Y - 13) < espace));
+        }
+
         public Boolean isNear()
         {
             return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 9))
@@ -64,6 +70,16 @@ namespace UltimateErasme
         public Color getOnClickColor()
         {
             return onClickColor;
+        }
+
+        public void setX(float x)
+        {
+            position.X = x;
+        }
+
+        public void setY(float y)
+        {
+            position.Y = y;
         }
     }
 }
