@@ -50,7 +50,9 @@ namespace UltimateErasme.MenuStates
 
         public override void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
         {
-            String texte = "Vous êtes donc un " + persoFinal.race + " avec pour classe : " + persoFinal.classe + ". Vous n'avez de foi qu'en " + persoFinal.divinite + " et vous êtes " + persoFinal.personnalite + " et " + persoFinal.alignement;
+            String texte = "Vous êtes donc un " + persoFinal.race + " avec pour classe : " + persoFinal.classe + ". Vous n'avez de foi qu'en " + persoFinal.divinite + " et vous êtes " + persoFinal.personnalite + " et " + persoFinal.alignement + ". ";
+            texte += "Vous vous appelez : " + persoFinal.prenom + " " + persoFinal.nom + ". Votre âge est : " + persoFinal.age + ". Voici votre histoire : " + persoFinal.histoire;
+            texte += "FORCE : " + persoFinal.force + " DEXTÉRITÉ : " + persoFinal.dexterite + " CONSTITUTION : " + persoFinal.constitution + " INTELLIGENCE : " + persoFinal.intelligence + " SAGESSE : " + persoFinal.sagesse + " CHARISME : " + persoFinal.charisme;
             CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, game.GraphicsDevice.Viewport.Height / 10);
         }
 

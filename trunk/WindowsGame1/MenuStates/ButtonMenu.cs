@@ -35,9 +35,21 @@ namespace UltimateErasme
             return false;
         }
 
+        public Boolean isPressed(int espace)
+        {
+            if (((Mouse.GetState().LeftButton == ButtonState.Pressed)
+                || (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
+                && (Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 60))
+                && (Math.Abs(Mouse.GetState().Y - position.Y - 13) < espace))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public Boolean isNear(int espace)
         {
-            return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 50))
+            return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 60))
                 && (Math.Abs(Mouse.GetState().Y - position.Y - 13) < espace));
         }
 

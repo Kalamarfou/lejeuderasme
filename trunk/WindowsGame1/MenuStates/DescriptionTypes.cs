@@ -11,6 +11,7 @@ namespace UltimateErasme.MenuStates
         public abstract void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre);
         public abstract String getValeurRecommande(PersoFinal persoFinal);
         public abstract void setValeurRecommande(PersoFinal persoFinal, String value);
+        public virtual void changeCaracValue() { }
         
         public void DrawButtons(SpriteBatch spriteBatch, List<ButtonMenu> listeButtons, SpriteFont font)
         {
@@ -64,7 +65,7 @@ namespace UltimateErasme.MenuStates
                     {
                         y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, button.getColor(), y);
                     }
-                    y += 20;
+                    y += 30;
                 }
             }
         }
