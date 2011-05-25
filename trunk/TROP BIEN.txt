@@ -17,6 +17,18 @@ Appuie sur F pour t'amuser
 Appuie sur C pour lancer une cinematique et te sur amuser.
 
 
+érasme a une criniére si il est de race poney
+
+
+
+SHADERS ============================
+ tu peut appuyer sur E R et T pour jouer avec les shaders
+ya plus qu'a faire du propre, et modifier le code des shaders
+ E change de shader, R active désactive, et T montre les etapes intermediaires
+=============================================
+
+
+
 
 LAN ==================================
 

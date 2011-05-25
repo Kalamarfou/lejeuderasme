@@ -16,6 +16,7 @@ using UltimateErasme.ClassesDInternet.Particles;
 using UltimateErasme.Sound;
 using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
+using UltimateErasme.MenuStates;
 
 namespace UltimateErasme.GameObjects
 {
@@ -69,7 +70,10 @@ namespace UltimateErasme.GameObjects
             transformationManager = new TransformationManager(game, this);
             ErasmeAccessoires = new ErasmeAccessoiresCollection();
 
-            ErasmeAccessoires.AddDirectFromTexture(game.Content.Load<Texture2D>(@"Sprites\Characters\Accessoires\criniere"));
+            if (PersoFinal.getInstance().race.ToLower() == "poney")
+            {
+                ErasmeAccessoires.AddDirectFromTexture(game.Content.Load<Texture2D>(@"Sprites\Characters\Accessoires\criniere"));
+            } 
         }
 
         public ErasmeManager()
