@@ -39,29 +39,10 @@ namespace UltimateErasme.MenuStates
 
             //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             float y = game.GraphicsDevice.Viewport.Height / 10;
-            int tailleRestante = 0, i = 0;
             foreach (Descriptions description in descriptionChoice)
             {
-                tailleRestante = description.description.Length;
-                i = 0;
-                spriteBatch.DrawString(font, description.titre, new Vector2(viewportRect.X, y), Color.DarkBlue);
-                while (i < description.description.Length)
-                {
-                    int tailleMax = (viewportRect.Width / 11);
-                    if (tailleRestante > tailleMax)
-                    {
-                        spriteBatch.DrawString(font, description.description.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
-                        tailleRestante -= tailleMax;
-                        i += tailleMax;
-                    }
-                    else
-                    {
-                        spriteBatch.DrawString(font, description.description.Substring(i, tailleRestante), new Vector2(viewportRect.X, y + 20), Color.DarkBlue);
-                        i += tailleRestante;
-                        tailleRestante = 0;
-                    }
-                    y += 20;
-                }
+                CreatePersoMenuState.afficherTexte(description.titre, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+                y = CreatePersoMenuState.afficherTexte(description.description, game, viewportRect, spriteBatch, font, Color.DarkBlue, y + 20);
                 y += 40;
             }
         }
@@ -70,54 +51,20 @@ namespace UltimateErasme.MenuStates
         {
             if (listeChoix != null)
             {
-                float y = 0;
+                float y = viewportRect.Y;
                 foreach (ButtonMenu button in listeChoix)
                 {
                     String texte = button.getText();
-                    int tailleRestante = texte.Length;
-                    int i = 0;
-
+                    
                     if (button.isNear() || button.getText().Equals(choixSelect))
                     {
-                        while (i < texte.Length)
-                        {
-                            int tailleMax = (viewportRect.Width / 11);
-                            if (tailleRestante > tailleMax)
-                            {
-                                spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(button.getX(), y + button.getY()), button.getOnClickColor());
-                                tailleRestante -= tailleMax;
-                                i += tailleMax;
-                            }
-                            else
-                            {
-                                spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(button.getX(), y + button.getY()), button.getOnClickColor());
-                                i += tailleRestante;
-                                tailleRestante = 0;
-                            }
-                            y += 20;
-                        }
+                        y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, button.getOnClickColor(), y);
                     }
                     else
                     {
-                        while (i < texte.Length)
-                        {
-                            int tailleMax = (viewportRect.Width / 11);
-                            if (tailleRestante > tailleMax)
-                            {
-                                spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(button.getX(), y + button.getY()), button.getColor());
-                                tailleRestante -= tailleMax;
-                                i += tailleMax;
-                            }
-                            else
-                            {
-                                spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(button.getX(), y + button.getY()), button.getColor());
-                                i += tailleRestante;
-                                tailleRestante = 0;
-                            }
-                            y += 20;
-                        }
+                        y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, button.getColor(), y);
                     }
-                    y -= 20;
+                    y += 20;
                 }
             }
         }

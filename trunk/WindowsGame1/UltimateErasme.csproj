@@ -130,6 +130,7 @@
     <Compile Include="Cinematiques\CinematiquesManager.cs" />
     <Compile Include="Cinematiques\DialogueElement.cs" />
     <Compile Include="Cinematiques\Reponse.cs" />
+    <Compile Include="MenuStates\CaracteristiquesCreatePerso.cs" />
     <Compile Include="MenuStates\CreatePersoMenuState.cs" />
     <Compile Include="MenuStates\DescriptionTypes.cs" />
     <Compile Include="MenuStates\ListeMenu.cs" />

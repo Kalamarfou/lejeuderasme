@@ -59,6 +59,8 @@ namespace UltimateErasme.MenuStates
             followingTypes.Add(descriptionTypes);
             descriptionTypes = new TypePersonnalise(game);
             followingTypes.Add(descriptionTypes);
+            descriptionTypes = new CaracteristiquesCreatePerso(game);
+            followingTypes.Add(descriptionTypes);
             descriptionTypes = new ResumeCreatePerso(game);
             followingTypes.Add(descriptionTypes);
 
@@ -183,6 +185,31 @@ namespace UltimateErasme.MenuStates
 
             spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
             spriteBatch.End();
+        }
+
+        public static float afficherTexte(String texte, Game game, Rectangle viewportRect, SpriteBatch spriteBatch, SpriteFont font, Color color, float debut)
+        {
+            int tailleRestante = texte.Length;
+            int i = 0;
+            float y = debut;
+            while (i < texte.Length)
+            {
+                int tailleMax = (viewportRect.Width / 11);
+                if (tailleRestante > tailleMax)
+                {
+                    spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), color);
+                    tailleRestante -= tailleMax;
+                    i += tailleMax;
+                }
+                else
+                {
+                    spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(viewportRect.X, y + 20), color);
+                    i += tailleRestante;
+                    tailleRestante = 0;
+                }
+                y += 20;
+            }
+            return y;
         }
 
         public override void MustChangeState(GameState futureState)
