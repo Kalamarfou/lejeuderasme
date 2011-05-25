@@ -72,13 +72,18 @@ namespace UltimateErasme
         KeyboardState previousKeyboardState = Keyboard.GetState();
 #endif
 
+
         String TestDetectionMatos = "";
 
 
         //bloom
         BloomComponent bloom;
-
         int bloomSettingsIndex = 0;
+        KeyboardState lastKeyboardState = new KeyboardState();
+        GamePadState lastGamePadState = new GamePadState();
+        KeyboardState currentKeyboardState = new KeyboardState();
+        GamePadState currentGamePadState = new GamePadState();
+        //End bloom
 
         private UltimateErasme(Game game, GraphicsDeviceManager graphics)
         {
@@ -88,9 +93,10 @@ namespace UltimateErasme
             this.graphics = graphics;
 
             //bloom
-            bloom = new BloomComponent((Microsoft.Xna.Framework.Game)game);
-
-            //Components.Add(bloom);
+            Microsoft.Xna.Framework.Game tempGame = (Microsoft.Xna.Framework.Game)game;
+            bloom = new BloomComponent(tempGame);
+            bloom.Visible = false;
+            Components.Add(bloom);
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics)
@@ -176,6 +182,39 @@ namespace UltimateErasme
             {
                 MustChangeState(PauseMenuState.getInstance(game, graphics));
             }
+
+            //Bloom ==> Bouh, ecran noir
+            lastKeyboardState = currentKeyboardState;
+            lastGamePadState = currentGamePadState;
+            keyboardTester.GetKeyboard();
+
+            // Switch to the next bloom settings preset?
+            if (keyboardTester.test(Keys.E))
+            {
+                bloomSettingsIndex = (bloomSettingsIndex + 1) %
+                                     BloomSettings.PresetSettings.Length;
+
+                bloom.Settings = BloomSettings.PresetSettings[bloomSettingsIndex];
+                bloom.Visible = true;
+            }
+
+            // Toggle bloom on or off?
+            if (keyboardTester.test(Keys.R))
+            {
+                bloom.Visible = !bloom.Visible;
+            }
+
+            // Cycle through the intermediate buffer debug display modes?
+            if (keyboardTester.test(Keys.T))
+            {
+                bloom.Visible = true;
+                bloom.ShowBuffer++;
+
+                if (bloom.ShowBuffer > BloomComponent.IntermediateBuffer.FinalResult)
+                    bloom.ShowBuffer = 0;
+            }
+
+            //End bloom
             if (Keyboard.GetState().IsKeyDown(Keys.F3))
                 errorMessage = "";
 
@@ -503,6 +542,7 @@ namespace UltimateErasme
         {
 
             //init
+            bloom.BeginDraw();
             game.GraphicsDevice.Clear(Color.Red);
             if (logoSequenceFinished)
             {
@@ -512,7 +552,6 @@ namespace UltimateErasme
             {
                 DrawLogo(gameTime);
             }
-
         }
 
         private void DrawLogo(GameTime gameTime)
