@@ -127,7 +127,17 @@ namespace UltimateErasme.MenuStates
                             choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
                         }
                     }
-                    else if (button.getText().Equals("Suivant")) //Suivant
+                    else if (button.getText().Equals("Suivant"))
+                    {
+                        Thread.Sleep(300);
+                        //On met à jour le personnage final
+                        descriptionTypes.setValeurRecommande(persoFinal, choixSelect);
+                        previousTypes.Add(descriptionTypes);
+                        descriptionTypes = followingTypes.First();
+                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
+                        followingTypes.Remove(descriptionTypes);
+                    }
+                    else if (button.getText().Equals("Suivant"))
                     {
                         Thread.Sleep(300);
                         //On met à jour le personnage final
@@ -143,6 +153,7 @@ namespace UltimateErasme.MenuStates
                     }
                 }
             }
+            descriptionTypes.changeCaracValue();
             if (listeChoix != null)
             {
                 foreach (ButtonMenu button in listeChoix)
