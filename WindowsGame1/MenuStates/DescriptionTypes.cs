@@ -65,7 +65,7 @@ namespace UltimateErasme.MenuStates
                     {
                         y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, button.getColor(), y);
                     }
-                    y += 30;
+                    y += 40;
                 }
             }
         }
