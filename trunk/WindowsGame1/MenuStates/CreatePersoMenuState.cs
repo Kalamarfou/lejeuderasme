@@ -200,26 +200,67 @@ namespace UltimateErasme.MenuStates
 
         public static float afficherTexte(String texte, Game game, Rectangle viewportRect, SpriteBatch spriteBatch, SpriteFont font, Color color, float debut)
         {
-            int tailleRestante = texte.Length;
-            int i = 0;
+            String[] mots = texte.Split(' ');
+            String motToPrint;
             float y = debut;
-            while (i < texte.Length)
+            int tailleRestanteLigne = (viewportRect.Width / 11);
+            int idDebut = 0, tailleRestanteLigneFinale = 0;
+
+            foreach (String mot in mots)
             {
-                int tailleMax = (viewportRect.Width / 11);
-                if (tailleRestante > tailleMax)
+                if (mot.Equals(mots.Last()))
+                    motToPrint = mot;
+                else
+                    motToPrint = mot + " ";
+                int tailleMot = motToPrint.Length;
+                
+                if (tailleMot < tailleRestanteLigne)
                 {
-                    spriteBatch.DrawString(font, texte.Substring(i, tailleMax), new Vector2(viewportRect.X, y + 20), color);
-                    tailleRestante -= tailleMax;
-                    i += tailleMax;
+                    spriteBatch.DrawString(font, motToPrint, new Vector2(viewportRect.X + (viewportRect.Width - 11 * tailleRestanteLigne), y), color);
+                    tailleRestanteLigne -= tailleMot;
+                    idDebut += tailleMot;
+                }
+                else if (tailleMot < viewportRect.Width / 11)
+                {
+                    y += 20;
+                    spriteBatch.DrawString(font, motToPrint, new Vector2(viewportRect.X, y), color);
+                    idDebut += tailleMot;
+                    tailleRestanteLigne = viewportRect.Width / 11 - tailleMot;
                 }
                 else
                 {
-                    spriteBatch.DrawString(font, texte.Substring(i, tailleRestante), new Vector2(viewportRect.X, y + 20), color);
-                    i += tailleRestante;
-                    tailleRestante = 0;
+                    //Mot plus grand qu'une ligne
+                    y = afficherCaractParCaract(motToPrint, game, viewportRect.X, viewportRect.X + (viewportRect.Width - 11 * tailleRestanteLigne), y, tailleRestanteLigne, viewportRect.Width / 11, spriteBatch, font, color, out tailleRestanteLigneFinale);
+                    tailleRestanteLigne = tailleRestanteLigneFinale;
+                    idDebut += tailleMot;
                 }
-                y += 20;
             }
+            return y;
+        }
+
+        public static float afficherCaractParCaract(String mot, Game game, float xInit, float x, float y, int tailleRestanteLigne, int tailleMax, SpriteBatch spriteBatch, SpriteFont font, Color color, out int tailleRestanteLigneFinale)
+        {
+            int tailleRestanteAEcrire = mot.Length;
+            int i = 0;
+            while (i < mot.Length)
+            {
+                if (tailleRestanteAEcrire > tailleRestanteLigne)
+                {
+                    spriteBatch.DrawString(font, mot.Substring(i, tailleRestanteLigne), new Vector2(x, y), color);
+                    tailleRestanteAEcrire -= tailleRestanteLigne;
+                    i += tailleRestanteLigne;
+                    y += 20;
+                    tailleRestanteLigne = tailleMax;
+                    x = xInit;
+                }
+                else
+                {
+                    spriteBatch.DrawString(font, mot.Substring(i, tailleRestanteAEcrire), new Vector2(x, y), color);
+                    i += tailleRestanteAEcrire;
+                    tailleRestanteAEcrire = 0;
+                }
+            }
+            tailleRestanteLigneFinale = tailleRestanteLigne;
             return y;
         }
 
