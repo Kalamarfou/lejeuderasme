@@ -31,7 +31,7 @@ namespace UltimateErasme.MenuStates
         SpriteFont font;
 
         GameObject background;
-        GameObject MousePointer;
+        GameObject mousePointer;
         private static CreatePersoMenuState instanceCPMS;
         List<ButtonMenu> listeButtons;
         List<ButtonMenu> listeChoix;
@@ -60,6 +60,8 @@ namespace UltimateErasme.MenuStates
             descriptionTypes = new TypePersonnalise(game);
             followingTypes.Add(descriptionTypes);
             descriptionTypes = new CaracteristiquesCreatePerso(game);
+            followingTypes.Add(descriptionTypes);
+            descriptionTypes = new HistoireCreatePerso(game);
             followingTypes.Add(descriptionTypes);
             descriptionTypes = new ResumeCreatePerso(game);
             followingTypes.Add(descriptionTypes);
@@ -91,7 +93,7 @@ namespace UltimateErasme.MenuStates
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor"));
-            MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
+            mousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
 
             personnage = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme"));
         }
@@ -137,22 +139,13 @@ namespace UltimateErasme.MenuStates
                         descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
                         followingTypes.Remove(descriptionTypes);
                     }
-                    else if (button.getText().Equals("Suivant"))
-                    {
-                        Thread.Sleep(300);
-                        //On met à jour le personnage final
-                        descriptionTypes.setValeurRecommande(persoFinal, choixSelect);
-                        previousTypes.Add(descriptionTypes);
-                        descriptionTypes = followingTypes.First();
-                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
-                        followingTypes.Remove(descriptionTypes);
-                    }
                     else
                     {
                         MustChangeState(MainMenuState.getInstance(game, graphics));
                     }
                 }
             }
+
             descriptionTypes.changeCaracValue();
             if (listeChoix != null)
             {
@@ -165,7 +158,9 @@ namespace UltimateErasme.MenuStates
                 }
             }
 
-            MousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+            descriptionTypes.gestionClavier(mousePointer);
+
+            mousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
@@ -194,7 +189,7 @@ namespace UltimateErasme.MenuStates
             //Afficher la partie haute : Titre
             descriptionTypes.DrawTitle(spriteBatch, game, titre, font);
 
-            spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
+            spriteBatch.Draw(mousePointer.Sprite, mousePointer.Position, Color.White);
             spriteBatch.End();
         }
 
