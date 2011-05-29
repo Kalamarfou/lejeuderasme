@@ -12,7 +12,8 @@ namespace UltimateErasme.MenuStates
         public abstract String getValeurRecommande(PersoFinal persoFinal);
         public abstract void setValeurRecommande(PersoFinal persoFinal, String value);
         public virtual void changeCaracValue() { }
-        
+        public virtual void gestionClavier(GameObject mousePointer) { }
+
         public void DrawButtons(SpriteBatch spriteBatch, List<ButtonMenu> listeButtons, SpriteFont font)
         {
             foreach (ButtonMenu button in listeButtons)
