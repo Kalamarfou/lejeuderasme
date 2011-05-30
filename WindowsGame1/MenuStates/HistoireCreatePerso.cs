@@ -23,7 +23,7 @@ namespace UltimateErasme.MenuStates
 
             int prenomMax = 20;
             int nomMax = 30;
-            int histoireMax = 300;
+            int histoireMax = 150;
             int ageMax = 3;
             Rectangle prenomRect = new Rectangle(300, 100, 200, 50);
             Rectangle nomRect = new Rectangle(300, 140, 200, 50);

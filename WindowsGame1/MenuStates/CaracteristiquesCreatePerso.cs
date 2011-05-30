@@ -231,7 +231,7 @@ namespace UltimateErasme.MenuStates
             float y = viewportRect.Y;
             Rectangle viewportRectCarac = new Rectangle(viewportRect.X, viewportRect.Y, 2 * viewportRect.Width / 3, viewportRect.Height);
             Rectangle viewportRectPlus = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3, viewportRect.Y, viewportRect.Width / 3, viewportRect.Height);
-            Rectangle viewportRectMoins = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3 + 3, viewportRect.Y, viewportRect.Width / 3 - 3, viewportRect.Height);
+            Rectangle viewportRectMoins = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3, viewportRect.Y, viewportRect.Width / 3, viewportRect.Height);
             y = CreatePersoMenuState.afficherTexte("Reste : " + resteAPlacer, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 30;
 

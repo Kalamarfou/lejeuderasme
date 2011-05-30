@@ -9,7 +9,7 @@ namespace UltimateErasme.MenuStates
 class TypeRace : DescriptionTypes
     {
         Game game;
-        public String choixFinal {get; set; } //TODO ?
+        public String choixFinal {get; set; }
 
         public TypeRace(Game game)
         {
