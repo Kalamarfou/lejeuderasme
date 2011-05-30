@@ -12,11 +12,13 @@ namespace UltimateErasme.MenuStates
     {
         Game game;
         PersoFinal persoFinal;
+        Rectangle rectResume;
 
         public ResumeCreatePerso(Game game)
         {
             this.game = game;
             persoFinal = PersoFinal.getInstance();
+            rectResume = new Rectangle(300, 100, 500, 600);
         }
 
         public override void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre)
@@ -50,10 +52,23 @@ namespace UltimateErasme.MenuStates
 
         public override void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
         {
+            float y = rectResume.Y;
             String texte = "Vous êtes donc un " + persoFinal.race + " avec pour classe : " + persoFinal.classe + ". Vous n'avez de foi qu'en " + persoFinal.divinite + " et vous êtes " + persoFinal.personnalite + " et " + persoFinal.alignement + ". ";
-            texte += "Vous vous appelez : " + persoFinal.prenom + " " + persoFinal.nom + ". Votre âge est : " + persoFinal.age + ". Voici votre histoire : " + persoFinal.histoire;
-            texte += "FORCE : " + persoFinal.force + " DEXTÉRITÉ : " + persoFinal.dexterite + " CONSTITUTION : " + persoFinal.constitution + " INTELLIGENCE : " + persoFinal.intelligence + " SAGESSE : " + persoFinal.sagesse + " CHARISME : " + persoFinal.charisme;
-            CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, game.GraphicsDevice.Viewport.Height / 10);
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y);
+            texte = "Vous vous appelez : " + persoFinal.prenom + " " + persoFinal.nom + ". Votre âge est : " + persoFinal.age + ". Voici votre histoire : " + persoFinal.histoire;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 50);
+            texte = "FORCE : " + persoFinal.force;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 50);
+            texte = "DEXTÉRITÉ : " + persoFinal.dexterite;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            texte = "CONSTITUTION : " + persoFinal.constitution;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            texte = "INTELLIGENCE : " + persoFinal.intelligence;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            texte = "SAGESSE : " + persoFinal.sagesse;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            texte = "CHARISME : " + persoFinal.charisme;
+            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
         }
 
         public override void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)
