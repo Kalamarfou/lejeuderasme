@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.GameObjects;
+using System.Runtime.InteropServices;
 
 namespace UltimateErasme.MenuStates
 {
@@ -18,7 +19,12 @@ namespace UltimateErasme.MenuStates
             string touche = null;
             KeyboardState clavier;
             bool toucheEnfoncee = false;
+            bool majActif = false;
 
+            int prenomMax = 20;
+            int nomMax = 30;
+            int histoireMax = 300;
+            int ageMax = 3;
             Rectangle prenomRect = new Rectangle(300, 100, 200, 50);
             Rectangle nomRect = new Rectangle(300, 140, 200, 50);
             Rectangle ageRect = new Rectangle(300, 180, 200, 50);
@@ -64,28 +70,58 @@ namespace UltimateErasme.MenuStates
                 persoFinal.histoire = histoire;
                 persoFinal.nom = nom;
                 persoFinal.prenom = prenom;
-                persoFinal.age = age;
-            }
+                short mov;
+                if (Int16.TryParse(age, out mov)) {
+                    persoFinal.age = age;
+                }
 
+            }
+            //TODO : Gérer la manette lol lol lol dur !
             public override void gestionClavier(GameObject mousePointer)
             {
                 clavier = Keyboard.GetState();
+                bool CapsLock = (((ushort)GetKeyState(0x14)) & 0xffff) != 0;
+
                 if ((clavier.GetPressedKeys().Length == 1) && (!toucheEnfoncee))
                 {
                     toucheEnfoncee = true;
                     touche = clavier.GetPressedKeys()[0].ToString();
 
-                    if (touche.Length == 1)
+                    if (touche.Length == 1 && (!majActif) && (!CapsLock))
                     {
-                        if (estDansLeRectangle(mousePointer, prenomRect)) prenom += touche;
-                        else if (estDansLeRectangle(mousePointer, nomRect)) nom += touche;
-                        else if (estDansLeRectangle(mousePointer, ageRect)) age += touche;
-                        else if (estDansLeRectangle(mousePointer, histRect)) histoire += touche;
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += touche.ToLower();
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += touche.ToLower();
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += touche.ToLower();
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += touche.ToLower();
+                    }
+                    else if (touche.Length == 1 && (majActif || CapsLock))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += touche.ToUpper();
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += touche.ToUpper();
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += touche.ToUpper();
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += touche.ToUpper();
+                        majActif = false;
+                    }
+                    else if (touche.Equals("Space"))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += " ";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += " ";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += " ";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += " ";
+                    }
+                    else if (touche.Equals("Delete") || touche.Equals("Back"))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect)) prenom = prenom.Remove(prenom.Length - 1);
+                        else if (estDansLeRectangle(mousePointer, nomRect)) nom = nom.Remove(nom.Length - 1);
+                        else if (estDansLeRectangle(mousePointer, ageRect)) age = age.Remove(age.Length - 1);
+                        else if (estDansLeRectangle(mousePointer, histRect)) histoire = histoire.Remove(histoire.Length - 1);
+                    }
+                    else if (touche.Equals("LeftShift"))
+                    {
+                        majActif = true;
                     }
                 }
-                else
-                {
-                    if (clavier.GetPressedKeys().Length == 0)
+                else if (clavier.GetPressedKeys().Length == 0) {
                         toucheEnfoncee = false;
                 }
             }
@@ -107,5 +143,9 @@ namespace UltimateErasme.MenuStates
                 return (mousePointer.Position.X >= viewportRect.X && mousePointer.Position.X <= (viewportRect.X + viewportRect.Width)
                     && mousePointer.Position.Y >= viewportRect.Y && mousePointer.Position.Y <= (viewportRect.Y + viewportRect.Height));
             }
+
+            // An umanaged function that retrieves the states of each key
+            [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
+            public static extern short GetKeyState(int keyCode); 
         }
 }
