@@ -27,8 +27,8 @@ namespace UltimateErasme
         {
             if (((Mouse.GetState().LeftButton == ButtonState.Pressed)
                 || (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
-                && (Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 9))
-                && (Math.Abs(Mouse.GetState().Y - position.Y) < 30))
+                && (Math.Abs(Mouse.GetState().X - position.X + 25) < (texte.Length * 10))
+                && (Math.Abs(Mouse.GetState().Y - position.Y - 5) < 30))
             {
                 return true;
             }
@@ -39,8 +39,8 @@ namespace UltimateErasme
         {
             if (((Mouse.GetState().LeftButton == ButtonState.Pressed)
                 || (GamePad.GetState(PlayerIndex.One).Buttons.A == ButtonState.Pressed))
-                && (Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 60))
-                && (Math.Abs(Mouse.GetState().Y - position.Y - 13) < espace))
+                && (Math.Abs(Mouse.GetState().X - position.X + 25) < (texte.Length * 60))
+                && (Math.Abs(Mouse.GetState().Y - position.Y - 5) < espace))
             {
                 return true;
             }
@@ -49,14 +49,14 @@ namespace UltimateErasme
 
         public Boolean isNear(int espace)
         {
-            return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 60))
-                && (Math.Abs(Mouse.GetState().Y - position.Y - 13) < espace));
+            return ((Math.Abs(Mouse.GetState().X - position.X + 25) < (texte.Length * 60))
+                && (Math.Abs(Mouse.GetState().Y - position.Y - 5) < espace));
         }
 
         public Boolean isNear()
         {
-            return ((Math.Abs(Mouse.GetState().X - position.X) < (texte.Length * 9))
-                && (Math.Abs(Mouse.GetState().Y - position.Y) < 30)) ;
+            return ((Math.Abs(Mouse.GetState().X - position.X + 25) < (texte.Length * 10))
+                && (Math.Abs(Mouse.GetState().Y - position.Y - 5) < 20)) ;
         }
 
         public String getText()

@@ -19,7 +19,7 @@ namespace UltimateErasme.MenuStates
             string touche = null;
             KeyboardState clavier;
             bool toucheEnfoncee = false;
-            bool majActif = false;
+            bool shiftActif = false;
 
             int prenomMax = 20;
             int nomMax = 30;
@@ -67,9 +67,12 @@ namespace UltimateErasme.MenuStates
 
             public override void setValeurRecommande(PersoFinal persoFinal, String value)
             {
-                persoFinal.histoire = histoire;
-                persoFinal.nom = nom;
-                persoFinal.prenom = prenom;
+                if (histoire != null)
+                    persoFinal.histoire = histoire;
+                if (nom != null)
+                    persoFinal.nom = nom;
+                if (prenom != null)
+                    persoFinal.prenom = prenom;
                 short mov;
                 if (Int16.TryParse(age, out mov)) {
                     persoFinal.age = age;
@@ -81,26 +84,31 @@ namespace UltimateErasme.MenuStates
             {
                 clavier = Keyboard.GetState();
                 bool CapsLock = (((ushort)GetKeyState(0x14)) & 0xffff) != 0;
+                bool NumLock = (((ushort)GetKeyState(0x90)) & 0xffff) != 0;
 
-                if ((clavier.GetPressedKeys().Length == 1) && (!toucheEnfoncee))
+                if ((clavier.GetPressedKeys().Length == 1 || clavier.GetPressedKeys().Length == 2) && (!toucheEnfoncee))
                 {
                     toucheEnfoncee = true;
                     touche = clavier.GetPressedKeys()[0].ToString();
-
-                    if (touche.Length == 1 && (!majActif) && (!CapsLock))
+                    if (clavier.GetPressedKeys().Length == 2 && touche.Equals("LeftShift"))
+                    {
+                        shiftActif = true;
+                        touche = clavier.GetPressedKeys()[1].ToString();
+                    }
+                    if (touche.Length == 1 && (!shiftActif) && (!CapsLock))
                     {
                         if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += touche.ToLower();
                         else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += touche.ToLower();
                         else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += touche.ToLower();
                         else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += touche.ToLower();
                     }
-                    else if (touche.Length == 1 && (majActif || CapsLock))
+                    else if (touche.Length == 1 && (shiftActif || CapsLock))
                     {
                         if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += touche.ToUpper();
                         else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += touche.ToUpper();
                         else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += touche.ToUpper();
                         else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += touche.ToUpper();
-                        majActif = false;
+                        shiftActif = false;
                     }
                     else if (touche.Equals("Space"))
                     {
@@ -111,14 +119,81 @@ namespace UltimateErasme.MenuStates
                     }
                     else if (touche.Equals("Delete") || touche.Equals("Back"))
                     {
-                        if (estDansLeRectangle(mousePointer, prenomRect)) prenom = prenom.Remove(prenom.Length - 1);
-                        else if (estDansLeRectangle(mousePointer, nomRect)) nom = nom.Remove(nom.Length - 1);
-                        else if (estDansLeRectangle(mousePointer, ageRect)) age = age.Remove(age.Length - 1);
-                        else if (estDansLeRectangle(mousePointer, histRect)) histoire = histoire.Remove(histoire.Length - 1);
+                        if (estDansLeRectangle(mousePointer, prenomRect) && prenom.Length > 0) prenom = prenom.Remove(prenom.Length - 1);
+                        else if (estDansLeRectangle(mousePointer, nomRect) && nom.Length > 0) nom = nom.Remove(nom.Length - 1);
+                        else if (estDansLeRectangle(mousePointer, ageRect) && age.Length > 0) age = age.Remove(age.Length - 1);
+                        else if (estDansLeRectangle(mousePointer, histRect) && histoire.Length > 0) histoire = histoire.Remove(histoire.Length - 1);
+                    }
+                    else if ((shiftActif || CapsLock) && (touche.Equals("D1") || touche.Equals("D2") || touche.Equals("D3") || touche.Equals("D4") || touche.Equals("D5")
+                        ||touche.Equals("D6") ||touche.Equals("D7") ||touche.Equals("D8") ||touche.Equals("D9") ||touche.Equals("D0")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += touche[1];
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += touche[1];
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += touche[1];
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += touche[1];
+                        shiftActif = false;
+                    }
+                    else if (NumLock && (touche.Contains("NumPad")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += touche[6];
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += touche[6];
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += touche[6];
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += touche[6];
+                    }
+                    else if (NumLock && (touche.Equals("Decimal")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += ".";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += ".";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += ".";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += ".";
+                    }
+                    else if (!shiftActif && !CapsLock && (touche.Equals("D2")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += "é";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += "é";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += "é";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += "é";
+                    }
+                    else if (!shiftActif && !CapsLock && (touche.Equals("D4")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += "'";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += "'";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += "'";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += "'";
+                    }
+                    else if (!shiftActif && !CapsLock && (touche.Equals("D7")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += "è";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += "è";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += "è";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += "è";
+                    }
+                    else if (!shiftActif && !CapsLock && (touche.Equals("D0")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += "à";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += "à";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += "à";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += "à";
+                    }
+                    else if (!shiftActif && !CapsLock && (touche.Equals("OemComma")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += ",";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += ",";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += ",";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += ",";
+                    }
+                    else if ((shiftActif || CapsLock) && (touche.Equals("OemPeriod")))
+                    {
+                        if (estDansLeRectangle(mousePointer, prenomRect) && (prenom == null || prenom.Length < prenomMax)) prenom += ".";
+                        else if (estDansLeRectangle(mousePointer, nomRect) && (nom == null || nom.Length < nomMax)) nom += ".";
+                        else if (estDansLeRectangle(mousePointer, ageRect) && (age == null || age.Length < ageMax)) age += ".";
+                        else if (estDansLeRectangle(mousePointer, histRect) && (histoire == null || histoire.Length < histoireMax)) histoire += ".";
+                        shiftActif = false;
                     }
                     else if (touche.Equals("LeftShift"))
                     {
-                        majActif = true;
+                        toucheEnfoncee = false;
+                        shiftActif = true;
                     }
                 }
                 else if (clavier.GetPressedKeys().Length == 0) {

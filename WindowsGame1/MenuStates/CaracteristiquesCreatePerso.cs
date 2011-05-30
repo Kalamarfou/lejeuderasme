@@ -233,18 +233,18 @@ namespace UltimateErasme.MenuStates
             Rectangle viewportRectPlus = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3, viewportRect.Y, viewportRect.Width / 3, viewportRect.Height);
             Rectangle viewportRectMoins = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3 + 3, viewportRect.Y, viewportRect.Width / 3 - 3, viewportRect.Height);
             y = CreatePersoMenuState.afficherTexte("Reste : " + resteAPlacer, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
-            y += 20;
+            y += 30;
 
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Force", force, forPlus, forMoins, y);
-            y += 20;
+            y += 30;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Dextérité", dexterite, dextPlus, dextMoins, y);
-            y += 20;
+            y += 30;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Constitution", constitution, conPlus, conMoins, y);
-            y += 20;
+            y += 30;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Intelligence", intelligence, intPlus, intMoins, y);
-            y += 20;
+            y += 30;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Sagesse", sagesse, sagPlus, sagMoins, y);
-            y += 20;
+            y += 30;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Charisme", charisme, chaPlus, chaMoins, y);
         }
 
