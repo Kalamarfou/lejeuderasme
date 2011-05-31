@@ -12,6 +12,12 @@ namespace UltimateErasme.MenuStates
         public string Flou { get; set; }
         public string LangueDoublages { get; set; }
 
+        public OptionsFinales()
+        {
+            LangueDoublages = "";
+            Flou = "";
+        }
+
         public static OptionsFinales getInstance()
         {
             if (optionsFinales == null)

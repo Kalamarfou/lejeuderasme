@@ -58,13 +58,13 @@ namespace UltimateErasme.MenuStates
             liste = new ListeMenu(button, null, Color.Red, Color.DarkGreen);
             listeMenu.Add(liste);
 
-            button = new ButtonMenu("Doublages", Color.Red, Color.DarkGreen, new Vector2(300, 350));
+            button = new ButtonMenu("Doublages", Color.Red, Color.DarkGreen, new Vector2(250, 300));
             options = new List<OptionMenu>();
-            option = new OptionMenu("Français", new Vector2(400, 350), true);
+            option = new OptionMenu("Français", new Vector2(400, 300), true);
             options.Add(option);
-            option = new OptionMenu("Poney", new Vector2(500, 350), false);
+            option = new OptionMenu("Poney", new Vector2(500, 300), false);
             options.Add(option);
-            option = new OptionMenu("Bassoul", new Vector2(600, 350), false);
+            option = new OptionMenu("Bassoul", new Vector2(600, 300), false);
             options.Add(option);
             liste = new ListeMenu(button, options, Color.Red, Color.DarkGreen);
             listeMenu.Add(liste);
