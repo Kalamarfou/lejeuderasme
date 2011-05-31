@@ -361,7 +361,7 @@ namespace UltimateErasme.Cinematiques
                 currentElement.Draw(spriteBatch, gameTime);
                 if (!currentElement.SoundPlayed)
                 {
-				    soundManager.Play(currentElement.Sound);
+				    soundManager.PlayDialogueCinematique(currentElement.Sound);
                     currentElement.SoundPlayed = true;
                 }
                 spriteBatch.End();
