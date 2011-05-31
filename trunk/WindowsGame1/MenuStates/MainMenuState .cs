@@ -8,6 +8,7 @@ using UltimateErasme.GameObjects;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.MenuStates;
 using System.Threading;
+using UltimateErasme.InputTesters;
 
 namespace UltimateErasme.MenuState
 {
@@ -22,6 +23,7 @@ namespace UltimateErasme.MenuState
         GameObject background;
         GameObject MousePointer;
         private static MainMenuState instanceMMS;
+        KeyboardTester keyboardTester;
 
         private MainMenuState(Game game, GraphicsDeviceManager graphics)
         {
@@ -37,6 +39,8 @@ namespace UltimateErasme.MenuState
             buttonMenu.Add(bouton);
             bouton = new ButtonMenu("Quitter", Color.Red, Color.DarkGreen, new Vector2(300, 500));
             buttonMenu.Add(bouton);
+
+            keyboardTester = new KeyboardTester();
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics) {
@@ -106,6 +110,11 @@ namespace UltimateErasme.MenuState
                     }
                 }
             }
+             
+            keyboardTester.GetKeyboard();
+
+            if (keyboardTester.test(Keys.F))
+                graphics.ToggleFullScreen();
 
             MousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
         }
