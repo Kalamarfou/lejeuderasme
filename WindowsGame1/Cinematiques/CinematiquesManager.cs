@@ -86,7 +86,8 @@ namespace UltimateErasme.Cinematiques
                     }
                 }
                 currentElement = currentCinematic[0];
-                setPause(true);
+                //TODO
+                //setPause(true);
                 cinematiquePlaying = true;
 
             }
@@ -348,7 +349,8 @@ namespace UltimateErasme.Cinematiques
                 }
             }
             cinematiquePlaying = false;
-            setPause(false);
+            //TODO
+            //setPause(false);
             currentCinematic.Clear();
         }
 
