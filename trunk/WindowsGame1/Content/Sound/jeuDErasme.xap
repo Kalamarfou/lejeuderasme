@@ -16,8 +16,8 @@ Global Settings
     Header File = jeuDErasme.h;
     Exclude Category Names = 0;
     Exclude Variable Names = 0;
-    Last Modified Low = 1692729570;
-    Last Modified High = 30151249;
+    Last Modified Low = 30151249;
+    Last Modified High = 1692729570;
 
     Category
     {
@@ -225,12 +225,8 @@ Wave Bank
     Windows Bank Path Edited = 0;
     Seek Tables = 1;
     Compression Preset Name = <none>;
-    Xbox Bank Last Modified Low = 0;
-    Xbox Bank Last Modified High = 0;
-    PC Bank Last Modified Low = 1700529583;
-    PC Bank Last Modified High = 30151249;
-    Bank Last Revised Low = 1362476990;
-    Bank Last Revised High = 30151249;
+    Bank Last Revised Low = 822997023;
+    Bank Last Revised High = 30154684;
 
     Wave
     {
@@ -1400,8 +1396,8 @@ Wave Bank
             Loop Region Offset = 0;
             Loop Region Length = 0;
             File Type = 1;
-            Last Modified Low = 3711314096;
-            Last Modified High = 30139560;
+            Last Modified Low = 2098150055;
+            Last Modified High = 30151227;
         }
     }
 
@@ -1496,6 +1492,98 @@ Wave Bank
             Last Modified High = 30151249;
         }
     }
+
+    Wave
+    {
+        Name = huhuCheval1;
+        File = sons\huhuCheval1.wav;
+        Build Settings Last Modified Low = 361650635;
+        Build Settings Last Modified High = 30154684;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 91136;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3619003497;
+            Last Modified High = 30154680;
+        }
+    }
+
+    Wave
+    {
+        Name = huhuCheval2;
+        File = sons\huhuCheval2.wav;
+        Build Settings Last Modified Low = 361660636;
+        Build Settings Last Modified High = 30154684;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 223232;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3277509051;
+            Last Modified High = 30154683;
+        }
+    }
+
+    Wave
+    {
+        Name = huhuCheval3;
+        File = sons\huhuCheval3.wav;
+        Build Settings Last Modified Low = 361660636;
+        Build Settings Last Modified High = 30154684;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 139264;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 3831870758;
+            Last Modified High = 30154683;
+        }
+    }
+
+    Wave
+    {
+        Name = huhuCheval4;
+        File = sons\huhuCheval4.wav;
+        Build Settings Last Modified Low = 361660636;
+        Build Settings Last Modified High = 30154684;
+
+        Cache
+        {
+            Format Tag = 0;
+            Channels = 1;
+            Sampling Rate = 44100;
+            Bits Per Sample = 1;
+            Play Region Offset = 44;
+            Play Region Length = 138240;
+            Loop Region Offset = 0;
+            Loop Region Length = 0;
+            File Type = 1;
+            Last Modified Low = 4221153024;
+            Last Modified High = 30154683;
+        }
+    }
 }
 
 Sound Bank
@@ -1505,10 +1593,6 @@ Sound Bank
     Windows File = Win\Sound Bank.xsb;
     Xbox Bank Path Edited = 0;
     Windows Bank Path Edited = 0;
-    Bank Last Modified Low = 1701933586;
-    Bank Last Modified High = 30151249;
-    Header Last Modified High = 0;
-    Header Last Modified Low = 0;
 
     Sound
     {
@@ -3860,6 +3944,194 @@ Sound Bank
         }
     }
 
+    Sound
+    {
+        Name = huhuCheval1;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = huhuCheval1;
+                    Entry Index = 55;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = huhuCheval2;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = huhuCheval2;
+                    Entry Index = 56;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = huhuCheval3;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = huhuCheval3;
+                    Entry Index = 57;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
+    Sound
+    {
+        Name = huhuCheval4;
+        Volume = -1200;
+        Pitch = 0;
+        Priority = 0;
+
+        Category Entry
+        {
+            Name = Default;
+        }
+
+        Track
+        {
+            Volume = 0;
+            Use Filter = 0;
+
+            Play Wave Event
+            {
+                Break Loop = 0;
+                Use Speaker Position = 0;
+                Use Center Speaker = 1;
+                New Speaker Position On Loop = 1;
+                Speaker Position Angle = 0.000000;
+                Speaker Position Arc = 0.000000;
+
+                Event Header
+                {
+                    Timestamp = 0;
+                    Relative = 0;
+                    Random Recurrence = 0;
+                    Random Offset = 0;
+                }
+
+                Wave Entry
+                {
+                    Bank Name = Wave Bank;
+                    Bank Index = 0;
+                    Entry Name = huhuCheval4;
+                    Entry Index = 58;
+                    Weight = 255;
+                    Weight Min = 0;
+                }
+            }
+        }
+    }
+
     Cue
     {
         Name = voltaire_disponible;
@@ -4685,6 +4957,50 @@ Sound Bank
             Index = 49;
             Weight Min = 0;
             Weight Max = 255;
+        }
+    }
+
+    Cue
+    {
+        Name = huhuCheval;
+
+        Variation
+        {
+            Variation Type = 3;
+            Variation Table Type = 1;
+            New Variation on Loop = 0;
+        }
+
+        Sound Entry
+        {
+            Name = huhuCheval1;
+            Index = 50;
+            Weight Min = 0;
+            Weight Max = 223;
+        }
+
+        Sound Entry
+        {
+            Name = huhuCheval2;
+            Index = 51;
+            Weight Min = 0;
+            Weight Max = 119;
+        }
+
+        Sound Entry
+        {
+            Name = huhuCheval3;
+            Index = 52;
+            Weight Min = 0;
+            Weight Max = 187;
+        }
+
+        Sound Entry
+        {
+            Name = huhuCheval4;
+            Index = 53;
+            Weight Min = 0;
+            Weight Max = 219;
         }
     }
 }
