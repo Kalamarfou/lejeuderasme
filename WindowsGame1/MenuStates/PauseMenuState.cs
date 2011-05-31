@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using UltimateErasme.GameObjects;
 using Microsoft.Xna.Framework.Input;
+using System.Threading;
 
 namespace UltimateErasme.MenuState
 {
@@ -19,16 +20,14 @@ namespace UltimateErasme.MenuState
         GameObject background;
         GameObject MousePointer;
         private static PauseMenuState instancePMS;
+        Rectangle viewportRect;
 
         private PauseMenuState(Game game, GraphicsDeviceManager graphics)
         {
             this.game = game;
             this.graphics = graphics;
+
             buttonMenu = new List<ButtonMenu>();
-            ButtonMenu bouton = new ButtonMenu("Continuer", Color.Black, Color.DarkGreen, new Vector2(300, 150));
-            buttonMenu.Add(bouton);
-            bouton = new ButtonMenu("Quitter", Color.Black, Color.DarkGreen, new Vector2(300, 200));
-            buttonMenu.Add(bouton);
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics) {
@@ -59,6 +58,19 @@ namespace UltimateErasme.MenuState
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
             MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
+
+            viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
+
+            ButtonMenu bouton = new ButtonMenu("Continuer", Color.Black, Color.DarkGreen, new Vector2((4 * viewportRect.Width) / (float)10, (6 * viewportRect.Height) / (float)16));
+            buttonMenu.Add(bouton);
+            bouton = new ButtonMenu("Sauvegarder la partie", Color.Black, Color.DarkGreen, new Vector2((4 * viewportRect.Width) / (float)10, (7 * viewportRect.Height) / (float)16));
+            buttonMenu.Add(bouton);
+            bouton = new ButtonMenu("Charger une partie", Color.Black, Color.DarkGreen, new Vector2((4 * viewportRect.Width) / (float)10, (8 * viewportRect.Height) / (float)16));
+            buttonMenu.Add(bouton);
+            bouton = new ButtonMenu("Quitter et retourner au menu principal", Color.Black, Color.DarkGreen, new Vector2((4 * viewportRect.Width) / (float)10, (9 * viewportRect.Height) / (float)16));
+            buttonMenu.Add(bouton);
+            bouton = new ButtonMenu("Quitter le jeu", Color.Black, Color.DarkGreen, new Vector2((4 * viewportRect.Width) / (float)10, (10 * viewportRect.Height) / (float)16));
+            buttonMenu.Add(bouton);
         }
 
         /// <summary>
@@ -81,13 +93,23 @@ namespace UltimateErasme.MenuState
             {
                 if (button.isPressed())
                 {
-                    if (button.getText().Equals("Quitter"))
+                    if (button.getText().Equals("Quitter le jeu"))
                     {
                         game.Exit();
                     }
-                    else
+                    else if (button.getText().Equals("Continuer"))
                     {
                         MustChangeState(UltimateErasme.getInstance(game, graphics));
+                    }
+                    else if (button.getText().Equals("Sauvegarder la partie"))
+                    {
+                    }
+                    else if (button.getText().Equals("Charger une partie"))
+                    {
+                    }
+                    else if (button.getText().Equals("Quitter et retourner au menu principal"))
+                    {
+                        MustChangeState(MainMenuState.getInstance(game, graphics));
                     }
                 }
             }
@@ -126,6 +148,7 @@ namespace UltimateErasme.MenuState
 
         public override void MustChangeState(GameState futureState)
         {
+            Thread.Sleep(300);
             game.currentState = futureState;
         }
     }

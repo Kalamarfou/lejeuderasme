@@ -177,7 +177,7 @@ namespace UltimateErasme
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
+            // Allows the game to pause
             if (Keyboard.GetState().IsKeyDown(Keys.Escape) || GamePad.GetState(PlayerIndex.One).Buttons.Start == ButtonState.Pressed)
             {
                 MustChangeState(PauseMenuState.getInstance(game, graphics));
