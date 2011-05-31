@@ -176,6 +176,7 @@
     <Compile Include="InputTesters\GamePadTester.cs" />
     <Compile Include="InputTesters\KeyboardTester.cs" />
     <Compile Include="Life\LifeEvents.cs" />
+    <Compile Include="MenuStates\OptionsFinales.cs" />
     <Compile Include="MenuStates\OptionsMenuState.cs" />
     <Compile Include="MenuStates\PersoFinal.cs" />
     <Compile Include="MenuStates\ResumeCreatePerso.cs" />

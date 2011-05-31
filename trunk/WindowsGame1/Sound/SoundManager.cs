@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Audio;
+using UltimateErasme.MenuStates;
 
 namespace UltimateErasme.Sound
 {
@@ -111,17 +112,30 @@ namespace UltimateErasme.Sound
             cue.Play();
         }
 		
-		public void Play(String CueName)
+		public void PlayDialogueCinematique(String CueName)
         {
-			try{
-				Cue cue = banqueSons.GetCue(CueName);
-				cue.Play();
-			}
-			catch (Exception e) {
-                Console.WriteLine(e);
+            if (OptionsFinales.getInstance().LangueDoublages.Equals("Poney"))
+            {
+                Play("huhuCheval");
+            }
+            else
+            {
+                Play(CueName);
             }
 		}
 
+        public void Play(String CueName)
+        {
+            try
+            {
+                Cue cue = banqueSons.GetCue(CueName);
+                cue.Play();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
 
         
     }

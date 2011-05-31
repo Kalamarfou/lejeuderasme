@@ -189,6 +189,7 @@ namespace UltimateErasme
             keyboardTester.GetKeyboard();
 
             // Switch to the next bloom settings preset?
+            
             if (keyboardTester.test(Keys.E))
             {
                 bloomSettingsIndex = (bloomSettingsIndex + 1) %

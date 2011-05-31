@@ -54,5 +54,17 @@ namespace UltimateErasme.MenuStates
                 optionsListe[0].isSelected = true;
             }
         }
+
+        public string GetSelectedOption()
+        {
+            foreach (OptionMenu option in optionsListe)
+            {
+                if (option.isSelected)
+                {
+                    return option.option;
+                }
+            }
+            return null;
+        }
     }
 }

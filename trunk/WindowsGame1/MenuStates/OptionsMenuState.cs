@@ -39,6 +39,7 @@ namespace UltimateErasme.MenuStates
         private void RemplirListeMenu(List<ListeMenu> listeMenu)
         {
             List<OptionMenu> options = new List<OptionMenu>();
+            
             ButtonMenu button = new ButtonMenu("Flou", Color.Red, Color.DarkGreen, new Vector2(300, 350));
             OptionMenu option = new OptionMenu("Faible", new Vector2(400, 350), true);
             options.Add(option);
@@ -55,6 +56,17 @@ namespace UltimateErasme.MenuStates
 
             button = new ButtonMenu("Annuler", Color.Red, Color.DarkGreen, new Vector2(300, 450));
             liste = new ListeMenu(button, null, Color.Red, Color.DarkGreen);
+            listeMenu.Add(liste);
+
+            button = new ButtonMenu("Doublages", Color.Red, Color.DarkGreen, new Vector2(300, 350));
+            options = new List<OptionMenu>();
+            option = new OptionMenu("Français", new Vector2(400, 350), true);
+            options.Add(option);
+            option = new OptionMenu("Poney", new Vector2(500, 350), false);
+            options.Add(option);
+            option = new OptionMenu("Bassoul", new Vector2(600, 350), false);
+            options.Add(option);
+            liste = new ListeMenu(button, options, Color.Red, Color.DarkGreen);
             listeMenu.Add(liste);
         }
 
@@ -97,6 +109,7 @@ namespace UltimateErasme.MenuStates
                     {
                         //TODO
                         //listeMenu = listeMenuEnCours;
+                        ValiderOptions();
                         MustChangeState(MainMenuState.getInstance(game, graphics));
                     }
                     else if (button.getText().Equals("Annuler"))
@@ -114,6 +127,21 @@ namespace UltimateErasme.MenuStates
             }
 
             MousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
+        }
+
+        private void ValiderOptions()
+        {
+            foreach (ListeMenu liste in listeMenu)
+            {
+                if (liste.titreListe.getText().Equals("Doublages"))
+                {
+                    OptionsFinales.getInstance().LangueDoublages = liste.GetSelectedOption();
+                }
+                else if (liste.titreListe.getText().Equals("Flou"))
+                {
+                    OptionsFinales.getInstance().Flou = liste.GetSelectedOption();
+                } 
+            }
         }
 
         public override void Draw(Microsoft.Xna.Framework.GameTime gameTime)
