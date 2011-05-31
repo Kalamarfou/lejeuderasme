@@ -31,7 +31,7 @@ namespace UltimateErasme.MenuStates
 
         public void DrawTitle(SpriteBatch spriteBatch, Game game, String titre, SpriteFont font)
         {
-            spriteBatch.DrawString(font, titre, new Vector2(game.GraphicsDevice.Viewport.Height / 2, game.GraphicsDevice.Viewport.Height / 20), Color.DarkRed);
+            spriteBatch.DrawString(font, titre, new Vector2(game.GraphicsDevice.Viewport.Width / 2, game.GraphicsDevice.Viewport.Height / 20), Color.DarkRed);
         }
 
         public virtual void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
@@ -51,22 +51,21 @@ namespace UltimateErasme.MenuStates
 
         public virtual void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)
         {
+            Rectangle rec;
             if (listeChoix != null)
             {
-                float y = viewportRect.Y;
                 foreach (ButtonMenu button in listeChoix)
                 {
                     String texte = button.getText();
-                    
+                    rec = new Rectangle((int)button.getX(), (int)button.getY(), viewportRect.Width, viewportRect.Height / 6); 
                     if (button.isNear() || button.getText().Equals(choixSelect))
                     {
-                        y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, button.getOnClickColor(), y);
+                        CreatePersoMenuState.afficherTexte(texte, game, rec, spriteBatch, font, button.getOnClickColor(), rec.Y);
                     }
                     else
                     {
-                        y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, button.getColor(), y);
+                        CreatePersoMenuState.afficherTexte(texte, game, rec, spriteBatch, font, button.getColor(), rec.Y);
                     }
-                    y += 40;
                 }
             }
         }
