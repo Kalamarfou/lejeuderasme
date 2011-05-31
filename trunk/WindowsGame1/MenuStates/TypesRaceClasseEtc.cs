@@ -213,69 +213,90 @@ class TypeRace : DescriptionTypes
 
             List<Descriptions> ListeDescriptions = new List<Descriptions>();
 
-            ButtonMenu choix = new ButtonMenu("Loyal bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
+            ButtonMenu choix = new ButtonMenu("Oui-Oui", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 -20));
             listeChoix.Add(choix);
-            Descriptions description = new Descriptions("Caractéristiques", "S'inquiète de savoir si les autres mangent à leur faim et rendra toujours une bonne faveur.");
+            Descriptions description = new Descriptions("Caractéristiques", "Vous êtes vraiment l'ami de tous. Vous ne faites aucune différence entre un poney et une licorne. Tous les deux méritent tout autant votre amour débordant.");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Neutre bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
+            choix = new ButtonMenu("Pokemon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 20));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'inquiète de savoir si les autres mangent à leur faim et rendra parfois une bonne faveur.");
+            description = new Descriptions("Caractéristiques", "Juste Pokemon.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Chaotique bon", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
+            choix = new ButtonMenu("Justifié", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 60));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'inquiète de savoir si les autres mangent à leur faim mais ne rendra jamais une bonne faveur.");
+            description = new Descriptions("Caractéristiques", "A droite, à gauche, au centre ? Non, JAMAIS. Justifié c'est mieux.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Loyal neutre", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
+            choix = new ButtonMenu("Parallèle", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'en fout un peu des autres mais rendra toujours une bonne faveur.");
+            description = new Descriptions("Caractéristiques", "Parallèle, mais parallèle à quoi ? Telle est la question.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Neutre strict", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
+            choix = new ButtonMenu("Le poulpe", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 140));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'en fout un peu des autres et fera en sorte de ne pas avoir de faveur à rendre.");
+            description = new Descriptions("Caractéristiques", "Vous n'avez pas d'alignement. Vous vous laissez guider par les courants tel un immense poulpe.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Chaotique neutre", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 250));
+            choix = new ButtonMenu("Bourré", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 180));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'en fout un peu des autres et ne rendra jamais une bonne faveur.");
+            description = new Descriptions("Caractéristiques", "Heu ... Vous vous avez vraiment des problèmes d'alignement. Marchez droit, au moins un mètre ? Non, ça vous dit pas ?");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Loyal mauvais", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 300));
+            choix = new ButtonMenu("Contre-utopiste", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 220));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'amuse à bruler les gens mais rend toujours les faveurs qu'on lui fait.");
+            description = new Descriptions("Caractéristiques", "Pessimiste et moqueur, telles sont les qualités que vous visez.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Neutre mauvais", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 350));
+            choix = new ButtonMenu("Fifi Brindacier", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 260));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'amuse à bruler les gens mais pourra rendre les faveurs qu'on lui fait.");
+            description = new Descriptions("Caractéristiques", "Oh mon dieu ! Descendez de ce caniche !");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+            
+            choix = new ButtonMenu("Élitiste", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 300));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "Tiens, il y a des fourmis en bas, non ? Ah non ... il y avait des fourmis. Votre objectif est d'anhihiler la médiocrité de ce monde. Pas facile.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Chaotique mauvais", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 400));
+            choix = new ButtonMenu("Malade imaginaire", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 340));
             listeChoix.Add(choix);
-            description = new Descriptions("Caractéristiques", "S'amuse à bruler les gens et ne rendra jamais une bonne faveur.");
+            description = new Descriptions("Caractéristiques", "Il en est comme de ces beaux songes qui ne vous laissent au réveil que le déplaisir de les avoir crus.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choixSelect = "Neutre strict";
+            choix = new ButtonMenu("Fourbe", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 380));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "Moi je voulais dire, vous... vous vous êtes vraiment très gentil.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Voltaire", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 420));
+            listeChoix.Add(choix);
+            description = new Descriptions("Caractéristiques", "Ahh ! Ne prononcez pas ce nom aussi fort. Vous êtes le mal en personne.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choixSelect = "Le poulpe";
             titre = "CHOIX DE L'ALIGNEMENT";
         }
 
@@ -317,23 +338,119 @@ class TypeRace : DescriptionTypes
 
             List<Descriptions> ListeDescriptions = new List<Descriptions>();
 
-            ButtonMenu choix = new ButtonMenu("Bulo", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
+            ButtonMenu choix = new ButtonMenu("La panthère rose", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 - 20));
             listeChoix.Add(choix);
-            Descriptions description = new Descriptions("Représentation", "Une blouse éponge, un bec bunser dans une main et une éprouvette dans l'autre.");
+            Descriptions description = new Descriptions("Dénomination", "Dieu du Rose et de l'Amour.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Cette croyance explique la création de la planète et la naissance de l'humanité par un surexès d'amour de la part de la panthère rose. Son dieu est bon, son dieu est amour, son dieu est gné.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Tout comme la panthère rose.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Oh le rose ! Mettez du rose ! C'est trop beau");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Rael", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
+            choix = new ButtonMenu("Age of Empires", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 20));
             listeChoix.Add(choix);
-            description = new Descriptions("Croyance", "Idéologie basée sur les extraterrestres.");
             ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu des fermes, des monastères, des paladins et des mauvais PC.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Cette croyance explique que chaque fois qu'un joueur crée un profil, un monde associé se crée automatiquement et est sous la responsabilité du nouveau joueur.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Un immense moine d'Age of Empires II");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Même ma grand-mère peut faire mieux.");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Moustache", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 60));
+            listeChoix.Add(choix);
+            ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu des moustaches.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Cette croyance explique que chaque moustache a son identité propre et transcende un homme ou une femme, mais celle-ci doit être mérité par un long périple. Le pélerinage de la moustache.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Un homme un peu rectangle avec une super giga moustache.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Voir la vie en moustache, c'est voir la vie du bon côté. Tout simplement.");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
             choix = new ButtonMenu("Le dieu de la moule", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
             listeChoix.Add(choix);
-            description = new Descriptions("Croyance", "Tout est possible, tout est réalisable. C'est le jeu de la vie.");
             ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu de la moule");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "300 grammes de moule au micro-ondes, on remue bien et hop, de la supermoule !");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Cette divinité à l'apparence d'un kalamar.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Tout est possible, tout est réalisable. C'est le jeu de la vie.");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Bulo", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 140));
+            listeChoix.Add(choix);
+            ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu des molécules, de l'adn, des moles et de la subition.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Elle explique que le nombre d'Avogadro est à la base du monde. 200 fois le nb d'Avogadro peut représenter un être intelligent.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Une blouse éponge, un bec bunser dans une main et une éprouvette dans l'autre.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Faites vos DM, imprégnez vous d'acide bananique. Prenez une éponge de 2,3 diméthyl 3,4 dipropan2-ol et en avant !");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Raelrasme", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 180));
+            listeChoix.Add(choix);
+            ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu de l'extraordinaire");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Elle explique qu'avant l'être humain était une sorte de boite avec écrit 'Gné' dessus. Bizarre. Cependant, un rayon extraterresque a un jour aspiré toutes les boites gné de manière à les transférer dans le vaisseau de Raelrasme. C'est lui qui a éveillé la vie par ces pouvoirs.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Une barbe blanche, des vêtements blancs. Un vrai gourou.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Tout n'est qu'un et tout n'est qu'extraordinaire.");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Dieu des Kikoos", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 220));
+            listeChoix.Add(choix);
+            ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu des Kikoos et des lols.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Cette croyance explique que les jeunes c'est mieux et que tout le reste c'est ringard.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Des cheveux empâlés par le gel et des lunettes de soleil.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "KikOouu mon petit fan !! Rajoutes lol à la fin de tes phrases. C'est plus beau gosse, lol. MDR LOL.");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Le grand Bassoul", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 260));
+            listeChoix.Add(choix);
+            ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu du feu");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Cette croyance n'explique rien. Toutefois, elle recommande de tout brûler... dans le doute.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Un immense briquet dans une main, une boite d'allumette dans l'autre et un super sourire sur le visage.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Tout brûlerrrr ! Craaame charogne ! (Ah ! zut ! C'était ma chambre.)");
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("King Tiger", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 300));
+            listeChoix.Add(choix);
+            ListeDescriptions = new List<Descriptions>();
+            description = new Descriptions("Dénomination", "Dieu de la puissance, de la force et de la destruction.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Caractéristiques", "Cette croyance explique que l'objectif d'une vie et de trouver adversaire à sa taille.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Apparence", "Un tank immense plus effroyable que ce que l'humanité a pu imaginer en le créant.");
+            ListeDescriptions.Add(description);
+            description = new Descriptions("Philosophie", "Bon, pour se battre à la loyale, je prends le front droit et vous tanks minables, prennez l'autre front. Oh! Et puis non. Attendez moi là.");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
@@ -385,28 +502,28 @@ class TypeRace : DescriptionTypes
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Ancien Scientologue rescapé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 50));
+            choix = new ButtonMenu("Ancien Scientologue rescapé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 70));
             listeChoix.Add(choix);
-            description = new Descriptions("Histoire", "Une lutte acharnée, presque impossible, mais vous en êtes sortie, le cerveau est peu creux.");
+            description = new Descriptions("Histoire", "Une lutte acharnée, presque impossible, mais vous en êtes sortie, le cerveau un peu creux.");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Humaniste", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 100));
+            choix = new ButtonMenu("Humaniste", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 140));
             listeChoix.Add(choix);
             description = new Descriptions("Histoire", "Erasme pur et dur. Pas de débordement toléré et tolérable !");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Ami des poneys", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
+            choix = new ButtonMenu("Ami des poneys", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 210));
             listeChoix.Add(choix);
             description = new Descriptions("Histoire", "Oh ! Que c'est beau un poney");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Mouleux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
+            choix = new ButtonMenu("Mouleux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 280));
             listeChoix.Add(choix);
             description = new Descriptions("Histoire", "De la moule et pis c'est tout.");
             ListeDescriptions = new List<Descriptions>();

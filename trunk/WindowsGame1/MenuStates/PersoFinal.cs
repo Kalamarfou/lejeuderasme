@@ -39,11 +39,11 @@ namespace UltimateErasme.MenuStates
             String[] classeRecommande = new String[] { "Le mouleux", "Le gacheur", "Le jumeau", "Le paumé", "Le raleur" };
             classe = classeRecommande[random.Next(5)];
 
-            String[] alignementRecommande = new String[] { "Loyal bon", "Neutre bon", "Chaotique bon", "Loyal neutre", "Neutre strict", "Chaotique neutre", "Loyal mauvais", "Neutre mauvais", "Chaotique mauvais" };
-            alignement = alignementRecommande[random.Next(9)];
-            
-            String[] diviniteRecommande = new String[] { "Bulo", "Rael", "Le dieu de la moule" };
-            divinite = diviniteRecommande[random.Next(3)];
+            String[] alignementRecommande = new String[] { "Oui-Oui", "Pokemon", "Justifié", "Parallèle", "Le poulpe", "Bourré", "Contre-utopiste", "Fifi Brindacier", "Élitiste", "Malade imaginaire", "Fourbe", "Voltaire" };
+            alignement = alignementRecommande[random.Next(12)];
+
+            String[] diviniteRecommande = new String[] { "Bulo", "Age of Empires", "Raelrasme", "King Tiger", "La panthère rose", "Le grand Bassoul", "Dieu des Kikoos", "Moustache", "Le dieu de la moule" };
+            divinite = diviniteRecommande[random.Next(9)];
 
             String[] personnaliteRecommande = new String[] { "Pas de fond", "Ancien Scientologue rescapé", "Humaniste", "Ami des poneys", "Mouleux" };
             personnalite = personnaliteRecommande[random.Next(5)];
