@@ -496,36 +496,57 @@ class TypeRace : DescriptionTypes
 
             List<Descriptions> ListeDescriptions = new List<Descriptions>();
 
-            ButtonMenu choix = new ButtonMenu("Pas de fond", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
+            ButtonMenu choix = new ButtonMenu("Skyzophrène", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10));
             listeChoix.Add(choix);
-            Descriptions description = new Descriptions("Histoire", "Aucune");
+            Descriptions description = new Descriptions("Particularités", "Vous êtes capables de jouer tout seul pendant des heures. Tout seul ... Ca c'est ce que certains croient ! Ces idiots. Ils ne savent pas de toute façon, ce ne sont pas la réalité, eux. Ce sont comme des boites, des boites qui sonnent creux. Alors que vous, vous sonnez juste. Ouai, c'est les autres ne sont que des fantômes, des êtres sans vies. Heureusement que vous êtes là, que dieu vous ait envoyé du futur pour tous les sauver.");
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Ancien Scientologue rescapé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 70));
+            choix = new ButtonMenu("Ancien Scientologue rescapé", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 40));
             listeChoix.Add(choix);
-            description = new Descriptions("Histoire", "Une lutte acharnée, presque impossible, mais vous en êtes sortie, le cerveau un peu creux.");
+            description = new Descriptions("Particularités", "Que dire ? Vous n'avez plus d'argent. Vos chiens et vos chats sont encore là bas, du côté des scientologues. Mais vous, vous n'avez pas abandonné, jamais vous n'avez laché. A croire que vous n'avez supporté l'idée de ne jamais pouvoir jouer à battlefield 3. Bravo ! Vous avez du caractère, vous ! Pourtant, depuis votre épreuve, beaucoup prétendent que votre cerveau sonne bizarrement creux."); 
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Humaniste", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 140));
+            choix = new ButtonMenu("Humaniste", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 110));
             listeChoix.Add(choix);
-            description = new Descriptions("Histoire", "Erasme pur et dur. Pas de débordement toléré et tolérable !");
+            description = new Descriptions("Particularités", "Erasme pur et dur. Pas de débordement toléré et tolérable ! Vous vous imaginez, ce serait comme prendre un radis avec des tomates. On ne fait pas ces courses avec l'histoire, monsieur !");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Ami des poneys", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 210));
+            choix = new ButtonMenu("Scientologue infiltré", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 150));
             listeChoix.Add(choix);
-            description = new Descriptions("Histoire", "Oh ! Que c'est beau un poney");
+            description = new Descriptions("Particularités", "Méfiez-vous. Je vous invite à vous méfiez. Peut être pensez-vous être dans un monde joyeux, mais ce n'est pas le cas. Ouvrez les yeux ! Regardez ces enfants qui meurent aux informations et regardez autour de vous ! Tous ces gens qui vous approche comme des sangsues ! Ils vous en veulent c'est évident. Laissez-moi, laissez-moi gêrer tout ça et rester bien au calme chez-vous. Écoutez c'est simple. Vous préférez quoi ... Que des enfants meurent du sida ou alors vous préféreriez signer ce minuscule document ?");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);
 
-            choix = new ButtonMenu("Mouleux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 280));
+            choix = new ButtonMenu("Ami des poneys", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 200));
             listeChoix.Add(choix);
-            description = new Descriptions("Histoire", "De la moule et pis c'est tout.");
+            description = new Descriptions("Particularités", "Les poneys c'est vraiment bien. Moi, si on devait m'obliger à choisir entre un poney et une endive, je pense que je me suiciderais tellement le choix est diffile. Les poneys, c'est vraiment vraiment trop trop jolie. Oh ! Et puis vous avez vu, il vient de bouger ! Hihi !");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Mouleux", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 250));
+            listeChoix.Add(choix);
+            description = new Descriptions("Particularités", "Trèves de bavardages. Je veux jouer. Donnez moi un dé et un lit. Moi j'en ai marre de ces gens qui réfléchissent aux stats pendant des heures. Les choix dans la vie c'est de la moule ... et pis c'est tout.");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Psychopathe", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 300));
+            listeChoix.Add(choix);
+            description = new Descriptions("Particularités", "ANTISOCIAL ! Ouai les autres c'est qu'un groupe de moutons idiots ! Faut les brûler !! TOUS ! Faut les châtier, leur arracher leurs ongles, les entendre hurler ! Leur pisser dessus ! Ouai ! Faut qu'ils meurent ! TOUS !");
+            ListeDescriptions = new List<Descriptions>();
+            ListeDescriptions.Add(description);
+            descriptions.Add(choix.getText(), ListeDescriptions);
+
+            choix = new ButtonMenu("Fan des légumes", Color.DarkBlue, Color.DarkGreen, new Vector2(3 * game.GraphicsDevice.Viewport.Width / 8, game.GraphicsDevice.Viewport.Width / 10 + 350));
+            listeChoix.Add(choix);
+            description = new Descriptions("Particularités", "Excellent ! C'est le meilleur jour de ma vie. Vous connaissez la nouvelle ? NON ! Comment ça vous n'êtes pas abonné aux newsletters de légumes.com ? Bon je vais me répéter, mais aujourd'hui c'est le meilleur jour de ma vie. Pourquoi ? Eh bien, parce que Super U fait une réduction exceptionnelle pour trois tomates achetées ... une endive offerte !");
             ListeDescriptions = new List<Descriptions>();
             ListeDescriptions.Add(description);
             descriptions.Add(choix.getText(), ListeDescriptions);

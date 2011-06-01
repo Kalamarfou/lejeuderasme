@@ -103,6 +103,15 @@ namespace UltimateErasme.MenuStates
 
         }
 
+        public override bool conditionValide(ButtonMenu button)
+        {
+            if (!button.getText().Equals("Suivant") || resteAPlacer == 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public override String getValeurRecommande(PersoFinal persoFinal)
         {
             persoFinal.force = force;
@@ -222,29 +231,62 @@ namespace UltimateErasme.MenuStates
 
         public override void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
         {
-            String texte = "La force c'est la force. La dextérité c'est la vitesse, l'agilité. Le charisme peut vous permettre de réussir vos ralages, tout comme l'intelligence vous aide à gacher. En tant que mouleux, vous ne devez pas hésiter à cliquer sur ... recommandé.";
-            CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+            String texte = "Force :";
+            float y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+            y += 20;
+            texte = "Capacité à pousser les autres dans leur dernier retranchement.";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Dextérité :";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Capacité à vous déplacer lorsque c'est vraiment nécessaire.";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Charisme :";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Capacité de ralage."; 
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Sagesse :";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Capacité de contrer les ralages et les gachages des autres. Vous pourriez même peut être créer votre propre religion."; 
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Intelligence :";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Capacité de gacher par excellence.";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Constitution :";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 20;
+            texte = "Capacité de tout encaisser sans broncher.";
+            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
         }
 
         public override void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)
         {
             float y = viewportRect.Y;
-            Rectangle viewportRectCarac = new Rectangle(viewportRect.X, viewportRect.Y, 2 * viewportRect.Width / 3, viewportRect.Height);
-            Rectangle viewportRectPlus = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3, viewportRect.Y, viewportRect.Width / 3, viewportRect.Height);
-            Rectangle viewportRectMoins = new Rectangle(viewportRect.X + 2 * viewportRect.Width / 3, viewportRect.Y, viewportRect.Width / 3, viewportRect.Height);
-            y = CreatePersoMenuState.afficherTexte("Reste : " + resteAPlacer, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
-            y += 30;
+            Rectangle viewportRectCarac = new Rectangle(viewportRect.X, viewportRect.Y, 3 * viewportRect.Width / 4, viewportRect.Height);
+            Rectangle viewportRectPlus = new Rectangle(viewportRect.X + 3 * viewportRect.Width / 4, viewportRect.Y, viewportRect.Width / 4, viewportRect.Height);
+            Rectangle viewportRectMoins = new Rectangle(viewportRect.X + 3 * viewportRect.Width / 4, viewportRect.Y, viewportRect.Width / 4, viewportRect.Height);
+            y = CreatePersoMenuState.afficherTexte("Nombre de caractéristiques restantes : " + resteAPlacer, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y += 60;
 
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Force", force, forPlus, forMoins, y);
-            y += 30;
+            y += 40;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Dextérité", dexterite, dextPlus, dextMoins, y);
-            y += 30;
+            y += 40;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Constitution", constitution, conPlus, conMoins, y);
-            y += 30;
+            y += 40;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Intelligence", intelligence, intPlus, intMoins, y);
-            y += 30;
+            y += 40;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Sagesse", sagesse, sagPlus, sagMoins, y);
-            y += 30;
+            y += 40;
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Charisme", charisme, chaPlus, chaMoins, y);
         }
 

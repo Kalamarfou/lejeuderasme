@@ -55,6 +55,15 @@ namespace UltimateErasme.MenuStates
                 titre = "FINALISATION DE VOTRE PERSONNAGE";
             }
 
+            public override bool conditionValide(ButtonMenu button)
+            {
+                if (!button.getText().Equals("Suivant") || (histoire != null && prenom != null && nom != null && age != null))
+                {
+                    return true;
+                }
+                return false;
+            }
+
             public override String getValeurRecommande(PersoFinal persoFinal)
             {
                 histoire = persoFinal.histoire;
