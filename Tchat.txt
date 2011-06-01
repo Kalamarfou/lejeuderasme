@@ -1,0 +1,8 @@
+Guillaume, 1 juin 2011 22:55 ==> 
+Ce fichier sera le fichier de tchat. on peut y mettre des commantaires sur le commit/ 
+les todo/ les taches qu'on a en cours/ Laisser des notes a l'intention des autres devs.
+C'est mieux que le log de SVN que personne remplit et qui est trop subition a regarder. 
+Interdit de commit juste ce fichier pour le plaisir de commit.
+Ne pas oublier de mettre son nom et la date. Separer chaque post par une ligne de -----
+Aujourd'hui j'avais pas envie de coder, mais j'ai envie de commit, alors j'ai update le fichier excel et créé celui la ^^
+---------------------------------------------------------------------------------
