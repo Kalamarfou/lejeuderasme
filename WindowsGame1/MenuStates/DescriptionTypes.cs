@@ -30,6 +30,10 @@ namespace UltimateErasme.MenuStates
                         spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
                     }
                 }
+                else
+                {
+                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), Color.DarkGray);
+                }
             }
         }
 
