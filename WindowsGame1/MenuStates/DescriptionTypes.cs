@@ -13,18 +13,22 @@ namespace UltimateErasme.MenuStates
         public abstract void setValeurRecommande(PersoFinal persoFinal, String value);
         public virtual void changeCaracValue() { }
         public virtual void gestionClavier(GameObject mousePointer) { }
+        public virtual bool conditionValide(ButtonMenu button) { return true; }
 
         public void DrawButtons(SpriteBatch spriteBatch, List<ButtonMenu> listeButtons, SpriteFont font)
         {
             foreach (ButtonMenu button in listeButtons)
             {
-                if (button.isNear())
+                if (conditionValide(button))
                 {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
-                }
-                else
-                {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
+                    if (button.isNear())
+                    {
+                        spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
+                    }
+                    else
+                    {
+                        spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
+                    }
                 }
             }
         }

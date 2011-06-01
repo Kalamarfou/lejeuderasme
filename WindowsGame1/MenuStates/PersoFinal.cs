@@ -45,18 +45,18 @@ namespace UltimateErasme.MenuStates
             String[] diviniteRecommande = new String[] { "Bulo", "Age of Empires", "Raelrasme", "King Tiger", "La panthère rose", "Le grand Bassoul", "Dieu des Kikoos", "Moustache", "Le dieu de la moule" };
             divinite = diviniteRecommande[random.Next(9)];
 
-            String[] personnaliteRecommande = new String[] { "Pas de fond", "Ancien Scientologue rescapé", "Humaniste", "Ami des poneys", "Mouleux" };
-            personnalite = personnaliteRecommande[random.Next(5)];
+            String[] personnaliteRecommande = new String[] { "Skyzophrène", "Ancien Scientologue rescapé", "Humaniste", "Scientologue infiltré", "Psychopathe", "Fan des légumes", "Ami des poneys", "Mouleux" };
+            personnalite = personnaliteRecommande[random.Next(8)];
 
-            String[] prenomRecommande = new String[] { "Erasme", "Moustache", "Macédoine" };
-            prenom = prenomRecommande[random.Next(3)];
+            String[] prenomRecommande = new String[] { "Erasme", "Moustache", "Macédoine", "Endive", "Bulo", "Bolu", "Ulbo", "Tigre", "Coh", "Estelle", "Jolly", "Ranger", "killer", "Beau Gosse", "Canapé", "Fromage", "Vaucluse 4 LOL" };
+            prenom = prenomRecommande[random.Next(17)];
 
-            String[] nomRecommande = new String[] { "Bulo", "Bolu", "Ulbo" };
-            nom = nomRecommande[random.Next(3)];
+            String[] nomRecommande = new String[] { "Bulo", "Bolu", "Ulbo", "Antichar", "Erasme", "Moustache", "Macédoine", "Endive", "Tigre", "Coh", "Rabelais", "Moule", "De la moule des plaines", "Dixitien"};
+            nom = nomRecommande[random.Next(14)];
 
             age = random.Next(8, 90).ToString();
-            String[] histoireRecommande = new String[] { "Orphelin, j'ai passé une bonne partie de ma vie en forêt, elevé par des singes. C'est pourquoi je n'aime pas les poneys.", "Mon père était le maire de mon village. J'en ai été bannis à huit ans quand j'ai mis le feu à sa statue. J'ai alors parcouru le monde à dos de poney. J'adore les poneys.", "Mon histoire aurait pu être semblable à celle de tout un chacun, sauf que moi, j'ai su la transcender. Partout on m'idole. Je suis le Bassoul du jeu d'Erasme." };
-            histoire = histoireRecommande[random.Next(3)];
+            String[] histoireRecommande = new String[] { "Orphelin, j'ai passé une bonne partie de ma vie en forêt, elevé par des singes. C'est pourquoi je n'aime pas les poneys.", "Mon père était le maire de mon village. J'en ai été bannis à huit ans quand j'ai mis le feu à sa statue. J'ai alors parcouru le monde à dos de poney. J'adore les poneys.", "Mon histoire aurait pu être semblable à celle de tout un chacun, sauf que moi, j'ai su la transcender. Partout on m'idole. Je suis le Bassoul du jeu d'Erasme.", "Cé baite mé rakonthé mon histoire cé vrémén trau konpliké. Vie dan grote. Moi aimé noir é femme.", "Bonjour, je suis très poli et très souriant. En fait, je suis prêt à vous servir. Vous voulez des artichauts ? Des noix ? De la salade ? Oui - oui, je suis légumier depuis des générations. Et j'aime ça !" };
+            histoire = histoireRecommande[random.Next(5)];
         }
 
         public static PersoFinal getInstance() {

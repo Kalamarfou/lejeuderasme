@@ -108,42 +108,45 @@ namespace UltimateErasme.MenuStates
         {
             foreach (ButtonMenu button in listeButtons)
             {
-                if (button.isPressed())
+                if (descriptionTypes.conditionValide(button))
                 {
-                    if (button.getText().Equals("Annuler"))
+                    if (button.isPressed())
                     {
-                        Thread.Sleep(300);
-                        MustChangeState(MainMenuState.getInstance(game, graphics));
-                    }
-                    else if (button.getText().Equals("Recommandé"))
-                    {
-                        choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
-                    }
-                    else if (button.getText().Equals("Retour"))
-                    {
-                        Thread.Sleep(300);
-                        if (previousTypes.Count > 0)
+                        if (button.getText().Equals("Annuler"))
                         {
-                            followingTypes.Add(descriptionTypes);
-                            descriptionTypes = previousTypes.Last();
-                            previousTypes.Remove(descriptionTypes);
-                            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
+                            Thread.Sleep(300);
+                            MustChangeState(MainMenuState.getInstance(game, graphics));
+                        }
+                        else if (button.getText().Equals("Recommandé"))
+                        {
                             choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
                         }
-                    }
-                    else if (button.getText().Equals("Suivant"))
-                    {
-                        Thread.Sleep(300);
-                        //On met à jour le personnage final
-                        descriptionTypes.setValeurRecommande(persoFinal, choixSelect);
-                        previousTypes.Add(descriptionTypes);
-                        descriptionTypes = followingTypes.First();
-                        descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
-                        followingTypes.Remove(descriptionTypes);
-                    }
-                    else
-                    {
-                        MustChangeState(MainMenuState.getInstance(game, graphics));
+                        else if (button.getText().Equals("Retour"))
+                        {
+                            Thread.Sleep(300);
+                            if (previousTypes.Count > 0)
+                            {
+                                followingTypes.Add(descriptionTypes);
+                                descriptionTypes = previousTypes.Last();
+                                previousTypes.Remove(descriptionTypes);
+                                descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
+                                choixSelect = descriptionTypes.getValeurRecommande(persoFinal);
+                            }
+                        }
+                        else if (button.getText().Equals("Suivant"))
+                        {
+                            Thread.Sleep(300);
+                            //On met à jour le personnage final
+                            descriptionTypes.setValeurRecommande(persoFinal, choixSelect);
+                            previousTypes.Add(descriptionTypes);
+                            descriptionTypes = followingTypes.First();
+                            descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
+                            followingTypes.Remove(descriptionTypes);
+                        }
+                        else
+                        {
+                            MustChangeState(MainMenuState.getInstance(game, graphics));
+                        }
                     }
                 }
             }
@@ -216,13 +219,13 @@ namespace UltimateErasme.MenuStates
                     motToPrint = mot + " ";
                 int tailleMot = motToPrint.Length;
                 
-                if (tailleMot < tailleRestanteLigne)
+                if (tailleMot <= tailleRestanteLigne)
                 {
                     spriteBatch.DrawString(font, motToPrint, new Vector2(viewportRect.X + (viewportRect.Width - 11 * tailleRestanteLigne), y), color);
                     tailleRestanteLigne -= tailleMot;
                     idDebut += tailleMot;
                 }
-                else if (tailleMot < viewportRect.Width / 11)
+                else if (tailleMot <= viewportRect.Width / 11)
                 {
                     y += 20;
                     spriteBatch.DrawString(font, motToPrint, new Vector2(viewportRect.X, y), color);
@@ -246,7 +249,7 @@ namespace UltimateErasme.MenuStates
             int i = 0;
             while (i < mot.Length)
             {
-                if (tailleRestanteAEcrire > tailleRestanteLigne)
+                if (tailleRestanteAEcrire >= tailleRestanteLigne)
                 {
                     spriteBatch.DrawString(font, mot.Substring(i, tailleRestanteLigne), new Vector2(x, y), color);
                     tailleRestanteAEcrire -= tailleRestanteLigne;
