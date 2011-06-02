@@ -44,7 +44,6 @@ namespace UltimateErasme.MenuStates
         List<DescriptionTypes> previousTypes;
         List<DescriptionTypes> followingTypes;
         PersoFinal persoFinal;
-        KeyboardTester keyboardTester;
 
         private CreatePersoMenuState(Game game, GraphicsDeviceManager graphics)
         {
@@ -72,7 +71,6 @@ namespace UltimateErasme.MenuStates
             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
 
             persoFinal = PersoFinal.getInstance();
-            keyboardTester = new KeyboardTester();
         }
 
         public static GameState getInstance(Game game, GraphicsDeviceManager graphics)
@@ -163,12 +161,7 @@ namespace UltimateErasme.MenuStates
                 }
             }
 
-            descriptionTypes.gestionClavier(mousePointer);
-
-            keyboardTester.GetKeyboard();
-
-            if (keyboardTester.test(Keys.F))
-                graphics.ToggleFullScreen();
+            descriptionTypes.gestionClavier(graphics, mousePointer);
 
             mousePointer.Position = new Vector2(Mouse.GetState().X, Mouse.GetState().Y);
         }
