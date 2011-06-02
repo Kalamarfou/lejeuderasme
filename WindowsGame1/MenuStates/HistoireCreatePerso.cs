@@ -89,7 +89,7 @@ namespace UltimateErasme.MenuStates
 
             }
             //TODO : Gérer la manette lol lol lol dur !
-            public override void gestionClavier(GameObject mousePointer)
+            public override void gestionClavier(GraphicsDeviceManager graphics, GameObject mousePointer)
             {
                 clavier = Keyboard.GetState();
                 bool CapsLock = (((ushort)GetKeyState(0x14)) & 0xffff) != 0;

@@ -3,16 +3,26 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using UltimateErasme.GameObjects;
+using UltimateErasme.InputTesters;
+using Microsoft.Xna.Framework.Input;
 
 namespace UltimateErasme.MenuStates
 {
     abstract class DescriptionTypes
     {
+
+        KeyboardTester keyboardTester = new KeyboardTester();
+
         public abstract void remplissageDonneesCreationPerso(out List<ButtonMenu> listeButtons, out List<ButtonMenu> listeChoix, out Dictionary<String, List<Descriptions>> descriptions, out String choixSelect, out String titre);
         public abstract String getValeurRecommande(PersoFinal persoFinal);
         public abstract void setValeurRecommande(PersoFinal persoFinal, String value);
         public virtual void changeCaracValue() { }
-        public virtual void gestionClavier(GameObject mousePointer) { }
+        public virtual void gestionClavier(GraphicsDeviceManager graphics, GameObject mousePointer) {
+            keyboardTester.GetKeyboard();
+
+            if (keyboardTester.test(Keys.F))
+                graphics.ToggleFullScreen();
+        }
         public virtual bool conditionValide(ButtonMenu button) { return true; }
 
         public void DrawButtons(SpriteBatch spriteBatch, List<ButtonMenu> listeButtons, SpriteFont font)
