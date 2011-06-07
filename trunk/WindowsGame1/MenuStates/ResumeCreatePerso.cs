@@ -54,21 +54,21 @@ namespace UltimateErasme.MenuStates
         {
             float y = rectResume.Y;
             String texte = "Vous êtes donc un " + persoFinal.race + " avec pour classe : " + persoFinal.classe + ". Vous n'avez de foi qu'en " + persoFinal.divinite + " et vous êtes de personalité " + persoFinal.personnalite + " et d'alignement " + persoFinal.alignement + ". ";
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y);
             texte = "Vous vous appelez : " + persoFinal.prenom + " " + persoFinal.nom + ". Votre âge est : " + persoFinal.age + " ans. Voici votre histoire : " + persoFinal.histoire;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 50);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 50);
             texte = "FORCE : " + persoFinal.force;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 50);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 50);
             texte = "DEXTÉRITÉ : " + persoFinal.dexterite;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
             texte = "CONSTITUTION : " + persoFinal.constitution;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
             texte = "INTELLIGENCE : " + persoFinal.intelligence;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
             texte = "SAGESSE : " + persoFinal.sagesse;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
             texte = "CHARISME : " + persoFinal.charisme;
-            y = CreatePersoMenuState.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
+            y = ErasmeUtils.afficherTexte(texte, game, rectResume, spriteBatch, font, Color.DarkBlue, y + 30);
         }
 
         public override void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)

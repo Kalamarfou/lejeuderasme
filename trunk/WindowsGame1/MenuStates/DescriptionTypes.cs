@@ -61,8 +61,8 @@ namespace UltimateErasme.MenuStates
             float y = game.GraphicsDevice.Viewport.Height / 10;
             foreach (Descriptions description in descriptionChoice)
             {
-                CreatePersoMenuState.afficherTexte(description.titre, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
-                y = CreatePersoMenuState.afficherTexte(description.description, game, viewportRect, spriteBatch, font, Color.DarkBlue, y + 20);
+                ErasmeUtils.afficherTexte(description.titre, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+                y = ErasmeUtils.afficherTexte(description.description, game, viewportRect, spriteBatch, font, Color.DarkBlue, y + 20);
                 y += 40;
             }
         }
@@ -78,11 +78,11 @@ namespace UltimateErasme.MenuStates
                     rec = new Rectangle((int)button.getX(), (int)button.getY(), viewportRect.Width, viewportRect.Height / 6); 
                     if (button.isNear() || button.getText().Equals(choixSelect))
                     {
-                        CreatePersoMenuState.afficherTexte(texte, game, rec, spriteBatch, font, button.getOnClickColor(), rec.Y);
+                        ErasmeUtils.afficherTexte(texte, game, rec, spriteBatch, font, button.getOnClickColor(), rec.Y);
                     }
                     else
                     {
-                        CreatePersoMenuState.afficherTexte(texte, game, rec, spriteBatch, font, button.getColor(), rec.Y);
+                        ErasmeUtils.afficherTexte(texte, game, rec, spriteBatch, font, button.getColor(), rec.Y);
                     }
                 }
             }

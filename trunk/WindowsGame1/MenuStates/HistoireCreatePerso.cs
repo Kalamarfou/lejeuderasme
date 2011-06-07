@@ -16,10 +16,10 @@ namespace UltimateErasme.MenuStates
             private string age;
             private string prenom;
 
-            string touche = null;
-            KeyboardState clavier;
-            bool toucheEnfoncee = false;
-            bool shiftActif = false;
+            bool toucheEnfonceePrenom = false;
+            bool toucheEnfonceeNom = false;
+            bool toucheEnfonceeAge = false;
+            bool toucheEnfonceeHist = false;
 
             int prenomMax = 20;
             int nomMax = 30;
@@ -91,7 +91,11 @@ namespace UltimateErasme.MenuStates
             //TODO : Gérer la manette lol lol lol dur !
             public override void gestionClavier(GraphicsDeviceManager graphics, GameObject mousePointer)
             {
-                clavier = Keyboard.GetState();
+                prenom = ErasmeUtils.gestionClavier(graphics, mousePointer, prenomRect, prenom, prenomMax, toucheEnfonceePrenom, out toucheEnfonceePrenom);
+                nom = ErasmeUtils.gestionClavier(graphics, mousePointer, nomRect, nom, nomMax, toucheEnfonceeNom, out toucheEnfonceeNom);
+                age = ErasmeUtils.gestionClavier(graphics, mousePointer, ageRect, age, ageMax, toucheEnfonceeAge, out toucheEnfonceeAge);
+                histoire = ErasmeUtils.gestionClavier(graphics, mousePointer, histRect, histoire, histoireMax, toucheEnfonceeHist, out toucheEnfonceeHist);
+                /*clavier = Keyboard.GetState();
                 bool CapsLock = (((ushort)GetKeyState(0x14)) & 0xffff) != 0;
                 bool NumLock = (((ushort)GetKeyState(0x90)) & 0xffff) != 0;
 
@@ -207,15 +211,15 @@ namespace UltimateErasme.MenuStates
                 }
                 else if (clavier.GetPressedKeys().Length == 0) {
                         toucheEnfoncee = false;
-                }
+                }*/
             }
 
             public override void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
             {
-                CreatePersoMenuState.afficherTexte("Prénom : " + prenom, game, prenomRect, spriteBatch, font, Color.DarkBlue, prenomRect.Y);
-                CreatePersoMenuState.afficherTexte("Nom : " + nom, game, nomRect, spriteBatch, font, Color.DarkBlue, nomRect.Y);
-                CreatePersoMenuState.afficherTexte("Age : " + age, game, ageRect, spriteBatch, font, Color.DarkBlue, ageRect.Y);
-                CreatePersoMenuState.afficherTexte("Histoire : " + histoire, game, histRect, spriteBatch, font, Color.DarkBlue, histRect.Y);
+                ErasmeUtils.afficherTexte("Prénom : " + prenom, game, prenomRect, spriteBatch, font, Color.DarkBlue, prenomRect.Y);
+                ErasmeUtils.afficherTexte("Nom : " + nom, game, nomRect, spriteBatch, font, Color.DarkBlue, nomRect.Y);
+                ErasmeUtils.afficherTexte("Age : " + age, game, ageRect, spriteBatch, font, Color.DarkBlue, ageRect.Y);
+                ErasmeUtils.afficherTexte("Histoire : " + histoire, game, histRect, spriteBatch, font, Color.DarkBlue, histRect.Y);
             }
 
             public override void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)

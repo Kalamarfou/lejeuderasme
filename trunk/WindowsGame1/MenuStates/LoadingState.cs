@@ -110,21 +110,21 @@ namespace UltimateErasme.MenuStates
             float y;
             if (chargement % 80 < 20)
             {
-                y = CreatePersoMenuState.afficherTexte("Chargement", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+                y = ErasmeUtils.afficherTexte("Chargement", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
             }
             else if (chargement % 80 >= 20 && chargement % 80 < 40)
             {
-                y = CreatePersoMenuState.afficherTexte("Chargement ...", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+                y = ErasmeUtils.afficherTexte("Chargement ...", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
             }
             else if (chargement % 80 >= 40 && chargement % 80 < 60)
             {
-                y = CreatePersoMenuState.afficherTexte("Chargement ..", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+                y = ErasmeUtils.afficherTexte("Chargement ..", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
             }
             else
             {
-                y = CreatePersoMenuState.afficherTexte("Chargement .", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+                y = ErasmeUtils.afficherTexte("Chargement .", game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
             }
-            CreatePersoMenuState.afficherTexte("Astuce : " + loadingMessage, game, viewportRect, spriteBatch, font, Color.DarkBlue, y + 50);
+            ErasmeUtils.afficherTexte("Astuce : " + loadingMessage, game, viewportRect, spriteBatch, font, Color.DarkBlue, y + 50);
 
             spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
             spriteBatch.End();
