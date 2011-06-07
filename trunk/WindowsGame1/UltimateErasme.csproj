@@ -125,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ErasmeUtils.cs" />
+    <Compile Include="MenuStates\EntryMessagesState.cs" />
     <Compile Include="MenuStates\LoadingState.cs" />
     <Compile Include="GameObjects\ErasmeAccessoire.cs" />
     <Compile Include="GameObjects\ErasmeAccessoiresCollection.cs" />
