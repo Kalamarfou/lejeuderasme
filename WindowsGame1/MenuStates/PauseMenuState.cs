@@ -17,7 +17,6 @@ namespace UltimateErasme.MenuState
         SpriteBatch spriteBatch;
         SpriteFont font;
         List<ButtonMenu> buttonMenu;
-        GameObject background;
         GameObject MousePointer;
         private static PauseMenuState instancePMS;
         Rectangle viewportRect;
@@ -56,7 +55,6 @@ namespace UltimateErasme.MenuState
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(game.GraphicsDevice);
             font = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
-            background = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Backgrounds\decor2"));
             MousePointer = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\graisseCursor"));
 
             viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
@@ -128,8 +126,6 @@ namespace UltimateErasme.MenuState
             game.GraphicsDevice.Clear(Color.Red);
             UltimateErasme.getInstance(game, graphics).Draw(gameTime);
             spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-            Rectangle viewportRect = new Rectangle(0, 0, game.GraphicsDevice.Viewport.Width, game.GraphicsDevice.Viewport.Height);
-            //spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
 
             foreach (ButtonMenu button in buttonMenu)
             {

@@ -106,7 +106,7 @@ namespace UltimateErasme.MenuState
                     }
                     else
                     {
-                        MustChangeState(UltimateErasme.getInstance(game, graphics));
+                        MustChangeState(LoadingState.getInstance(game, graphics, UltimateErasme.getInstance(game, graphics), 160));
                     }
                 }
             }

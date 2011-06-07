@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuStates\LoadingState.cs" />
     <Compile Include="GameObjects\ErasmeAccessoire.cs" />
     <Compile Include="GameObjects\ErasmeAccessoiresCollection.cs" />
     <Compile Include="MenuStates\ButtonMenu.cs" />
