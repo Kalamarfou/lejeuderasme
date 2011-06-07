@@ -232,40 +232,40 @@ namespace UltimateErasme.MenuStates
         public override void DrawDescription(String choix, Rectangle viewportRect, SpriteBatch spriteBatch, Game game, Dictionary<String, List<Descriptions>> descriptions, SpriteFont font)
         {
             String texte = "Force :";
-            float y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
+            float y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, viewportRect.Y);
             y += 20;
             texte = "Capacité à pousser les autres dans leur dernier retranchement.";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Dextérité :";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Capacité à vous déplacer lorsque c'est vraiment nécessaire.";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Charisme :";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Capacité de ralage."; 
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Sagesse :";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Capacité de contrer les ralages et les gachages des autres. Vous pourriez même peut être créer votre propre religion."; 
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Intelligence :";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Capacité de gacher par excellence.";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Constitution :";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 20;
             texte = "Capacité de tout encaisser sans broncher.";
-            y = CreatePersoMenuState.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte(texte, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
         }
 
         public override void DrawChoix(SpriteBatch spriteBatch, List<ButtonMenu> listeChoix, Rectangle viewportRect, Game game, String choixSelect, SpriteFont font)
@@ -274,7 +274,7 @@ namespace UltimateErasme.MenuStates
             Rectangle viewportRectCarac = new Rectangle(viewportRect.X, viewportRect.Y, 3 * viewportRect.Width / 4, viewportRect.Height);
             Rectangle viewportRectPlus = new Rectangle(viewportRect.X + 3 * viewportRect.Width / 4, viewportRect.Y, viewportRect.Width / 4, viewportRect.Height);
             Rectangle viewportRectMoins = new Rectangle(viewportRect.X + 3 * viewportRect.Width / 4, viewportRect.Y, viewportRect.Width / 4, viewportRect.Height);
-            y = CreatePersoMenuState.afficherTexte("Nombre de caractéristiques restantes : " + resteAPlacer, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
+            y = ErasmeUtils.afficherTexte("Nombre de caractéristiques restantes : " + resteAPlacer, game, viewportRect, spriteBatch, font, Color.DarkBlue, y);
             y += 60;
 
             y = afficherChoix(spriteBatch, font, viewportRectCarac, viewportRectPlus, viewportRectMoins, "Force", force, forPlus, forMoins, y);
@@ -292,26 +292,26 @@ namespace UltimateErasme.MenuStates
 
         public float afficherChoix(SpriteBatch spriteBatch, SpriteFont font, Rectangle viewportRectCarac, Rectangle viewportRectPlus, Rectangle viewportRectMoins, String carac, int caract, ButtonMenu buttonPlus, ButtonMenu buttonMoins, float y)
         {
-            CreatePersoMenuState.afficherTexte(carac + " : " + caract, game, viewportRectCarac, spriteBatch, font, Color.DarkBlue, y);
+            ErasmeUtils.afficherTexte(carac + " : " + caract, game, viewportRectCarac, spriteBatch, font, Color.DarkBlue, y);
             buttonPlus.setX(viewportRectPlus.X);
             buttonPlus.setY(y - 10);
             buttonMoins.setX(viewportRectMoins.X);
             buttonMoins.setY(y + 10);
             if (buttonPlus.isNear(5))
             {
-                CreatePersoMenuState.afficherTexte("+", game, viewportRectPlus, spriteBatch, font, buttonPlus.getOnClickColor(), y - 10);
+                ErasmeUtils.afficherTexte("+", game, viewportRectPlus, spriteBatch, font, buttonPlus.getOnClickColor(), y - 10);
             }
             else
             {
-                CreatePersoMenuState.afficherTexte("+", game, viewportRectPlus, spriteBatch, font, buttonPlus.getColor(), y - 10);
+                ErasmeUtils.afficherTexte("+", game, viewportRectPlus, spriteBatch, font, buttonPlus.getColor(), y - 10);
             }
             if (buttonMoins.isNear(5))
             {
-                y = CreatePersoMenuState.afficherTexte("-", game, viewportRectMoins, spriteBatch, font, buttonMoins.getOnClickColor(), y + 10);
+                y = ErasmeUtils.afficherTexte("-", game, viewportRectMoins, spriteBatch, font, buttonMoins.getOnClickColor(), y + 10);
             }
             else
             {
-                y = CreatePersoMenuState.afficherTexte("-", game, viewportRectMoins, spriteBatch, font, buttonMoins.getColor(), y + 10);
+                y = ErasmeUtils.afficherTexte("-", game, viewportRectMoins, spriteBatch, font, buttonMoins.getColor(), y + 10);
             }
             return y;
         }
