@@ -25,6 +25,7 @@ using System.Management;
 using System.Management.Instrumentation;
 using UltimateErasme.MenuState;
 using BloomPostprocess;
+using UltimateErasme.MenuStates;
 
 namespace UltimateErasme
 {
@@ -42,7 +43,6 @@ namespace UltimateErasme
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
-        //public CinematiquesManager cinematiquesManager;
         static public XpManager xpManager;
         static public LifeManager lifeManager;
         public Game game;
@@ -155,8 +155,6 @@ namespace UltimateErasme
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
-            //cinematiquesManager = new CinematiquesManager(this);
-            //game.Components.Add(cinematiquesManager);
             xpManager = new XpManager(this);
             lifeManager = new LifeManager(this);
         }
@@ -260,10 +258,14 @@ namespace UltimateErasme
             //TODO
             if (keyboardTester.test(Keys.C))
                 MustChangeState(CinematiquesManager.getInstance(game, graphics));
-                //cinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
+
+            else if (keyboardTester.test(Keys.Enter))
+            {
+                MustChangeState(EntryMessagesState.getInstance(game, graphics));
+            }
 
             //YEAH, Appuie sur F pour passer en plein ecran
-            if (keyboardTester.test(Keys.F))
+            else if (keyboardTester.test(Keys.F))
                 graphics.ToggleFullScreen();
 
             keyboardTester.UpdatePreviousKeyboardState();
