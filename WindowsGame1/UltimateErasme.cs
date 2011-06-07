@@ -42,7 +42,7 @@ namespace UltimateErasme
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
-        public CinematiquesManager cinematiquesManager;
+        //public CinematiquesManager cinematiquesManager;
         static public XpManager xpManager;
         static public LifeManager lifeManager;
         public Game game;
@@ -155,8 +155,8 @@ namespace UltimateErasme
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
-            cinematiquesManager = new CinematiquesManager(this);
-            game.Components.Add(cinematiquesManager);
+            //cinematiquesManager = new CinematiquesManager(this);
+            //game.Components.Add(cinematiquesManager);
             xpManager = new XpManager(this);
             lifeManager = new LifeManager(this);
         }
@@ -259,7 +259,8 @@ namespace UltimateErasme
 
             //TODO
             if (keyboardTester.test(Keys.C))
-                cinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
+                MustChangeState(CinematiquesManager.getInstance(game, graphics));
+                //cinematiquesManager.playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
 
             //YEAH, Appuie sur F pour passer en plein ecran
             if (keyboardTester.test(Keys.F))
