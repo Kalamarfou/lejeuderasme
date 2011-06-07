@@ -45,6 +45,7 @@ namespace UltimateErasme
             states.Add(currentState);
             states.Add(UltimateErasme.getInstance(this, graphics));
             states.Add(PauseMenuState.getInstance(this, graphics));
+            states.Add(CinematiquesManager.getInstance(this, graphics));
         }
 
         

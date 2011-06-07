@@ -17,6 +17,7 @@ using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
 using UltimateErasme.Sound;
 using Microsoft.Xna.Framework.Design;
+using System.Threading;
 
 
 namespace UltimateErasme.Cinematiques
@@ -24,12 +25,13 @@ namespace UltimateErasme.Cinematiques
     /// <summary>
     /// This is a game component that implements IUpdateable.
     /// </summary>
-    public class CinematiquesManager : DrawableGameComponent
+    public class CinematiquesManager : GameState
     {
 
         private SpriteFont dialogueFont;
-        private ContentManager contentManager;
         private SpriteBatch spriteBatch;
+        private Game game;
+        GraphicsDeviceManager graphics;
 
         private bool cinematiquePlaying = false;
         private List<DialogueElement> currentCinematic = new List<DialogueElement>();
@@ -42,7 +44,8 @@ namespace UltimateErasme.Cinematiques
         public SetPause setPause;
         
         public Texture2D dialogueBackground;
-
+        private static CinematiquesManager instanceCM;
+        private bool endDialogueElements = false;
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
@@ -50,14 +53,19 @@ namespace UltimateErasme.Cinematiques
 #endif
 
 
-        public CinematiquesManager(UltimateErasme game)
-            : base(game.game)
+        private CinematiquesManager(Game game, GraphicsDeviceManager graphics)
         {
-            contentManager = game.Content;
-            spriteBatch = new SpriteBatch(game.game.GraphicsDevice);
-            soundManager = game.playerManager.premierJoueur.soundManager;
-            dialogueBackground = game.Content.Load<Texture2D>(@"Sprites\Dialogues\Background");
-            this.Initialize();
+            this.game = game;
+            this.graphics = graphics;
+        }
+
+        public static CinematiquesManager getInstance(Game game, GraphicsDeviceManager graphics)
+        {
+            if (instanceCM == null)
+            {
+                instanceCM = new CinematiquesManager(game, graphics);
+            }
+            return instanceCM;
         }
 
         /// <summary>
@@ -66,10 +74,19 @@ namespace UltimateErasme.Cinematiques
         /// </summary>
         public override void Initialize()
         {
-            // TODO: Add your initialization code here
+            dialogueFont = game.Content.Load<SpriteFont>(@"Fonts\DialogueFont");
+            dialogueBackground = game.Content.Load<Texture2D>(@"Sprites\Dialogues\Background");
+        }
 
-            dialogueFont = contentManager.Load<SpriteFont>("Fonts/DialogueFont");
-            base.Initialize();
+        public override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            spriteBatch = new SpriteBatch(game.GraphicsDevice);
+            soundManager = ((UltimateErasme)UltimateErasme.getInstance(game, graphics)).playerManager.premierJoueur.soundManager;
+        }
+
+        public override void UnloadContent()
+        {
         }
 
         public void playCinematic(string chemin)
@@ -86,8 +103,6 @@ namespace UltimateErasme.Cinematiques
                     }
                 }
                 currentElement = currentCinematic[0];
-                //TODO
-                //setPause(true);
                 cinematiquePlaying = true;
 
             }
@@ -110,19 +125,19 @@ namespace UltimateErasme.Cinematiques
                     string[] temp = element.Attribute("personnage").Value.Split(';');
                     foreach (string item in temp)
                     {   
-                        GameObject personnage = new GameObject(contentManager.Load<Texture2D>(item));
+                        GameObject personnage = new GameObject(game.Content.Load<Texture2D>(item));
                         personnages.Add(personnage);
                     }
 				}
 				catch (Exception e) {
-                    GameObject personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                    GameObject personnage = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
                     personnages.Add(personnage);
                     Console.WriteLine(e);
                 }
             }
             else
             {
-                GameObject personnage = new GameObject(contentManager.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
+                GameObject personnage = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Dialogues\Empty"));
                 personnages.Add(personnage);
             }
 
@@ -210,7 +225,7 @@ namespace UltimateErasme.Cinematiques
                 {
                     if (reponse.Name == "Reponse")
                     {
-                        Reponse rep = new Reponse(reponse.Attribute("texte").Value, contentManager);
+                        Reponse rep = new Reponse(reponse.Attribute("texte").Value, game.Content);
                         
                         if (reponse.HasElements)
                         {
@@ -227,7 +242,15 @@ namespace UltimateErasme.Cinematiques
 
             if (dialogueElement.reponses.Count > 0)
             {
-                dialogueElement.reponses.First<Reponse>().Selected = true;
+                if (!endDialogueElements)
+                {
+                    dialogueElement.reponses.First<Reponse>().Selected = true;
+                    endDialogueElements = true;
+                }
+                else
+                {
+                    MustChangeState(UltimateErasme.getInstance(game, graphics));
+                }
             }
             brancheDialogue.Add(dialogueElement);
 
@@ -239,7 +262,6 @@ namespace UltimateErasme.Cinematiques
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         public override void Update(GameTime gameTime)
         {
-            // TODO: Add your update code here
             if (cinematiquePlaying)
             {
                 gamePadTester.ChooseGamePad(ControllerType.xBoxControler1);
@@ -258,8 +280,10 @@ namespace UltimateErasme.Cinematiques
 #endif
                 currentElement.Update(gameTime);
             }
-
-            base.Update(gameTime);
+            else
+            {
+                playCinematic(@"Content\DialoguesXML\DialogueDebut.xml");
+            }
         }
 
         private void UpdateXboxController(GameTime gameTime)
@@ -358,6 +382,9 @@ namespace UltimateErasme.Cinematiques
         {
             if (cinematiquePlaying)
             {
+            //init
+            game.GraphicsDevice.Clear(Color.Red);
+            UltimateErasme.getInstance(game, graphics).Draw(gameTime);
                 spriteBatch.Begin();
                 spriteBatch.Draw(dialogueBackground, new Vector2(160, 600 - dialogueBackground.Height), Color.White);
                 currentElement.Draw(spriteBatch, gameTime);
@@ -368,7 +395,12 @@ namespace UltimateErasme.Cinematiques
                 }
                 spriteBatch.End();
             }
-            base.Draw(gameTime);
+        }
+
+        public override void MustChangeState(GameState futureState)
+        {
+            Thread.Sleep(300);
+            game.currentState = futureState;
         }
     }
 }
