@@ -23,10 +23,12 @@ namespace UltimateErasme.GameObjects
 #if !XBOX
         KeyboardTester keyboardTester = new KeyboardTester();
 #endif
-        
-        public ErasmeJumpManager( UltimateErasme game, ErasmeManager erasmeManager)
+        UltimateErasme game;
+
+        public ErasmeJumpManager(UltimateErasme game, ErasmeManager erasmeManager)
             :base()
         {
+            this.game = game;
             this.erasmeManager = erasmeManager;
             erasmeMonte = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme_blup");
             erasmeDescend = game.Content.Load<Texture2D>(@"Sprites\Characters\Erasme\erasme_no_blup");
@@ -107,7 +109,7 @@ namespace UltimateErasme.GameObjects
 
         private void DoubleSauter(string sens)
         {
-            UltimateErasme.xpManager.AddXp(XpEvents.DoubleSaut);
+            XpManager.getInstance(game).AddXp(XpEvents.DoubleSaut);
 
             jumpState = JumpState.doubleDecollage;
             sensDuDoubleSaut = sens;
@@ -127,7 +129,7 @@ namespace UltimateErasme.GameObjects
 
         private void Sauter()
         {
-            UltimateErasme.xpManager.AddXp(XpEvents.Saut);
+            XpManager.getInstance(game).AddXp(XpEvents.Saut);
 
             jumpState = JumpState.decollage;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)

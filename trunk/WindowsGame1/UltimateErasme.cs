@@ -43,8 +43,6 @@ namespace UltimateErasme
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
         public CollisionsManager collisionsManager;
-        static public XpManager xpManager;
-        static public LifeManager lifeManager;
         public Game game;
         public ContentManager Content {get; set;}
         public GameComponentCollection Components { get; set; }
@@ -155,8 +153,6 @@ namespace UltimateErasme
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
             collisionsManager = new CollisionsManager(this, viewportRect);
-            xpManager = new XpManager(this);
-            lifeManager = new LifeManager(this);
         }
 
         /// <summary>
@@ -277,8 +273,6 @@ namespace UltimateErasme
             playerManager.Update(gameTime);
             mechantManager.Update(gameTime);
             explosionManager.Update(gameTime);
-            xpManager.Update(gameTime);
-            //lifeManager.Update(gameTime);
         }
 
         private void NetworkSessionManager(GameTime gameTime)
@@ -581,8 +575,6 @@ namespace UltimateErasme
             playerManager.Draw(gameTime, spriteBatch);
             mechantManager.Draw(gameTime, spriteBatch);
             explosionManager.Draw(gameTime, spriteBatch);
-            xpManager.Draw(gameTime, spriteBatch);
-            lifeManager.Draw(spriteBatch);
             
             //affichage des erreurs reseau
             spriteBatch.DrawString(networkFont, errorMessage, new Vector2(20, 200), Color.Red);

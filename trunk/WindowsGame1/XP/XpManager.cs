@@ -29,8 +29,9 @@ namespace UltimateErasme.XP
         Vector2 xpRemainingToNextLevelPosition;
 
         SuccesManager succesManager;
+        private static XpManager instanceXM;
 
-        public XpManager(UltimateErasme game)
+        private XpManager(UltimateErasme game)
         {
             xpFont = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             xpFontPosition = new Vector2(400, 520);
@@ -45,7 +46,14 @@ namespace UltimateErasme.XP
             timerCombo = new Timer();
         }
 
-
+        public static XpManager getInstance(UltimateErasme game)
+        {
+            if (instanceXM == null)
+            {
+                instanceXM = new XpManager(game);
+            }
+            return instanceXM;
+        }
 
         public void Update(GameTime gameTime)
         {

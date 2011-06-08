@@ -16,14 +16,15 @@ namespace UltimateErasme.XP
         public string Titre { get; private set; }
         public int XpRecu { get; private set; }
         public SuccesEvents SuccesEvent { get; private set; }
-
+        UltimateErasme game;
         int nombreDeFoisAFarmer;
         
 
         bool estValide = true;
 
-        public Succes(Texture2D loadedTexture, SuccesEvents succesEvent, int nombreDeFoisAFarmer, string titre, int xpRecu) : base(loadedTexture)
+        public Succes(UltimateErasme game, Texture2D loadedTexture, SuccesEvents succesEvent, int nombreDeFoisAFarmer, string titre, int xpRecu) : base(loadedTexture)
         {
+            this.game = game;
             this.nombreDeFoisAFarmer = nombreDeFoisAFarmer;
             this.Titre = titre;
             this.XpRecu = xpRecu;
@@ -40,7 +41,7 @@ namespace UltimateErasme.XP
                 TimerSucces.Dispose();
                 TimerSucces = new Timer(3500) { Enabled = true };
                 TimerSucces.Elapsed += new ElapsedEventHandler(timerSucces_Elapsed);
-                UltimateErasme.xpManager.AddXpSucces(XpRecu);
+                XpManager.getInstance(game).AddXpSucces(XpRecu);
                 Terminer();
             }
         }
