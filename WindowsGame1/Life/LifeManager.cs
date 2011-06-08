@@ -16,19 +16,23 @@ namespace UltimateErasme.Life
         SpriteFont lifeFont;
         //Vector2 lifeFontPosition;
         Vector2 lifePosition;
+        private static LifeManager instanceLM;
 
-        public LifeManager(UltimateErasme game)
+        private LifeManager(UltimateErasme game)
         {
             lifeFont = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             lifePosition = new Vector2(650, 10);
             lifeMax = 100;
             lifeMin = 0;
             currentLife = 100;
-            /*xpFontPosition = new Vector2(400, 520);
-            xpComboPosition = new Vector2(400, 540);
-            xpTotalPosition = new Vector2(10, 10);
-            xpRemainingToNextLevelPosition = new Vector2(10, 30);
-            xpLevelPosition = new Vector2(10, 50);*/
+        }
+
+        public static LifeManager getInstance(UltimateErasme game) {
+                        if (instanceLM == null)
+            {
+                instanceLM = new LifeManager(game);
+            }
+            return instanceLM;
         }
 
         public void AddLife(double lifeWon)

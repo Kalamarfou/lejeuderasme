@@ -17,6 +17,8 @@ using UltimateErasme.Sound;
 using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
 using UltimateErasme.MenuStates;
+using UltimateErasme.XP;
+using UltimateErasme.Life;
 
 namespace UltimateErasme.GameObjects
 {
@@ -46,6 +48,8 @@ namespace UltimateErasme.GameObjects
         public ErasmeJumpManager jumpManager;
         public AttackManager attackManager;
         public TransformationManager transformationManager;
+        public XpManager xpManager;
+        public LifeManager lifeManager;
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
@@ -69,6 +73,8 @@ namespace UltimateErasme.GameObjects
             attackManager = new AttackManager(game, this);
             transformationManager = new TransformationManager(game, this);
             ErasmeAccessoires = new ErasmeAccessoiresCollection();
+            xpManager = XpManager.getInstance(game);
+            lifeManager = LifeManager.getInstance(game);
 
             if (PersoFinal.getInstance().race.ToLower() == "poney")
             {
@@ -108,7 +114,9 @@ namespace UltimateErasme.GameObjects
             transformationManager.Update(gameTime, controllerType);
             clignotageManager(gameTime);
             ErasmeAccessoires.Update(gameTime, erasme.Position, erasme.Rotation);
-            
+
+            xpManager.Update(gameTime);
+            //lifeManager.Update(gameTime);
         }
 
         private void UpdateKeyboard(GameTime gameTime)
@@ -160,7 +168,9 @@ namespace UltimateErasme.GameObjects
                     ErasmeAccessoires.Draw(gameTime, spriteBatch);
                 }
             }
-            buloManager.Draw(gameTime, spriteBatch);            
+            buloManager.Draw(gameTime, spriteBatch);
+            xpManager.Draw(gameTime, spriteBatch);
+            lifeManager.Draw(spriteBatch);
         }
 
 

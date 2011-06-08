@@ -72,8 +72,8 @@ namespace UltimateErasme.Collisions
                     {
                         if (explosion.Intersects(personnageVulnerableBox.Box))
                         {
-                            UltimateErasme.lifeManager.SubstractLife(LifeEvents.SuicideALExplosion);
-                            UltimateErasme.xpManager.AddXp(XpEvents.SuicideALExplosion);
+                            LifeManager.getInstance(game).SubstractLife(LifeEvents.SuicideALExplosion);
+                            XpManager.getInstance(game).AddXp(XpEvents.SuicideALExplosion);
                             personnageVulnerableBox.ErasmeManager.soundManager.Outch();
                             personnageVulnerableBox.ErasmeManager.clignote = true;
                             personnageVulnerableBox.ErasmeManager.HeureDebutClignotage = gameTime.TotalGameTime.TotalMilliseconds;
@@ -92,8 +92,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (explosion.Intersects(mechantVulnerableBox.Box))
                     {
-                        UltimateErasme.lifeManager.AddLife(LifeEvents.KillALExplosion);
-                        UltimateErasme.xpManager.AddXp(XpEvents.KillALExplosion);
+                        LifeManager.getInstance(game).AddLife(LifeEvents.KillALExplosion);
+                        XpManager.getInstance(game).AddXp(XpEvents.KillALExplosion);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         game.playerManager.premierJoueur.soundManager.MechantMeurtExplosion();
                     }
@@ -110,8 +110,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (voltaire.Intersects(mechantVulnerableBox.Box))
                     {
-                        UltimateErasme.xpManager.AddXp(XpEvents.KillALEclair);
-                        UltimateErasme.lifeManager.AddLife(LifeEvents.KillALEclair);
+                        XpManager.getInstance(game).AddXp(XpEvents.KillALEclair);
+                        LifeManager.getInstance(game).AddLife(LifeEvents.KillALEclair);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         game.playerManager.premierJoueur.soundManager.MechantMeurtVoltaire();
                     }
@@ -128,8 +128,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (bulo.Intersects(mechantVulnerableBox.Box))
                     {
-                        UltimateErasme.lifeManager.AddLife(LifeEvents.KillAuBulo);
-                        UltimateErasme.xpManager.AddXp(XpEvents.KillAuBulo);
+                        LifeManager.getInstance(game).AddLife(LifeEvents.KillAuBulo);
+                        XpManager.getInstance(game).AddXp(XpEvents.KillAuBulo);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         game.playerManager.premierJoueur.soundManager.MechantMeurtBulo();
                     }
@@ -146,8 +146,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (graisse.Box.Intersects(mechantVulnerableBox.Box))
                     {
-                        UltimateErasme.lifeManager.AddLife(LifeEvents.KillALaGraisse);
-                        UltimateErasme.xpManager.AddXp(XpEvents.KillALaGraisse);
+                        LifeManager.getInstance(game).AddLife(LifeEvents.KillALaGraisse);
+                        XpManager.getInstance(game).AddXp(XpEvents.KillALaGraisse);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         graisse.Boule.Alive = false;
 
@@ -168,7 +168,7 @@ namespace UltimateErasme.Collisions
                     {
                         if (personnageVulnerableBox.Box.Intersects(mechantAttaqueBox.Box))
                         {
-                            UltimateErasme.lifeManager.SubstractLife(LifeEvents.MechantAttaque);
+                            LifeManager.getInstance(game).SubstractLife(LifeEvents.MechantAttaque);
                             personnageVulnerableBox.ErasmeManager.soundManager.Outch();
                             mechantAttaqueBox.Mechant.mechantState = MechantState.mort;
                             personnageVulnerableBox.ErasmeManager.clignote = true;
