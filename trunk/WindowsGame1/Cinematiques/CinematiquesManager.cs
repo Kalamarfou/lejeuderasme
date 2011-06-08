@@ -247,10 +247,6 @@ namespace UltimateErasme.Cinematiques
                     dialogueElement.reponses.First<Reponse>().Selected = true;
                     endDialogueElements = true;
                 }
-                else
-                {
-                    MustChangeState(UltimateErasme.getInstance(game, graphics));
-                }
             }
             brancheDialogue.Add(dialogueElement);
 
@@ -299,7 +295,7 @@ namespace UltimateErasme.Cinematiques
         {
             if (keyboardTester.test(Keys.Space))
             {
-                NextElement();
+                 NextElement();
             }
             else if (keyboardTester.test(Keys.Up))
             {
@@ -376,6 +372,7 @@ namespace UltimateErasme.Cinematiques
             //TODO
             //setPause(false);
             currentCinematic.Clear();
+            MustChangeState(UltimateErasme.getInstance(game, graphics));
         }
 
         public override void Draw(GameTime gameTime)
