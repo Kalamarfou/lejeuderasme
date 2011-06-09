@@ -30,7 +30,7 @@ namespace UltimateErasme.MenuStates
         int calculDeMoule = 2;
 
 
-        private PersoFinal()
+        public PersoFinal()
         {
             //Valeur du "recommandé" : aléatoire
             String[] raceRecommande = new String[] { "Licorne", "Vertuchoux", "Elfe de la Mocheté", "Poney", "Erasme pur" };
@@ -65,6 +65,11 @@ namespace UltimateErasme.MenuStates
                 persoFinal = new PersoFinal();
             }
             return persoFinal;
+        }
+
+        public static void setInstance(PersoFinal perso)
+        {
+            persoFinal = perso;
         }
 
         public void calculerForce()
