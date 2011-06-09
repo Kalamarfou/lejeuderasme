@@ -124,6 +124,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ErasmeFilesDirectoriesUtils.cs" />
     <Compile Include="ErasmeUtils.cs" />
     <Compile Include="MenuStates\EntryMessagesState.cs" />
     <Compile Include="MenuStates\LoadingState.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="MenuStates\OptionsMenuState.cs" />
     <Compile Include="MenuStates\PersoFinal.cs" />
     <Compile Include="MenuStates\ResumeCreatePerso.cs" />
+    <Compile Include="MenuStates\SavedPersoMenuState.cs" />
     <Compile Include="MenuStates\TypesRaceClasseEtc.cs" />
     <Compile Include="Network\NetworkedErasme.cs" />
     <Compile Include="MenuStates\PauseMenuState.cs" />
