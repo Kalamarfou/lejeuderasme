@@ -55,7 +55,7 @@ namespace UltimateErasme
             return y;
         }
 
-        public static float afficherCaractParCaract(String mot, Game game, float xInit, float x, float y, int tailleRestanteLigne, int tailleMax, SpriteBatch spriteBatch, SpriteFont font, Color color, out int tailleRestanteLigneFinale)
+        private static float afficherCaractParCaract(String mot, Game game, float xInit, float x, float y, int tailleRestanteLigne, int tailleMax, SpriteBatch spriteBatch, SpriteFont font, Color color, out int tailleRestanteLigneFinale)
         {
             int tailleRestanteAEcrire = mot.Length;
             int i = 0;
@@ -168,7 +168,7 @@ namespace UltimateErasme
             return champValue;
         }
 
-        public static bool estDansLeRectangle(GameObject mousePointer, Rectangle viewportRect)
+        private static bool estDansLeRectangle(GameObject mousePointer, Rectangle viewportRect)
         {
             return (mousePointer.Position.X >= viewportRect.X && mousePointer.Position.X <= (viewportRect.X + viewportRect.Width)
                 && mousePointer.Position.Y >= viewportRect.Y && mousePointer.Position.Y <= (viewportRect.Y + viewportRect.Height));

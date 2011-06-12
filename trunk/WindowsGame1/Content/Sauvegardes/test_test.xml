@@ -1,4 +1,5 @@
-<perso>
+<?xml version="1.0" encoding="utf-8"?>
+  <perso>
   <race>A</race>
   <classe>B</classe>
   <alignement>V</alignement>

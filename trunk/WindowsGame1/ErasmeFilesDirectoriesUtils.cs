@@ -5,22 +5,28 @@ using System.Text;
 using System.IO;
 using System.Xml;
 using UltimateErasme.MenuStates;
-
 namespace UltimateErasme
 {
     class ErasmeFilesDirectoriesUtils
     {
-        public static string[] dir(string directory)
+        public static List<string> dir(string directory)
         {
             string[] files;
             files = Directory.GetFileSystemEntries(directory);
 
             int filecount = files.GetUpperBound(0) + 1;
-            string[] outFiles = new string[filecount];
+            List<string> outFiles = new List<string>();
 
             for (int i = 0; i < filecount; i++)
-                outFiles[i] = (files[i].Split('.'))[0];
-
+            {
+                string[] tabAux = (files[i].Split('\\'));
+                string aux = tabAux[tabAux.Length - 1];
+                aux = (aux.Split('.'))[0];
+                if (aux != null && !aux.Equals(""))
+                {
+                    outFiles.Add(aux);
+                }
+            }
             return outFiles;
         }
 
@@ -36,16 +42,17 @@ namespace UltimateErasme
             }
         }
 
-        public static string getTagNameValue(string pathWithFileName, string tagName)
+        private static string getTagNameValue(string pathWithFileName, string tagName)
         {
             XmlDataDocument xmldoc = new XmlDataDocument();
             xmldoc.Load(pathWithFileName);
             XmlNodeList xmlnode = xmldoc.GetElementsByTagName(tagName);
 
-            if(xmlnode.Count == 1) {
+            if (xmlnode.Count == 1)
+            {
                 return xmlnode[0].FirstChild.Value;
             }
-            else 
+            else
             {
                 return null;
             }
@@ -54,8 +61,9 @@ namespace UltimateErasme
         public static void chargerPerso(Dictionary<String, PersoFinal> listePerso, string pathWithoutFileName, string fileName)
         {
             XmlDocument doc = new XmlDocument();
-            String pathWithFileName = pathWithoutFileName + fileName + ".xml";
-            doc.LoadXml(pathWithFileName);
+            String pathWithFileName = pathWithoutFileName + "\\" + fileName + ".xml";
+            //using (Stream stream = client.OpenRead("pathWithFileName"))
+            doc.Load(pathWithFileName);
 
             if (listePerso.ContainsKey(fileName))
             {
@@ -63,6 +71,7 @@ namespace UltimateErasme
                 listePerso.TryGetValue(fileName, out persoFinal);
                 if (persoFinal == null)
                 {
+                    persoFinal = new PersoFinal();
                     persoFinal.race = getTagNameValue(pathWithFileName, "race");
                     persoFinal.classe = getTagNameValue(pathWithFileName, "classe");
                     persoFinal.alignement = getTagNameValue(pathWithFileName, "alignement");
@@ -78,6 +87,7 @@ namespace UltimateErasme
                     persoFinal.nom = getTagNameValue(pathWithFileName, "nom");
                     persoFinal.age = getTagNameValue(pathWithFileName, "age");
                     persoFinal.histoire = getTagNameValue(pathWithFileName, "histoire");
+                    listePerso.Remove(fileName);
                     listePerso.Add(fileName, persoFinal);
                 }
             }
@@ -93,7 +103,12 @@ namespace UltimateErasme
 
             if(!listePerso.ContainsKey(string.Concat(perso.prenom, perso.nom)) || ecraserFichier) {
 
+                XmlDeclaration xmlDecl = doc.CreateXmlDeclaration("1.0", "UTF-8", "");
+                doc.AppendChild(xmlDecl);
+
                 XmlElement xmlPerso = doc.CreateElement("perso");
+                doc.AppendChild(xmlPerso);
+
                 XmlElement element = doc.CreateElement("race");
                 element.InnerText = perso.race;
                 xmlPerso.AppendChild(element);
@@ -154,7 +169,7 @@ namespace UltimateErasme
                 element.InnerText = perso.histoire;
                 xmlPerso.AppendChild(element);
 
-                doc.Save(pathWithoutFileName + "\\" + perso.prenom + "_" + perso.nom);
+                doc.Save(pathWithoutFileName + "\\" + perso.prenom + "_" + perso.nom + ".xml");
             }
             return listePerso;
         }

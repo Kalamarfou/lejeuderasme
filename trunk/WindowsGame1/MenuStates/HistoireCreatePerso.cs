@@ -43,7 +43,7 @@ namespace UltimateErasme.MenuStates
                 listeButtons.Add(button);
                 button = new ButtonMenu("Recommandé", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 350, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
                 listeButtons.Add(button);
-                button = new ButtonMenu("Suivant", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 150, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
+                button = new ButtonMenu("Terminer", Color.DarkBlue, Color.DarkGreen, new Vector2((game.GraphicsDevice.Viewport.Width) - 150, 9 * game.GraphicsDevice.Viewport.Height / 10 + 20));
                 listeButtons.Add(button);
 
                 listeChoix = null;
@@ -55,11 +55,12 @@ namespace UltimateErasme.MenuStates
 
             public override bool conditionValide(ButtonMenu button)
             {
-                if (!button.getText().Equals("Suivant") || (histoire != null && prenom != null && nom != null && age != null))
+                if (button.getText().Equals("Terminer") && (histoire == null || prenom == null || nom == null || age == null || prenom.Contains(".")
+                    || nom.Contains("_") || prenom.Contains("_") || nom.Contains(".") || SavedPersoMenuState.listePerso.ContainsKey(prenom + "_" + nom)))
                 {
-                    return true;
+                    return false;
                 }
-                return false;
+                return true;
             }
 
             public override String getValeurRecommande(PersoFinal persoFinal)
