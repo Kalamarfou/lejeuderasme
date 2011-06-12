@@ -33,7 +33,7 @@ namespace UltimateErasme.MenuState
             buttonMenu = new List<ButtonMenu>();
             ButtonMenu bouton = new ButtonMenu("Jouer", Color.Red, Color.DarkGreen, new Vector2(300, 350));
             buttonMenu.Add(bouton);
-            bouton = new ButtonMenu("Créer son Personnage", Color.Red, Color.DarkGreen, new Vector2(300, 400));
+            bouton = new ButtonMenu("Gestion des Personnages", Color.Red, Color.DarkGreen, new Vector2(300, 400));
             buttonMenu.Add(bouton);
             bouton = new ButtonMenu("Options", Color.Red, Color.DarkGreen, new Vector2(300, 450));
             buttonMenu.Add(bouton);
@@ -93,20 +93,24 @@ namespace UltimateErasme.MenuState
             {
                 if (button.isPressed())
                 {
-                    if (button.getText().Equals("Quitter"))
+                    if (conditionValide(button))
                     {
-                        game.Exit();
-                    }
-                    else if (button.getText().Equals("Créer son Personnage"))
-                    {
-                        MustChangeState(CreatePersoMenuState.getInstance(game, graphics));
-                    }
-                    else if (button.getText().Equals("Options")){
-                        MustChangeState(OptionsMenuState.getInstance(game, graphics));
-                    }
-                    else
-                    {
-                        MustChangeState(LoadingState.getInstance(game, graphics, UltimateErasme.getInstance(game, graphics), 160));
+                        if (button.getText().Equals("Quitter"))
+                        {
+                            game.Exit();
+                        }
+                        else if (button.getText().Equals("Gestion des Personnages"))
+                        {
+                            MustChangeState(SavedPersoMenuState.getInstance(game, graphics));
+                        }
+                        else if (button.getText().Equals("Options"))
+                        {
+                            MustChangeState(OptionsMenuState.getInstance(game, graphics));
+                        }
+                        else
+                        {
+                            MustChangeState(LoadingState.getInstance(game, graphics, UltimateErasme.getInstance(game, graphics), 160));
+                        }
                     }
                 }
             }
@@ -132,17 +136,33 @@ namespace UltimateErasme.MenuState
             spriteBatch.Draw(background.Sprite, viewportRect, Color.White);
             foreach (ButtonMenu button in buttonMenu)
             {
-                if (button.isNear())
+                if (conditionValide(button))
                 {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
+                    if (button.isNear())
+                    {
+                        spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getOnClickColor());
+                    }
+                    else
+                    {
+                        spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
+                    }
                 }
                 else
                 {
-                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), button.getColor());
+                    spriteBatch.DrawString(font, button.getText(), new Vector2(button.getX(), button.getY()), Color.DarkGray);
                 }
             }
             spriteBatch.Draw(MousePointer.Sprite, MousePointer.Position, Color.White);
             spriteBatch.End();
+        }
+
+        public bool conditionValide(ButtonMenu button)
+        {
+            if (button.getText().Equals("Jouer") &&  ((PersoFinal.getInstance()).persoValide == null || !((PersoFinal.getInstance()).persoValide)))
+            {
+                return false;
+            }
+            return true;
         }
 
         public override void MustChangeState(GameState futureState)

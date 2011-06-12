@@ -64,8 +64,6 @@ namespace UltimateErasme.MenuStates
             followingTypes.Add(descriptionTypes);
             descriptionTypes = new HistoireCreatePerso(game);
             followingTypes.Add(descriptionTypes);
-            descriptionTypes = new ResumeCreatePerso(game);
-            followingTypes.Add(descriptionTypes);
 
             descriptionTypes = new TypeRace(game);
             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
@@ -141,6 +139,12 @@ namespace UltimateErasme.MenuStates
                             descriptionTypes.remplissageDonneesCreationPerso(out listeButtons, out listeChoix, out descriptions, out choixSelect, out titre);
                             followingTypes.Remove(descriptionTypes);
                         }
+                        else if (button.getText().Equals("Terminer"))
+                        {
+                            //On met à jour le personnage final
+                            descriptionTypes.setValeurRecommande(persoFinal, choixSelect);
+                            MustChangeState(ResumeCreatePerso.getInstance(game, graphics));
+                        }
                         else
                         {
                             MustChangeState(MainMenuState.getInstance(game, graphics));
@@ -201,6 +205,5 @@ namespace UltimateErasme.MenuStates
             Thread.Sleep(300);
             game.currentState = futureState;
         }
-
     }
 }
