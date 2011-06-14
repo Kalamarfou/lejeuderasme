@@ -32,59 +32,25 @@ namespace Martingale
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            int chiffre_sorti = Roulette.Randomiser_Chiffre();
-            foreach (Mise m in Data.Mises)
+            Data.init(50);
+            Miser();
+
+            for (int i = 0; i < int.Parse(nbParties.Text); i++)
             {
-                int gain = m.CalculerGain(chiffre_sorti);
-                
-                if (gain > 0)
-                {
-                    Data.Pognon += gain;
-                    m.FailCount = 0;
-                }
-                else
-                {
-                    m.FailCount++;
-                }
+                Roulette.Jouer();
+                MisesAuto.ReMiser();
             }
 
-            Data.HistoriqueChiffres.Add(chiffre_sorti);
-            Data.HistoriquePognon.Add(Data.Pognon);
-            dernierPognon.Text = Data.Pognon.ToString();
-
-            AfficherHistoriques();
-
-            foreach (Mise m in Data.Mises)
-            {
-                if (m.FailCount > 0)
-                {
-                    m.MiseActuelle = m.MiseActuelle * 2;
-                    //la mise actuelle es tdéja multipliée par deux
-                    Data.Pognon -= m.MiseActuelle;
-                    m.FailCount++;
-                }
-                else
-                {
-                    m.MiseActuelle = m.MiseDeDepart;
-                    Data.Pognon -= m.MiseDeDepart;
-                }
-            }
+            AfficherData();
         }
 
-        private void AfficherHistoriques()
+        private void AfficherData()
         {
+            dernierPognon.Text = Data.Pognon.ToString();
             textBoxChiffres.Text =  Data.AfficherHistoriqueChiffres();
             textBoxPognon.Text = Data.AfficherHistoriquePognon();
         }
 
-        
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            Data.init(50);
-            Miser();
-        }
-
-        
 
         private void Miser()
         {

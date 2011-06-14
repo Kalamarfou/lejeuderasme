@@ -25,5 +25,25 @@ namespace Martingale.Mises
         public static void Passe()
         {
         }
+
+        internal static void ReMiser()
+        {
+
+            foreach (Mise m in Data.Mises)
+            {
+                if (m.FailCount > 0)
+                {
+                    m.MiseActuelle = m.MiseActuelle * 2;
+                    //la mise actuelle es tdéja multipliée par deux
+                    Data.Pognon -= m.MiseActuelle;
+                    m.FailCount++;
+                }
+                else
+                {
+                    m.MiseActuelle = m.MiseDeDepart;
+                    Data.Pognon -= m.MiseDeDepart;
+                }
+            }
+        }
     }
 }
