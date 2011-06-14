@@ -42,22 +42,36 @@ namespace Martingale
                 
                 if (gain > 0)
                 {
-                    Pognon += gain - m.MiseDeDepart;
-                    m.MiseActuelle = m.MiseDeDepart;
+                    Pognon += gain;
                     m.FailCount = 0;
                 }
                 else
                 {
-                    //a améliorer pour l'historique. On doit voir le pognon avant mise
-                    m.MiseActuelle = m.MiseActuelle * 2;
-                    Pognon -= m.MiseActuelle * 2;
                     m.FailCount++;
                 }
             }
+
             HistoriqueChiffres.Add(chiffre_sorti);
             HistoriquePognon.Add(Pognon);
+            dernierPognon.Text = Pognon.ToString();
 
             AfficherHistoriques();
+
+            foreach (Mise m in Mises)
+            {
+                if (m.FailCount > 0)
+                {
+                    m.MiseActuelle = m.MiseActuelle * 2;
+                    //la mise actuelle es tdéja multipliée par deux
+                    Pognon -= m.MiseActuelle;
+                    m.FailCount++;
+                }
+                else
+                {
+                    m.MiseActuelle = m.MiseDeDepart;
+                    Pognon -= m.MiseDeDepart;
+                }
+            }
         }
 
         private void AfficherHistoriques()

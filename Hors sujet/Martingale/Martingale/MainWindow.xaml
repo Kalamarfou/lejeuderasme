@@ -16,5 +16,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="261,44,0,0" Name="dernierPognon" VerticalAlignment="Top" Width="120" FontWeight="Bold" />
     </Grid>
 </Window>
