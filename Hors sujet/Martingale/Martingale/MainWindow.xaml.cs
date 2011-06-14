@@ -88,16 +88,7 @@ namespace Martingale
 
         private void Miser()
         {
-            ArrayList c = new ArrayList();
-            for (int i = 1; i < 37; i++)
-			{
-			    if( (i % 2) == 0 )
-	            {
-		            c.Add(i);
-	            }
-			}
-            Data.Mises.Add(new Mise(c, 1, 2));
-            Data.Pognon -= 1;
+            MisesAuto.Pairs();
         }
     }
 }
