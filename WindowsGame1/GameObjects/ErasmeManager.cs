@@ -19,6 +19,7 @@ using UltimateErasme.InputTesters;
 using UltimateErasme.MenuStates;
 using UltimateErasme.XP;
 using UltimateErasme.Life;
+using UltimateErasme.Collisions;
 
 namespace UltimateErasme.GameObjects
 {
@@ -50,6 +51,7 @@ namespace UltimateErasme.GameObjects
         public TransformationManager transformationManager;
         public XpManager xpManager;
         public LifeManager lifeManager;
+        public CollisionsManager collisionsManager;
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
@@ -67,14 +69,15 @@ namespace UltimateErasme.GameObjects
             voltaireNormal = game.Content.Load<Texture2D>(@"Sprites\Characters\Voltaire\voltaire");
             erasme = new GameObject(erasmeNormal);
 
+            xpManager = new XpManager(game);
+            lifeManager = new LifeManager(game);
             soundManager = new SoundManager();
-            buloManager = new BuloManager(game, this);
-            jumpManager = new ErasmeJumpManager(game, this);
-            attackManager = new AttackManager(game, this);
-            transformationManager = new TransformationManager(game, this);
+            buloManager = new BuloManager(game, this, xpManager);
+            jumpManager = new ErasmeJumpManager(game, this, xpManager);
+            attackManager = new AttackManager(game, this, xpManager);
+            transformationManager = new TransformationManager(game, this, xpManager);
             ErasmeAccessoires = new ErasmeAccessoiresCollection();
-            xpManager = XpManager.getInstance(game);
-            lifeManager = LifeManager.getInstance(game);
+            collisionsManager = new CollisionsManager(game, viewportRect, xpManager, lifeManager);
 
             if (PersoFinal.getInstance().race.ToLower() == "poney")
             {
@@ -114,6 +117,7 @@ namespace UltimateErasme.GameObjects
             transformationManager.Update(gameTime, controllerType);
             clignotageManager(gameTime);
             ErasmeAccessoires.Update(gameTime, erasme.Position, erasme.Rotation);
+            collisionsManager.Update(gameTime);
 
             xpManager.Update(gameTime);
             //lifeManager.Update(gameTime);

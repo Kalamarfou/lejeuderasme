@@ -29,11 +29,15 @@ namespace UltimateErasme.Collisions
             voltaireAttaquesBoxes = new ArrayList(), transformationAttaquesBoxes = new ArrayList(), mechantsVulnerablesBoxes = new ArrayList(),
             mechantsAttaquesBoxes = new ArrayList(), explosionsAttaquesBoxes = new ArrayList();
 
+        private LifeManager lifeManager;
+        private XpManager xpManager;
 
-        public CollisionsManager(UltimateErasme game, Rectangle viewportRect)
+        public CollisionsManager(UltimateErasme game, Rectangle viewportRect, XpManager xpManager, LifeManager lifeManager)
         {
             this.game = game;
             this.viewportRect = viewportRect;
+            this.xpManager = xpManager;
+            this.lifeManager = lifeManager;
         }
 
         //TODO
@@ -72,8 +76,8 @@ namespace UltimateErasme.Collisions
                     {
                         if (explosion.Intersects(personnageVulnerableBox.Box))
                         {
-                            LifeManager.getInstance(game).SubstractLife(LifeEvents.SuicideALExplosion);
-                            XpManager.getInstance(game).AddXp(XpEvents.SuicideALExplosion);
+                            lifeManager.SubstractLife(LifeEvents.SuicideALExplosion);
+                            xpManager.AddXp(XpEvents.SuicideALExplosion);
                             personnageVulnerableBox.ErasmeManager.soundManager.Outch();
                             personnageVulnerableBox.ErasmeManager.clignote = true;
                             personnageVulnerableBox.ErasmeManager.HeureDebutClignotage = gameTime.TotalGameTime.TotalMilliseconds;
@@ -92,8 +96,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (explosion.Intersects(mechantVulnerableBox.Box))
                     {
-                        LifeManager.getInstance(game).AddLife(LifeEvents.KillALExplosion);
-                        XpManager.getInstance(game).AddXp(XpEvents.KillALExplosion);
+                        lifeManager.AddLife(LifeEvents.KillALExplosion);
+                        xpManager.AddXp(XpEvents.KillALExplosion);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         game.playerManager.premierJoueur.soundManager.MechantMeurtExplosion();
                     }
@@ -110,8 +114,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (voltaire.Intersects(mechantVulnerableBox.Box))
                     {
-                        XpManager.getInstance(game).AddXp(XpEvents.KillALEclair);
-                        LifeManager.getInstance(game).AddLife(LifeEvents.KillALEclair);
+                        xpManager.AddXp(XpEvents.KillALEclair);
+                        lifeManager.AddLife(LifeEvents.KillALEclair);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         game.playerManager.premierJoueur.soundManager.MechantMeurtVoltaire();
                     }
@@ -128,8 +132,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (bulo.Intersects(mechantVulnerableBox.Box))
                     {
-                        LifeManager.getInstance(game).AddLife(LifeEvents.KillAuBulo);
-                        XpManager.getInstance(game).AddXp(XpEvents.KillAuBulo);
+                        lifeManager.AddLife(LifeEvents.KillAuBulo);
+                        xpManager.AddXp(XpEvents.KillAuBulo);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         game.playerManager.premierJoueur.soundManager.MechantMeurtBulo();
                     }
@@ -146,8 +150,8 @@ namespace UltimateErasme.Collisions
                 {
                     if (graisse.Box.Intersects(mechantVulnerableBox.Box))
                     {
-                        LifeManager.getInstance(game).AddLife(LifeEvents.KillALaGraisse);
-                        XpManager.getInstance(game).AddXp(XpEvents.KillALaGraisse);
+                        lifeManager.AddLife(LifeEvents.KillALaGraisse);
+                        xpManager.AddXp(XpEvents.KillALaGraisse);
                         mechantVulnerableBox.Mechant.mechantState = MechantState.mort;
                         graisse.Boule.Alive = false;
 
@@ -168,7 +172,7 @@ namespace UltimateErasme.Collisions
                     {
                         if (personnageVulnerableBox.Box.Intersects(mechantAttaqueBox.Box))
                         {
-                            LifeManager.getInstance(game).SubstractLife(LifeEvents.MechantAttaque);
+                            lifeManager.SubstractLife(LifeEvents.MechantAttaque);
                             personnageVulnerableBox.ErasmeManager.soundManager.Outch();
                             mechantAttaqueBox.Mechant.mechantState = MechantState.mort;
                             personnageVulnerableBox.ErasmeManager.clignote = true;

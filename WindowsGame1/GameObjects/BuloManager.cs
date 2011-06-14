@@ -21,18 +21,20 @@ namespace UltimateErasme.GameObjects
 
         UltimateErasme game;
         ErasmeManager erasmeManager;
+        XpManager xpManager;
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
         KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
-        public BuloManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public BuloManager(UltimateErasme game, ErasmeManager erasmeManager, XpManager xpManager)
         {
             bulo = new GameObject(game.Content.Load<Texture2D>(@"Sprites\Bulo\bulo"));
             this.game = game;
             this.erasmeManager = erasmeManager;
             buloState = BuloState.pasSorti;
+            this.xpManager = xpManager;
         }
 
         //TODO
@@ -115,7 +117,7 @@ namespace UltimateErasme.GameObjects
         {
             if (buloState == BuloState.pasSorti)
             {
-                XpManager.getInstance(game).AddXp(XpEvents.SortageDeBulo);
+                xpManager.AddXp(XpEvents.SortageDeBulo);
 
                 buloState = BuloState.sorti;
                 erasmeManager.soundManager.BuloBulo();
@@ -123,7 +125,7 @@ namespace UltimateErasme.GameObjects
             }
             else if (buloState == BuloState.sorti)
             {
-                XpManager.getInstance(game).AddXp(XpEvents.RentrageDeBulo);
+                xpManager.AddXp(XpEvents.RentrageDeBulo);
 
                 buloState = BuloState.pasSorti;
                 bulo.Alive = false;
@@ -133,7 +135,7 @@ namespace UltimateErasme.GameObjects
 
         private void explosion(GameTime gameTime)
         {
-            if (XpManager.getInstance(game).GetCurrentLevel() > 1)
+            if (xpManager.GetCurrentLevel() > 1)
             {
                 ExplosionEnFonctionDuLevel(gameTime);
                 bulo.Alive = false;
@@ -143,11 +145,11 @@ namespace UltimateErasme.GameObjects
 
         private void ExplosionEnFonctionDuLevel(GameTime gameTime)
         {
-            if (XpManager.getInstance(game).GetCurrentLevel() > 5)
+            if (xpManager.GetCurrentLevel() > 5)
             {
                 game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.belle);
             }
-            else if (XpManager.getInstance(game).GetCurrentLevel() > 3)
+            else if (xpManager.GetCurrentLevel() > 3)
             {
                 game.explosionManager.NouvelleExplosion(bulo.Position, gameTime, ExplosionType.moyenBelle);
             }

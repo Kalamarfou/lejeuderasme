@@ -17,12 +17,14 @@ namespace UltimateErasme.GameObjects
         public Texture2D graisse;
         public ArrayList boulesDeGraisse = new ArrayList();
         UltimateErasme game;
+        XpManager xpManager;
 
-        public GraisseManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public GraisseManager(UltimateErasme game, ErasmeManager erasmeManager, XpManager xpManager)
         {
             this.game = game;
             this.erasmeManager = erasmeManager;
             graisse = game.Content.Load<Texture2D>(@"Sprites\Graisse\graisse");
+            this.xpManager = xpManager;
         }
 
         public void Update(GameTime gametime)
@@ -75,7 +77,7 @@ namespace UltimateErasme.GameObjects
             }
             else
             {
-                XpManager.getInstance(game).AddXp(XpEvents.AttaqueTournoyante);
+                xpManager.AddXp(XpEvents.AttaqueTournoyante);
 
                 for (int i = 0; i < 8; i++)
                 {

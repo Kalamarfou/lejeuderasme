@@ -8,6 +8,7 @@ using System.Collections;
 using Microsoft.Xna.Framework.Input;
 using UltimateErasme.GameObjects.enums;
 using UltimateErasme.InputTesters;
+using UltimateErasme.XP;
 
 namespace UltimateErasme.GameObjects
 {
@@ -20,7 +21,7 @@ namespace UltimateErasme.GameObjects
         public double attackManager_OldGameTimeMilliseconds;
 
         public GraisseManager graisseManager;
-
+        XpManager xpManager;
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
@@ -29,10 +30,10 @@ namespace UltimateErasme.GameObjects
 
 
 
-        public AttackManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public AttackManager(UltimateErasme game, ErasmeManager erasmeManager, XpManager xpManager)
         {
             this.erasmeManager = erasmeManager;
-            graisseManager = new GraisseManager(game, erasmeManager);
+            graisseManager = new GraisseManager(game, erasmeManager, xpManager);
             erasmeAttaque = new Texture2D[8];
             for (int i = 0; i < 8; i++)
             {
