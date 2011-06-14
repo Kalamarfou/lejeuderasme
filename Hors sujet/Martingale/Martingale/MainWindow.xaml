@@ -19,14 +19,17 @@
                     <TextBox Height="212" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBoxPognon" VerticalAlignment="Top" Width="502" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" />
                 </Grid>
             </TabItem>
+            <TabItem Header="Stats" Name="tabItem3">
+                <Grid />
+            </TabItem>
         </TabControl>
-        <TextBox Height="23" HorizontalAlignment="Left" Margin="270,115,0,0" Name="dernierPognon" VerticalAlignment="Top" Width="120" FontWeight="Bold" Grid.ColumnSpan="2" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="270,115,0,0" Name="dernierPognon" VerticalAlignment="Top" Width="266" FontWeight="Bold" Grid.ColumnSpan="2" />
         <Label Content="Nombre de parties:" Height="28" HorizontalAlignment="Left" Margin="12,15,0,0" Name="label1" VerticalAlignment="Top" Width="133" ToolTip="Nombre de fois que la roulette tournera pour une session de jeu" />
         <TextBox HorizontalAlignment="Right" Margin="0,17,81,0" Name="nbParties" Width="120" Text="30" Height="23" VerticalAlignment="Top" />
         <Label Content="Nombre de sessions:" Height="28" HorizontalAlignment="Left" Margin="12,37,0,0" Name="label2" ToolTip="Nombre de fois que l'on recommencera avec du nouveau pognon de départ" VerticalAlignment="Top" Width="133" />
         <TextBox Height="23" HorizontalAlignment="Right" Margin="0,39,81,0" Name="nbSession" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="False" />
         <Label Content="Pognon de depart:" Height="28" HorizontalAlignment="Left" Margin="12,60,0,0" Name="label3" ToolTip="Pognon de départ" VerticalAlignment="Top" Width="133" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,62,81,0" Name="nbPognonDeDepart" Text="30" VerticalAlignment="Top" Width="120" />
-        <Label Content="Deriner pognon" Height="28" HorizontalAlignment="Left" Margin="167,113,0,0" Name="label4" ToolTip="Pognon de fin de session" VerticalAlignment="Top" Width="133" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,62,81,0" Name="nbPognonDeDepart" Text="20" VerticalAlignment="Top" Width="120" />
+        <Label Content="Dernier pognon" Height="28" HorizontalAlignment="Left" Margin="167,113,0,0" Name="label4" ToolTip="Pognon de fin de session" VerticalAlignment="Top" Width="133" />
     </Grid>
 </Window>

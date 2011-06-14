@@ -12,6 +12,7 @@ namespace Martingale
         public static ArrayList Mises { get; set; }
         public static ArrayList HistoriqueChiffres { get; set; }
         public static ArrayList HistoriquePognon { get; set; }
+        public static bool Doom { get; set; }
 
         public static void init(int pognon)
         {
@@ -19,6 +20,7 @@ namespace Martingale
             Mises = new ArrayList();
             HistoriqueChiffres = new ArrayList();
             HistoriquePognon = new ArrayList();
+            Doom = false;
         }
 
         public static string AfficherHistoriquePognon()

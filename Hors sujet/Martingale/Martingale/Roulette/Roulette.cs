@@ -15,7 +15,7 @@ namespace Martingale
             return rndNumbers.Next(0, 36);
         }
 
-        internal static void Jouer()
+        internal static void JouerEtEncaisser()
         {
             int chiffre_sorti = Roulette.Randomiser_Chiffre();
             foreach (Mise m in Data.Mises)

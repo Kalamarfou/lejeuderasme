@@ -21,10 +21,6 @@ namespace Martingale
     /// </summary>
     public partial class MainWindow : Window
     {
-        
-
-        
-
         public MainWindow()
         {
             InitializeComponent();
@@ -32,13 +28,29 @@ namespace Martingale
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            Data.init(50);
+            try
+            {
+                LancerSession();
+            }
+            catch (Exception)
+            {
+                dernierPognon.Text = "rentre des vrais trucs dans les cases";
+            }
+            
+        }
+
+        private void LancerSession()
+        {
+            Data.init(int.Parse(nbPognonDeDepart.Text));
             Miser();
 
             for (int i = 0; i < int.Parse(nbParties.Text); i++)
             {
-                Roulette.Jouer();
-                MisesAuto.ReMiser();
+                if (!Data.Doom)
+                {
+                    Roulette.JouerEtEncaisser();
+                    MisesAuto.ReMiser();
+                }
             }
 
             AfficherData();
@@ -46,12 +58,20 @@ namespace Martingale
 
         private void AfficherData()
         {
-            dernierPognon.Text = Data.Pognon.ToString();
+            
+            if (Data.Doom)
+            {
+                dernierPognon.Text = "DOOMED: " + Data.Pognon.ToString();
+            }
+            else
+            {
+                dernierPognon.Text = Data.Pognon.ToString();
+            }
             textBoxChiffres.Text =  Data.AfficherHistoriqueChiffres();
             textBoxPognon.Text = Data.AfficherHistoriquePognon();
         }
 
-
+        //les mises qui vont etre utilisées
         private void Miser()
         {
             MisesAuto.Pairs();
