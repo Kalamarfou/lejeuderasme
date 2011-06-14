@@ -28,21 +28,33 @@ namespace Martingale.Mises
 
         internal static void ReMiser()
         {
+            //si on a plus de fric, on perd
+            if (Data.Pognon <= 0)
+            {
+                Data.Doom = true;
+                return;
+            }
 
             foreach (Mise m in Data.Mises)
             {
+                int prochaineMise;
                 if (m.FailCount > 0)
                 {
-                    m.MiseActuelle = m.MiseActuelle * 2;
-                    //la mise actuelle es tdéja multipliée par deux
-                    Data.Pognon -= m.MiseActuelle;
                     m.FailCount++;
+                    prochaineMise = m.MiseActuelle * 2;
                 }
                 else
                 {
-                    m.MiseActuelle = m.MiseDeDepart;
-                    Data.Pognon -= m.MiseDeDepart;
+                    prochaineMise = m.MiseDeDepart;
                 }
+
+                if (Data.Pognon - prochaineMise < 0)
+                {
+                    prochaineMise = Data.Pognon;
+                }
+                m.MiseActuelle = prochaineMise;
+                Data.Pognon -= prochaineMise;
+                
             }
         }
     }
