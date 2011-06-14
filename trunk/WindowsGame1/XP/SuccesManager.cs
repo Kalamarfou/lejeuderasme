@@ -15,13 +15,15 @@ namespace UltimateErasme.XP
         Vector2 succesFontPosition;
         Vector2 succesPosition;
         public SuccesCollection SuccesCollection { get; set; }
+        XpManager xpManager;
 
-
-        public SuccesManager(UltimateErasme game)
+        public SuccesManager(UltimateErasme game, XpManager xpManager)
         {
             succesFont = game.Content.Load<SpriteFont>(@"Fonts\XpFont");
             succesFontPosition = new Vector2(400, 200);
             SuccesCollection = new SuccesCollection();
+
+            this.xpManager = xpManager;
 
             SuccesCreator(game);
 
@@ -35,67 +37,67 @@ namespace UltimateErasme.XP
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Tigrou"),
-                SuccesEvents.Saut, 10, "Expert en Tigrou Bouing-Bouing", 100)
+                SuccesEvents.Saut, 10, "Expert en Tigrou Bouing-Bouing", 100, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\SautHauteur"),
-                    SuccesEvents.DoubleSaut, 10, "Expert en Doubles Sauts", 150)
+                    SuccesEvents.DoubleSaut, 10, "Expert en Doubles Sauts", 150, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Graisse"),
-                    SuccesEvents.KillALaGraisse, 15, "Graisse Mortelle", 200)
+                    SuccesEvents.KillALaGraisse, 15, "Graisse Mortelle", 200, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Bulo"),
-                    SuccesEvents.KillAuBulo, 10, "Maitre de Bulorang 3eme Dan", 200)
+                    SuccesEvents.KillAuBulo, 10, "Maitre de Bulorang 3eme Dan", 200, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Eclair"),
-                    SuccesEvents.KillALEclair, 10, "Maitre du chapeau pointu", 250)
+                    SuccesEvents.KillALEclair, 10, "Maitre du chapeau pointu", 250, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Transformation"),
-                    SuccesEvents.Transformation, 10, "Transformeur fou", 100)
+                    SuccesEvents.Transformation, 10, "Transformeur fou", 100, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                    SuccesEvents.KillALExplosion, 10, "Exploseur fou", 250)
+                    SuccesEvents.KillALExplosion, 10, "Exploseur fou", 250, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                    SuccesEvents.SuicideALExplosion, 10, "Maitre suicideur", 100)
+                    SuccesEvents.SuicideALExplosion, 10, "Maitre suicideur", 100, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                    SuccesEvents.SortageDeBulo, 10, "Fan du Bulo", 100)
+                    SuccesEvents.SortageDeBulo, 10, "Fan du Bulo", 100, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                    SuccesEvents.RentrageDeBulo, 10, "Rentreur de Bulo professionel", 100)
+                    SuccesEvents.RentrageDeBulo, 10, "Rentreur de Bulo professionel", 100, xpManager)
                 );
 
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                    SuccesEvents.AttaqueTournoyante, 20, "Tournoyeur fou", 350)
+                    SuccesEvents.AttaqueTournoyante, 20, "Tournoyeur fou", 350, xpManager)
                 );
             #endregion
 
@@ -104,31 +106,31 @@ namespace UltimateErasme.XP
             SuccesCollection.Add
                 (
                 new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                    SuccesEvents.Combo50Points, 1, "Comboteur", 20)
+                    SuccesEvents.Combo50Points, 1, "Comboteur", 20, xpManager)
                 );
 
             SuccesCollection.Add
             (
             new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                SuccesEvents.Combo100Points, 1, "Comboteur 2", 30)
+                SuccesEvents.Combo100Points, 1, "Comboteur 2", 30, xpManager)
             );
 
             SuccesCollection.Add
             (
             new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                SuccesEvents.Combo200Points, 1, "Comboteur fou", 50)
+                SuccesEvents.Combo200Points, 1, "Comboteur fou", 50, xpManager)
             );
 
             SuccesCollection.Add
             (
             new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                SuccesEvents.Combo500Points, 1, "Comboteur fou 2", 150)
+                SuccesEvents.Combo500Points, 1, "Comboteur fou 2", 150, xpManager)
             );
 
             SuccesCollection.Add
             (
             new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                SuccesEvents.Combo1000Points, 1, "Comboteur Ultime", 300)
+                SuccesEvents.Combo1000Points, 1, "Comboteur Ultime", 300, xpManager)
             );
             #endregion
 
@@ -137,7 +139,7 @@ namespace UltimateErasme.XP
             SuccesCollection.Add
             (
             new Succes(game, game.Content.Load<Texture2D>(@"Sprites\Succes\Base"),
-                SuccesEvents.FarmeurDeBulo, 100, "Farmeur d'XP", 400)
+                SuccesEvents.FarmeurDeBulo, 100, "Farmeur d'XP", 400, xpManager)
             );
             #endregion
         }

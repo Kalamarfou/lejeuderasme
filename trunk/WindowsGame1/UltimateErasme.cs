@@ -42,7 +42,6 @@ namespace UltimateErasme
         public MechantManager mechantManager;
         public DecorsManager decorsManager;
         public ExplosionManager explosionManager;
-        public CollisionsManager collisionsManager;
         public Game game;
         public ContentManager Content {get; set;}
         public GameComponentCollection Components { get; set; }
@@ -152,7 +151,6 @@ namespace UltimateErasme
             mechantManager = new MechantManager(this, viewportRect);
             decorsManager = new DecorsManager(this, viewportRect);
             explosionManager = new ExplosionManager(this);
-            collisionsManager = new CollisionsManager(this, viewportRect);
         }
 
         /// <summary>
@@ -268,7 +266,6 @@ namespace UltimateErasme
 
             NetworkSessionManager(gameTime);
 
-            collisionsManager.Update(gameTime);
             decorsManager.Update(gameTime);
             playerManager.Update(gameTime);
             mechantManager.Update(gameTime);

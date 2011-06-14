@@ -158,7 +158,7 @@ namespace UltimateErasme.MenuState
 
         public bool conditionValide(ButtonMenu button)
         {
-            if (button.getText().Equals("Jouer") &&  ((PersoFinal.getInstance()).persoValide == null || !((PersoFinal.getInstance()).persoValide)))
+            if (button.getText().Equals("Jouer") && !((PersoFinal.getInstance()).persoValide))
             {
                 return false;
             }

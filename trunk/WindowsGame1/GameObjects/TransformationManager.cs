@@ -20,13 +20,13 @@ namespace UltimateErasme.GameObjects
         public double transformationManager_OldGameTimeMilliseconds;
         int transformationIndex = 0;
         UltimateErasme game;
-
+        XpManager xpManager;
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
         KeyboardTester keyboardTester = new KeyboardTester();
 #endif
 
-        public TransformationManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public TransformationManager(UltimateErasme game, ErasmeManager erasmeManager, XpManager xpManager)
         {
             this.game = game;
             erasmeForme = ErasmeForme.erasme;
@@ -36,6 +36,7 @@ namespace UltimateErasme.GameObjects
                 erasmeTransformation[i] = game.game.Content.Load<Texture2D>(@"Sprites\Transformation\transformation" + (i + 1));
             }
             this.erasmeManager = erasmeManager;
+            this.xpManager = xpManager;
         }
 
 
@@ -95,7 +96,7 @@ namespace UltimateErasme.GameObjects
 
         private void SeTransformerEnErasme(GameTime gameTime)
         {
-            XpManager.getInstance(game).AddXp(XpEvents.Transformation);
+            xpManager.AddXp(XpEvents.Transformation);
 
             erasmeForme = ErasmeForme.transformationVersErasmeEnCours;
             erasmeManager.attackManager.attackState = AttackState.pasAttaque;
@@ -107,7 +108,7 @@ namespace UltimateErasme.GameObjects
 
         private void SeTransformerEnVoltaire(GameTime gameTime)
         {
-            XpManager.getInstance(game).AddXp(XpEvents.Transformation);
+            xpManager.AddXp(XpEvents.Transformation);
 
             erasmeForme = ErasmeForme.transformationVersVoltaireEnCours;
             erasmeManager.attackManager.attackState = AttackState.pasAttaque;

@@ -18,6 +18,7 @@ namespace UltimateErasme.GameObjects
 
         public Texture2D erasmeMonte, erasmeDescend;
         public Texture2D voltaireMonte, voltaireDescend;
+        XpManager xpManager;
 
         GamePadTester gamePadTester = new GamePadTester();
 #if !XBOX
@@ -25,7 +26,7 @@ namespace UltimateErasme.GameObjects
 #endif
         UltimateErasme game;
 
-        public ErasmeJumpManager(UltimateErasme game, ErasmeManager erasmeManager)
+        public ErasmeJumpManager(UltimateErasme game, ErasmeManager erasmeManager, XpManager xpManager)
             :base()
         {
             this.game = game;
@@ -36,7 +37,7 @@ namespace UltimateErasme.GameObjects
             voltaireDescend = game.Content.Load<Texture2D>(@"Sprites\Characters\Voltaire\voltaire_no_blup");
             hauteurDuSol = erasmeManager.viewportRect.Bottom - erasmeManager.erasme.Sprite.Height / 2 - 100;
             erasmeManager.erasme.Position = new Vector2(erasmeManager.erasme.Sprite.Width / 2, hauteurDuSol);
-            
+            this.xpManager = xpManager;
         }
 
         //TODO
@@ -109,7 +110,7 @@ namespace UltimateErasme.GameObjects
 
         private void DoubleSauter(string sens)
         {
-            XpManager.getInstance(game).AddXp(XpEvents.DoubleSaut);
+            xpManager.AddXp(XpEvents.DoubleSaut);
 
             jumpState = JumpState.doubleDecollage;
             sensDuDoubleSaut = sens;
@@ -129,7 +130,7 @@ namespace UltimateErasme.GameObjects
 
         private void Sauter()
         {
-            XpManager.getInstance(game).AddXp(XpEvents.Saut);
+            xpManager.AddXp(XpEvents.Saut);
 
             jumpState = JumpState.decollage;
             if (erasmeManager.attackManager.attackState == AttackState.pasAttaque)
