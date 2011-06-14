@@ -7,12 +7,12 @@
         <TabControl Height="256" HorizontalAlignment="Left" Margin="56,86,0,0" Name="tabControl1" VerticalAlignment="Top" Width="524">
             <TabItem Header="Chiffres" Name="tabItem1">
                 <Grid>
-                    <TextBox Height="218" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" Name="textBox1" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" Width="508" />
+                    <TextBox Height="218" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" Name="textBoxChiffres" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" Width="508" />
                 </Grid>
             </TabItem>
             <TabItem Header="Pognon" Name="tabItem2">
                 <Grid>
-                    <TextBox Height="212" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBox2" VerticalAlignment="Top" Width="502" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" />
+                    <TextBox Height="212" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBoxPognon" VerticalAlignment="Top" Width="502" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" />
                 </Grid>
             </TabItem>
         </TabControl>
