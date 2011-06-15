@@ -9,19 +9,23 @@ namespace Martingale.Mises
     class Mise
     {
         public ArrayList Chiffres { get; set; }
-        public int Multiplicateur { get; set; }
+        public int MultiplicateurDeGain { get; set; }
         public int MiseActuelle { get; set; }
         public int MiseDeDepart { get; set; }
         public int FailCount { get; set; }
+        public int NbDePertes { get; set; }
+        public int MultiplicateurDePertes { get; set; }
 
         private bool demiPognon = false;
 
-        public Mise(ArrayList chiffres, int mise, int multiplicateur)
+        public Mise(ArrayList chiffres, int mise, int multiplicateurDeGain, int multiplicateurDePertes, int nbDePertes)
         {
             Chiffres = chiffres;
             MiseDeDepart = mise;
             MiseActuelle = mise;
-            Multiplicateur = multiplicateur;
+            MultiplicateurDeGain = multiplicateurDeGain;
+            MultiplicateurDePertes = multiplicateurDePertes;
+            NbDePertes = nbDePertes;
         }
 
         public int CalculerGain(int chiffre_sorti)
@@ -30,7 +34,7 @@ namespace Martingale.Mises
             {
                 if (chiffre == chiffre_sorti)
                 {
-                    return MiseActuelle * Multiplicateur;
+                    return MiseActuelle * MultiplicateurDeGain;
                 }
                 else if (chiffre_sorti == 0)
                 {
@@ -62,6 +66,22 @@ namespace Martingale.Mises
             }
         }
 
+
+        internal int GetProchaineMise()
+        {
+            if (FailCount > 0)
+            {
+                int r = MiseDeDepart;
+                int nbDeDoublage= (int)(Math.Floor((double)(FailCount / NbDePertes)));
+                for (int i = 0; i < nbDeDoublage; i++)
+                {
+                    r = r * MultiplicateurDePertes;
+                }
+                return r;
+            }
+            else
+                return MiseDeDepart;
+        }
     }
 
 }
