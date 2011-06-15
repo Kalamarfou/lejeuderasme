@@ -41,6 +41,23 @@ namespace Martingale.Mises
             Data.Mises.Add(new Mise(c, 1, 9, 2, 8));
         }
 
+        public static void Zero()
+        {
+            ArrayList c = new ArrayList();
+            c.Add(0);
+            Data.Mises.Add(new Mise(c, 1, 36, 2, 35));
+        }
+
+        internal static void PremiereDouzaine()
+        {
+            ArrayList c = new ArrayList();
+            for (int i = 1; i < 13; i++)
+            {
+                c.Add(i);
+            }
+            Data.Mises.Add(new Mise(c, 1, 3, 3, 1));
+        }
+
         internal static void ReMiser()
         {
             foreach (Mise m in Data.Mises)
@@ -63,5 +80,7 @@ namespace Martingale.Mises
                 return;
             }
         }
+
+        
     }
 }
