@@ -47,7 +47,14 @@ namespace Martingale
         {
             Data.initSession(int.Parse(nbPognonDeDepart.Text));
             Miser();
+            Data.HistoriquePognon.Add(Data.Pognon);
+            Boucle();
 
+            Data.HistoriquePognonFinal.Add(Data.Pognon);
+        }
+
+        private void Boucle()
+        {
             for (int i = 0; i < int.Parse(nbParties.Text); i++)
             {
                 if (!Data.Doom)
@@ -55,9 +62,11 @@ namespace Martingale
                     MisesAuto.ReMiser();
                     Roulette.JouerEtEncaisser();
                 }
+                else
+                {
+                    return;
+                }
             }
-
-            Data.HistoriquePognonFinal.Add(Data.Pognon);
         }
 
         private void AfficherData()
@@ -74,6 +83,7 @@ namespace Martingale
         private void Miser()
         {
             MisesAuto.Pairs();
+            //MisesAuto.Premiers();
             //MisesAuto.Passe();
         }
 

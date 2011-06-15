@@ -48,7 +48,7 @@ namespace Martingale.Mises
         private int GererZero()
         {
             //si la mise et paire, on divise
-            if (MiseActuelle > 1)
+            if (MiseActuelle%2 == 0)
             {
                 return MiseActuelle / 2;
             }
@@ -56,13 +56,13 @@ namespace Martingale.Mises
             else if (demiPognon)
             {
                 demiPognon = false;
-                return 1;
+                return (MiseActuelle / 2) +1;
             }
             //sinon on stocke un demi pognon, en attedant un deuxiéme
             else
             {
                 demiPognon = true;
-                return 0;
+                return (MiseActuelle / 2);
             }
         }
 

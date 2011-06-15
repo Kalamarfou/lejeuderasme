@@ -35,6 +35,10 @@ namespace Martingale
 
             Data.HistoriqueChiffresGlobal.Add(chiffre_sorti);
             Data.HistoriquePognon.Add(Data.Pognon);
+            if (Data.Pognon>0)
+            {
+                Data.Doom = false;
+            }
         }
     }
 }
