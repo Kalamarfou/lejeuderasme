@@ -48,7 +48,7 @@ namespace Martingale.Mises
             Data.Mises.Add(new Mise(c, 1, 36, 2, 35));
         }
 
-        internal static void PremiereDouzaine()
+        internal static void JagueuPattern()
         {
             ArrayList c = new ArrayList();
             for (int i = 1; i < 13; i++)
@@ -57,6 +57,27 @@ namespace Martingale.Mises
             }
             Data.Mises.Add(new Mise(c, 1, 3, 3, 1));
         }
+
+        internal static void PremiereDouzaine()
+        {
+            ArrayList c = new ArrayList();
+            for (int i = 1; i < 13; i++)
+            {
+                c.Add(i);
+            }
+            Data.Mises.Add(new Mise(c, 1, 3, 2, 2));
+        }
+
+        internal static void PremiereDouzaineModifiee()
+        {
+            ArrayList c = new ArrayList();
+            for (int i = 1; i < 13; i++)
+            {
+                c.Add(i);
+            }
+            Data.Mises.Add(new Mise(c, 1, 3, 2, 1));
+        }
+
 
         internal static void ReMiser()
         {

@@ -82,11 +82,13 @@ namespace Martingale
         //les mises qui vont etre utilisées
         private void Miser()
         {
-            //MisesAuto.Pairs();
-            //MisesAuto.Zero();
+            MisesAuto.Pairs();
+            MisesAuto.Zero();
             //MisesAuto.Premiers();
             //MisesAuto.Passe();
-            MisesAuto.PremiereDouzaine();
+            //MisesAuto.JagueuPattern();
+            //MisesAuto.PremiereDouzaine();
+            //MisesAuto.PremiereDouzaineModifiee();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
