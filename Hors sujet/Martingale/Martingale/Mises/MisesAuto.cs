@@ -18,12 +18,19 @@ namespace Martingale.Mises
                     c.Add(i);
                 }
             }
-            Data.Mises.Add(new Mise(c, 1, 2));
+            Data.Mises.Add(new Mise(c, 1, 2,2,1));
             Data.Pognon -= 1;
         }
 
         public static void Passe()
         {
+            ArrayList c = new ArrayList();
+            for (int i = 1; i < 19; i++)
+            {
+                c.Add(i);
+            }
+            Data.Mises.Add(new Mise(c, 1, 2, 2, 1));
+            Data.Pognon -= 1;
         }
 
         internal static void ReMiser()
@@ -37,16 +44,7 @@ namespace Martingale.Mises
 
             foreach (Mise m in Data.Mises)
             {
-                int prochaineMise;
-                if (m.FailCount > 0)
-                {
-                    m.FailCount++;
-                    prochaineMise = m.MiseActuelle * 2;
-                }
-                else
-                {
-                    prochaineMise = m.MiseDeDepart;
-                }
+                int prochaineMise = m.GetProchaineMise();
 
                 if (Data.Pognon - prochaineMise < 0)
                 {

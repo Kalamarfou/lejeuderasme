@@ -30,7 +30,11 @@ namespace Martingale
         {
             try
             {
-                LancerSession();
+                for (int i = 0; i < int.Parse(nbSession.Text); i++)
+                {
+                    LancerSession();
+                }
+                AfficherData();
             }
             catch (Exception)
             {
@@ -41,7 +45,7 @@ namespace Martingale
 
         private void LancerSession()
         {
-            Data.init(int.Parse(nbPognonDeDepart.Text));
+            Data.initSession(int.Parse(nbPognonDeDepart.Text));
             Miser();
 
             for (int i = 0; i < int.Parse(nbParties.Text); i++)
@@ -53,7 +57,7 @@ namespace Martingale
                 }
             }
 
-            AfficherData();
+            Data.HistoriquePognonFinal.Add(Data.Pognon);
         }
 
         private void AfficherData()
@@ -67,14 +71,29 @@ namespace Martingale
             {
                 dernierPognon.Text = Data.Pognon.ToString();
             }
-            textBoxChiffres.Text =  Data.AfficherHistoriqueChiffres();
+
             textBoxPognon.Text = Data.AfficherHistoriquePognon();
+            textBoxStatsChiffres.Text = Data.AfficherHistoriqueChiffresGlobal();
+            textBoxStatsPognon.Text = Data.AfficherHistoriquePognonFinal();
+            textBoxStatsPognonResumees.Text = Data.AfficherHistoriquePognonFinalResume();
         }
 
         //les mises qui vont etre utilisées
         private void Miser()
         {
             MisesAuto.Pairs();
+            MisesAuto.Passe();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Data.initGlobal();
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            Data.initGlobal();
+            AfficherData();
         }
     }
 }

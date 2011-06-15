@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Martingale.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="572" Width="641">
+        Title="MainWindow" Height="572" Width="641" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="352*" />
@@ -9,27 +9,35 @@
         </Grid.ColumnDefinitions>
         <Button Content="Jouer" Height="44" HorizontalAlignment="Left" Margin="12,94,0,0" Name="button1" VerticalAlignment="Top" Width="86" Click="button1_Click" />
         <TabControl Height="256" HorizontalAlignment="Left" Margin="12,144,0,0" Name="tabControl1" VerticalAlignment="Top" Width="524" Grid.ColumnSpan="2">
-            <TabItem Header="Chiffres" Name="tabItem1">
-                <Grid>
-                    <TextBox Height="218" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" Name="textBoxChiffres" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" Width="508" />
-                </Grid>
-            </TabItem>
             <TabItem Header="Pognon" Name="tabItem2">
                 <Grid>
                     <TextBox Height="212" HorizontalAlignment="Left" Margin="6,6,0,0" Name="textBoxPognon" VerticalAlignment="Top" Width="502" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible" />
                 </Grid>
             </TabItem>
-            <TabItem Header="Stats" Name="tabItem3">
-                <Grid />
+            <TabItem Header="Stats Chiffres" Name="tabItem3">
+                <Grid>
+                    <TextBox Height="212" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" Margin="6,6,0,0" Name="textBoxStatsChiffres" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" Width="502" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stats Pognon" Name="tabItem4">
+                <Grid>
+                    <TextBox Height="212" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" Margin="6,6,0,0" Name="textBoxStatsPognon" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" Width="502" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Stats Pognon résumées" Name="tabItem1">
+                <Grid>
+                    <TextBox Height="212" HorizontalAlignment="Left" HorizontalScrollBarVisibility="Visible" Margin="6,6,0,0" Name="textBoxStatsPognonResumees" VerticalAlignment="Top" VerticalScrollBarVisibility="Visible" Width="502" />
+                </Grid>
             </TabItem>
         </TabControl>
         <TextBox Height="23" HorizontalAlignment="Left" Margin="270,115,0,0" Name="dernierPognon" VerticalAlignment="Top" Width="266" FontWeight="Bold" Grid.ColumnSpan="2" />
         <Label Content="Nombre de parties:" Height="28" HorizontalAlignment="Left" Margin="12,15,0,0" Name="label1" VerticalAlignment="Top" Width="133" ToolTip="Nombre de fois que la roulette tournera pour une session de jeu" />
         <TextBox HorizontalAlignment="Right" Margin="0,17,81,0" Name="nbParties" Width="120" Text="30" Height="23" VerticalAlignment="Top" />
         <Label Content="Nombre de sessions:" Height="28" HorizontalAlignment="Left" Margin="12,37,0,0" Name="label2" ToolTip="Nombre de fois que l'on recommencera avec du nouveau pognon de départ" VerticalAlignment="Top" Width="133" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,39,81,0" Name="nbSession" Text="1" VerticalAlignment="Top" Width="120" IsEnabled="False" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,39,81,0" Name="nbSession" Text="100" VerticalAlignment="Top" Width="120" IsEnabled="True" />
         <Label Content="Pognon de depart:" Height="28" HorizontalAlignment="Left" Margin="12,60,0,0" Name="label3" ToolTip="Pognon de départ" VerticalAlignment="Top" Width="133" />
-        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,62,81,0" Name="nbPognonDeDepart" Text="20" VerticalAlignment="Top" Width="120" />
+        <TextBox Height="23" HorizontalAlignment="Right" Margin="0,0,81,448" Name="nbPognonDeDepart" Text="20" VerticalAlignment="Bottom" Width="120" />
         <Label Content="Dernier pognon" Height="28" HorizontalAlignment="Left" Margin="167,113,0,0" Name="label4" ToolTip="Pognon de fin de session" VerticalAlignment="Top" Width="133" />
+        <Button Content="Reset stats" Height="23" HorizontalAlignment="Left" Margin="109,417,0,0" Name="button2" VerticalAlignment="Top" Width="75" Grid.Column="1" Click="button2_Click" />
     </Grid>
 </Window>

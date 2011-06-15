@@ -12,7 +12,7 @@ namespace Martingale
 
         public static int Randomiser_Chiffre()
         {
-            return rndNumbers.Next(0, 36);
+            return rndNumbers.Next(0, 37);
         }
 
         internal static void JouerEtEncaisser()
@@ -33,7 +33,7 @@ namespace Martingale
                 }
             }
 
-            Data.HistoriqueChiffres.Add(chiffre_sorti);
+            Data.HistoriqueChiffresGlobal.Add(chiffre_sorti);
             Data.HistoriquePognon.Add(Data.Pognon);
         }
     }
