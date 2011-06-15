@@ -36,9 +36,9 @@ namespace Martingale
                 }
                 AfficherData();
             }
-            catch (Exception)
+            catch (Exception x)
             {
-                dernierPognon.Text = "rentre des vrais trucs dans les cases";
+                pourcentageChance.Text = x.Message;
             }
             
         }
@@ -52,8 +52,8 @@ namespace Martingale
             {
                 if (!Data.Doom)
                 {
-                    Roulette.JouerEtEncaisser();
                     MisesAuto.ReMiser();
+                    Roulette.JouerEtEncaisser();
                 }
             }
 
@@ -62,27 +62,19 @@ namespace Martingale
 
         private void AfficherData()
         {
-            
-            if (Data.Doom)
-            {
-                dernierPognon.Text = "DOOMED: " + Data.Pognon.ToString();
-            }
-            else
-            {
-                dernierPognon.Text = Data.Pognon.ToString();
-            }
-
             textBoxPognon.Text = Data.AfficherHistoriquePognon();
             textBoxStatsChiffres.Text = Data.AfficherHistoriqueChiffresGlobal();
             textBoxStatsPognon.Text = Data.AfficherHistoriquePognonFinal();
-            textBoxStatsPognonResumees.Text = Data.AfficherHistoriquePognonFinalResume();
+            string s = Data.AfficherHistoriquePognonFinalResume();
+            textBoxStatsPognonResumees.Text = s;
+            pourcentageChance.Text = s.Substring(s.IndexOf("ratio"), s.IndexOf("%") - s.IndexOf("ratio") +1);
         }
 
         //les mises qui vont etre utilisées
         private void Miser()
         {
             MisesAuto.Pairs();
-            MisesAuto.Passe();
+            //MisesAuto.Passe();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
