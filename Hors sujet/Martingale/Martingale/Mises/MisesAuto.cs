@@ -31,15 +31,18 @@ namespace Martingale.Mises
             Data.Mises.Add(new Mise(c, 1, 2, 2, 1));
         }
 
+        public static void Premiers()
+        {
+            ArrayList c = new ArrayList();
+            c.Add(0);
+            c.Add(1);
+            c.Add(2);
+            c.Add(3);
+            Data.Mises.Add(new Mise(c, 1, 9, 2, 8));
+        }
+
         internal static void ReMiser()
         {
-            //si on a plus de fric, on perd
-            if (Data.Pognon <= 0)
-            {
-                Data.Doom = true;
-                return;
-            }
-
             foreach (Mise m in Data.Mises)
             {
                 int prochaineMise = m.GetProchaineMise();
@@ -51,6 +54,13 @@ namespace Martingale.Mises
                 m.MiseActuelle = prochaineMise;
                 Data.Pognon -= prochaineMise;
                 
+            }
+
+            //si on a plus de fric, on perd
+            if (Data.Pognon <= 0)
+            {
+                Data.Doom = true;
+                return;
             }
         }
     }
