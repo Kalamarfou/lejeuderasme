@@ -104,11 +104,15 @@ namespace Martingale
             s += "  dont doomed : " + doomed + "\r\n";
             s += "buggués : " + bug + "\r\n";
             s += "\r\n";
+            s += "Total gains : " + gains + "\r\n";
             s += "Moyenne gains : " + gains/gagnant + "\r\n";
-            s += "Moyenne pertes : " + pertes/perdant + "\r\n";
             s += "Max gains : " + gainsMax + "\r\n";
             s += "\r\n";
+            s += "Total pertes : " + pertes + "\r\n";
+            s += "Moyenne pertes : " + pertes/perdant + "\r\n";
+            s += "\r\n";
             s += "ratio : " + (gagnant/HistoriquePognonFinal.Count) * 100  + "%\r\n";
+            s += "Balance finale " + (gains - pertes) + "\r\n";
 
             return s;
         }

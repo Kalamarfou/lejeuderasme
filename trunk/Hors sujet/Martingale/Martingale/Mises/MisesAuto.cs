@@ -19,7 +19,6 @@ namespace Martingale.Mises
                 }
             }
             Data.Mises.Add(new Mise(c, 1, 2,2,1));
-            Data.Pognon -= 1;
         }
 
         public static void Passe()
@@ -30,7 +29,6 @@ namespace Martingale.Mises
                 c.Add(i);
             }
             Data.Mises.Add(new Mise(c, 1, 2, 2, 1));
-            Data.Pognon -= 1;
         }
 
         internal static void ReMiser()
