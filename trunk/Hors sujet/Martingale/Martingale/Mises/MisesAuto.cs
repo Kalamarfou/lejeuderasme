@@ -21,6 +21,19 @@ namespace Martingale.Mises
             Data.Mises.Add(new Mise(c, 1, 2,2,1));
         }
 
+        public static void PairsAdditiones()
+        {
+            ArrayList c = new ArrayList();
+            for (int i = 1; i < 37; i++)
+            {
+                if ((i % 2) == 0)
+                {
+                    c.Add(i);
+                }
+            }
+            Data.Mises.Add(new MiseAdditionee(c, 1, 2, 2, 1));
+        }
+
         public static void Passe()
         {
             ArrayList c = new ArrayList();
@@ -40,6 +53,18 @@ namespace Martingale.Mises
             c.Add(3);
             Data.Mises.Add(new Mise(c, 1, 9, 2, 8));
         }
+
+
+        public static void PremiersAdditiones()
+        {
+            ArrayList c = new ArrayList();
+            c.Add(0);
+            c.Add(1);
+            c.Add(2);
+            c.Add(3);
+            Data.Mises.Add(new Mise(c, 1, 9, 1, 3));
+        }
+
 
         public static void Zero()
         {
@@ -68,6 +93,17 @@ namespace Martingale.Mises
             Data.Mises.Add(new Mise(c, 1, 3, 2, 2));
         }
 
+        internal static void PremiereDouzaineAdditionee()
+        {
+            ArrayList c = new ArrayList();
+            for (int i = 1; i < 13; i++)
+            {
+                c.Add(i);
+            }
+            Data.Mises.Add(new MiseAdditionee(c, 1, 3, 1, 1));
+        }
+
+
         internal static void PremiereDouzaineModifiee()
         {
             ArrayList c = new ArrayList();
@@ -81,15 +117,24 @@ namespace Martingale.Mises
 
         internal static void ReMiser()
         {
-            foreach (Mise m in Data.Mises)
+            foreach (var m in Data.Mises)
             {
-                int prochaineMise = m.GetProchaineMise();
+
+                int prochaineMise;
+                if (m is Mise)
+                {
+                    prochaineMise = ((Mise)m).GetProchaineMise();
+                }
+                else
+                {
+                    prochaineMise = ((MiseAdditionee)m).GetProchaineMise();
+                }
 
                 if (Data.Pognon - prochaineMise < 0)
                 {
                     prochaineMise = Data.Pognon;
                 }
-                m.MiseActuelle = prochaineMise;
+                ((Mise)m).MiseActuelle = prochaineMise;
                 Data.Pognon -= prochaineMise;
                 
             }

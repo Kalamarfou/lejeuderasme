@@ -6,7 +6,7 @@ using System.Collections;
 
 namespace Martingale.Mises
 {
-    class Mise
+    public class Mise
     {
         public ArrayList Chiffres { get; set; }
         public int MultiplicateurDeGain { get; set; }
@@ -28,6 +28,11 @@ namespace Martingale.Mises
             NbDePertes = nbDePertes;
         }
 
+        public Mise()
+        {
+
+        }
+
         public int CalculerGain(int chiffre_sorti)
         {
             foreach (int chiffre in Chiffres)
@@ -47,27 +52,33 @@ namespace Martingale.Mises
         //si un zéro est tiré, on divise la mise par 2
         private int GererZero()
         {
-            //si la mise et paire, on divise
-            if (MiseActuelle%2 == 0)
+            if (MultiplicateurDeGain == 2)
             {
-                return MiseActuelle / 2;
+
+
+                //si la mise et paire, on divise
+                if (MiseActuelle % 2 == 0)
+                {
+                    return MiseActuelle / 2;
+                }
+                //si la mise est impaire, et qu'un demi pognon est déja stocké; on consome le demi pognon stocké et on renvoie 1
+                else if (demiPognon)
+                {
+                    demiPognon = false;
+                    return (MiseActuelle / 2) + 1;
+                }
+                //sinon on stocke un demi pognon, en attedant un deuxiéme
+                else
+                {
+                    demiPognon = true;
+                    return (MiseActuelle / 2);
+                }
             }
-            //si la mise est impaire, et qu'un demi pognon est déja stocké; on consome le demi pognon stocké et on renvoie 1
-            else if (demiPognon)
-            {
-                demiPognon = false;
-                return (MiseActuelle / 2) +1;
-            }
-            //sinon on stocke un demi pognon, en attedant un deuxiéme
-            else
-            {
-                demiPognon = true;
-                return (MiseActuelle / 2);
-            }
+            return 0;
         }
 
 
-        internal int GetProchaineMise()
+        internal virtual int GetProchaineMise()
         {
             if (FailCount > 0)
             {

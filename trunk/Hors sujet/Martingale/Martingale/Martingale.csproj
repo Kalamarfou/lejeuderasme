@@ -57,6 +57,7 @@
     </ApplicationDefinition>
     <Compile Include="Data\ArrayListChiffres.cs" />
     <Compile Include="Data\Number.cs" />
+    <Compile Include="Mises\MiseAdditionee.cs" />
     <Compile Include="Roulette\Roulette.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

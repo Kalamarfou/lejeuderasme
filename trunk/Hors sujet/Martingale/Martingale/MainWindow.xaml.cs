@@ -82,8 +82,11 @@ namespace Martingale
         //les mises qui vont etre utilisées
         private void Miser()
         {
-            MisesAuto.Pairs();
-            MisesAuto.Zero();
+            MisesAuto.PairsAdditiones();
+            MisesAuto.PremiereDouzaineAdditionee();
+            MisesAuto.PremiersAdditiones();
+            //MisesAuto.Pairs();
+            //MisesAuto.Zero();
             //MisesAuto.Premiers();
             //MisesAuto.Passe();
             //MisesAuto.JagueuPattern();
